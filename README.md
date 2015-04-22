@@ -1,2 +1,3 @@
 # DOM-Level-3-Events-key
-DOM Level 3 Events Key Specification
+
+This repository if for the [DOM Level 3 Events key specification](https://w3c.github.io/DOM-Level-3-Events-key/).
