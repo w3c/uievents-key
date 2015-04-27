@@ -26,11 +26,11 @@ function create_key_table(tablediv) {
 
 	// Build the header row.
 	cell = document.createElement('th');
-	cell.setAttribute('width', '20%');
+	cell.setAttribute('style', 'width: 20%');
 	cell.appendChild(document.createTextNode('Key'));
 	row.appendChild(cell);
 	cell = document.createElement('th');
-	cell.setAttribute('width', '80%');
+	cell.setAttribute('style', 'width: 80%');
 	cell.appendChild(document.createTextNode('Typical Usage (Informative)'));
 	row.appendChild(cell);
 
