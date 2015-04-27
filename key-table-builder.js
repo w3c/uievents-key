@@ -41,10 +41,10 @@ function create_key_table(tablediv) {
 		}
 		var keyname = key.getAttribute('name');
 		var noid = key.getAttribute('noid');
-		
+
 		row = table.insertRow(-1);
 		var code;
-		
+
 		cell = row.insertCell(-1);
 		cell.setAttribute('class', 'key-table-key');
 		code = document.createElement('code');
