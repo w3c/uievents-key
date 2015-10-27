@@ -150,7 +150,7 @@
 			and the <code>System.Windows.Forms.Keys</code> key enumeration of the Microsoft .NET Framework 4.0 Class Library
 				[[Keys.Net]].
 			Additional information in this spec comes from Microsoft's WM_APPCOMMAND messages [[WmAppCommand]],
-			Android KeyEvent KEYCODEs [[AndroidKeycode] and
+			Android KeyEvent KEYCODEs [[AndroidKeycode]] and
 			and other more specialized specifications as noted in this document.
 			</p>
 
@@ -241,6 +241,7 @@
 			<div id="key-table-whitespace" class="key-table">
 				<key name="Enter">The Enter key, to activate current selection or accept current input.
 					This key value is also used for the <code class="key">'Return'</code> (Macintosh numpad) key.
+					This key value is also used for the Android KEYCODE_DPAD_CENTER.
 					</key>
 				<key name="Separator">The Separator key, for context-sensitive text separators.</key>
 				<key name="Tab">The Horizontal Tabulation (Tab) key.</key>
@@ -252,12 +253,12 @@
 		<section id="keys-navigation">
 			<h4>Navigation Keys</h4>
 			<div id="key-table-navigation" class="key-table">
-				<key name="ArrowDown">The down arrow key, to navigate or traverse downward.</key>
-				<key name="ArrowLeft">The left arrow key, to navigate or traverse leftward.</key>
-				<key name="ArrowRight">The right arrow key, to navigate or traverse rightward.</key>
-				<key name="ArrowUp">The up arrow key, to navigate or traverse upward.</key>
-				<key name="End">The End key, used with keyboard entry to go to the end of content.</key>
-				<key name="Home">The Home key, used with keyboard entry, to go to start of content.</key>
+				<key name="ArrowDown">The down arrow key, to navigate or traverse downward. (KEYCODE_DPAD_DOWN)</key>
+				<key name="ArrowLeft">The left arrow key, to navigate or traverse leftward. (KEYCODE_DPAD_LEFT)</key>
+				<key name="ArrowRight">The right arrow key, to navigate or traverse rightward. (KEYCODE_DPAD_RIGHT)</key>
+				<key name="ArrowUp">The up arrow key, to navigate or traverse upward. (KEYCODE_DPAD_UP)</key>
+				<key name="End">The End key, used with keyboard entry to go to the end of content (KEYCODE_MOVE_END).</key>
+				<key name="Home">The Home key, used with keyboard entry, to go to start of content (KEYCODE_MOVE_HOME).</key>
 				<key name="PageDown">The Page Down key, to scroll down or display next page of content.</key>
 				<key name="PageUp">The Page Up key, to scroll up or display previous page of content.</key>
 			</div>
@@ -298,7 +299,7 @@
 				<key name="Escape">The Escape (Esc) key, to initiate an escape sequence.</key>
 				<key name="Execute">The Execute key.</key>
 				<key name="Find">Open the Find dialog. (APPCOMMAND_FIND)</key>
-				<key name="Help">Open a help dialog or toggle display of help information. (APPCOMMAND_HELP)</key>
+				<key name="Help">Open a help dialog or toggle display of help information. (APPCOMMAND_HELP, KEYCODE_HELP)</key>
 				<key name="Pause">Pause the current state or application (as appropriate).
 					<p class="note">Do not use this value for the pause button on media controllers. Use <code>'MediaPause'</code> instead.</p>
 					</key>
@@ -307,20 +308,19 @@
 					</key>
 				<key name="Props">The properties (Props) key.</key>
 				<key name="Select">The Select key.</key>
-				<key name="ZoomIn">The ZoomIn key.</key>
-				<key name="ZoomOut">The ZoomOut key.</key>
+				<key name="ZoomIn">The ZoomIn key. (KEYCODE_ZOOM_IN)</key>
+				<key name="ZoomOut">The ZoomOut key. (KEYCODE_ZOOM_OUT)</key>
 			</div>
 		</section><!-- keys-ui -->
 
 		<section id="keys-device">
 			<h4>Device Keys</h4>
 			<div id="key-table-device" class="key-table">
-				<key name="BrightnessDown">The Brightness Down key. Typically controls the display brightness.</key>
-				<key name="BrightnessUp">The Brightness Up key. Typically controls the display brightness.</key>
-				<key name="Camera">The Camera key.</key>
+				<key name="BrightnessDown">The Brightness Down key. Typically controls the display brightness. (KEYCODE_BRIGHTNESS_DOWN)</key>
+				<key name="BrightnessUp">The Brightness Up key. Typically controls the display brightness. (KEYCODE_BRIGHTNESS_UP)</key>
 				<key name="Eject">Toggle removable media to eject (open) and insert (close) state.</key>
 				<key name="LogOff">The LogOff key.</key>
-				<key name="Power">Toggle power state.
+				<key name="Power">Toggle power state. (KEYCODE_POWER)
 					<p class="note">Some devices might not expose this key to the operating environment.</p>
 					</key>
 				<key name="PowerOff">The PowerOff key. Sometime called "PowerDown".</key>
@@ -330,7 +330,7 @@
 					</key>
 				<key name="Standby">The Standby key.
 					This key turns off the display and places the computer into a low-power mode without completely shutting down.
-					It is sometimes called the "Suspend" or "Sleep" key.
+					It is sometimes called the "Suspend" or "Sleep" key. (KEYCODE_SLEEP)
 					</key>
 				<key name="WakeUp">The WakeUp key.</key>
 			</div>
@@ -373,16 +373,16 @@
 
 			<p>Keys specific to Japanese keyboards</p>
 			<div id="key-table-ime-japanese" class="key-table">
-				<key name="Eisu">The Eisu key. This key may close the IME, but it's purpose is defined by the current IME.</key>
+				<key name="Eisu">The Eisu key. This key may close the IME, but it's purpose is defined by the current IME. (KEYCODE_EISU)</key>
 				<key name="Hankaku">The (Half-Width) Characters key.</key>
 				<key name="Hiragana">The Hiragana (Japanese Kana characters) key.</key>
-				<key name="HiraganaKatakana">The Hiragana/Katakana toggle key.</key>
-				<key name="KanaMode">The Kana Mode (Kana Lock) key.</key>
+				<key name="HiraganaKatakana">The Hiragana/Katakana toggle key. (KEYCODE_KATAKANA_HIRAGANA)</key>
+				<key name="KanaMode">The Kana Mode (Kana Lock) key. (KEYCODE_KANA)</key>
 				<key name="KanjiMode">The Kanji (Japanese name for ideographic characters of Chinese origin) Mode key.</key>
 				<key name="Katakana">The Katakana (Japanese Kana characters) key.</key>
 				<key name="Romaji">The Roman characters function key.</key>
 				<key name="Zenkaku">The Zenkaku (Full-Width) Characters key.</key>
-				<key name="ZenkakuHankaku">The Zenkaku/Hankaku (full-width/half-width) toggle key.</key>
+				<key name="ZenkakuHankaku">The Zenkaku/Hankaku (full-width/half-width) toggle key. (KEYCODE_ZENKAKU_HANKAKU)</key>
 			</div>
 		</section><!-- keys-composition -->
 
@@ -418,23 +418,23 @@
 			<p>These are extra keys found on "multimedia" keyboards.</p>
 
 			<div id="key-table-multimedia" class="key-table">
-				<key name="ChannelDown">Select next (numerically or logically) lower channel. (APPCOMMAND_MEDIA_CHANNEL_DOWN)</key>
-				<key name="ChannelUp">Select next (numerically or logically) higher channel. (APPCOMMAND_MEDIA_CHANNEL_UP)</key>
+				<key name="ChannelDown">Select next (numerically or logically) lower channel. (APPCOMMAND_MEDIA_CHANNEL_DOWN, KEYCODE_CHANNEL_DOWN)</key>
+				<key name="ChannelUp">Select next (numerically or logically) higher channel. (APPCOMMAND_MEDIA_CHANNEL_UP, KEYCODE_CHANNEL_UP)</key>
 				<key name="Close">Close the current document or message (Note: This doesn't close the application). (APPCOMMAND_CLOSE)</key>
 				<key name="MailForward">Open an editor to forward the current message. (APPCOMMAND_FORWARD_MAIL)</key>
 				<key name="MailReply">Open an editor to reply to the current message. (APPCOMMAND_REPLY_TO_MAIL)</key>
 				<key name="MailSend">Send the current message. (APPCOMMAND_SEND_MAIL)</key>
-				<key name="MediaFastForward">Initiate or continue forward playback at faster than normal speed, or increase speed if already fast forwarding. (APPCOMMAND_MEDIA_FAST_FORWARD)</key>
-				<key name="MediaPause">Pause the currently playing media. (APPCOMMAND_MEDIA_PAUSE)
+				<key name="MediaFastForward">Initiate or continue forward playback at faster than normal speed, or increase speed if already fast forwarding. (APPCOMMAND_MEDIA_FAST_FORWARD, KEYCODE_MEDIA_FAST_FORWARD)</key>
+				<key name="MediaPause">Pause the currently playing media. (APPCOMMAND_MEDIA_PAUSE, KEYCODE_MEDIA_PAUSE)
 					<p class="note">Media controller devices should use this value rather than <code>'Pause'</code> for their pause keys.</p>
 					</key>
-				<key name="MediaPlay">Initiate or continue media playback at normal speed, if not currently playing at normal speed. (APPCOMMAND_MEDIA_PLAY)</key>
-				<key name="MediaPlayPause">Toggle media between play and pause states. (APPCOMMAND_MEDIA_PLAY_PAUSE)</key>
-				<key name="MediaRecord">Initiate or resume recording of currently selected media. (APPCOMMAND_MEDIA_RECORD)</key>
-				<key name="MediaRewind">Initiate or continue reverse playback at faster than normal speed, or increase speed if already rewinding. (APPCOMMAND_MEDIA_REWIND)</key>
-				<key name="MediaStop">Stop media playing, pausing, forwarding, rewinding, or recording, if not already stopped. (APPCOMMAND_MEDIA_STOP)</key>
-				<key name="MediaTrackNext">Seek to next media or program track. (APPCOMMAND_MEDIA_NEXTTRACK)</key>
-				<key name="MediaTrackPrevious">Seek to previous media or program track. (APPCOMMAND_MEDIA_PREVIOUSTRACK)</key>
+				<key name="MediaPlay">Initiate or continue media playback at normal speed, if not currently playing at normal speed. (APPCOMMAND_MEDIA_PLAY, KEYCODE_MEDIA_PLAY)</key>
+				<key name="MediaPlayPause">Toggle media between play and pause states. (APPCOMMAND_MEDIA_PLAY_PAUSE, KEYCODE_MEDIA_PLAY_PAUSE)</key>
+				<key name="MediaRecord">Initiate or resume recording of currently selected media. (APPCOMMAND_MEDIA_RECORD, KEYCODE_MEDIA_RECORD)</key>
+				<key name="MediaRewind">Initiate or continue reverse playback at faster than normal speed, or increase speed if already rewinding. (APPCOMMAND_MEDIA_REWIND, KEYCODE_MEDIA_REWIND)</key>
+				<key name="MediaStop">Stop media playing, pausing, forwarding, rewinding, or recording, if not already stopped. (APPCOMMAND_MEDIA_STOP, KEYCODE_MEDIA_STOP)</key>
+				<key name="MediaTrackNext">Seek to next media or program track. (APPCOMMAND_MEDIA_NEXTTRACK, KEYCODE_MEDIA_NEXT)</key>
+				<key name="MediaTrackPrevious">Seek to previous media or program track. (APPCOMMAND_MEDIA_PREVIOUSTRACK, KEYCODE_MEDIA_PREVIOUS)</key>
 				<key name="New">Open a new document or message. (APPCOMMAND_NEW)</key>
 				<key name="Open">Open an existing document or message. (APPCOMMAND_OPEN)</key>
 				<key name="Print">Print the current document or message. (APPCOMMAND_PRINT)</key>
@@ -447,7 +447,7 @@
 			<h4>Audio Keys</h4>
 			<p>Multimedia keys related to audio.</p>
 
-			<div id="key-table-multimedia" class="key-table">
+			<div id="key-table-audio" class="key-table">
 				<key name="AudioBalanceLeft">Adjust audio balance leftward. (VK_AUDIO_BALANCE_LEFT)</key>
 				<key name="AudioBalanceRight">Adjust audio balance rightward. (VK_AUDIO_BALANCE_RIGHT)</key>
 				<key name="AudioBassDown">Decrease bass. (APPCOMMAND_BASS_DOWN)</key>
@@ -460,13 +460,13 @@
 				<key name="AudioSurroundModeNext">Advance surround audio mode to next available mode. (VK_SURROUND_MODE_NEXT)</key>
 				<key name="AudioTrebleDown">Decrease treble. (APPCOMMAND_TREBLE_DOWN)</key>
 				<key name="AudioTrebleUp">Increase treble. (APPCOMMAND_TREBLE_UP)</key>
-				<key name="AudioVolumeDown">Decrease audio volume. (APPCOMMAND_VOLUME_DOWN)</key>
-				<key name="AudioVolumeUp">Increase audio volume. (APPCOMMAND_VOLUME_UP)</key>
-				<key name="AudioVolumeMute">Toggle between muted state and prior volume level. (APPCOMMAND_VOLUME_MUTE)</key>
+				<key name="AudioVolumeDown">Decrease audio volume. (APPCOMMAND_VOLUME_DOWN, KEYCODE_VOLUME_DOWN)</key>
+				<key name="AudioVolumeUp">Increase audio volume. (APPCOMMAND_VOLUME_UP, KEYCODE_VOLUME_UP)</key>
+				<key name="AudioVolumeMute">Toggle between muted state and prior volume level. (APPCOMMAND_VOLUME_MUTE, KEYCODE_VOLUME_MUTE)</key>
 				<key name="MicrophoneToggle">Toggle the microphone on/off. (APPCOMMAND_MIC_ON_OFF_TOGGLE)</key>
 				<key name="MicrophoneVolumeDown">Decrease microphone volume. (APPCOMMAND_MICROPHONE_VOLUME_DOWN)</key>
 				<key name="MicrophoneVolumeUp">Increase microphone volume. (APPCOMMAND_MICROPHONE_VOLUME_UP)</key>
-				<key name="MicrophoneVolumeMute">Mute the microphone. (APPCOMMAND_MICROPHONE_VOLUME_MUTE)</key>
+				<key name="MicrophoneVolumeMute">Mute the microphone. (APPCOMMAND_MICROPHONE_VOLUME_MUTE, , KEYCODE_MUTE)</key>
 			</div>
 		</section><!-- keys-audio -->
 
@@ -474,7 +474,7 @@
 			<h4>Speech Keys</h4>
 			<p>Multimedia keys related to speech recognition.</p>
 
-			<div id="key-table-multimedia" class="key-table">
+			<div id="key-table-speech" class="key-table">
 				<key name="SpeechCorrectionList">Show correction list when a word is incorrectly identified. (APPCOMMAND_CORRECTION_LIST)</key>
 				<key name="SpeechInputToggle">Toggle between dictation mode and command/control mode. (APPCOMMAND_DICTATE_OR_COMMAND_CONTROL_TOGGLE)</key>
 			</div>
@@ -488,8 +488,9 @@
 				</p>
 			<!-- Key tables. Note that all keys must be defined within a <div class="key-table"> -->
 			<div id="key-table-apps" class="key-table">
-				<key name="LaunchCalculator">The 'Calculator' key. This is often the generic 'LaunchApplication' key, as index 2. (APPCOMMAND_LAUNCH_APP2)</key>
-				<key name="LaunchCalendar">The 'Calendar' key.</key>
+				<key name="LaunchCalculator">The 'Calculator' key. This is often the generic 'LaunchApplication' key, as index 2. (APPCOMMAND_LAUNCH_APP2, KEYCODE_CALCULATOR)</key>
+				<key name="LaunchCalendar">The 'Calendar' key. (KEYCODE_CALENDAR)</key>
+				<key name="LaunchContacts">The 'Contacts' key. (KEYCODE_CONTACTS)</key>
 				<key name="LaunchMail">The 'Mail' key. (APPCOMMAND_LAUNCH_MAIL)</key>
 				<key name="LaunchMediaPlayer">The 'Media Player' key. (APPCOMMAND_LAUNCH_MEDIA_SELECT)</key>
 				<key name="LaunchMusicPlayer">The 'Music Player' key.</key>
@@ -516,6 +517,23 @@
 			</div>
 		</section><!-- keys-browser -->
 
+		<section id="keys-mobile">
+			<h4>Mobile Phone Keys</h4>
+			<div id="key-table-mobile-phone" class="key-table">
+				<key name="Camera">The Camera key. (KEYCODE_CAMERA)</key>
+				<key name="CameraFocus">The Camera focus key. (KEYCODE_FOCUS)</key>
+				<key name="MannerMode">Toggle between manner mode state: silent, vibrate, ring, ... (KEYCODE_MANNER_MODE)</key>
+<!--
+int	KEYCODE_APP_SWITCH	Key code constant: App switch key.
+int	KEYCODE_BACK	Key code constant: Back key.
+int	KEYCODE_CALL	Key code constant: Call key.
+int	KEYCODE_ENDCALL	Key code constant: End Call key.
+int	KEYCODE_HEADSETHOOK	Key code constant: Headset Hook key.
+int	KEYCODE_HOME	Key code constant: Home key.
+-->
+			</div>
+		</section><!-- keys-mobile-phone -->
+
 		<section id="keys-media-controller">
 			<h4>Media Controller Keys</h4>
 
@@ -528,15 +546,15 @@
 				</ul>
 
 			<div id="key-table-media-controller" class="key-table">
-				<key name="AVRInput">Switch the input mode on an external AVR (audio/video receiver).</key>
-				<key name="AVRPower">Toggle the power on an external AVR (audio/video receiver).</key>
-				<key name="ColorF0Red">General purpose color-coded media function key, as index 0 (red). (VK_COLORED_KEY_0)</key>
-				<key name="ColorF1Green">General purpose color-coded media function key, as index 1 (green). (VK_COLORED_KEY_1)</key>
-				<key name="ColorF2Yellow">General purpose color-coded media function key, as index 2 (yellow). (VK_COLORED_KEY_2)</key>
-				<key name="ColorF3Blue">General purpose color-coded media function key, as index 3 (blue). (VK_COLORED_KEY_3)</key>
+				<key name="AVRInput">Switch the input mode on an external AVR (audio/video receiver). (KEYCODE_AVR_INPUT)</key>
+				<key name="AVRPower">Toggle the power on an external AVR (audio/video receiver). (KEYCODE_AVR_POWER)</key>
+				<key name="ColorF0Red">General purpose color-coded media function key, as index 0 (red). (VK_COLORED_KEY_0, KEYCODE_PROG_RED)</key>
+				<key name="ColorF1Green">General purpose color-coded media function key, as index 1 (green). (VK_COLORED_KEY_1, KEYCODE_PROG_GREEN)</key>
+				<key name="ColorF2Yellow">General purpose color-coded media function key, as index 2 (yellow). (VK_COLORED_KEY_2, KEYCODE_PROG_YELLOW)</key>
+				<key name="ColorF3Blue">General purpose color-coded media function key, as index 3 (blue). (VK_COLORED_KEY_3, KEYCODE_PROG_BLUE)</key>
 				<key name="ColorF4Grey">General purpose color-coded media function key, as index 4 (grey). (VK_COLORED_KEY_4)</key>
 				<key name="ColorF5Brown">General purpose color-coded media function key, as index 5 (brown). (VK_COLORED_KEY_5)</key>
-				<key name="ClosedCaptionToggle">Toggle the display of Closed Captions. (VK_CC)</key>
+				<key name="ClosedCaptionToggle">Toggle the display of Closed Captions. (VK_CC, KEYCODE_CAPTIONS)</key>
 				<key name="Dimmer">Adjust brightness of device, by toggling between or cycling through states. (VK_DIMMER)</key>
 				<key name="DisplaySwap">Swap video sources. (VK_DISPLAY_SWAP)</key>
 				<key name="Exit">Exit the current application. (VK_EXIT)</key>
@@ -552,7 +570,7 @@
 				<key name="FavoriteStore1">Store current program or content as favorite 1. (VK_STORE_FAVORITE_1)</key>
 				<key name="FavoriteStore2">Store current program or content as favorite 2. (VK_STORE_FAVORITE_2)</key>
 				<key name="FavoriteStore3">Store current program or content as favorite 3. (VK_STORE_FAVORITE_3)</key>
-				<key name="Guide">Toggle display of program or content guide. (VK_GUIDE)</key>
+				<key name="Guide">Toggle display of program or content guide. (VK_GUIDE, KEYCODE_GUIDE)</key>
 				<key name="GuideNextDay">If guide is active and displayed, then display next day's content. (VK_NEXT_DAY)</key>
 				<key name="GuidePreviousDay">If guide is active and displayed, then display previous day's content. (VK_PREV_DAY)</key>
 				<key name="Info">Toggle display of information about currently selected context or media. (VK_INFO)</key>
@@ -582,18 +600,18 @@
 				<key name="RfBypass">Toggle RF (radio frequency) input bypass mode (pass RF input directly to the RF output). (VK_RF_BYPASS)</key>
 				<key name="ScanChannelsToggle">Toggle scan channels mode. (VK_SCAN_CHANNELS_TOGGLE)</key>
 				<key name="ScreenModeNext">Advance display screen mode to next available mode. (VK_SCREEN_MODE_NEXT)</key>
-				<key name="Settings">Toggle display of device settings screen. (VK_SETTINGS)</key>
+				<key name="Settings">Toggle display of device settings screen. (VK_SETTINGS, KEYCODE_SETTINGS)</key>
 				<key name="SplitScreenToggle">Toggle split screen mode. (VK_SPLIT_SCREEN_TOGGLE)</key>
-				<key name="STBInput">Switch the input mode on an external STB (set top box).</key>
-				<key name="STBPower">Toggle the power on an external STB (set top box).</key>
+				<key name="STBInput">Switch the input mode on an external STB (set top box). (KEYCODE_STB_INPUT)</key>
+				<key name="STBPower">Toggle the power on an external STB (set top box). (KEYCODE_STB_POWER)</key>
 				<key name="Subtitle">Toggle display of subtitles, if available. (VK_SUBTITLE)</key>
-				<key name="Teletext">Toggle display of teletext, if available (VK_TELETEXT).</key>
-				<key name="TV">Switch to viewing TV.</key>
+				<key name="Teletext">Toggle display of teletext, if available (VK_TELETEXT, KEYCODE_TV_TELETEXT).</key>
+				<key name="TV">Switch to viewing TV. (KEYCODE_TV)</key>
 				<key name="TVInput">Switch the input mode on an external TV.</key>
-				<key name="TVPower">Toggle the power on an external TV.</key>
+				<key name="TVPower">Toggle the power on an external TV. (KEYCODE_TV_POWER)</key>
 				<key name="VideoModeNext">Advance video mode to next available mode.(VK_VIDEO_MODE_NEXT)</key>
 				<key name="Wink">Cause device to identify itself in some manner, e.g., audibly or visibly. (VK_WINK)</key>
-				<key name="ZoomToggle">Toggle between full-screen and scaled content, or alter magnification level. (VK_ZOOM)</key>
+				<key name="ZoomToggle">Toggle between full-screen and scaled content, or alter magnification level. (VK_ZOOM, KEYCODE_TV_ZOOM_MODE)</key>
 			</div>
 
 			<p>Some of the keys defined in the media controller standards already have appropriate keys defined in other sections of this specification.
