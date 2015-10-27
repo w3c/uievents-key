@@ -256,19 +256,19 @@
 				<key name="Backspace">The Backspace key.
 					This key value is also used for the key labeled <code>'delete'</code> on MacOS keyboards.
 					</key>
-				<key name="Clear">The Clear key, for removing current selected input.</key>
-				<key name="Copy">The Copy key.</key>
+				<key name="Clear">Remove the currently selected input.</key>
+				<key name="Copy">Copy the current selection. (APPCOMMAND_COPY)</key>
 				<key name="CrSel">The Cursor Select (Crsel) key.</key>
-				<key name="Cut">The Cut key.</key>
+				<key name="Cut">Cut the current selection. (APPCOMMAND_CUT)</key>
 				<key name="Delete">The Delete (Del) Key.
 					This key value is also used for the key labeled <code>'delete'</code> on MacOS keyboards when modified by the <code class="key">'Fn'</code> key.
 					</key>
 				<key name="EraseEof">The Erase to End of Field key.  This key deletes all characters from the current cursor position to the end of the current field.</key>
 				<key name="ExSel">The Extend Selection (Exsel) key.</key>
 				<key name="Insert">The Insert (Ins) key, to toggle between text modes for insertion or overtyping.</key>
-				<key name="Paste">The Paste key.</key>
-				<key name="Redo">The Redo key.</key>
-				<key name="Undo">The Undo key.</key>
+				<key name="Paste">The Paste key. (APPCOMMAND_PASTE)</key>
+				<key name="Redo">Redo the last action. (APPCOMMAND_REDO)</key>
+				<key name="Undo">Undo the last action. (APPCOMMAND_UNDO)</key>
 			</div>
 		</section><!-- keys-editing -->
 
@@ -284,8 +284,8 @@
 					</key>
 				<key name="Escape">The Escape (Esc) key, to initiate an escape sequence.</key>
 				<key name="Execute">The Execute key.</key>
-				<key name="Find">The Find key.</key>
-				<key name="Help">Toggle display of help information.</key>
+				<key name="Find">Open the Find dialog. (APPCOMMAND_FIND)</key>
+				<key name="Help">Open a help dialog or toggle display of help information. (APPCOMMAND_HELP)</key>
 				<key name="Pause">Pause the current state or application (as appropriate).
 					<p class="note">Do not use this value for the pause button on media controllers. Use <code>'MediaPause'</code> instead.</p>
 					</key>
@@ -405,24 +405,67 @@
 			<p>These are extra keys found on "multimedia" keyboards.</p>
 
 			<div id="key-table-multimedia" class="key-table">
-				<key name="Close">Close the current document or message.</key>
-				<key name="MailForward">Open an editor to forward the current message.</key>
-				<key name="MailReply">Open an editor to reply to the current message.</key>
-				<key name="MailSend">Send the current message.</key>
-				<key name="MediaPlayPause">Toggle media between play and pause states.</key>
-				<key name="MediaStop">Stop media playing, pausing, forwarding, rewinding, or recording, if not already stopped.</key>
-				<key name="MediaTrackNext">Seek to next media or program track.</key>
-				<key name="MediaTrackPrevious">Seek to previous media or program track.</key>
-				<key name="New">Open a new document or message.</key>
-				<key name="Open">Open an existing document or message.</key>
-				<key name="Print">Print the current document or message.</key>
-				<key name="Save">Save the current document or message.</key>
-				<key name="SpellCheck">Spellcheck the current document or selection.</key>
-				<key name="VolumeDown">Decrease audio volume.</key>
-				<key name="VolumeUp">Increase audio volume.</key>
-				<key name="VolumeMute">Toggle between muted state and prior volume level.</key>
+				<key name="ChannelDown">Select next (numerically or logically) lower channel. (APPCOMMAND_MEDIA_CHANNEL_DOWN)</key>
+				<key name="ChannelUp">Select next (numerically or logically) higher channel. (APPCOMMAND_MEDIA_CHANNEL_UP)</key>
+				<key name="Close">Close the current document or message (Note: This doesn't close the application). (APPCOMMAND_CLOSE)</key>
+				<key name="MailForward">Open an editor to forward the current message. (APPCOMMAND_FORWARD_MAIL)</key>
+				<key name="MailReply">Open an editor to reply to the current message. (APPCOMMAND_REPLY_TO_MAIL)</key>
+				<key name="MailSend">Send the current message. (APPCOMMAND_SEND_MAIL)</key>
+				<key name="MediaFastForward">Initiate or continue forward playback at faster than normal speed, or increase speed if already fast forwarding. (APPCOMMAND_MEDIA_FAST_FORWARD)</key>
+				<key name="MediaPause">Pause the currently playing media. (APPCOMMAND_MEDIA_PAUSE)
+					<p class="note">Media controller devices should use this value rather than <code>'Pause'</code> for their pause keys.</p>
+					</key>
+				<key name="MediaPlay">Initiate or continue media playback at normal speed, if not currently playing at normal speed. (APPCOMMAND_MEDIA_PLAY)</key>
+				<key name="MediaPlayPause">Toggle media between play and pause states. (APPCOMMAND_MEDIA_PLAY_PAUSE)</key>
+				<key name="MediaRecord">Initiate or resume recording of currently selected media. (APPCOMMAND_MEDIA_RECORD)</key>
+				<key name="MediaRewind">Initiate or continue reverse playback at faster than normal speed, or increase speed if already rewinding. (APPCOMMAND_MEDIA_REWIND)</key>
+				<key name="MediaStop">Stop media playing, pausing, forwarding, rewinding, or recording, if not already stopped. (APPCOMMAND_MEDIA_STOP)</key>
+				<key name="MediaTrackNext">Seek to next media or program track. (APPCOMMAND_MEDIA_NEXTTRACK)</key>
+				<key name="MediaTrackPrevious">Seek to previous media or program track. (APPCOMMAND_MEDIA_PREVIOUSTRACK)</key>
+				<key name="New">Open a new document or message. (APPCOMMAND_NEW)</key>
+				<key name="Open">Open an existing document or message. (APPCOMMAND_OPEN)</key>
+				<key name="Print">Print the current document or message. (APPCOMMAND_PRINT)</key>
+				<key name="Save">Save the current document or message. (APPCOMMAND_SAVE)</key>
+				<key name="SpellCheck">Spellcheck the current document or selection. (APPCOMMAND_SPELL_CHECK)</key>
 			</div>
 		</section><!-- keys-multimedia -->
+
+		<section id="keys-audio">
+			<h4>Audio Keys</h4>
+			<p>Multimedia keys related to audio.</p>
+
+			<div id="key-table-multimedia" class="key-table">
+				<key name="AudioBalanceLeft">Adjust audio balance leftward. (VK_AUDIO_BALANCE_LEFT)</key>
+				<key name="AudioBalanceRight">Adjust audio balance rightward. (VK_AUDIO_BALANCE_RIGHT)</key>
+				<key name="AudioBassDown">Decrease bass. (APPCOMMAND_BASS_DOWN)</key>
+				<key name="AudioBassBoostDown">Decrease audio bass boost or cycle down through bass boost states. (VK_BASS_BOOST_DOWN)</key>
+				<key name="AudioBassBoostToggle">Toggle bass boost on/off. (APPCOMMAND_BASS_BOOST)</key>
+				<key name="AudioBassBoostUp">Increase audio bass boost or cycle up through bass boost states. (VK_BASS_BOOST_UP)</key>
+				<key name="AudioBassUp">Increase bass. (APPCOMMAND_BASS_UP)</key>
+				<key name="AudioFaderFront">Adjust audio fader towards front. (VK_FADER_FRONT)</key>
+				<key name="AudioFaderRear">Adjust audio fader towards rear. (VK_FADER_REAR)</key>
+				<key name="AudioSurroundModeNext">Advance surround audio mode to next available mode. (VK_SURROUND_MODE_NEXT)</key>
+				<key name="AudioTrebleDown">Decrease treble. (APPCOMMAND_TREBLE_DOWN)</key>
+				<key name="AudioTrebleUp">Increase treble. (APPCOMMAND_TREBLE_UP)</key>
+				<key name="AudioVolumeDown">Decrease audio volume. (APPCOMMAND_VOLUME_DOWN)</key>
+				<key name="AudioVolumeUp">Increase audio volume. (APPCOMMAND_VOLUME_UP)</key>
+				<key name="AudioVolumeMute">Toggle between muted state and prior volume level. (APPCOMMAND_VOLUME_MUTE)</key>
+				<key name="MicrophoneToggle">Toggle the microphone on/off. (APPCOMMAND_MIC_ON_OFF_TOGGLE)</key>
+				<key name="MicrophoneVolumeDown">Decrease microphone volume. (APPCOMMAND_MICROPHONE_VOLUME_DOWN)</key>
+				<key name="MicrophoneVolumeUp">Increase microphone volume. (APPCOMMAND_MICROPHONE_VOLUME_UP)</key>
+				<key name="MicrophoneVolumeMute">Mute the microphone. (APPCOMMAND_MICROPHONE_VOLUME_MUTE)</key>
+			</div>
+		</section><!-- keys-audio -->
+
+		<section id="keys-speech">
+			<h4>Speech Keys</h4>
+			<p>Multimedia keys related to speech recognition.</p>
+
+			<div id="key-table-multimedia" class="key-table">
+				<key name="SpeechCorrectionList">Show correction list when a word is incorrectly identified. (APPCOMMAND_CORRECTION_LIST)</key>
+				<key name="SpeechInputToggle">Toggle between dictation mode and command/control mode. (APPCOMMAND_DICTATE_OR_COMMAND_CONTROL_TOGGLE)</key>
+			</div>
+		</section><!-- keys-speech -->
 
 		<section id="keys-apps">
 			<h4>Application Keys</h4>
@@ -432,12 +475,12 @@
 				</p>
 			<!-- Key tables. Note that all keys must be defined within a <div class="key-table"> -->
 			<div id="key-table-apps" class="key-table">
-				<key name="LaunchCalculator">The 'Calculator' key. This is often the generic 'LaunchApplication' key, as index 2.</key>
+				<key name="LaunchCalculator">The 'Calculator' key. This is often the generic 'LaunchApplication' key, as index 2. (APPCOMMAND_LAUNCH_APP2)</key>
 				<key name="LaunchCalendar">The 'Calendar' key.</key>
-				<key name="LaunchMail">The 'Mail' key.</key>
-				<key name="LaunchMediaPlayer">The 'Media Player' key. This value should also be used for 'MediaSelect'.</key>
+				<key name="LaunchMail">The 'Mail' key. (APPCOMMAND_LAUNCH_MAIL)</key>
+				<key name="LaunchMediaPlayer">The 'Media Player' key. (APPCOMMAND_LAUNCH_MEDIA_SELECT)</key>
 				<key name="LaunchMusicPlayer">The 'Music Player' key.</key>
-				<key name="LaunchMyComputer">The 'My Computer' key. This is often the generic 'LaunchApplication' key, as index 1.</key>
+				<key name="LaunchMyComputer">The 'My Computer' key. This is often the generic 'LaunchApplication' key, as index 1. (APPCOMMAND_LAUNCH_APP1)</key>
 				<key name="LaunchScreenSaver">The 'Screen Saver' key.</key>
 				<key name="LaunchSpreadsheet">The 'Spreadsheet' key.</key>
 				<key name="LaunchWebBrowser">The 'Web Browser' key.</key>
@@ -450,13 +493,13 @@
 		<section id="keys-browser">
 			<h4>Browser Keys</h4>
 			<div id="key-table-browser" class="key-table">
-				<key name="BrowserBack">Navigate to previous content or page in current history.</key>
-				<key name="BrowserFavorites">The Browser Favorites key.</key>
-				<key name="BrowserForward">Navigate to next content or page in current history.</key>
-				<key name="BrowserHome">The Browser Home key, used with keyboard entry, to go to the home page.</key>
-				<key name="BrowserRefresh">The Browser Refresh key, to refresh the current page or content.</key>
-				<key name="BrowserSearch">The Browser Search key, to call up the user's preferred search page.</key>
-				<key name="BrowserStop">The Browser Stop key, to stop loading the current page or content.</key>
+				<key name="BrowserBack">Navigate to previous content or page in current history. (APPCOMMAND_BROWSER_BACKWARD)</key>
+				<key name="BrowserFavorites">Open the list of browser favorites. (APPCOMMAND_BROWSER_FAVORITES)</key>
+				<key name="BrowserForward">Navigate to next content or page in current history. (APPCOMMAND_BROWSER_FORWARD)</key>
+				<key name="BrowserHome">Go to the user's preferred home page. (APPCOMMAND_BROWSER_HOME)</key>
+				<key name="BrowserRefresh">Refresh the current page or content. (APPCOMMAND_BROWSER_REFRESH)</key>
+				<key name="BrowserSearch">Call up the user's preferred search page. (APPCOMMAND_BROWSER_SEARCH)</key>
+				<key name="BrowserStop">Stop loading the current page or content. (APPCOMMAND_BROWSER_STOP)</key>
 			</div>
 		</section><!-- keys-browser -->
 
@@ -472,17 +515,8 @@
 				</ul>
 
 			<div id="key-table-media-controller" class="key-table">
-				<key name="AudioBalanceLeft">Adjust audio balance leftward. (VK_AUDIO_BALANCE_LEFT)</key>
-				<key name="AudioBalanceRight">Adjust audio balance rightward. (VK_AUDIO_BALANCE_RIGHT)</key>
-				<key name="AudioBassBoostDown">Decrease audio bass boost or cycle down through bass boost states. (VK_BASS_BOOST_DOWN)</key>
-				<key name="AudioBassBoostUp">Increase audio bass boost or cycle up through bass boost states. (VK_BASS_BOOST_UP)</key>
-				<key name="AudioFaderFront">Adjust audio fader towards front. (VK_FADER_FRONT)</key>
-				<key name="AudioFaderRear">Adjust audio fader towards rear. (VK_FADER_REAR)</key>
-				<key name="AudioSurroundModeNext">Advance surround audio mode to next available mode. (VK_SURROUND_MODE_NEXT)</key>
 				<key name="AVRInput">Switch the input mode on an external AVR (audio/video receiver).</key>
 				<key name="AVRPower">Toggle the power on an external AVR (audio/video receiver).</key>
-				<key name="ChannelDown">Select next (numerically or logically) lower channel. (VK_CHANNEL_DOWN)</key>
-				<key name="ChannelUp">Select next (numerically or logically) higher channel. (VK_CHANNEL_UP)</key>
 				<key name="ColorF0Red">General purpose color-coded media function key, as index 0 (red). (VK_COLORED_KEY_0)</key>
 				<key name="ColorF1Green">General purpose color-coded media function key, as index 1 (green). (VK_COLORED_KEY_1)</key>
 				<key name="ColorF2Yellow">General purpose color-coded media function key, as index 2 (yellow). (VK_COLORED_KEY_2)</key>
@@ -517,14 +551,7 @@
 				<key name="MediaApps">Show a list of media applications: audio/video players and image viewers. (VK_APPS)
 					<p class="note">Do not confuse this key value with the Windows' VK_APPS / VK_CONTEXT_MENU key, which is encoded as <code>'ContextMenu'</code>.</p>
 					</key>
-				<key name="MediaFastForward">Initiate or continue forward playback at faster than normal speed, or increase speed if already fast forwarding. (VK_FAST_FWD)</key>
 				<key name="MediaLast">Select previously selected channel or media. (VK_LAST)</key>
-				<key name="MediaPause">Pause the currently playing media. (VK_PAUSE)
-					<p class="note">Media controller devices should use this value rather than <code>'Pause'</code> for their pause keys.</p>
-					</key>
-				<key name="MediaPlay">Initiate or continue media playback at normal speed, if not currently playing at normal speed. (VK_PLAY)</key>
-				<key name="MediaRecord">Initiate or resume recording of currently selected media. (VK_RECORD)</key>
-				<key name="MediaRewind">Initiate or continue reverse playback at faster than normal speed, or increase speed if already rewinding. (VK_REWIND)</key>
 				<key name="MediaSkip">Skip forward to next content or program. (VK_SKIP)</key>
 				<key name="NextFavoriteChannel">Cycle to next favorite channel (in favorites list). (VK_NEXT_FAVORITE_CHANNEL)</key>
 				<key name="NextUserProfile">Cycle to next user profile (if there are multiple user profiles). (VK_USER)</key>
@@ -563,20 +590,27 @@
 			<div id="key-table-media-controller-dup" class="key-table">
 				<key name="BrowserBack" noid>Navigate to previous content or page in current history. (VK_BACK)</key>
 				<key name="BrowserForward" noid>Navigate to next content or page in current history. (VK_FORWARD)</key>
+				<key name="ChannelDown" noid>Select next (numerically or logically) lower channel. (VK_CHANNEL_DOWN)</key>
+				<key name="ChannelUp" noid>Select next (numerically or logically) higher channel. (VK_CHANNEL_UP)</key>
 				<key name="ContextMenu" noid>Toggle display of the on-screen menu. (VK_MENU)</key>
 				<key name="Eject" noid>Toggle removable media to eject (open) and insert (close) state. (VK_EJECT_TOGGLE)</key>
 				<key name="End" noid>The End key, used with keyboard entry to go to the end of content. (VK_GO_TO_END)</key>
 				<key name="Enter" noid>The Enter key, to activate current selection or accept current input. (VK_SELECT)</key>
 				<key name="Home" noid>The Home key, used with keyboard entry, to go to start of content. (VK_GO_TO_START)</key>
+				<key name="MediaFastForward" noid>Initiate or continue forward playback at faster than normal speed, or increase speed if already fast forwarding. (VK_FAST_FWD)</key>
+				<key name="MediaPlay" noid>Initiate or continue media playback at normal speed, if not currently playing at normal speed. (VK_PLAY)</key>
 				<key name="MediaPlayPause" noid>Toggle media between play and pause states. (VK_PLAY_PAUSE)</key>
+				<key name="MediaRecord" noid>Initiate or resume recording of currently selected media. (VK_RECORD)</key>
+				<key name="MediaRewind" noid>Initiate or continue reverse playback at faster than normal speed, or increase speed if already rewinding. (VK_REWIND)</key>
 				<key name="MediaStop" noid>Stop media playing, pausing, forwarding, rewinding, or recording, if not already stopped. (VK_STOP)</key>
 				<key name="MediaNextTrack" noid>Seek to next media or program track. (VK_TRACK_NEXT)</key>
+				<key name="MediaPause" noid>Pause the currently playing media. (VK_PAUSE)</key>
 				<key name="MediaPreviousTrack" noid>Seek to previous media or program track. (VK_TRACK_PREV)</key>
 				<key name="Power" noid>Toggle power state. (VK_POWER)</key>
 				<key name="Unidentified" noid>This key value is used when an implementations is unable to identify another key value, due to either hardware, platform, or software constraints. (VK_UNDEFINED)</key>
-				<key name="VolumeDown" noid>Decrease audio volume. (VK_VOLUME_DOWN)</key>
-				<key name="VolumeUp" noid>Increase audio volume. (VK_VOLUME_UP)</key>
-				<key name="VolumeMute" noid>Toggle between muted state and prior volume level. (VK_VOLUME_MUTE)</key>
+				<key name="AudioVolumeDown" noid>Decrease audio volume. (VK_VOLUME_DOWN)</key>
+				<key name="AudioVolumeUp" noid>Increase audio volume. (VK_VOLUME_UP)</key>
+				<key name="AudioVolumeMute" noid>Toggle between muted state and prior volume level. (VK_VOLUME_MUTE)</key>
 			</div>
 
 		</section><!-- keys-media-controller -->
