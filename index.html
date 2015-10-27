@@ -60,6 +60,11 @@
 		wgPatentURI: ["http://www.w3.org/2004/01/pp-impl/83482/status"],
 		maxTocLevel: 4,
 		localBiblio: {
+    "AndroidKeycode": {
+    	title: "Android KeyEvent"
+    ,	href: "http://developer.android.com/reference/android/view/KeyEvent.html"
+    ,	publisher: "Google"
+    },
     "DASE": {
         title:    "ATSC A/100-2, DTV Application Software Environment Level 1 (DASE-1) Part 2: Declarative Applications and Environment"
     ,   href:     "http://atsc.org/standard/a100-dtv-application-software-environment-level-1-dase-1/"
@@ -87,6 +92,11 @@
     ,	href: "http://www.ce.org/Standards/Standard-Listings/R7-Home-Network-Committee/CEA-2014-B-(ANSI%29.aspx"
     ,	publisher: "Consumer Electronics Association"
     ,	date: "January 2011"
+    },
+    "WmAppCommand": {
+    	title: "MSDN WM_APPCOMMAND message"
+    ,	href: "https://msdn.microsoft.com/en-us/library/windows/desktop/ms646275(v=vs.85).aspx"
+    ,	publisher: "Microsoft"
     }
   }
 	};
@@ -139,6 +149,9 @@
 				[[KeyEventJava]],
 			and the <code>System.Windows.Forms.Keys</code> key enumeration of the Microsoft .NET Framework 4.0 Class Library
 				[[Keys.Net]].
+			Additional information in this spec comes from Microsoft's WM_APPCOMMAND messages [[WmAppCommand]],
+			Android KeyEvent KEYCODEs [[AndroidKeycode] and
+			and other more specialized specifications as noted in this document.
 			</p>
 
 		<p class="note">The keys on the numeric keypad (e.g., the keypad <code>'1'</code> key) do not generate distinct <code>key</code> values
