@@ -150,7 +150,6 @@
 			and the <code>System.Windows.Forms.Keys</code> key enumeration of the Microsoft .NET Framework 4.0 Class Library
 				[[Keys.Net]].
 			Additional information in this spec comes from Microsoft's WM_APPCOMMAND messages [[WmAppCommand]],
-			Android KeyEvent KEYCODEs [[AndroidKeycode]] and
 			and other more specialized specifications as noted in this document.
 			</p>
 
@@ -258,7 +257,9 @@
 				<key name="ArrowRight">The right arrow key, to navigate or traverse rightward. (KEYCODE_DPAD_RIGHT)</key>
 				<key name="ArrowUp">The up arrow key, to navigate or traverse upward. (KEYCODE_DPAD_UP)</key>
 				<key name="End">The End key, used with keyboard entry to go to the end of content (KEYCODE_MOVE_END).</key>
-				<key name="Home">The Home key, used with keyboard entry, to go to start of content (KEYCODE_MOVE_HOME).</key>
+				<key name="Home">The Home key, used with keyboard entry, to go to start of content (KEYCODE_MOVE_HOME).
+					For the mobile phone 'Home' key (which goes to the phone's main screen), use <code>'GoHome'</code>.
+					</key>
 				<key name="PageDown">The Page Down key, to scroll down or display next page of content.</key>
 				<key name="PageUp">The Page Up key, to scroll up or display previous page of content.</key>
 			</div>
@@ -279,7 +280,7 @@
 					</key>
 				<key name="EraseEof">The Erase to End of Field key.  This key deletes all characters from the current cursor position to the end of the current field.</key>
 				<key name="ExSel">The Extend Selection (Exsel) key.</key>
-				<key name="Insert">The Insert (Ins) key, to toggle between text modes for insertion or overtyping.</key>
+				<key name="Insert">The Insert (Ins) key, to toggle between text modes for insertion or overtyping. (KEYCODE_INSERT)</key>
 				<key name="Paste">The Paste key. (APPCOMMAND_PASTE)</key>
 				<key name="Redo">Redo the last action. (APPCOMMAND_REDO)</key>
 				<key name="Undo">Undo the last action. (APPCOMMAND_UNDO)</key>
@@ -318,7 +319,7 @@
 			<div id="key-table-device" class="key-table">
 				<key name="BrightnessDown">The Brightness Down key. Typically controls the display brightness. (KEYCODE_BRIGHTNESS_DOWN)</key>
 				<key name="BrightnessUp">The Brightness Up key. Typically controls the display brightness. (KEYCODE_BRIGHTNESS_UP)</key>
-				<key name="Eject">Toggle removable media to eject (open) and insert (close) state.</key>
+				<key name="Eject">Toggle removable media to eject (open) and insert (close) state. (KEYCODE_MEDIA_EJECT)</key>
 				<key name="LogOff">The LogOff key.</key>
 				<key name="Power">Toggle power state. (KEYCODE_POWER)
 					<p class="note">Some devices might not expose this key to the operating environment.</p>
@@ -332,7 +333,7 @@
 					This key turns off the display and places the computer into a low-power mode without completely shutting down.
 					It is sometimes called the "Suspend" or "Sleep" key. (KEYCODE_SLEEP)
 					</key>
-				<key name="WakeUp">The WakeUp key.</key>
+				<key name="WakeUp">The WakeUp key. (KEYCODE_WAKEUP)</key>
 			</div>
 		</section><!-- keys-device -->
 
@@ -420,7 +421,7 @@
 			<div id="key-table-multimedia" class="key-table">
 				<key name="ChannelDown">Select next (numerically or logically) lower channel. (APPCOMMAND_MEDIA_CHANNEL_DOWN, KEYCODE_CHANNEL_DOWN)</key>
 				<key name="ChannelUp">Select next (numerically or logically) higher channel. (APPCOMMAND_MEDIA_CHANNEL_UP, KEYCODE_CHANNEL_UP)</key>
-				<key name="Close">Close the current document or message (Note: This doesn't close the application). (APPCOMMAND_CLOSE)</key>
+				<key name="Close">Close the current document or message (Note: This doesn't close the application). (APPCOMMAND_CLOSE, KEYCODE_MEDIA_CLOSE)</key>
 				<key name="MailForward">Open an editor to forward the current message. (APPCOMMAND_FORWARD_MAIL)</key>
 				<key name="MailReply">Open an editor to reply to the current message. (APPCOMMAND_REPLY_TO_MAIL)</key>
 				<key name="MailSend">Send the current message. (APPCOMMAND_SEND_MAIL)</key>
@@ -520,17 +521,53 @@
 		<section id="keys-mobile">
 			<h4>Mobile Phone Keys</h4>
 			<div id="key-table-mobile-phone" class="key-table">
+				<key name="AppSwitch">The Application switch key, which provides a list of recent apps to switch between. (KEYCODE_APP_SWITCH)</key>
+				<key name="Call">The Call key. (KEYCODE_CALL)</key>
 				<key name="Camera">The Camera key. (KEYCODE_CAMERA)</key>
 				<key name="CameraFocus">The Camera focus key. (KEYCODE_FOCUS)</key>
+				<key name="EndCall">The End Call key. (KEYCODE_ENDCALL)</key>
+				<key name="GoBack">The Back key. (KEYCODE_BACK)</key>
+				<key name="GoHome">The Home key, which goes to the phone's main screen. (KEYCODE_HOME)</key>
+				<key name="HeadsetHook">The Headset Hook key. (KEYCODE_HEADSETHOOK)</key>
+				<key name="LastNumberRedial">The Last Number Redial key.</key>
 				<key name="MannerMode">Toggle between manner mode state: silent, vibrate, ring, ... (KEYCODE_MANNER_MODE)</key>
-<!--
-int	KEYCODE_APP_SWITCH	Key code constant: App switch key.
-int	KEYCODE_BACK	Key code constant: Back key.
-int	KEYCODE_CALL	Key code constant: Call key.
-int	KEYCODE_ENDCALL	Key code constant: End Call key.
-int	KEYCODE_HEADSETHOOK	Key code constant: Headset Hook key.
-int	KEYCODE_HOME	Key code constant: Home key.
--->
+				<key name="VoiceDial">The Voice Dial key.</key>
+			</div>
+		</section><!-- keys-mobile-phone -->
+
+		<section id="keys-tv">
+			<h4>TV Keys</h4>
+			<div id="key-table-tv" class="key-table">
+				<key name="TV">Switch to viewing TV. (KEYCODE_TV)</key>
+				<key name="TV3DMode">TV 3D Mode. (KEYCODE_3D_MODE)</key>
+				<key name="TVAntennaCable">Toggle between antenna and cable input. (KEYCODE_TV_ANTENNA_CABLE)</key>
+				<key name="TVAudioDescription">Audio description. (KEYCODE_TV_AUDIO_DESCRIPTION)</key>
+				<key name="TVAudioDescriptionMixDown">Audio description mixing volume down. (KEYCODE_TV_AUDIO_DESCRIPTION_MIX_DOWN)</key>
+				<key name="TVAudioDescriptionMixUp">Audio description mixing volume up. (KEYCODE_TV_AUDIO_DESCRIPTION_MIX_UP)</key>
+				<key name="TVContentsMenu">Contents menu. (KEYCODE_TV_CONTENTS_MENU)</key>
+				<key name="TVDataService">Contents menu. (KEYCODE_TV_DATA_SERVICE)</key>
+				<key name="TVInput">Switch the input mode on an external TV. (KEYCODE_TV_INPUT)</key>
+				<key name="TVInputComponent1">Switch to component input #1. (KEYCODE_TV_INPUT_COMPONENT_1)</key>
+				<key name="TVInputComponent2">Switch to component input #2. (KEYCODE_TV_INPUT_COMPONENT_2)</key>
+				<key name="TVInputComposite1">Switch to composite input #1. (KEYCODE_TV_INPUT_COMPOSITE_1)</key>
+				<key name="TVInputComposite2">Switch to composite input #2. (KEYCODE_TV_INPUT_COMPOSITE_2)</key>
+				<key name="TVInputHDMI1">Switch to HDMI input #1. (KEYCODE_TV_INPUT_HDMI_1)</key>
+				<key name="TVInputHDMI2">Switch to HDMI input #2. (KEYCODE_TV_INPUT_HDMI_2)</key>
+				<key name="TVInputHDMI3">Switch to HDMI input #3. (KEYCODE_TV_INPUT_HDMI_3)</key>
+				<key name="TVInputHDMI4">Switch to HDMI input #4. (KEYCODE_TV_INPUT_HDMI_4)</key>
+				<key name="TVInputVGA1">Switch to VGA input #1. (KEYCODE_TV_INPUT_VGA_1)</key>
+				<key name="TVMediaContext">Media context menu. (KEYCODE_TV_MEDIA_CONTEXT_MENU)</key>
+				<key name="TVNetwork">Toggle network. (KEYCODE_TV_NETWORK)</key>
+				<key name="TVNumberEntry">Number entry. (KEYCODE_TV_NUMBER_ENTRY)</key>
+				<key name="TVPower">Toggle the power on an external TV. (KEYCODE_TV_POWER)</key>
+				<key name="TVRadioService">Radio. (KEYCODE_TV_RADIO_SERVICE)</key>
+				<key name="TVSatellite">Satellite. (KEYCODE_TV_SATELLITE)</key>
+				<key name="TVSatelliteBC">Broadcast Satellite. (KEYCODE_TV_SATELLITE_BS)</key>
+				<key name="TVSatelliteCS">Communication Satellite. (KEYCODE_TV_SATELLITE_CS)</key>
+				<key name="TVSatelliteToggle">Toggle between available satellites. (KEYCODE_TV_SATELLITE_SERVICE)</key>
+				<key name="TVTerrestrialAnalog">Analog Terrestrial. (KEYCODE_TV_TERRESTRIAL_ANALOG)</key>
+				<key name="TVTerrestrialDigital">Digital Terrestrial. (KEYCODE_TV_TERRESTRIAL_DIGITAL)</key>
+				<key name="TVTimer">Timer programming. (KEYCODE_TV_TIMER_PROGRAMMING)</key>
 			</div>
 		</section><!-- keys-mobile-phone -->
 
@@ -543,6 +580,7 @@ int	KEYCODE_HOME	Key code constant: Home key.
 					<li>DTV Application Software Environment [[DASE]]</li>
 					<li>Open Cable Application Platform 1.1.3 [[OCAP]</li>
 					<li>ANSI/CEA-2014-B, Web-based Protocol and Framework for Remote User Interface on UPnPTM Networks and the Internet [[WEB4CE]]</li>
+					<li>Android KeyEvent KEYCODEs [[AndroidKeycode]]</li>
 				</ul>
 
 			<div id="key-table-media-controller" class="key-table">
@@ -557,6 +595,7 @@ int	KEYCODE_HOME	Key code constant: Home key.
 				<key name="ClosedCaptionToggle">Toggle the display of Closed Captions. (VK_CC, KEYCODE_CAPTIONS)</key>
 				<key name="Dimmer">Adjust brightness of device, by toggling between or cycling through states. (VK_DIMMER)</key>
 				<key name="DisplaySwap">Swap video sources. (VK_DISPLAY_SWAP)</key>
+				<key name="DVR">Select Digital Video Rrecorder. (KEYCODE_DVR)</key>
 				<key name="Exit">Exit the current application. (VK_EXIT)</key>
 				<key name="FavoriteClear0">Clear program or content stored as favorite 0. (VK_CLEAR_FAVORITE_0)</key>
 				<key name="FavoriteClear1">Clear program or content stored as favorite 1. (VK_CLEAR_FAVORITE_1)</key>
@@ -573,7 +612,7 @@ int	KEYCODE_HOME	Key code constant: Home key.
 				<key name="Guide">Toggle display of program or content guide. (VK_GUIDE, KEYCODE_GUIDE)</key>
 				<key name="GuideNextDay">If guide is active and displayed, then display next day's content. (VK_NEXT_DAY)</key>
 				<key name="GuidePreviousDay">If guide is active and displayed, then display previous day's content. (VK_PREV_DAY)</key>
-				<key name="Info">Toggle display of information about currently selected context or media. (VK_INFO)</key>
+				<key name="Info">Toggle display of information about currently selected context or media. (VK_INFO, KEYCODE_INFO)</key>
 				<key name="InstantReplay">Toggle instant replay. (VK_INSTANT_REPLAY)</key>
 				<key name="Link">Launch linked content, if available and appropriate. (VK_LINK)</key>
 				<key name="ListProgram">List the current program. (VK_LIST)</key>
@@ -582,11 +621,21 @@ int	KEYCODE_HOME	Key code constant: Home key.
 				<key name="MediaApps">Show a list of media applications: audio/video players and image viewers. (VK_APPS)
 					<p class="note">Do not confuse this key value with the Windows' VK_APPS / VK_CONTEXT_MENU key, which is encoded as <code>'ContextMenu'</code>.</p>
 					</key>
-				<key name="MediaLast">Select previously selected channel or media. (VK_LAST)</key>
-				<key name="MediaSkip">Skip forward to next content or program. (VK_SKIP)</key>
+				<key name="MediaAudioTrack">Audio track key. (KEYCODE_MEDIA_AUDIO_TRACK)</key>
+				<key name="MediaLast">Select previously selected channel or media. (VK_LAST, KEYCODE_LAST_CHANNEL)</key>
+				<key name="MediaSkipBackward">Skip backward to next content or program. (KEYCODE_MEDIA_SKIP_BACKWARD)</key>
+				<key name="MediaSkipForward">Skip forward to next content or program. (VK_SKIP, KEYCODE_MEDIA_SKIP_FORWARD)</key>
+				<key name="MediaStepBackward">Sktep backward to next content or program. (KEYCODE_MEDIA_STEP_BACKWARD)</key>
+				<key name="MediaStepForward">Step forward to next content or program. (KEYCODE_MEDIA_STEP_FORWARD)</key>
+				<key name="MediaTopMenu">Media top menu. (KEYCODE_MEDIA_TOP_MENU)</key>
+				<key name="NavigateIn">Navigate in. (KEYCODE_NAVIGATE_IN)</key>
+				<key name="NavigateNext">Navigate to next key. (KEYCODE_NAVIGATE_NEXT)</key>
+				<key name="NavigateOut">Navigate out. (KEYCODE_NAVIGATE_OUT)</key>
+				<key name="NavigatePrevious">Navigate to previous key. (KEYCODE_NAVIGATE_PREVIOUS)</key>
 				<key name="NextFavoriteChannel">Cycle to next favorite channel (in favorites list). (VK_NEXT_FAVORITE_CHANNEL)</key>
 				<key name="NextUserProfile">Cycle to next user profile (if there are multiple user profiles). (VK_USER)</key>
 				<key name="OnDemand">Access on-demand content or programs. (VK_ON_DEMAND)</key>
+				<key name="Pairing">Pairing key to pair devices. (KEYCODE_PAIRING)</key>
 				<key name="PinPDown">Move picture-in-picture window down. (VK_PINP_DOWN)</key>
 				<key name="PinPMove">Move picture-in-picture window. (VK_PINP_MOVE)</key>
 				<key name="PinPToggle">Toggle display of picture-in-picture window. (VK_PINP_TOGGLE)</key>
@@ -606,9 +655,6 @@ int	KEYCODE_HOME	Key code constant: Home key.
 				<key name="STBPower">Toggle the power on an external STB (set top box). (KEYCODE_STB_POWER)</key>
 				<key name="Subtitle">Toggle display of subtitles, if available. (VK_SUBTITLE)</key>
 				<key name="Teletext">Toggle display of teletext, if available (VK_TELETEXT, KEYCODE_TV_TELETEXT).</key>
-				<key name="TV">Switch to viewing TV. (KEYCODE_TV)</key>
-				<key name="TVInput">Switch the input mode on an external TV.</key>
-				<key name="TVPower">Toggle the power on an external TV. (KEYCODE_TV_POWER)</key>
 				<key name="VideoModeNext">Advance video mode to next available mode.(VK_VIDEO_MODE_NEXT)</key>
 				<key name="Wink">Cause device to identify itself in some manner, e.g., audibly or visibly. (VK_WINK)</key>
 				<key name="ZoomToggle">Toggle between full-screen and scaled content, or alter magnification level. (VK_ZOOM, KEYCODE_TV_ZOOM_MODE)</key>
@@ -619,6 +665,9 @@ int	KEYCODE_HOME	Key code constant: Home key.
 			</p>
 
 			<div id="key-table-media-controller-dup" class="key-table">
+				<key name="AudioVolumeDown" noid>Decrease audio volume. (VK_VOLUME_DOWN)</key>
+				<key name="AudioVolumeUp" noid>Increase audio volume. (VK_VOLUME_UP)</key>
+				<key name="AudioVolumeMute" noid>Toggle between muted state and prior volume level. (VK_VOLUME_MUTE)</key>
 				<key name="BrowserBack" noid>Navigate to previous content or page in current history. (VK_BACK)</key>
 				<key name="BrowserForward" noid>Navigate to next content or page in current history. (VK_FORWARD)</key>
 				<key name="ChannelDown" noid>Select next (numerically or logically) lower channel. (VK_CHANNEL_DOWN)</key>
@@ -639,9 +688,6 @@ int	KEYCODE_HOME	Key code constant: Home key.
 				<key name="MediaPreviousTrack" noid>Seek to previous media or program track. (VK_TRACK_PREV)</key>
 				<key name="Power" noid>Toggle power state. (VK_POWER)</key>
 				<key name="Unidentified" noid>This key value is used when an implementations is unable to identify another key value, due to either hardware, platform, or software constraints. (VK_UNDEFINED)</key>
-				<key name="AudioVolumeDown" noid>Decrease audio volume. (VK_VOLUME_DOWN)</key>
-				<key name="AudioVolumeUp" noid>Increase audio volume. (VK_VOLUME_UP)</key>
-				<key name="AudioVolumeMute" noid>Toggle between muted state and prior volume level. (VK_VOLUME_MUTE)</key>
 			</div>
 
 		</section><!-- keys-media-controller -->
