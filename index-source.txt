@@ -3,7 +3,7 @@
 <pre class="metadata">
 Shortname: uievents-key
 Level:
-Group: html
+Group: uievents
 Status: WD
 TR: http://www.w3.org/TR/uievents-key/
 ED: https://github.com/w3c/uievents-key/
