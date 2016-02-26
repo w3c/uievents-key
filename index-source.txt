@@ -506,7 +506,7 @@ Abstract:
 			KEY TVPower				Toggle the power on an external TV. (KEYCODE_TV_POWER)
 			KEY TVRadioService		Radio. (KEYCODE_TV_RADIO_SERVICE)
 			KEY TVSatellite			Satellite. (KEYCODE_TV_SATELLITE)
-			KEY TVSatelliteBC		Broadcast Satellite. (KEYCODE_TV_SATELLITE_BS)
+			KEY TVSatelliteBS		Broadcast Satellite. (KEYCODE_TV_SATELLITE_BS)
 			KEY TVSatelliteCS		Communication Satellite. (KEYCODE_TV_SATELLITE_CS)
 			KEY TVSatelliteToggle		Toggle between available satellites. (KEYCODE_TV_SATELLITE_SERVICE)
 			KEY TVTerrestrialAnalog		Analog Terrestrial. (KEYCODE_TV_TERRESTRIAL_ANALOG)
