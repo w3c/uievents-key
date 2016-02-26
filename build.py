@@ -144,7 +144,7 @@ class Parser():
 
 def main():
 	infilename = 'index-source.txt'
-	outfilename = 'index-bs.bs'
+	outfilename = 'index.bs'
 
 	# Generate the full bikeshed file.
 	parser = Parser()
