@@ -11,11 +11,15 @@ p.warning:before { content: '\26A0 Warning! '; font-weight:bolder;}
 .critical {margin:1em; border:double red; padding:1em; background-color:#F9F0D4;}
 
 
+/* Used when spelling out words or symbols phonetically. */
 span.phonetic {
 	font-style: italic;
 }
 
-/* Denotes a key value (the value of the KeyboardEvent.key property) */
+
+/* KEY
+ * Denotes a key value (the value of the KeyboardEvent.key property).
+ */
 code.key {
 	color: #191970;
 	background-color: #b0e0e6;
@@ -32,8 +36,9 @@ code.key:hover, code.key a:hover {
 	background-color: #b0d0d6;
 }
 
-/* Denotes a code value that indicates the physical location of the key on the keyboard).
- * This is the value of the KeyboardEvent.code property.
+/* CODE
+ * Denotes a code value that indicates the physical location of the key on
+ * the keyboard). This is the value of the KeyboardEvent.code property.
  */
 code.code {
 	color: #191970;
@@ -58,11 +63,18 @@ code.keycap {
 	border-radius: 3px;
 }
 
-/* Denotes a Unicode code-point for the character */
+/* Denotes a Unicode code-point for the character. */
 code.unicode {
 	color: #191970;
 	background-color: #98fb98;
 }
+
+/* Denotes an example glyph for the character. */
+code.glyph {
+  color: #191970;
+  background-color: #ffe4b5;
+}
+
 
 code.android {
 	color: #408040;
