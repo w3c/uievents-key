@@ -318,8 +318,8 @@ Abstract:
 		The exact number of these general purpose function keys varies on different
 		platforms, and only the first few are defined explicitly here.  Additional
 		function key names are implicitly defined by incrementing the base-10 index at
-		the end of the function key name. Thus, <span class="key">F24</span>
-		and <span class="key">Soft8</span> are all valid key values.
+		the end of the function key name. Thus, KEY_NOREF<F24>
+		and KEY_NOREF<Soft8> are all valid key values.
 
 		BEGIN_KEY_TABLE function
 			KEY F1		The F1 key, a general purpose function key, as index 1.
