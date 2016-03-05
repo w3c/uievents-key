@@ -31,28 +31,28 @@ class Parser():
 			'<td>%s</td></tr>\n') % (self.key, self.key, self.desc)
 
 	def process_text(self, desc):
-		m = re.match(r'^(.*)CODE<(.+?)>(.*)$', desc)
+		m = re.match(r'^(.*)CODE{(.+?)}(.*)$', desc)
 		if m:
 			pre = self.process_text(m.group(1))
 			name = m.group(2)
 			post = self.process_text(m.group(3))
 			desc = pre + '<code class="code">"' + name + '"</code>' + post
 
-		m = re.match(r'^(.*)KEY<(.+?)>(.*)$', desc)
+		m = re.match(r'^(.*)KEY{(.+?)}(.*)$', desc)
 		if m:
 			pre = self.process_text(m.group(1))
 			name = m.group(2)
 			post = self.process_text(m.group(3))
 			desc = '%s<code class="key">"<a href="#key-%s">%s</a>"</code>%s' % (pre, name, name, post)
 
-		m = re.match(r'^(.*)KEY_NOREF<(.+?)>(.*)$', desc)
+		m = re.match(r'^(.*)KEY_NOLINK{(.+?)}(.*)$', desc)
 		if m:
 			pre = self.process_text(m.group(1))
 			name = m.group(2)
 			post = self.process_text(m.group(3))
 			desc = '%s<code class="key">"%s"</code>%s' % (pre, name, post)
 
-		m = re.match(r'^(.*)KEYCAP<(.+?)>(.*)$', desc)
+		m = re.match(r'^(.*)KEYCAP{(.+?)}(.*)$', desc)
 		if m:
 			pre = self.process_text(m.group(1))
 			name = m.group(2)

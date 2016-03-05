@@ -75,15 +75,15 @@ Abstract:
 	The
 		<a href="http://www.w3.org/TR/uievents/#widl-KeyboardEvent-key"><code>KeyboardEvent.key</code></a>
 	attribute of an event MUST always contain one of these control key or character values
-	(even if the value is KEY<Unidentified>).
+	(even if the value is KEY{Unidentified}).
 	If the key represents one of the set of printable control characters which has a
 	Unicode character entry, such as the tab key, the
 	<a href="http://www.w3.org/TR/uievents/#widl-KeyboardEvent-key"><code>KeyboardEvent.key</code></a> attribute
-	MUST have the key value (e.g., KEY<Tab>).
+	MUST have the key value (e.g., KEY{Tab}).
 
-	Implementations that are unable to identify a key MUST use the key value KEY<Unidentified>.
+	Implementations that are unable to identify a key MUST use the key value KEY{Unidentified}.
 
-	<p class="warning">Conforming implementations MUST only use KEY<Unidentified>
+	<p class="warning">Conforming implementations MUST only use KEY{Unidentified}
 	as a key value when there is no way for the implementation to detect the key value.
 	Exposing only this value MUST NOT indicate a conforming implementation.</p>
 
@@ -97,8 +97,8 @@ Abstract:
 	and other more specialized specifications as noted in this document.
 
 	<p class="note">The keys on the numeric keypad (e.g., the keypad
-	KEYCAP<1> key) do not generate distinct <code>key</code> values
-	from their non-keypad counterparts (e.g., the KEYCAP<1> key in the
+	KEYCAP{1} key) do not generate distinct <code>key</code> values
+	from their non-keypad counterparts (e.g., the KEYCAP{1} key in the
 	main part of the keyboard).
 	The <a href="http://www.w3.org/TR/uievents/#widl-KeyboardEvent-location"><code>KeyboardEvent.location</code></a>
 	attribute can be used to determine if a key originated from the numeric keypad.</p>
@@ -152,27 +152,27 @@ Abstract:
 	<h3 id="keys-modifier">Modifier Keys</h3>
 
 		BEGIN_KEY_TABLE modifier
-			KEY Alt			The KEYCAP<Alt> (Alternative) key.<br/>
+			KEY Alt			The KEYCAP{Alt} (Alternative) key.<br/>
 							This key enables the alternate modifier function for interpreting concurrent or subsequent keyboard input.<br/>
-							This key value is also used for the Apple KEYCAP<Option> key.
-			KEY AltGraph	The Alternate Graphics (KEYCAP<AltGr> or KEYCAP<AltGraph>) key.
-							This key is used enable the ISO Level 3 shift modifier (the standard KEYCAP<Shift> key is the level 2 modifier).
-			KEY CapsLock	The KEYCAP<Caps Lock> (Capital) key.
+							This key value is also used for the Apple KEYCAP{Option} key.
+			KEY AltGraph	The Alternate Graphics (KEYCAP{AltGr} or KEYCAP{AltGraph}) key.
+							This key is used enable the ISO Level 3 shift modifier (the standard KEYCAP{Shift} key is the level 2 modifier).
+			KEY CapsLock	The KEYCAP{Caps Lock} (Capital) key.
 							Toggle capital character lock function for interpreting subsequent keyboard input event.
-			KEY Control		The KEYCAP<Control> or KEYCAP<Ctrl> key, to enable control modifier function for interpreting concurrent or subsequent keyboard input.
-			KEY Fn			The Function switch KEYCAP<Fn> key.<br/>
+			KEY Control		The KEYCAP{Control} or KEYCAP{Ctrl} key, to enable control modifier function for interpreting concurrent or subsequent keyboard input.
+			KEY Fn			The Function switch KEYCAP{Fn} key.<br/>
 							Activating this key simultaneously with another key changes that key's value to an alternate character or function.
 							This key is often handled directly in the keyboard hardware and does not usually generate key events.
-			KEY FnLock		The Function-Lock (KEYCAP<FnLock> or KEYCAP<F-Lock>) key.
+			KEY FnLock		The Function-Lock (KEYCAP{FnLock} or KEYCAP<F-Lock>) key.
 							Activating this key switches the mode of the keyboard to changes some keys' values to an alternate character or function.
 							This key is often handled directly in the keyboard hardware and does not usually generate key events.
-			KEY Hyper		The KEYCAP<Hyper> key.
-			KEY Meta		The KEYCAP<Meta> key, to enable meta modifier function for interpreting concurrent or subsequent keyboard input.
-							This key value is used for the <q>Windows Logo</q> key and the Apple KEYCAP<Command> or KEYCAP<&#x2318;> key.
-			KEY NumLock		The KEYCAP<NumLock> or Number Lock key, to toggle numer-pad mode function for interpreting subsequent keyboard input.
-			KEY ScrollLock	The KEYCAP<Scroll Lock> key, to toggle between scrolling and cursor movement modes.
-			KEY Shift		The KEYCAP<Shift> key, to enable shift modifier function for interpreting concurrent or subsequent keyboard input.
-			KEY Super		The KEYCAP<Super> key.
+			KEY Hyper		The KEYCAP{Hyper} key.
+			KEY Meta		The KEYCAP{Meta} key, to enable meta modifier function for interpreting concurrent or subsequent keyboard input.
+							This key value is used for the <q>Windows Logo</q> key and the Apple KEYCAP{Command} or KEYCAP{&#x2318;} key.
+			KEY NumLock		The KEYCAP{NumLock} or Number Lock key, to toggle numer-pad mode function for interpreting subsequent keyboard input.
+			KEY ScrollLock	The KEYCAP{Scroll Lock} key, to toggle between scrolling and cursor movement modes.
+			KEY Shift		The KEYCAP{Shift} key, to enable shift modifier function for interpreting concurrent or subsequent keyboard input.
+			KEY Super		The KEYCAP{Super} key.
 			KEY Symbol		The Symbol modifier key (used on some virtual keyboards).
 			KEY SymbolLock	The Symbol Lock key.
 		END_KEY_TABLE
@@ -180,10 +180,10 @@ Abstract:
 	<h3 id="keys-whitespace">Whitespace Keys</h3>
 
 		BEGIN_KEY_TABLE whitespace
-			KEY Enter	The KEYCAP<Enter> or KEYCAP<&crarr;> key, to activate current selection or accept current input.<br/>
-						This key value is also used for the KEYCAP<Return> (Macintosh numpad) key.<br/>
+			KEY Enter	The KEYCAP{Enter} or KEYCAP{&crarr;} key, to activate current selection or accept current input.<br/>
+						This key value is also used for the KEYCAP{Return} (Macintosh numpad) key.<br/>
 						This key value is also used for the Android KEYCODE_DPAD_CENTER.
-			KEY Tab		The Horizontal Tabulation KEYCAP<Tab> key.
+			KEY Tab		The Horizontal Tabulation KEYCAP{Tab} key.
 		END_KEY_TABLE
 
 		<p class="note">The space or spacebar key is encoded as <code class="glyph">"&nbsp;"</code>.</p>
@@ -197,7 +197,7 @@ Abstract:
 			KEY ArrowUp		The up arrow key, to navigate or traverse upward. (KEYCODE_DPAD_UP)
 			KEY End			The End key, used with keyboard entry to go to the end of content (KEYCODE_MOVE_END).
 			KEY Home		The Home key, used with keyboard entry, to go to start of content (KEYCODE_MOVE_HOME).<br/>
-							For the mobile phone KEYCAP<Home> key (which goes to the phone's main screen), use KEY<GoHome>.
+							For the mobile phone KEYCAP{Home} key (which goes to the phone's main screen), use KEY{GoHome}.
 			KEY PageDown	The Page Down key, to scroll down or display next page of content.
 			KEY PageUp		The Page Up key, to scroll up or display previous page of content.
 		END_KEY_TABLE
@@ -205,13 +205,13 @@ Abstract:
 	<h3 id="keys-editing">Editing Keys</h3>
 
 		BEGIN_KEY_TABLE editing
-			KEY Backspace	The Backspace key. This key value is also used for the key labeled KEYCAP<Delete> on MacOS keyboards.
+			KEY Backspace	The Backspace key. This key value is also used for the key labeled KEYCAP{Delete} on MacOS keyboards.
 			KEY Clear		Remove the currently selected input.
 			KEY Copy		Copy the current selection. (APPCOMMAND_COPY)
 			KEY CrSel		The Cursor Select (Crsel) key.
 			KEY Cut			Cut the current selection. (APPCOMMAND_CUT)
 			KEY Delete		The Delete (Del) Key.
-							This key value is also used for the key labeled KEYCAP<Delete> on MacOS keyboards when modified by the KEYCAP<Fn> key.
+							This key value is also used for the key labeled KEYCAP{Delete} on MacOS keyboards when modified by the KEYCAP{Fn} key.
 			KEY EraseEof	The Erase to End of Field key.  This key deletes all characters from the current cursor position to the end of the current field.
 			KEY ExSel		The Extend Selection (Exsel) key.
 			KEY Insert		The Insert (Ins) key, to toggle between text modes for insertion or overtyping. (KEYCODE_INSERT)
@@ -228,15 +228,15 @@ Abstract:
 			KEY Attn		The Attention (Attn) key.
 			KEY Cancel		The Cancel key.
 			KEY ContextMenu	Show the application's context menu.
-							This key is commonly found between the right KEYCAP<OS> key and the right KEYCAP<Control> key.
+							This key is commonly found between the right KEYCAP{OS} key and the right KEYCAP{Control} key.
 			KEY Escape		The Escape (Esc) key, to initiate an escape sequence.
 			KEY Execute		The Execute key.
 			KEY Find		Open the Find dialog. (APPCOMMAND_FIND)
 			KEY Help		Open a help dialog or toggle display of help information. (APPCOMMAND_HELP, KEYCODE_HELP)
 			KEY Pause		Pause the current state or application (as appropriate).
-							<p class="note">Do not use this value for the KEYCAP<Pause> button on media controllers. Use KEY<MediaPause> instead.</p>
+							<p class="note">Do not use this value for the KEYCAP{Pause} button on media controllers. Use KEY{MediaPause} instead.</p>
 			KEY Play		Play or resume the current state or application (as appropriate).
-							<p class="note">Do not use this value for the KEYCAP<Play> button on media controllers. Use KEY<MediaPlay> instead.</p>
+							<p class="note">Do not use this value for the KEYCAP{Play} button on media controllers. Use KEY{MediaPlay} instead.</p>
 			KEY Props		The properties (Props) key.
 			KEY Select		The Select key.
 			KEY ZoomIn		The ZoomIn key. (KEYCODE_ZOOM_IN)
@@ -252,13 +252,13 @@ Abstract:
 			KEY LogOff			The LogOff key.
 			KEY Power			Toggle power state. (KEYCODE_POWER)
 								<p class="note">Some devices might not expose this key to the operating environment.</p>
-			KEY PowerOff		The KEYCAP<PowerOff> key. Sometime called KEYCAP<PowerDown>.
-			KEY PrintScreen		The KEYCAP<Print Screen> or KEYCAP<SnapShot> key, to initiate print-screen function.
+			KEY PowerOff		The KEYCAP{PowerOff} key. Sometime called KEYCAP{PowerDown}.
+			KEY PrintScreen		The KEYCAP{Print Screen} or KEYCAP{SnapShot} key, to initiate print-screen function.
 			KEY Hibernate		The Hibernate key.
 								This key saves the current state of the computer to disk so that it can be restored. The computer will then shutdown.
 			KEY Standby			The Standby key.
 								This key turns off the display and places the computer into a low-power mode without completely shutting down.
-								It is sometimes labelled KEYCAP<Suspend> or KEYCAP<Sleep> key. (KEYCODE_SLEEP)
+								It is sometimes labelled KEYCAP{Suspend} or KEYCAP{Sleep} key. (KEYCODE_SLEEP)
 			KEY WakeUp			The WakeUp key. (KEYCODE_WAKEUP)
 		END_KEY_TABLE
 
@@ -276,7 +276,7 @@ Abstract:
 								<code class="unicode">\u0302</code> COMBINING CIRCUMFLEX ACCENT. In another layout this might be a different unicode combining key.<br/>
 								For applications that need to differentiate between specific combining characters, the associated compositionupdate
 								event's data attribute provides the specific key value.
-			KEY FinalMode		The Final Mode KEYCAP<Final> key used on some Asian keyboards, to enable the final mode for IMEs.
+			KEY FinalMode		The Final Mode KEYCAP{Final} key used on some Asian keyboards, to enable the final mode for IMEs.
 			KEY GroupFirst		Switch to the first character group. (ISO/IEC 9995)
 			KEY GroupLast		Switch to the last character group. (ISO/IEC 9995)
 			KEY GroupNext		Switch to the next character group. (ISO/IEC 9995)
@@ -318,8 +318,8 @@ Abstract:
 		The exact number of these general purpose function keys varies on different
 		platforms, and only the first few are defined explicitly here.  Additional
 		function key names are implicitly defined by incrementing the base-10 index at
-		the end of the function key name. Thus, KEY_NOREF<F24>
-		and KEY_NOREF<Soft8> are all valid key values.
+		the end of the function key name. Thus, KEY_NOLINK{F24}
+		and KEY_NOLINK{Soft8} are all valid key values.
 
 		BEGIN_KEY_TABLE function
 			KEY F1		The F1 key, a general purpose function key, as index 1.
@@ -353,7 +353,7 @@ Abstract:
 			KEY MailSend		Send the current message. (APPCOMMAND_SEND_MAIL)
 			KEY MediaFastForward	Initiate or continue forward playback at faster than normal speed, or increase speed if already fast forwarding. (APPCOMMAND_MEDIA_FAST_FORWARD, KEYCODE_MEDIA_FAST_FORWARD)
 			KEY MediaPause		Pause the currently playing media. (APPCOMMAND_MEDIA_PAUSE, KEYCODE_MEDIA_PAUSE)
-								<p class="note">Media controller devices should use this value rather than KEY<Pause> for their pause keys.</p>
+								<p class="note">Media controller devices should use this value rather than KEY{Pause} for their pause keys.</p>
 			KEY MediaPlay		Initiate or continue media playback at normal speed, if not currently playing at normal speed. (APPCOMMAND_MEDIA_PLAY, KEYCODE_MEDIA_PLAY)
 			KEY MediaPlayPause	Toggle media between play and pause states. (APPCOMMAND_MEDIA_PLAY_PAUSE, KEYCODE_MEDIA_PLAY_PAUSE)
 			KEY MediaRecord		Initiate or resume recording of currently selected media. (APPCOMMAND_MEDIA_RECORD, KEYCODE_MEDIA_RECORD)
@@ -370,20 +370,20 @@ Abstract:
 
 	<h3 id="keys-multimedia-numpad">Multimedia Numpad Keys</h3>
 
-		The normal KEYCAP<0> ... KEYCAP<9> numpad keys
-		are encoded as KEY<0> ... KEY_NOREF<9>, but some
-		multimedia keypads have buttons numbered from KEYCAP<1> ... KEYCAP<12>.
-		In these instances, the KEYCAP<10> key is often labeled KEYCAP<10 /0>.
+		The normal KEYCAP{0} ... KEYCAP{9} numpad keys
+		are encoded as KEY{0} ... KEY_NOLINK{9}, but some
+		multimedia keypads have buttons numbered from KEYCAP{1} ... KEYCAP{12}.
+		In these instances, the KEYCAP{10} key is often labeled KEYCAP{10 /0}.
 
 		BEGIN_KEY_TABLE multimedia-numpad
-			KEY 0		This normally indicates the KEYCAP<0> key. However, on
-						multimedia numpads with buttons from KEYCAP<1> ...
-						KEYCAP<12>, this value is used to encode the
-						KEYCAP<10> or KEYCAP<10 /0> key.
-			KEY Key11	The KEYCAP<11> key found on media numpads that
-						have buttons from KEYCAP<1> ... KEYCAP<12>.
-			KEY Key12	The KEYCAP<12> key found on media numpads that
-						have buttons from KEYCAP<1> ... KEYCAP<12>.
+			KEY 0		This normally indicates the KEYCAP{0} key. However, on
+						multimedia numpads with buttons from KEYCAP{1} ...
+						KEYCAP{12}, this value is used to encode the
+						KEYCAP{10} or KEYCAP{10 /0} key.
+			KEY Key11	The KEYCAP{11} key found on media numpads that
+						have buttons from KEYCAP{1} ... KEYCAP{12}.
+			KEY Key12	The KEYCAP{12} key found on media numpads that
+						have buttons from KEYCAP{1} ... KEYCAP{12}.
 		END_KEY_TABLE
 
 	<h3 id="keys-audio">Audio Keys</h3>
@@ -554,7 +554,7 @@ Abstract:
 			KEY LiveContent			Toggle display listing of currently available live content or programs. (VK_LIVE)
 			KEY Lock				Lock or unlock current content or program. (VK_LOCK)
 			KEY MediaApps			Show a list of media applications: audio/video players and image viewers. (VK_APPS)
-									<p class="note">Do not confuse this key value with the Windows' VK_APPS / VK_CONTEXT_MENU key, which is encoded as KEY<ContextMenu>.</p>
+									<p class="note">Do not confuse this key value with the Windows' VK_APPS / VK_CONTEXT_MENU key, which is encoded as KEY{ContextMenu}.</p>
 			KEY MediaAudioTrack		Audio track key. (KEYCODE_MEDIA_AUDIO_TRACK)
 			KEY MediaLast			Select previously selected channel or media. (VK_LAST, KEYCODE_LAST_CHANNEL)
 			KEY MediaSkipBackward	Skip backward to next content or program. (KEYCODE_MEDIA_SKIP_BACKWARD)
