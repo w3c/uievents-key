@@ -107,7 +107,7 @@ class Parser():
 			name = m.group(1)
 			return (
 				'<table id="key-table-%s" class="data-table full-width">\n'
-				'<thead><tr><th style="width:20%%">Key</th><th style="width:80%%">Typical Usage (Non-normative)</th></tr></thead>\n'
+				'<thead><tr><th style="width:20%%">{{KeyboardEvent}}.{{KeyboardEvent/key}}</th><th style="width:80%%">Typical Usage (Non-normative)</th></tr></thead>\n'
 				'<tbody>\n') % name
 
 		m = re.match(r'^.*END_KEY_TABLE', line)
