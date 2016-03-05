@@ -657,16 +657,14 @@ keyboard</p>
       <td>Spellcheck the current document or selection. (<code class="appcommand">APPCOMMAND_SPELL_CHECK</code>)
    </table>
    <h3 class="heading settled" data-level="2.11" id="keys-multimedia-numpad"><span class="secno">2.11. </span><span class="content">Multimedia Numpad Keys</span><a class="self-link" href="#keys-multimedia-numpad"></a></h3>
-   <p>The normal <code class="keycap">0</code> ... <code class="keycap">9</code> numpad keys		are encoded as <code class="key">"<a href="#key-0">0</a>"</code> ... <code class="key">"9"</code>, but some		multimedia keypads have buttons numbered from <code class="keycap">1</code> ... <code class="keycap">12</code>.		In these instances, the <code class="keycap">10</code> key is often labeled <code class="keycap">10 /0</code>.</p>
+   <p>The normal <code class="keycap">0</code> ... <code class="keycap">9</code> numpad keys		are encoded as <code class="key">"0"</code> ... <code class="key">"9"</code>, but some		multimedia keypads have buttons numbered from <code class="keycap">1</code> ... <code class="keycap">12</code>.		In these instances, the <code class="keycap">10</code> key is often labeled <code class="keycap">10 /0</code>.</p>
+   <p class="note" role="note"> The <code class="keycap">10</code> or <code class="keycap">10 /0</code> key MUST be assigned a <a href="http://www.w3.org/TR/uievents/#widl-KeyboardEvent-key"><code>key</code></a> value of <code class="key">"0"</code>. </p>
    <table class="data-table full-width" id="key-table-multimedia-numpad">
     <thead>
      <tr>
       <th style="width:20%">Key
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
-     <tr>
-      <td class="key-table-key"><code class="key" id="key-0">"0"</code>
-      <td>This normally indicates the <code class="keycap">0</code> key. However, on						multimedia numpads with buttons from <code class="keycap">1</code> ... <code class="keycap">12</code>, this value is used to encode the <code class="keycap">10</code> or <code class="keycap">10 /0</code> key.
      <tr>
       <td class="key-table-key"><code class="key" id="key-Key11">"Key11"</code>
       <td>The <code class="keycap">11</code> key found on media numpads that						have buttons from <code class="keycap">1</code> ... <code class="keycap">12</code>.

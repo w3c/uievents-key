@@ -371,15 +371,17 @@ Abstract:
 	<h3 id="keys-multimedia-numpad">Multimedia Numpad Keys</h3>
 
 		The normal KEYCAP{0} ... KEYCAP{9} numpad keys
-		are encoded as KEY{0} ... KEY_NOLINK{9}, but some
+		are encoded as KEY_NOLINK{0} ... KEY_NOLINK{9}, but some
 		multimedia keypads have buttons numbered from KEYCAP{1} ... KEYCAP{12}.
 		In these instances, the KEYCAP{10} key is often labeled KEYCAP{10 /0}.
 
+        <p class="note">
+        The KEYCAP{10} or KEYCAP{10 /0} key MUST be assigned a
+        <a href="http://www.w3.org/TR/uievents/#widl-KeyboardEvent-key"><code>key</code></a>
+        value of KEY_NOLINK{0}.
+        </p>
+
 		BEGIN_KEY_TABLE multimedia-numpad
-			KEY 0		This normally indicates the KEYCAP{0} key. However, on
-						multimedia numpads with buttons from KEYCAP{1} ...
-						KEYCAP{12}, this value is used to encode the
-						KEYCAP{10} or KEYCAP{10 /0} key.
 			KEY Key11	The KEYCAP{11} key found on media numpads that
 						have buttons from KEYCAP{1} ... KEYCAP{12}.
 			KEY Key12	The KEYCAP{12} key found on media numpads that
