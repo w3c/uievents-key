@@ -1,11 +1,7 @@
-# uievents-key
+# UI Events KeyboardEvent key Values
 
-This repository is for the [UI Events key specification](https://w3c.github.io/uievents-key/).
-
-If you like this spec, you might be interested in these other specs from the same publisher:
-
-* [UI Events](https://w3c.github.io/uievents/)
-* [UI Events KeyboardEvent code Values](https://w3c.github.io/uievents-code/)
+This repository is for the [UI Events key](https://w3c.github.io/uievents-key/)
+specification.
 
 ## Building
 
@@ -25,5 +21,12 @@ To **make edits** to the spec:
 2. Build (as above). This will create `index.bs` and `index.html` files.
 
 When submitting pull requests, make sure you don't include the `index.bs`
-file in your changelist. All changes should be made in the `index-source.txt`
+file in your changelist - it's part of `.gitignore` so that you don't include
+it accidentally. All changes should be made in the `index-source.txt`
 file.
+
+## Visitors Who Read This Spec Also Read
+
+* [UI Events](https://w3c.github.io/uievents/)
+* [UI Events KeyboardEvent key Values](https://w3c.github.io/uievents-key/)
+
