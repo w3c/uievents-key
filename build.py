@@ -59,6 +59,20 @@ class Parser():
 			post = self.process_text(m.group(3))
 			desc = pre + '<code class="keycap">' + name + '</code>' + post
 
+		m = re.match(r'^(.*)GLYPH{(.+?)}(.*)$', desc)
+		if m:
+			pre = self.process_text(m.group(1))
+			name = m.group(2)
+			post = self.process_text(m.group(3))
+			desc = pre + '<code class="glyph">"' + name + '"</code>' + post
+
+		m = re.match(r'^(.*)UNI{(.+?)}(.*)$', desc)
+		if m:
+			pre = self.process_text(m.group(1))
+			name = m.group(2)
+			post = self.process_text(m.group(3))
+			desc = pre + '<code class="unicode">' + name + '</code>' + post
+
 		m = re.match(r'^(.*)(KEYCODE_[A-Z0-9_]+)(.*)$', desc)
 		if m:
 			pre = self.process_text(m.group(1))

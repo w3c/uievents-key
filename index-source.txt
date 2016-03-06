@@ -68,7 +68,10 @@ urlPrefix: http://www.w3.org/TR/uievents/#interface-; type: interface; spec: uie
     text: KeyboardEvent
 urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; for: KeyboardEvent; spec: uievents;
     text: key
+    text: code
     text: location
+urlPrefix: http://www.w3.org/TR/uievents/#glossary-; type: dfn; spec: uievents;
+	text: key value
 </pre>
 
 <h2 id="introduction">Introduction</h2>
@@ -95,7 +98,7 @@ urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; f
 	Exposing only this value MUST NOT indicate a conforming implementation.
 	</p>
 
-	The <a class="def" href="http://www.w3.org/TR/uievents/#glossary-key-value">key values</a>
+	The <a>key values</a>
 	defined in this specification are based in part on the sets of keycodes from
 	the <code>java.awt.event.KeyEvent</code> interface of the Java Platform,
 	Standard Edition 6 API Specification [[KeyEventJava]], and the
@@ -113,18 +116,16 @@ urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; f
 	</p>
 
 	<div class="note">
-		<b>Note:</b> There are special internationalization considerations for ECMAScript
-		escaped characters.  CharMod conformance [[!CharMod]]
-		<a href="http://www.w3.org/TR/charmod/#C045">expects</a> the use of code points
-		rather than surrogate pairs in escapes.
-		ECMAScript escaped characters use surrogate pairs for characters outside the Basic
-		Multilingual Plane (<code class="unicode">"\uD84E\uDDC2"</code> for
-		<code class="glyph">"&#x239C2;"</code>, a Chinese character meaning
-		<q>untidy</q>), rather than C-style fixed-length characters
-		(<code class="unicode">"\U000239c2"</code> for
-		<code class="glyph">"&#x239C2;"</code>) or delimited escapes such as Numeric
-		Character References (<code>"&amp;#x239C2;"</code>). Characters escaped in this
-		manner:
+		<b>Note:</b> There are special internationalization considerations for
+		ECMAScript escaped characters.  CharMod conformance [[!CharMod]]
+		<a href="http://www.w3.org/TR/charmod/#C045">expects</a>
+		the use of code points rather than surrogate pairs in escapes.
+		ECMAScript escaped characters use surrogate pairs for characters outside
+		the Basic Multilingual Plane (UNI{\uD84E\uDDC2} for GLYPH{&#x239C2;}, a
+		Chinese character meaning <q>untidy</q>), rather than C-style
+		fixed-length characters (UNI{\U000239c2} for GLYPH{&#x239C2;}) or
+		delimited escapes such as Numeric Character References
+		(<code>"&amp;#x239C2;"</code>). Characters escaped in this manner:
 
 		*	are based on UTF-16 encoding, in that it uses surrogate pairs for
 		    values outside the Basic Multilingual Plane
@@ -195,7 +196,7 @@ urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; f
 			KEY Tab		The Horizontal Tabulation KEYCAP{Tab} key.
 		END_KEY_TABLE
 
-		<p class="note">The space or spacebar key is encoded as <code class="glyph">"&nbsp;"</code>.</p>
+		<p class="note">The space or spacebar key is encoded as GLYPH{&nbsp;}.</p>
 
 	<h3 id="keys-navigation">Navigation Keys</h3>
 
@@ -519,13 +520,14 @@ urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; f
 
 	<h3 id="keys-media-controller">Media Controller Keys</h3>
 
-		The <a class="def" href="http://www.w3.org/TR/uievents/#glossary-key-value">key values</a> for media controllers (e.g. remote controls for television, audio systems, and set-top boxes)
-		are derived in part from the consumer electronics technical specifications:
+		The <a>key values</a> for media controllers (e.g. remote controls for
+		television, audio systems, and set-top boxes) are derived in part from
+		the consumer electronics technical specifications:
 
 		*	DTV Application Software Environment [[DASE]]
 		*	Open Cable Application Platform 1.1.3 [[OCAP]]
-		*	ANSI/CEA-2014-B, Web-based Protocol and Framework for Remote User Interface on
-			UPnPTM Networks and the Internet [[WEB4CE]]
+		*	ANSI/CEA-2014-B, Web-based Protocol and Framework for Remote User
+			Interface on UPnPTM Networks and the Internet [[WEB4CE]]
 		*	Android KeyEvent KEYCODEs [[AndroidKeycode]]
 
 		BEGIN_KEY_TABLE media-controller
@@ -604,8 +606,9 @@ urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; f
 			KEY ZoomToggle			Toggle between full-screen and scaled content, or alter magnification level. (VK_ZOOM, KEYCODE_TV_ZOOM_MODE)
 		END_KEY_TABLE
 
-		Some of the keys defined in the media controller standards already have appropriate keys defined in other sections of this specification.
-		These following table summarizes the key values that MUST be used:
+		Some of the keys defined in the media controller standards already have
+		appropriate keys defined in other sections of this specification. These
+		following table summarizes the key values that MUST be used:
 
 		BEGIN_KEY_TABLE media-controller-dup
 			KEY_DUP AudioVolumeDown		Decrease audio volume. (VK_VOLUME_DOWN)
@@ -635,10 +638,10 @@ urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; f
 
 <h2 id="acknowledgements-contributors">Acknowledgements</h2>
 
-	Over the years, many people contributed to the DOM KeyboardEvent specifications,
-	including many participants of the DOM Working Group and the WebApps Working Group.
-	The current set of <code>key</code> values is the result of iterating over many proposals
-	and variations during that time.
+	Over the years, many people contributed to the DOM KeyboardEvent
+	specifications, including many participants of the DOM Working Group and the
+	WebApps Working Group. The current set of {{KeyboardEvent/key}} values is
+	the result of iterating over many proposals and variations during that time.
 	We especially thank the following participants for their contributions:
 
 	Gary Kacmarcik (Google),
