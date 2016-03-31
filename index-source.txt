@@ -205,7 +205,7 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 			KEY Fn			The Function switch KEYCAP{Fn} key.<br/>
 							Activating this key simultaneously with another key changes that key's value to an alternate character or function.
 							This key is often handled directly in the keyboard hardware and does not usually generate key events.
-			KEY FnLock		The Function-Lock (KEYCAP{FnLock} or KEYCAP<F-Lock>) key.
+			KEY FnLock		The Function-Lock (KEYCAP{FnLock} or KEYCAP{F-Lock}) key.
 							Activating this key switches the mode of the keyboard to changes some keys' values to an alternate character or function.
 							This key is often handled directly in the keyboard hardware and does not usually generate key events.
 			KEY Hyper		The KEYCAP{Hyper} key.
