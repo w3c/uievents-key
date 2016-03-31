@@ -342,7 +342,7 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 		Keys specific to Japanese keyboards:
 
 		BEGIN_KEY_TABLE ime-japanese
-			KEY Eisu			The Eisu key. This key may close the IME, but it's purpose
+			KEY Eisu			The Eisu key. This key may close the IME, but its purpose
 								is defined by the current IME. (KEYCODE_EISU)
 			KEY Hankaku			The (Half-Width) Characters key.
 			KEY Hiragana		The Hiragana (Japanese Kana characters) key.
