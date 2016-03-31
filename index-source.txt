@@ -603,7 +603,7 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 			KEY MediaLast			Select previously selected channel or media. (VK_LAST, KEYCODE_LAST_CHANNEL)
 			KEY MediaSkipBackward	Skip backward to next content or program. (KEYCODE_MEDIA_SKIP_BACKWARD)
 			KEY MediaSkipForward	Skip forward to next content or program. (VK_SKIP, KEYCODE_MEDIA_SKIP_FORWARD)
-			KEY MediaStepBackward	Sktep backward to next content or program. (KEYCODE_MEDIA_STEP_BACKWARD)
+			KEY MediaStepBackward	Step backward to next content or program. (KEYCODE_MEDIA_STEP_BACKWARD)
 			KEY MediaStepForward	Step forward to next content or program. (KEYCODE_MEDIA_STEP_FORWARD)
 			KEY MediaTopMenu		Media top menu. (KEYCODE_MEDIA_TOP_MENU)
 			KEY NavigateIn			Navigate in. (KEYCODE_NAVIGATE_IN)
