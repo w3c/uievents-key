@@ -14,12 +14,12 @@
    <header>
     <p data-fill-with="logo"><a href="http://www.w3.org/"><img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"></a></p>
     <h1 class="p-name no-ref" id="title">UI Events KeyboardEvent key Values </h1>
-    <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C Working Draft, <time class="dt-updated" datetime="2016-03-05">5 March 2016</time></span></h2>
+    <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C Working Draft, <time class="dt-updated" datetime="2016-04-12">12 April 2016</time></span></h2>
    </header>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="http://www.w3.org/TR/2016/WD-uievents-key--20160305/">http://www.w3.org/TR/2016/WD-uievents-key--20160305/</a>
+     <dd><a class="u-url" href="http://www.w3.org/TR/2016/WD-uievents-key--20160412/">http://www.w3.org/TR/2016/WD-uievents-key--20160412/</a>
      <dt>Latest version:
      <dd><a href="http://www.w3.org/TR/uievents-key/">http://www.w3.org/TR/uievents-key/</a>
      <dt>Editor's Draft:
@@ -210,7 +210,7 @@ mechanisms (could be solved with a normalizing method)</p>
       <td>The <code class="keycap">Alt</code> (Alternative) key.<br> This key enables the alternate modifier function for interpreting concurrent or subsequent keyboard input.<br> This key value is also used for the Apple <code class="keycap">Option</code> key.
      <tr>
       <td class="key-table-key"><code class="key" id="key-AltGraph">"AltGraph"</code>
-      <td>The Alternate Graphics (<code class="keycap">AltGr</code> or <code class="keycap">AltGraph</code>) key.							This key is used enable the ISO Level 3 shift modifier (the standard <code class="keycap">Shift</code> key is the level 2 modifier).
+      <td>The Alternate Graphics (<code class="keycap">AltGr</code> or <code class="keycap">AltGraph</code>) key.							This key is used enable the ISO Level 3 shift modifier (the standard <code class="keycap">Shift</code> key is the level 2 modifier).							See <a data-link-type="biblio" href="#biblio-iso9995-1">[ISO9995-1]</a>. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-CapsLock">"CapsLock"</code>
       <td>The <code class="keycap">Caps Lock</code> (Capital) key.							Toggle capital character lock function for interpreting subsequent keyboard input event. 
@@ -223,10 +223,8 @@ mechanisms (could be solved with a normalizing method)</p>
 							This key is often handled directly in the keyboard hardware and does not usually generate key events. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-FnLock">"FnLock"</code>
-      <td>
-       The Function-Lock (<code class="keycap">FnLock</code> or KEYCAP
-       <f-lock>) key.							Activating this key switches the mode of the keyboard to changes some keys' values to an alternate character or function.
-							This key is often handled directly in the keyboard hardware and does not usually generate key events. </f-lock>
+      <td>The Function-Lock (<code class="keycap">FnLock</code> or <code class="keycap">F-Lock</code>) key.							Activating this key switches the mode of the keyboard to changes some keys' values to an alternate character or function.
+							This key is often handled directly in the keyboard hardware and does not usually generate key events. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-Hyper">"Hyper"</code>
       <td>The <code class="keycap">Hyper</code> key.
@@ -527,7 +525,7 @@ mechanisms (could be solved with a normalizing method)</p>
     <tbody>
      <tr>
       <td class="key-table-key"><code class="key" id="key-Eisu">"Eisu"</code>
-      <td>The Eisu key. This key may close the IME, but it’s purpose								is defined by the current IME. (<code class="android">KEYCODE_EISU</code>)
+      <td>The Eisu key. This key may close the IME, but its purpose								is defined by the current IME. (<code class="android">KEYCODE_EISU</code>)
      <tr>
       <td class="key-table-key"><code class="key" id="key-Hankaku">"Hankaku"</code>
       <td>The (Half-Width) Characters key.
@@ -1147,7 +1145,7 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
       <td>Skip forward to next content or program. (<code class="vk"><code class="vk">VK_SKIP</code></code>, <code class="android"><code class="android">KEYCODE_MEDIA_SKIP_FORWARD</code></code>)
      <tr>
       <td class="key-table-key"><code class="key" id="key-MediaStepBackward">"MediaStepBackward"</code>
-      <td>Sktep backward to next content or program. (<code class="android">KEYCODE_MEDIA_STEP_BACKWARD</code>)
+      <td>Step backward to next content or program. (<code class="android">KEYCODE_MEDIA_STEP_BACKWARD</code>)
      <tr>
       <td class="key-table-key"><code class="key" id="key-MediaStepForward">"MediaStepForward"</code>
       <td>Step forward to next content or program. (<code class="android">KEYCODE_MEDIA_STEP_FORWARD</code>)
@@ -1372,6 +1370,8 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
    <dd><a href="http://developer.android.com/reference/android/view/KeyEvent.html">Android KeyEvent</a>. URL: <a href="http://developer.android.com/reference/android/view/KeyEvent.html">http://developer.android.com/reference/android/view/KeyEvent.html</a>
    <dt id="biblio-dase"><a class="self-link" href="#biblio-dase"></a>[DASE]
    <dd><a href="http://atsc.org/standard/a100-dtv-application-software-environment-level-1-dase-1/">ATSC A/100-2, DTV Application Software Environment Level 1 (DASE-1) Part 2: Declarative Applications and Environment</a>. 09 March 2003. URL: <a href="http://atsc.org/standard/a100-dtv-application-software-environment-level-1-dase-1/">http://atsc.org/standard/a100-dtv-application-software-environment-level-1-dase-1/</a>
+   <dt id="biblio-iso9995-1"><a class="self-link" href="#biblio-iso9995-1"></a>[ISO9995-1]
+   <dd><a href="http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=51645">ISO/IEC 9995-1:2009 Information technology -- Keyboard layouts for text and office systems -- Part 1: General principles governing keyboard layouts</a>. URL: <a href="http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=51645">http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=51645</a>
    <dt id="biblio-keyeventjava"><a class="self-link" href="#biblio-keyeventjava"></a>[KeyEventJava]
    <dd><a href="http://docs.oracle.com/javase/6/docs/api/java/awt/event/KeyEvent.html">Java™ Platform, Standard Edition 6 API Specification, Class java.awt.events.KeyEvent</a>. URL: <a href="http://docs.oracle.com/javase/6/docs/api/java/awt/event/KeyEvent.html">http://docs.oracle.com/javase/6/docs/api/java/awt/event/KeyEvent.html</a>
    <dt id="biblio-keysnet"><a class="self-link" href="#biblio-keysnet"></a>[KeysNet]

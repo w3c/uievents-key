@@ -33,6 +33,11 @@ Abstract:
 		"publisher": "Advanced Television Systems Committee",
 		"date": "09 March 2003"
 	},
+	"ISO9995-1": {
+		"href": "http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=51645",
+		"title": "ISO/IEC 9995-1:2009 Information technology -- Keyboard layouts for text and office systems -- Part 1: General principles governing keyboard layouts",
+		"publisher": "ISO"
+	},
 	"KeyEventJava": {
 		"title": "Java™ Platform, Standard Edition 6 API Specification, Class java.awt.events.KeyEvent",
 		"href": "http://docs.oracle.com/javase/6/docs/api/java/awt/event/KeyEvent.html",
@@ -199,6 +204,7 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 							This key value is also used for the Apple KEYCAP{Option} key.
 			KEY AltGraph	The Alternate Graphics (KEYCAP{AltGr} or KEYCAP{AltGraph}) key.
 							This key is used enable the ISO Level 3 shift modifier (the standard KEYCAP{Shift} key is the level 2 modifier).
+							See [[ISO9995-1]].
 			KEY CapsLock	The KEYCAP{Caps Lock} (Capital) key.
 							Toggle capital character lock function for interpreting subsequent keyboard input event.
 			KEY Control		The KEYCAP{Control} or KEYCAP{Ctrl} key, to enable control modifier function for interpreting concurrent or subsequent keyboard input.
