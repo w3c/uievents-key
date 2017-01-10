@@ -355,8 +355,11 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 			KEY Hankaku			The (Half-Width) Characters key.
 			KEY Hiragana		The Hiragana (Japanese Kana characters) key.
 			KEY HiraganaKatakana	The Hiragana/Katakana toggle key. (KEYCODE_KATAKANA_HIRAGANA)
-			KEY KanaMode		The Kana Mode (Kana Lock) key. (KEYCODE_KANA)
+			KEY KanaMode		The Kana Mode (Kana Lock) key. This key is used to enter
+								hiragana mode (typically from romaji mode).
 			KEY KanjiMode		The Kanji (Japanese name for ideographic characters of Chinese origin) Mode key.
+								This key is typically used to switch to a hiragana keyboard for
+								the purpose of converting input into kanji. (KEYCODE_KANA)
 			KEY Katakana		The Katakana (Japanese Kana characters) key.
 			KEY Romaji			The Roman characters function key.
 			KEY Zenkaku			The Zenkaku (Full-Width) Characters key.
