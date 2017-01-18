@@ -201,15 +201,20 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 			KEY FnLock		The Function-Lock (KEYCAP{FnLock} or KEYCAP{F-Lock}) key.
 							Activating this key switches the mode of the keyboard to changes some keys' values to an alternate character or function.
 							This key is often handled directly in the keyboard hardware and does not usually generate key events.
-			KEY Hyper		The KEYCAP{Hyper} key.
 			KEY Meta		The KEYCAP{Meta} key, to enable meta modifier function for interpreting concurrent or subsequent keyboard input.
 							This key value is used for the <q>Windows Logo</q> key and the Apple KEYCAP{Command} or KEYCAP{&#x2318;} key.
 			KEY NumLock		The KEYCAP{NumLock} or Number Lock key, to toggle numer-pad mode function for interpreting subsequent keyboard input.
 			KEY ScrollLock	The KEYCAP{Scroll Lock} key, to toggle between scrolling and cursor movement modes.
 			KEY Shift		The KEYCAP{Shift} key, to enable shift modifier function for interpreting concurrent or subsequent keyboard input.
-			KEY Super		The KEYCAP{Super} key.
 			KEY Symbol		The Symbol modifier key (used on some virtual keyboards).
 			KEY SymbolLock	The Symbol Lock key.
+		END_KEY_TABLE
+
+		Legacy modifier keys:
+
+		BEGIN_KEY_TABLE modifier-legacy
+			KEY Hyper		The KEYCAP{Hyper} key.
+			KEY Super		The KEYCAP{Super} key.
 		END_KEY_TABLE
 
 	<h3 id="keys-whitespace">Whitespace Keys</h3>

@@ -350,9 +350,6 @@ value of <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/ui
       <td>The Function-Lock (<code class="keycap">FnLock</code> or <code class="keycap">F-Lock</code>) key.							Activating this key switches the mode of the keyboard to changes some keys' values to an alternate character or function.
 							This key is often handled directly in the keyboard hardware and does not usually generate key events. 
      <tr>
-      <td class="key-table-key"><code class="key" id="key-Hyper">"Hyper"</code>
-      <td>The <code class="keycap">Hyper</code> key.
-     <tr>
       <td class="key-table-key"><code class="key" id="key-Meta">"Meta"</code>
       <td>The <code class="keycap">Meta</code> key, to enable meta modifier function for interpreting concurrent or subsequent keyboard input.							This key value is used for the <q>Windows Logo</q> key and the Apple <code class="keycap">Command</code> or <code class="keycap">⌘</code> key.
      <tr>
@@ -365,14 +362,25 @@ value of <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/ui
       <td class="key-table-key"><code class="key" id="key-Shift">"Shift"</code>
       <td>The <code class="keycap">Shift</code> key, to enable shift modifier function for interpreting concurrent or subsequent keyboard input.
      <tr>
-      <td class="key-table-key"><code class="key" id="key-Super">"Super"</code>
-      <td>The <code class="keycap">Super</code> key.
-     <tr>
       <td class="key-table-key"><code class="key" id="key-Symbol">"Symbol"</code>
       <td>The Symbol modifier key (used on some virtual keyboards).
      <tr>
       <td class="key-table-key"><code class="key" id="key-SymbolLock">"SymbolLock"</code>
       <td>The Symbol Lock key.
+   </table>
+   <p>Legacy modifier keys:</p>
+   <table class="data-table full-width" id="key-table-modifier-legacy">
+    <thead>
+     <tr>
+      <th style="width:20%"><code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent">KeyboardEvent</a></code>.<code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code>
+      <th style="width:80%">Typical Usage (Non-normative)
+    <tbody>
+     <tr>
+      <td class="key-table-key"><code class="key" id="key-Hyper">"Hyper"</code>
+      <td>The <code class="keycap">Hyper</code> key.
+     <tr>
+      <td class="key-table-key"><code class="key" id="key-Super">"Super"</code>
+      <td>The <code class="keycap">Super</code> key.
    </table>
    <h3 class="heading settled" data-level="2.3" id="keys-whitespace"><span class="secno">2.3. </span><span class="content">Whitespace Keys</span><a class="self-link" href="#keys-whitespace"></a></h3>
    <table class="data-table full-width" id="key-table-whitespace">
