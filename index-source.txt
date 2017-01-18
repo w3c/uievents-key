@@ -88,7 +88,7 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 	meaning. The {{KeyboardEvent/key}} value will differ based on the user's
 	current locale. For a key value that is based only on the key's physical
 	location and does not vary based on locale, see {{KeyboardEvent/code}}
-	described in [[UIEvents-Code]].
+	described in [[!UIEvents-Code]].
 
 	This specification was formerly titled <em>DOM Level 3 KeyboardEvent
 	{{KeyboardEvent/key}} Values</em>.
