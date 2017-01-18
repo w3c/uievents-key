@@ -77,6 +77,8 @@ urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; f
     text: location
 urlPrefix: http://www.w3.org/TR/uievents/#glossary-; type: dfn; spec: uievents;
 	text: key value
+urlPrefix: http://www.w3.org/TR/uievents/#; type: dfn; spec: uievents;
+	text: compositionupdate
 url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 	text: key cap
 </pre>
@@ -309,7 +311,7 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 			KEY Dead			A dead key combining key. It may be any combining key from any keyboard layout. For example, on a
 								PC/AT French keyboard, using a French mapping and without any modifier activiated, this is the key value
 								UNI{U+0302} COMBINING CIRCUMFLEX ACCENT. In another layout this might be a different unicode combining key.<br/>
-								For applications that need to differentiate between specific combining characters, the associated compositionupdate
+								For applications that need to differentiate between specific combining characters, the associated [=compositionupdate=]
 								event's data attribute provides the specific key value.
 			KEY FinalMode		The Final Mode KEYCAP{Final} key used on some Asian keyboards, to enable the final mode for IMEs.
 			KEY GroupFirst		Switch to the first character group. (ISO/IEC 9995)
