@@ -439,11 +439,9 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 		BEGIN_KEY_TABLE audio
 			KEY AudioBalanceLeft		Adjust audio balance leftward. (VK_AUDIO_BALANCE_LEFT)
 			KEY AudioBalanceRight		Adjust audio balance rightward. (VK_AUDIO_BALANCE_RIGHT)
-			KEY AudioBassDown			Decrease bass. (APPCOMMAND_BASS_DOWN)
-			KEY AudioBassBoostDown		Decrease audio bass boost or cycle down through bass boost states. (VK_BASS_BOOST_DOWN)
+			KEY AudioBassBoostDown		Decrease audio bass boost or cycle down through bass boost states. (APPCOMMAND_BASS_DOWN, VK_BASS_BOOST_DOWN)
 			KEY AudioBassBoostToggle	Toggle bass boost on/off. (APPCOMMAND_BASS_BOOST)
-			KEY AudioBassBoostUp		Increase audio bass boost or cycle up through bass boost states. (VK_BASS_BOOST_UP)
-			KEY AudioBassUp				Increase bass. (APPCOMMAND_BASS_UP)
+			KEY AudioBassBoostUp		Increase audio bass boost or cycle up through bass boost states. (APPCOMMAND_BASS_UP, VK_BASS_BOOST_UP)
 			KEY AudioFaderFront			Adjust audio fader towards front. (VK_FADER_FRONT)
 			KEY AudioFaderRear			Adjust audio fader towards rear. (VK_FADER_REAR)
 			KEY AudioSurroundModeNext	Advance surround audio mode to next available mode. (VK_SURROUND_MODE_NEXT)
