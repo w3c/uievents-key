@@ -262,7 +262,7 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 			KEY Attn		The Attention (Attn) key.
 			KEY Cancel		The Cancel key.
 			KEY ContextMenu	Show the application's context menu.
-							This key is commonly found between the right KEYCAP{OS} key and the right KEYCAP{Control} key.
+							This key is commonly found between the right KEYCAP{Meta} key and the right KEYCAP{Control} key.
 			KEY Escape		The Escape (Esc) key. This key was originally used to initiate an escape sequence, but is
 							now more generally used to exit or "escape" the current context, such as closing a dialog
 							or exiting full screen mode.
