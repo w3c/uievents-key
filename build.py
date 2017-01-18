@@ -71,6 +71,8 @@ class Parser():
 			pre = self.process_text(m.group(1))
 			name = m.group(2)
 			post = self.process_text(m.group(3))
+			if name[0:2] != 'U+':
+				error('Invalid Unicode value (expected U+xxxx): %s\n' % name)
 			desc = pre + '<code class="unicode">' + name + '</code>' + post
 
 		m = re.match(r'^(.*)(KEYCODE_[A-Z0-9_]+)(.*)$', desc)
