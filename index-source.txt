@@ -473,13 +473,13 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 		of the application.
 
 		BEGIN_KEY_TABLE apps
-			KEY LaunchCalculator	The "Calculator" key. This is often the generic "LaunchApplication" key, as index 2. (APPCOMMAND_LAUNCH_APP2, KEYCODE_CALCULATOR)
+			KEY LaunchApplication1	The first generic "LaunchApplication" key. This is commonly associated with launching "My Computer", and may have a computer symbol on the key. (APPCOMMAND_LAUNCH_APP1)
+			KEY LaunchApplication2	The second generic "LaunchApplication" key. This is commonly associated with launching "Calculator", and may have a calculator symbol on the key. (APPCOMMAND_LAUNCH_APP2, KEYCODE_CALCULATOR)
 			KEY LaunchCalendar		The "Calendar" key. (KEYCODE_CALENDAR)
 			KEY LaunchContacts		The "Contacts" key. (KEYCODE_CONTACTS)
 			KEY LaunchMail			The "Mail" key. (APPCOMMAND_LAUNCH_MAIL)
 			KEY LaunchMediaPlayer	The "Media Player" key. (APPCOMMAND_LAUNCH_MEDIA_SELECT)
 			KEY LaunchMusicPlayer	The "Music Player" key.
-			KEY LaunchMyComputer	The "My Computer" key. This is often the generic "LaunchApplication" key, as index 1. (APPCOMMAND_LAUNCH_APP1)
 			KEY LaunchPhone			The "Phone" key.
 			KEY LaunchScreenSaver	The "Screen Saver" key.
 			KEY LaunchSpreadsheet	The "Spreadsheet" key.
