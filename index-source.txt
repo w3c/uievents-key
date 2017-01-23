@@ -75,10 +75,9 @@ urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; f
     text: key
     text: code
     text: location
-urlPrefix: http://www.w3.org/TR/uievents/#glossary-; type: dfn; spec: uievents;
-	text: key value
 urlPrefix: http://www.w3.org/TR/uievents/#; type: dfn; spec: uievents;
 	text: compositionupdate
+	text: key value
 url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 	text: key cap
 </pre>
@@ -105,7 +104,8 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 			{{KeyboardEvent/key}} and {{KeyboardEvent/code}} values in the
 			generated {{KeyboardEvent}}.
 
-		*   Glyphs representing character are shown as: GLYPH{&#x239C2;}.
+		*   Glyphs representing character are shown as: GLYPH{a}, GLYPH{é},
+			GLYPH{ر}, GLYPH{字}.
 
 		*   Unicode code points are shown as: UNI{U+003d}.
 
@@ -157,12 +157,12 @@ url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
 	<p class="note">
 	Characters outside the Basic Multilingual Plane (for example UNI{U+239C2} for
 	GLYPH{&#x239C2;}, a Chinese character meaning <q>untidy</q>), are, like all
-	Unicode values, represented in this spec using the standard <code>U+</code> notation.
+	Unicode values, represented in this spec using the standard "<code>U+</code>" notation.
 	For programming languages that do not directly support this notation, it will
 	need to be converted as appropriate, possibly making use of surrogate pairs:
-	<code>\uD84e\uDDC2</code> (for ECMAScript),
-	<code>&amp;#x239C2;</code> for HTML,
-	<code>\U000239c2</code> for C, et al.
+	"<code>\uD84e\uDDC2</code>" (for ECMAScript),
+	"<code>&amp;#x239C2;</code>" for HTML,
+	"<code>\U000239c2</code>" for C, et al.
 	</div>
 
 	The following sub-sections contain the normative list of case-sensitive key
