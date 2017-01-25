@@ -1730,14 +1730,16 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
     <p class="example" id="example-e1bee968"><a class="self-link" href="#example-e1bee968"></a> On a standard US keyboard, <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-12">key attribute value</a> for <code class="keycap">Control</code> + <code class="keycap">Q</code> is <code class="key">"q"</code>. </p>
     <p class="example" id="example-2751fd44"><a class="self-link" href="#example-2751fd44"></a> On a US keyboard with a right-handed single-hand Dvorak key mapping, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-13">key attribute value</a> for the key labeled <code class="keycap">Q</code> is <code class="key">"5"</code> (or <code class="key">"%"</code> with <code class="keycap">Shift</code> modifier). </p>
     <p class="example" id="example-7ad3dce9"><a class="self-link" href="#example-7ad3dce9"></a> On the same US Dvorak keyboard layout as the previous example, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-14">key attribute value</a> for <code class="keycap">Control</code> + <code class="keycap">Q</code> is <code class="key">"q"</code> (because that is what the default layout would produce). </p>
+    <p class="example" id="example-dde0e10f"><a class="self-link" href="#example-dde0e10f"></a> On a Bolnagri keyboard layout, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-15">key attribute value</a> for the
+				key labeled <code class="keycap">Q</code> is <code class="unicode">U+200C</code> (ZWNJ or Zero Width Non-Joining Space). </p>
     <p class="example" id="example-85620942"><a class="self-link" href="#example-85620942"></a> On a French PC keyboard with a standard French mapping, the <code class="keycap">^</code> key acts as a <a data-link-type="dfn" href="http://www.w3.org/TR/uievents/#dead-key">dead key</a> for the combining circumflex diacritical mark.
-				The <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-15">key attribute value</a> for this keyboard event is <code class="key">"<a href="#key-Dead">Dead</a>"</code>. </p>
-    <p class="example" id="example-a9626293"><a class="self-link" href="#example-a9626293"></a> Also on a French keyboard with a standard French mapping, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-16">key attribute value</a> for the <code class="keycap">é</code> key (which corresponds to the <code class="keycap">2</code> key on a US keyboard) is <code class="key">"é"</code> (<code class="unicode">U+00E9</code>). </p>
+				The <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-16">key attribute value</a> for this keyboard event is <code class="key">"<a href="#key-Dead">Dead</a>"</code>. </p>
+    <p class="example" id="example-a9626293"><a class="self-link" href="#example-a9626293"></a> Also on a French keyboard with a standard French mapping, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-17">key attribute value</a> for the <code class="keycap">é</code> key (which corresponds to the <code class="keycap">2</code> key on a US keyboard) is <code class="key">"é"</code> (<code class="unicode">U+00E9</code>). </p>
     <p class="example" id="example-83751eb4"><a class="self-link" href="#example-83751eb4"></a> On a Korean PC keyboard with a standard Korean mapping, the primary
-				function of the <code class="keycap">Ha/En</code> key is to switch between Hangul and English				input. There is an entry for this key as a <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value-5">named key attribute value</a>, <code class="key">"<a href="#key-HangulMode">HangulMode</a>"</code>, so that should be used as the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-17">key attribute value</a>. </p>
+				function of the <code class="keycap">Ha/En</code> key is to switch between Hangul and English				input. There is an entry for this key as a <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value-5">named key attribute value</a>, <code class="key">"<a href="#key-HangulMode">HangulMode</a>"</code>, so that should be used as the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-18">key attribute value</a>. </p>
    </div>
    <h2 class="heading settled" data-level="3" id="named-key-attribute-values"><span class="secno">3. </span><span class="content">Named <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> Attribute Values</span><a class="self-link" href="#named-key-attribute-values"></a></h2>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="named-key-attribute-value">named key attribute value</dfn> is any of the values given in the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-18">key attribute value</a> column of any of the tables in this section of the
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="named-key-attribute-value">named key attribute value</dfn> is any of the values given in the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-19">key attribute value</a> column of any of the tables in this section of the
 	specification.</p>
    <p>The <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value-6">named key attribute values</a> defined here are based
 	in part on the sets of keycodes from
@@ -1756,11 +1758,11 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
 	Rather than allowing user agents to define their own <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value-7">named key attribute values</a> (which are unlikely to be consistent across multiple user agents), bugs SHOULD be
 	filed so that this specification can be updated. </p>
    <h3 class="heading settled" data-level="3.1" id="keys-special"><span class="secno">3.1. </span><span class="content">Special Keys</span><a class="self-link" href="#keys-special"></a></h3>
-   <p>Implementations that are unable to identify a key MUST use <code class="key">"<a href="#key-Unidentified">Unidentified</a>"</code> as the the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-19">key attribute value</a>.</p>
+   <p>Implementations that are unable to identify a key MUST use <code class="key">"<a href="#key-Unidentified">Unidentified</a>"</code> as the the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-20">key attribute value</a>.</p>
    <table class="data-table full-width" id="key-table-general">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-20">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-21">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1775,7 +1777,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-modifier">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-21">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-22">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1821,7 +1823,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-modifier-legacy">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-22">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-23">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1835,7 +1837,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-whitespace">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-23">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-24">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1850,7 +1852,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-navigation">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-24">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-25">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1882,7 +1884,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-editing">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-25">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-26">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1926,7 +1928,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-ui">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-26">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-27">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1984,7 +1986,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-device">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-27">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-28">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2025,7 +2027,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-composition">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-28">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-29">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2084,7 +2086,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-ime-korean">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-29">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-30">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2101,7 +2103,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-ime-japanese">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-30">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-31">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2144,7 +2146,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-function">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-31">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-32">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2201,7 +2203,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-multimedia">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-32">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-33">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2276,7 +2278,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-multimedia-numpad">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-33">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-34">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2291,7 +2293,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-audio">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-34">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-35">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2351,7 +2353,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-speech">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-35">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-36">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2368,7 +2370,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-apps">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-36">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-37">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2415,7 +2417,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-browser">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-37">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-38">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2444,7 +2446,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-mobile-phone">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-38">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-39">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2488,7 +2490,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-tv">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-39">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-40">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2583,7 +2585,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
       <td>Timer programming. (<code class="android">KEYCODE_TV_TIMER_PROGRAMMING</code>)
    </table>
    <h3 class="heading settled" data-level="3.18" id="keys-media-controller"><span class="secno">3.18. </span><span class="content">Media Controller Keys</span><a class="self-link" href="#keys-media-controller"></a></h3>
-   <p>The <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-40">key attribute values</a> for media controllers (e.g. remote controls for
+   <p>The <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-41">key attribute values</a> for media controllers (e.g. remote controls for
 		television, audio systems, and set-top boxes) are derived in part from
 		the consumer electronics technical specifications:</p>
    <ul>
@@ -2600,7 +2602,7 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
    <table class="data-table full-width" id="key-table-media-controller">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-41">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-42">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2828,7 +2830,7 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
    <table class="data-table full-width" id="key-table-media-controller-dup">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-42">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-43">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2964,6 +2966,7 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
      <li><a href="http://www.w3.org/TR/uievents/#compositionupdate">compositionupdate</a>
      <li><a href="http://www.w3.org/TR/uievents/#dead-key">dead key</a>
      <li><a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a>
+     <li><a href="http://www.w3.org/TR/uievents/#key-legends">key cap</a>
      <li><a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-location">location</a>
     </ul>
   </ul>
@@ -3005,26 +3008,26 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
     <li><a href="#ref-for-key-attribute-value-2">1.1. Stylistic Conventions</a>
     <li><a href="#ref-for-key-attribute-value-3">2. Keyboard Event key Attribute Values</a> <a href="#ref-for-key-attribute-value-4">(2)</a> <a href="#ref-for-key-attribute-value-5">(3)</a>
     <li><a href="#ref-for-key-attribute-value-6">2.1. Unicode Values</a> <a href="#ref-for-key-attribute-value-7">(2)</a> <a href="#ref-for-key-attribute-value-8">(3)</a> <a href="#ref-for-key-attribute-value-9">(4)</a>
-    <li><a href="#ref-for-key-attribute-value-10">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-key-attribute-value-11">(2)</a> <a href="#ref-for-key-attribute-value-12">(3)</a> <a href="#ref-for-key-attribute-value-13">(4)</a> <a href="#ref-for-key-attribute-value-14">(5)</a> <a href="#ref-for-key-attribute-value-15">(6)</a> <a href="#ref-for-key-attribute-value-16">(7)</a> <a href="#ref-for-key-attribute-value-17">(8)</a>
-    <li><a href="#ref-for-key-attribute-value-18">3. Named key Attribute Values</a>
-    <li><a href="#ref-for-key-attribute-value-19">3.1. Special Keys</a> <a href="#ref-for-key-attribute-value-20">(2)</a>
-    <li><a href="#ref-for-key-attribute-value-21">3.2. Modifier Keys</a> <a href="#ref-for-key-attribute-value-22">(2)</a>
-    <li><a href="#ref-for-key-attribute-value-23">3.3. Whitespace Keys</a>
-    <li><a href="#ref-for-key-attribute-value-24">3.4. Navigation Keys</a>
-    <li><a href="#ref-for-key-attribute-value-25">3.5. Editing Keys</a>
-    <li><a href="#ref-for-key-attribute-value-26">3.6. UI Keys</a>
-    <li><a href="#ref-for-key-attribute-value-27">3.7. Device Keys</a>
-    <li><a href="#ref-for-key-attribute-value-28">3.8. IME and Composition Keys</a> <a href="#ref-for-key-attribute-value-29">(2)</a> <a href="#ref-for-key-attribute-value-30">(3)</a>
-    <li><a href="#ref-for-key-attribute-value-31">3.9. General-Purpose Function Keys</a>
-    <li><a href="#ref-for-key-attribute-value-32">3.10. Multimedia Keys</a>
-    <li><a href="#ref-for-key-attribute-value-33">3.11. Multimedia Numpad Keys</a>
-    <li><a href="#ref-for-key-attribute-value-34">3.12. Audio Keys</a>
-    <li><a href="#ref-for-key-attribute-value-35">3.13. Speech Keys</a>
-    <li><a href="#ref-for-key-attribute-value-36">3.14. Application Keys</a>
-    <li><a href="#ref-for-key-attribute-value-37">3.15. Browser Keys</a>
-    <li><a href="#ref-for-key-attribute-value-38">3.16. Mobile Phone Keys</a>
-    <li><a href="#ref-for-key-attribute-value-39">3.17. TV Keys</a>
-    <li><a href="#ref-for-key-attribute-value-40">3.18. Media Controller Keys</a> <a href="#ref-for-key-attribute-value-41">(2)</a> <a href="#ref-for-key-attribute-value-42">(3)</a>
+    <li><a href="#ref-for-key-attribute-value-10">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-key-attribute-value-11">(2)</a> <a href="#ref-for-key-attribute-value-12">(3)</a> <a href="#ref-for-key-attribute-value-13">(4)</a> <a href="#ref-for-key-attribute-value-14">(5)</a> <a href="#ref-for-key-attribute-value-15">(6)</a> <a href="#ref-for-key-attribute-value-16">(7)</a> <a href="#ref-for-key-attribute-value-17">(8)</a> <a href="#ref-for-key-attribute-value-18">(9)</a>
+    <li><a href="#ref-for-key-attribute-value-19">3. Named key Attribute Values</a>
+    <li><a href="#ref-for-key-attribute-value-20">3.1. Special Keys</a> <a href="#ref-for-key-attribute-value-21">(2)</a>
+    <li><a href="#ref-for-key-attribute-value-22">3.2. Modifier Keys</a> <a href="#ref-for-key-attribute-value-23">(2)</a>
+    <li><a href="#ref-for-key-attribute-value-24">3.3. Whitespace Keys</a>
+    <li><a href="#ref-for-key-attribute-value-25">3.4. Navigation Keys</a>
+    <li><a href="#ref-for-key-attribute-value-26">3.5. Editing Keys</a>
+    <li><a href="#ref-for-key-attribute-value-27">3.6. UI Keys</a>
+    <li><a href="#ref-for-key-attribute-value-28">3.7. Device Keys</a>
+    <li><a href="#ref-for-key-attribute-value-29">3.8. IME and Composition Keys</a> <a href="#ref-for-key-attribute-value-30">(2)</a> <a href="#ref-for-key-attribute-value-31">(3)</a>
+    <li><a href="#ref-for-key-attribute-value-32">3.9. General-Purpose Function Keys</a>
+    <li><a href="#ref-for-key-attribute-value-33">3.10. Multimedia Keys</a>
+    <li><a href="#ref-for-key-attribute-value-34">3.11. Multimedia Numpad Keys</a>
+    <li><a href="#ref-for-key-attribute-value-35">3.12. Audio Keys</a>
+    <li><a href="#ref-for-key-attribute-value-36">3.13. Speech Keys</a>
+    <li><a href="#ref-for-key-attribute-value-37">3.14. Application Keys</a>
+    <li><a href="#ref-for-key-attribute-value-38">3.15. Browser Keys</a>
+    <li><a href="#ref-for-key-attribute-value-39">3.16. Mobile Phone Keys</a>
+    <li><a href="#ref-for-key-attribute-value-40">3.17. TV Keys</a>
+    <li><a href="#ref-for-key-attribute-value-41">3.18. Media Controller Keys</a> <a href="#ref-for-key-attribute-value-42">(2)</a> <a href="#ref-for-key-attribute-value-43">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="printable-character">

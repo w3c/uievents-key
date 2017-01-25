@@ -76,7 +76,7 @@ urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; f
 urlPrefix: http://www.w3.org/TR/uievents/#; type: dfn; spec: uievents;
 	text: compositionupdate
 	text: dead key
-url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents-key;
+url: http://www.w3.org/TR/uievents/#key-legends; type: dfn; spec: uievents;
 	text: key cap
 </pre>
 
@@ -259,6 +259,11 @@ path: stylesheet-extra.include
 				(because that is what the default layout would produce).
 			</p>
 			
+			<p class="example">
+				On a Bolnagri keyboard layout, the [=key attribute value=] for the
+				key labeled KEYCAP{Q} is UNI{U+200C} (ZWNJ or Zero Width Non-Joining Space).
+			</p>
+
 			<p class="example">
 				On a French PC keyboard with a standard French mapping, the KEYCAP{^}
 				key acts as a [=dead key=] for the combining circumflex diacritical mark.
