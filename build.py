@@ -31,6 +31,10 @@ class Parser():
 			'<td>%s</td></tr>\n') % (self.key, self.key, self.desc)
 
 	def process_text(self, desc):
+		has_newline = False
+		if desc[-1:] == '\n':
+			has_newline = True
+		
 		m = re.match(r'^(.*)CODE{(.+?)}(.*)$', desc)
 		if m:
 			pre = self.process_text(m.group(1))
@@ -96,6 +100,8 @@ class Parser():
 			post = self.process_text(m.group(3))
 			desc = pre + '<code class="vk">' + name + '</code>' + post
 
+		if has_newline and desc[-1:] != '\n':
+			desc += '\n'
 		return desc
 
 	def process_line(self, line):
@@ -152,7 +158,10 @@ class Parser():
 			error('Unable to open "%s" for writing: %s' % (dst, e))
 
 		for line in infile:
+			#print '>>%s>>' % line
 			new_line = self.process_line(line)
+			#print '<<%s<<' % new_line
+			#print
 			outfile.write(new_line)
 
 		outfile.close()
