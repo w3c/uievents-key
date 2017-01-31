@@ -52,6 +52,12 @@ Abstract:
 		"publisher": "Cable Television Laboratories, Inc.",
 		"date": "03 June 2010"
 	},
+	"UnicodeNormalizationForms": {
+		"title": "Unicode Standard Annex #15 - Unicode Normalization Forms",
+		"href": "http://unicode.org/reports/tr15/",
+		"publisher": "The Unicode Consortium",
+		"date": "24 Feb 2016"
+	},
 	"WEB4CE": {
 		"title": "ANSI/CEA-2014-B, Web-based Protocol and Framework for Remote User Interface on UPnPTM Networks and the Internet (Web4CE)",
 		"href": "http://www.ce.org/Standards/Standard-Listings/R7-Home-Network-Committee/CEA-2014-B-(ANSI%29.aspx",
@@ -121,7 +127,7 @@ path: stylesheet-extra.include
 	A <dfn>key attribute value</dfn> is defined as being a string that contains one of
 	the following:
 
-	* A [=printable character=] that corresponds to
+	* A [=key string=] that corresponds to
 		the character typed by the user, taking into account the user's current locale
 		setting, modifier state, and any system-level keyboard mapping overrides that are
 		in effect.
@@ -130,7 +136,6 @@ path: stylesheet-extra.include
 
 	A <a>key attribute value</a> MUST always contain a value that falls into one of these
 	two categories (even if the value is KEY{Unidentified}).
-
 
 	It is acceptable for multiple keys on a keyboard to generate the same
 	[=key attribute value=]. For example, on an EN-US keyboard layout, the keys on the
@@ -144,15 +149,22 @@ path: stylesheet-extra.include
 
 		Almost every Unicode character can be used as a valid [=key attribute value=], but
 		there is a small set of Unicode characters which MUST NOT be used.
-		We introduce the concept of a [=printable character=] to identify the set of
-		Unicode characters that are appropriate for use as a [=key attribute value=].
-		
-		A <dfn>printable character</dfn> is any valid Unicode character except those that
-		are part of the "Other, Control" ("Cc") General Category.
+		We introduce the concept of a [=key string=] to identify the set of
+		Unicode strings that are appropriate for use as a [=key attribute value=].
 
+		A <dfn>key string</dfn> is a string containing a 0 or 1 [=non-control characters=]
+		("base" characters) followed by 0 or more [=combining characters=]. The string MUST
+		be in Normalized Form C (NFC) as described in [[!UnicodeNormalizationForms]].
+		
+		A <dfn>non-control character</dfn> is any valid Unicode character except
+		those that are part of the "Other, Control" ("Cc") General Category.
+
+		A <dfn>combining character</dfn> is any valid Unicode character in the
+		"Mark, Spacing Combining" ("Mc") General Category or with a non-zero
+		Combining Class.
+		
 		<div class="example">
-			The following are some examples of [=printable characters=] that can be
-			used as [=key attribute values=]:
+			The following are some examples of simple [=key strings=]:
 		
 			* KEY_NOLINK{a}, KEY_NOLINK{A}, KEY_NOLINK{b}, KEY_NOLINK{B}, ...,
 				KEY_NOLINK{å}, KEY_NOLINK{é}, KEY_NOLINK{ü}, KEY_NOLINK{ñ}
@@ -169,28 +181,36 @@ path: stylesheet-extra.include
 			* KEY_NOLINK{&#x0430;}, KEY_NOLINK{&#x0431;}, KEY_NOLINK{&#x0432;}, KEY_NOLINK{&#x0433;}
 			
 			* KEY_NOLINK{&#x00B1;}, KEY_NOLINK{&#x02B6;}, KEY_NOLINK{&#x03F6;}, KEY_NOLINK{&#x0D79;}, KEY_NOLINK{&#x2109;}
-			
-			* KEY_NOLINK{&#xAB70;}, KEY_NOLINK{&#xAB71;}, KEY_NOLINK{&#xAB72;}, KEY_NOLINK{&#xAB73;}, KEY_NOLINK{&#xAB74;}
 		</div>
 
 		<div class="example">
-			The following are some examples of Unicode control ("Cc") characters that are
-			NOT [=printable characters=]. These Unicode characters are not valid for use
-			as [=key attribute values=]:
+			With the exception of KEYCAP{Tab} and KEYCAP{Enter} (see [[#control]]),
+			all non-control whitespace Unicode characters are considered to
+			be valid [=key strings=].
+			
+			* KEY_NOLINK{&#x0020} = UNI{U+0020} Space
+
+			* KEY_NOLINK{&#x00a0} = UNI{U+00a0} No-Break Space
+			
+			* KEY_NOLINK{&#x2009} = UNI{U+2009} Thin Space
+
+			* KEY_NOLINK{&#x3000} = UNI{U+3000} Ideographic Space
+		</div>
+
+		<div class="example">
+			The following are some examples of [=key strings=] with [=combining characters=]:
 		
-			* UNI{U+0000} NUL
+			* KEY_NOLINK{&#x00f4} = UNI{U+00f4}
+				(NOT "o" + " &#x0302" (UNI{U+006f} UNI{U+0302})
+				because pre-composed characters must be used if available)
 
-			* UNI{U+0006} ACKNOWLEDGE
-
-			* UNI{U+0007} BELL
+			* KEY_NOLINK{&#x1e0d&#x0307} = UNI{U+1e0d} + UNI{U+0307}
+				(NOT "d" + " &#x0323" + " &#x0307" (UNI{U+0064} UNI{U+0323} UNI{U+0307})
+				because precomposed characters must be used if available,
+				and NOT "&#x1e0b" + " &#x0323" (UNI{U+1e0b} UNI{U+0323})
+				because accents must be ordered before substituting with a precomposed version)
 		</div>
 		
-		<p class="note">		
-		Note: With the exception of the whitespace control characters KEYCAP{Tab} and
-		KEYCAP{Enter}, all whitespace characters are considered to be valid
-		[=printable characters=].
-		</p>
-
 		<h4 id="control">Control Characters</h4>
 		
 			A small number of characters in the Unicode "Cc" General Category are
@@ -221,14 +241,14 @@ path: stylesheet-extra.include
 				
 				1. Set |key| to that [=named key attribute value=].
 
-			1. Else, if the key event generates a [=printable character=], then
+			1. Else, if the key event generates a valid [=key string=], then
 			
-				1. Set |key| to that [=printable character=] value.
+				1. Set |key| to that [=key string=] value.
 
 			1. Else, if the key event has any modifier keys other than KEYCAP{Shift} or
 				KEYCAP{AltGr}, then
 
-				1. Set |key| to the [=printable character=] that would have been generated
+				1. Set |key| to the [=key string=] that would have been generated
 					by this event if it had been typed with the default keyboard layout,
 					and with all modifer keys removed except for KEYCAP{Shift} and
 					KEYCAP{AltGr}. 

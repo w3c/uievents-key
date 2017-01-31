@@ -1483,11 +1483,11 @@ code.vk {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>UI Events KeyboardEvent key Values</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C Working Draft, <time class="dt-updated" datetime="2017-01-25">25 January 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C Working Draft, <time class="dt-updated" datetime="2017-01-31">31 January 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="https://www.w3.org/TR/2017/WD-uievents-key-20170125/">https://www.w3.org/TR/2017/WD-uievents-key-20170125/</a>
+     <dd><a class="u-url" href="https://www.w3.org/TR/2017/WD-uievents-key-20170131/">https://www.w3.org/TR/2017/WD-uievents-key-20170131/</a>
      <dt>Latest published version:
      <dd><a href="http://www.w3.org/TR/uievents-key/">http://www.w3.org/TR/uievents-key/</a>
      <dt>Editor's Draft:
@@ -1607,7 +1607,8 @@ of the UI Events Specification <a data-link-type="biblio" href="#biblio-uievents
    <p>This specification uses the following conventions:</p>
    <ul>
     <li data-md="">
-     <p>The <a data-link-type="dfn" href="http://www.w3.org/TR/uievents/#key-legends"><em>key cap</em></a> printed on a key is shown as <code class="keycap">↓</code>, <code class="keycap">=</code> or <code class="keycap">Q</code>. This is used to refer to a			key from the user’s perspective without regard for the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> and <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-code">code</a></code> values in the
+     <p>The <a data-link-type="dfn" href="http://www.w3.org/TR/uievents/#key-legends"><em>key cap</em></a> printed on a key is shown as <code class="keycap">↓</code>, <code class="keycap">=</code> or <code class="keycap">Q</code>. This is used to refer to a
+key from the user’s perspective without regard for the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> and <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-code">code</a></code> values in the
 generated <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent">KeyboardEvent</a></code>.</p>
     <li data-md="">
      <p>Glyphs representing character are shown as: <code class="glyph">"a"</code>, <code class="glyph">"é"</code>, <code class="glyph">"ر"</code>, <code class="glyph">"字"</code>.</p>
@@ -1624,7 +1625,7 @@ value of <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/ui
 	the following:</p>
    <ul>
     <li data-md="">
-     <p>A <a data-link-type="dfn" href="#printable-character" id="ref-for-printable-character-1">printable character</a> that corresponds to
+     <p>A <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-1">key string</a> that corresponds to
 the character typed by the user, taking into account the user’s current locale
 setting, modifier state, and any system-level keyboard mapping overrides that are
 in effect.</p>
@@ -1634,18 +1635,23 @@ in effect.</p>
    <p>A <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-3">key attribute value</a> MUST always contain a value that falls into one of these
 	two categories (even if the value is <code class="key">"<a href="#key-Unidentified">Unidentified</a>"</code>).</p>
    <p>It is acceptable for multiple keys on a keyboard to generate the same <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-4">key attribute value</a>. For example, on an EN-US keyboard layout, the keys on the
-	numeric keypad (e.g., the keypad <code class="keycap">1</code> key) will generate the same <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-5">key attribute values</a> as their non-keypad counterparts (e.g., the <code class="keycap">1</code> key	in the main part of the keyboard). The <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent">KeyboardEvent</a></code>'s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-location">location</a></code> attribute can be used to determine if a key
+	numeric keypad (e.g., the keypad <code class="keycap">1</code> key) will generate the same <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-5">key attribute values</a> as their non-keypad counterparts (e.g., the <code class="keycap">1</code> key
+	in the main part of the keyboard). The <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent">KeyboardEvent</a></code>'s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-location">location</a></code> attribute can be used to determine if a key
 	originated from the numeric keypad.</p>
    <h3 class="heading settled" data-level="2.1" id="keys-unicode"><span class="secno">2.1. </span><span class="content">Unicode Values</span><a class="self-link" href="#keys-unicode"></a></h3>
    <p>Almost every Unicode character can be used as a valid <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-6">key attribute value</a>, but
 		there is a small set of Unicode characters which MUST NOT be used.
-		We introduce the concept of a <a data-link-type="dfn" href="#printable-character" id="ref-for-printable-character-2">printable character</a> to identify the set of
-		Unicode characters that are appropriate for use as a <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-7">key attribute value</a>.</p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="printable-character">printable character</dfn> is any valid Unicode character except those that
-		are part of the "Other, Control" ("Cc") General Category.</p>
-   <div class="example" id="example-47005815">
-    <a class="self-link" href="#example-47005815"></a> The following are some examples of <a data-link-type="dfn" href="#printable-character" id="ref-for-printable-character-3">printable characters</a> that can be
-			used as <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-8">key attribute values</a>: 
+		We introduce the concept of a <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-2">key string</a> to identify the set of
+		Unicode strings that are appropriate for use as a <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-7">key attribute value</a>.</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="key-string">key string</dfn> is a string containing a 0 or 1 <a data-link-type="dfn" href="#non-control-character" id="ref-for-non-control-character-1">non-control characters</a> ("base" characters) followed by 0 or more <a data-link-type="dfn" href="#combining-character" id="ref-for-combining-character-1">combining characters</a>. The string MUST
+		be in Normalized Form C (NFC) as described in <a data-link-type="biblio" href="#biblio-unicodenormalizationforms">[UnicodeNormalizationForms]</a>.</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="non-control-character">non-control character</dfn> is any valid Unicode character except
+		those that are part of the "Other, Control" ("Cc") General Category.</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="combining-character">combining character</dfn> is any valid Unicode character in the
+		"Mark, Spacing Combining" ("Mc") General Category or with a non-zero
+		Combining Class.</p>
+   <div class="example" id="example-5aff4e23">
+    <a class="self-link" href="#example-5aff4e23"></a> The following are some examples of simple <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-3">key strings</a>: 
     <ul>
      <li data-md="">
       <p><code class="key">"a"</code>, <code class="key">"A"</code>, <code class="key">"b"</code>, <code class="key">"B"</code>, ..., <code class="key">"å"</code>, <code class="key">"é"</code>, <code class="key">"ü"</code>, <code class="key">"ñ"</code></p>
@@ -1659,26 +1665,36 @@ in effect.</p>
       <p><code class="key">"а"</code>, <code class="key">"б"</code>, <code class="key">"в"</code>, <code class="key">"г"</code></p>
      <li data-md="">
       <p><code class="key">"±"</code>, <code class="key">"ʶ"</code>, <code class="key">"϶"</code>, <code class="key">"൹"</code>, <code class="key">"℉"</code></p>
-     <li data-md="">
-      <p><code class="key">"ꭰ"</code>, <code class="key">"ꭱ"</code>, <code class="key">"ꭲ"</code>, <code class="key">"ꭳ"</code>, <code class="key">"ꭴ"</code> </p>
     </ul>
    </div>
-   <p></p>
-   <div class="example" id="example-2e6f5ae9">
-    <a class="self-link" href="#example-2e6f5ae9"></a> The following are some examples of Unicode control ("Cc") characters that are
-			NOT <a data-link-type="dfn" href="#printable-character" id="ref-for-printable-character-4">printable characters</a>. These Unicode characters are not valid for use
-			as <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-9">key attribute values</a>: 
+   <div class="example" id="example-7e2b7bdc">
+    <a class="self-link" href="#example-7e2b7bdc"></a> With the exception of <code class="keycap">Tab</code> and <code class="keycap">Enter</code> (see <a href="#control">§2.1.1 Control Characters</a>),
+			all non-control whitespace Unicode characters are considered to
+			be valid <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-4">key strings</a>. 
     <ul>
      <li data-md="">
-      <p><code class="unicode">U+0000</code> NUL</p>
+      <p><code class="key">" "</code> = <code class="unicode">U+0020</code> Space</p>
      <li data-md="">
-      <p><code class="unicode">U+0006</code> ACKNOWLEDGE</p>
+      <p><code class="key">" "</code> = <code class="unicode">U+00a0</code> No-Break Space</p>
      <li data-md="">
-      <p><code class="unicode">U+0007</code> BELL </p>
+      <p><code class="key">" "</code> = <code class="unicode">U+2009</code> Thin Space</p>
+     <li data-md="">
+      <p><code class="key">"　"</code> = <code class="unicode">U+3000</code> Ideographic Space</p>
     </ul>
    </div>
-   <p></p>
-   <p class="note" role="note"> Note: With the exception of the whitespace control characters <code class="keycap">Tab</code> and <code class="keycap">Enter</code>, all whitespace characters are considered to be valid <a data-link-type="dfn" href="#printable-character" id="ref-for-printable-character-5">printable characters</a>. </p>
+   <div class="example" id="example-122309c6">
+    <a class="self-link" href="#example-122309c6"></a> The following are some examples of <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-5">key strings</a> with <a data-link-type="dfn" href="#combining-character" id="ref-for-combining-character-2">combining characters</a>: 
+    <ul>
+     <li data-md="">
+      <p><code class="key">"ô"</code> = <code class="unicode">U+00f4</code> (NOT "o" + " ̂" (<code class="unicode">U+006f</code> <code class="unicode">U+0302</code>)
+because pre-composed characters must be used if available)</p>
+     <li data-md="">
+      <p><code class="key">"ḍ̇"</code> = <code class="unicode">U+1e0d</code> + <code class="unicode">U+0307</code> (NOT "d" + " ̣" + " ̇" (<code class="unicode">U+0064</code> <code class="unicode">U+0323</code> <code class="unicode">U+0307</code>)
+because precomposed characters must be used if available,
+and NOT "ḋ" + " ̣" (<code class="unicode">U+1e0b</code> <code class="unicode">U+0323</code>)
+because accents must be ordered before substituting with a precomposed version)</p>
+    </ul>
+   </div>
    <h4 class="heading settled" data-level="2.1.1" id="control"><span class="secno">2.1.1. </span><span class="content">Control Characters</span><a class="self-link" href="#control"></a></h4>
    <p>A small number of characters in the Unicode "Cc" General Category are
 			supported as <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value-2">named key attribute values</a>. These named values are as
@@ -1710,36 +1726,38 @@ key event, then</p>
         <p>Set <var>key</var> to that <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value-4">named key attribute value</a>.</p>
       </ol>
      <li data-md="">
-      <p>Else, if the key event generates a <a data-link-type="dfn" href="#printable-character" id="ref-for-printable-character-6">printable character</a>, then</p>
+      <p>Else, if the key event generates a valid <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-6">key string</a>, then</p>
       <ol>
        <li data-md="">
-        <p>Set <var>key</var> to that <a data-link-type="dfn" href="#printable-character" id="ref-for-printable-character-7">printable character</a> value.</p>
+        <p>Set <var>key</var> to that <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-7">key string</a> value.</p>
       </ol>
      <li data-md="">
       <p>Else, if the key event has any modifier keys other than <code class="keycap">Shift</code> or <code class="keycap">AltGr</code>, then</p>
       <ol>
        <li data-md="">
-        <p>Set <var>key</var> to the <a data-link-type="dfn" href="#printable-character" id="ref-for-printable-character-8">printable character</a> that would have been generated
+        <p>Set <var>key</var> to the <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-8">key string</a> that would have been generated
 by this event if it had been typed with the default keyboard layout,
 and with all modifer keys removed except for <code class="keycap">Shift</code> and <code class="keycap">AltGr</code>.</p>
       </ol>
      <li data-md="">
-      <p>Return <var>key</var> as the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-10">key attribute value</a> for this key event.</p>
+      <p>Return <var>key</var> as the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-8">key attribute value</a> for this key event.</p>
     </ol>
-    <p class="example" id="example-c009d6f6"><a class="self-link" href="#example-c009d6f6"></a> On a standard US keyboard, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-11">key attribute value</a> for the key labeled <code class="keycap">Q</code> is <code class="key">"q"</code> (or <code class="key">"Q"</code> if the <code class="keycap">Shift</code> modifier				key is also held). </p>
-    <p class="example" id="example-e1bee968"><a class="self-link" href="#example-e1bee968"></a> On a standard US keyboard, <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-12">key attribute value</a> for <code class="keycap">Control</code> + <code class="keycap">Q</code> is <code class="key">"q"</code>. </p>
-    <p class="example" id="example-2751fd44"><a class="self-link" href="#example-2751fd44"></a> On a US keyboard with a right-handed single-hand Dvorak key mapping, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-13">key attribute value</a> for the key labeled <code class="keycap">Q</code> is <code class="key">"5"</code> (or <code class="key">"%"</code> with <code class="keycap">Shift</code> modifier). </p>
-    <p class="example" id="example-7ad3dce9"><a class="self-link" href="#example-7ad3dce9"></a> On the same US Dvorak keyboard layout as the previous example, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-14">key attribute value</a> for <code class="keycap">Control</code> + <code class="keycap">Q</code> is <code class="key">"q"</code> (because that is what the default layout would produce). </p>
-    <p class="example" id="example-dde0e10f"><a class="self-link" href="#example-dde0e10f"></a> On a Bolnagri keyboard layout, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-15">key attribute value</a> for the
+    <p class="example" id="example-e3fd6ad9"><a class="self-link" href="#example-e3fd6ad9"></a> On a standard US keyboard, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-9">key attribute value</a> for the key labeled <code class="keycap">Q</code> is <code class="key">"q"</code> (or <code class="key">"Q"</code> if the <code class="keycap">Shift</code> modifier
+				key is also held). </p>
+    <p class="example" id="example-ed0acddc"><a class="self-link" href="#example-ed0acddc"></a> On a standard US keyboard, <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-10">key attribute value</a> for <code class="keycap">Control</code> + <code class="keycap">Q</code> is <code class="key">"q"</code>. </p>
+    <p class="example" id="example-1e69f142"><a class="self-link" href="#example-1e69f142"></a> On a US keyboard with a right-handed single-hand Dvorak key mapping, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-11">key attribute value</a> for the key labeled <code class="keycap">Q</code> is <code class="key">"5"</code> (or <code class="key">"%"</code> with <code class="keycap">Shift</code> modifier). </p>
+    <p class="example" id="example-2d6703f5"><a class="self-link" href="#example-2d6703f5"></a> On the same US Dvorak keyboard layout as the previous example, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-12">key attribute value</a> for <code class="keycap">Control</code> + <code class="keycap">Q</code> is <code class="key">"q"</code> (because that is what the default layout would produce). </p>
+    <p class="example" id="example-dde0e10f"><a class="self-link" href="#example-dde0e10f"></a> On a Bolnagri keyboard layout, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-13">key attribute value</a> for the
 				key labeled <code class="keycap">Q</code> is <code class="unicode">U+200C</code> (ZWNJ or Zero Width Non-Joining Space). </p>
-    <p class="example" id="example-85620942"><a class="self-link" href="#example-85620942"></a> On a French PC keyboard with a standard French mapping, the <code class="keycap">^</code> key acts as a <a data-link-type="dfn" href="http://www.w3.org/TR/uievents/#dead-key">dead key</a> for the combining circumflex diacritical mark.
-				The <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-16">key attribute value</a> for this keyboard event is <code class="key">"<a href="#key-Dead">Dead</a>"</code>. </p>
-    <p class="example" id="example-a9626293"><a class="self-link" href="#example-a9626293"></a> Also on a French keyboard with a standard French mapping, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-17">key attribute value</a> for the <code class="keycap">é</code> key (which corresponds to the <code class="keycap">2</code> key on a US keyboard) is <code class="key">"é"</code> (<code class="unicode">U+00E9</code>). </p>
-    <p class="example" id="example-83751eb4"><a class="self-link" href="#example-83751eb4"></a> On a Korean PC keyboard with a standard Korean mapping, the primary
-				function of the <code class="keycap">Ha/En</code> key is to switch between Hangul and English				input. There is an entry for this key as a <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value-5">named key attribute value</a>, <code class="key">"<a href="#key-HangulMode">HangulMode</a>"</code>, so that should be used as the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-18">key attribute value</a>. </p>
+    <p class="example" id="example-200a3751"><a class="self-link" href="#example-200a3751"></a> On a French PC keyboard with a standard French mapping, the <code class="keycap">^</code> key acts as a <a data-link-type="dfn" href="http://www.w3.org/TR/uievents/#dead-key">dead key</a> for the combining circumflex diacritical mark.
+				The <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-14">key attribute value</a> for this keyboard event is <code class="key">"<a href="#key-Dead">Dead</a>"</code>. </p>
+    <p class="example" id="example-5a7acd5e"><a class="self-link" href="#example-5a7acd5e"></a> Also on a French keyboard with a standard French mapping, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-15">key attribute value</a> for the <code class="keycap">é</code> key (which corresponds to the <code class="keycap">2</code> key on a US keyboard) is <code class="key">"é"</code> (<code class="unicode">U+00E9</code>). </p>
+    <p class="example" id="example-f64f052b"><a class="self-link" href="#example-f64f052b"></a> On a Korean PC keyboard with a standard Korean mapping, the primary
+				function of the <code class="keycap">Ha/En</code> key is to switch between Hangul and English
+				input. There is an entry for this key as a <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value-5">named key attribute value</a>, <code class="key">"<a href="#key-HangulMode">HangulMode</a>"</code>, so that should be used as the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-16">key attribute value</a>. </p>
    </div>
    <h2 class="heading settled" data-level="3" id="named-key-attribute-values"><span class="secno">3. </span><span class="content">Named <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> Attribute Values</span><a class="self-link" href="#named-key-attribute-values"></a></h2>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="named-key-attribute-value">named key attribute value</dfn> is any of the values given in the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-19">key attribute value</a> column of any of the tables in this section of the
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="named-key-attribute-value">named key attribute value</dfn> is any of the values given in the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-17">key attribute value</a> column of any of the tables in this section of the
 	specification.</p>
    <p>The <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value-6">named key attribute values</a> defined here are based
 	in part on the sets of keycodes from
@@ -1758,11 +1776,11 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
 	Rather than allowing user agents to define their own <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value-7">named key attribute values</a> (which are unlikely to be consistent across multiple user agents), bugs SHOULD be
 	filed so that this specification can be updated. </p>
    <h3 class="heading settled" data-level="3.1" id="keys-special"><span class="secno">3.1. </span><span class="content">Special Keys</span><a class="self-link" href="#keys-special"></a></h3>
-   <p>Implementations that are unable to identify a key MUST use <code class="key">"<a href="#key-Unidentified">Unidentified</a>"</code> as the the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-20">key attribute value</a>.</p>
+   <p>Implementations that are unable to identify a key MUST use <code class="key">"<a href="#key-Unidentified">Unidentified</a>"</code> as the the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-18">key attribute value</a>.</p>
    <table class="data-table full-width" id="key-table-general">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-21">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-19">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1770,22 +1788,24 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
       <td>This key value is used when an implementation is unable to								identify another key value, due to either hardware,
 								platform, or software constraints. 
    </table>
-   <p class="note" role="note"> Conforming implementations MUST only use <code class="key">"<a href="#key-Unidentified">Unidentified</a>"</code> as a key value		when there is no way for the implementation to detect the key value.
+   <p class="note" role="note"> Conforming implementations MUST only use <code class="key">"<a href="#key-Unidentified">Unidentified</a>"</code> as a key value
+		when there is no way for the implementation to detect the key value.
 		Exposing only this value for all keyboard events MUST NOT indicate a conforming
 		implementation. </p>
    <h3 class="heading settled" data-level="3.2" id="keys-modifier"><span class="secno">3.2. </span><span class="content">Modifier Keys</span><a class="self-link" href="#keys-modifier"></a></h3>
    <table class="data-table full-width" id="key-table-modifier">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-22">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-20">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
       <td class="key-table-key"><code class="key" id="key-Alt">"Alt"</code>
-      <td>The <code class="keycap">Alt</code> (Alternative) key.<br> This key enables the alternate modifier function for interpreting concurrent or subsequent keyboard input.<br> This key value is also used for the Apple <code class="keycap">Option</code> key.
+      <td>The <code class="keycap">Alt</code> (Alternative) key.<br> This key enables the alternate modifier function for interpreting concurrent or subsequent keyboard input.<br> This key value is also used for the Apple <code class="keycap">Option</code> key. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-AltGraph">"AltGraph"</code>
-      <td>The Alternate Graphics (<code class="keycap">AltGr</code> or <code class="keycap">AltGraph</code>) key.							This key is used enable the ISO Level 3 shift modifier (the standard <code class="keycap">Shift</code> key is the level 2 modifier).							See <a data-link-type="biblio" href="#biblio-iso9995-1">[ISO9995-1]</a>. 
+      <td>The Alternate Graphics (<code class="keycap">AltGr</code> or <code class="keycap">AltGraph</code>) key.							This key is used enable the ISO Level 3 shift modifier (the standard <code class="keycap">Shift</code> key is the level 2 modifier).
+							See <a data-link-type="biblio" href="#biblio-iso9995-1">[ISO9995-1]</a>. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-CapsLock">"CapsLock"</code>
       <td>The <code class="keycap">Caps Lock</code> (Capital) key.							Toggle capital character lock function for interpreting subsequent keyboard input event. 
@@ -1802,7 +1822,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
 							This key is often handled directly in the keyboard hardware and does not usually generate key events. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-Meta">"Meta"</code>
-      <td>The <code class="keycap">Meta</code> key, to enable meta modifier function for interpreting concurrent or subsequent keyboard input.							This key value is used for the <q>Windows Logo</q> key and the Apple <code class="keycap">Command</code> or <code class="keycap">⌘</code> key.
+      <td>The <code class="keycap">Meta</code> key, to enable meta modifier function for interpreting concurrent or subsequent keyboard input.							This key value is used for the <q>Windows Logo</q> key and the Apple <code class="keycap">Command</code> or <code class="keycap">⌘</code> key. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-NumLock">"NumLock"</code>
       <td>The <code class="keycap">NumLock</code> or Number Lock key, to toggle numpad mode function for interpreting subsequent keyboard input.
@@ -1823,7 +1843,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-modifier-legacy">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-23">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-21">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1837,12 +1857,12 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-whitespace">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-24">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-22">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
       <td class="key-table-key"><code class="key" id="key-Enter">"Enter"</code>
-      <td>The <code class="keycap">Enter</code> or <code class="keycap">↵</code> key, to activate current selection or accept current input.<br> This key value is also used for the <code class="keycap">Return</code> (Macintosh numpad) key.<br> This key value is also used for the Android <code class="android">KEYCODE_DPAD_CENTER</code>.
+      <td>The <code class="keycap">Enter</code> or <code class="keycap">↵</code> key, to activate current selection or accept current input.<br> This key value is also used for the <code class="keycap">Return</code> (Macintosh numpad) key.<br> This key value is also used for the Android <code class="android">KEYCODE_DPAD_CENTER</code>. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-Tab">"Tab"</code>
       <td>The Horizontal Tabulation <code class="keycap">Tab</code> key.
@@ -1852,7 +1872,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-navigation">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-25">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-23">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1872,7 +1892,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
       <td>The End key, used with keyboard entry to go to the end of content (<code class="android">KEYCODE_MOVE_END</code>).
      <tr>
       <td class="key-table-key"><code class="key" id="key-Home">"Home"</code>
-      <td>The Home key, used with keyboard entry, to go to start of content (<code class="android">KEYCODE_MOVE_HOME</code>).<br> For the mobile phone <code class="keycap">Home</code> key (which goes to the phone’s main screen), use <code class="key">"<a href="#key-GoHome">GoHome</a>"</code>.
+      <td>The Home key, used with keyboard entry, to go to start of content (<code class="android">KEYCODE_MOVE_HOME</code>).<br> For the mobile phone <code class="keycap">Home</code> key (which goes to the phone’s main screen), use <code class="key">"<a href="#key-GoHome">GoHome</a>"</code>. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-PageDown">"PageDown"</code>
       <td>The Page Down key, to scroll down or display next page of content.
@@ -1884,7 +1904,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-editing">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-26">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-24">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1904,7 +1924,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
       <td>Cut the current selection. (<code class="appcommand">APPCOMMAND_CUT</code>)
      <tr>
       <td class="key-table-key"><code class="key" id="key-Delete">"Delete"</code>
-      <td>The Delete (Del) Key.							This key value is also used for the key labeled <code class="keycap">Delete</code> on MacOS keyboards when modified by the <code class="keycap">Fn</code> key.
+      <td>The Delete (Del) Key.							This key value is also used for the key labeled <code class="keycap">Delete</code> on MacOS keyboards when modified by the <code class="keycap">Fn</code> key. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-EraseEof">"EraseEof"</code>
       <td>The Erase to End of Field key.  This key deletes all characters from the current cursor position to the end of the current field.
@@ -1928,7 +1948,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-ui">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-27">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-25">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -1945,7 +1965,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
       <td>The Cancel key.
      <tr>
       <td class="key-table-key"><code class="key" id="key-ContextMenu">"ContextMenu"</code>
-      <td>Show the application’s context menu.							This key is commonly found between the right <code class="keycap">Meta</code> key and the right <code class="keycap">Control</code> key.
+      <td>Show the application’s context menu.							This key is commonly found between the right <code class="keycap">Meta</code> key and the right <code class="keycap">Control</code> key. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-Escape">"Escape"</code>
       <td>The <code class="keycap">Esc</code> key. This key was originally used to initiate an escape sequence, but is							now more generally used to exit or "escape" the current context, such as closing a dialog
@@ -1986,7 +2006,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-device">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-28">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-26">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2018,7 +2038,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
      <tr>
       <td class="key-table-key"><code class="key" id="key-Standby">"Standby"</code>
       <td>The Standby key.								This key turns off the display and places the computer into a low-power mode without completely shutting down.
-								It is sometimes labelled <code class="keycap">Suspend</code> or <code class="keycap">Sleep</code> key. (<code class="android"><code class="android">KEYCODE_SLEEP</code></code>)
+								It is sometimes labelled <code class="keycap">Suspend</code> or <code class="keycap">Sleep</code> key. (<code class="android"><code class="android">KEYCODE_SLEEP</code></code>) 
      <tr>
       <td class="key-table-key"><code class="key" id="key-WakeUp">"WakeUp"</code>
       <td>The WakeUp key. (<code class="android">KEYCODE_WAKEUP</code>)
@@ -2027,7 +2047,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-composition">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-29">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-27">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2086,7 +2106,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-ime-korean">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-30">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-28">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2103,12 +2123,12 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-ime-japanese">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-31">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-29">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
       <td class="key-table-key"><code class="key" id="key-Eisu">"Eisu"</code>
-      <td>The Eisu key. This key may close the IME, but its purpose								is defined by the current IME. (<code class="android">KEYCODE_EISU</code>)
+      <td>The Eisu key. This key may close the IME, but its purpose								is defined by the current IME. (<code class="android">KEYCODE_EISU</code>) 
      <tr>
       <td class="key-table-key"><code class="key" id="key-Hankaku">"Hankaku"</code>
       <td>The (Half-Width) Characters key.
@@ -2124,7 +2144,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
      <tr>
       <td class="key-table-key"><code class="key" id="key-KanjiMode">"KanjiMode"</code>
       <td>The Kanji (Japanese name for ideographic characters of Chinese origin) Mode key.								This key is typically used to switch to a hiragana keyboard for
-								the purpose of converting input into kanji. (<code class="android">KEYCODE_KANA</code>)
+								the purpose of converting input into kanji. (<code class="android">KEYCODE_KANA</code>) 
      <tr>
       <td class="key-table-key"><code class="key" id="key-Katakana">"Katakana"</code>
       <td>The Katakana (Japanese Kana characters) key.
@@ -2146,7 +2166,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-function">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-32">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-30">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2203,7 +2223,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-multimedia">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-33">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-31">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2273,27 +2293,30 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
       <td>Spellcheck the current document or selection. (<code class="appcommand">APPCOMMAND_SPELL_CHECK</code>)
    </table>
    <h3 class="heading settled" data-level="3.11" id="keys-multimedia-numpad"><span class="secno">3.11. </span><span class="content">Multimedia Numpad Keys</span><a class="self-link" href="#keys-multimedia-numpad"></a></h3>
-   <p>The normal <code class="keycap">0</code> ... <code class="keycap">9</code> numpad keys		are encoded as <code class="key">"0"</code> ... <code class="key">"9"</code>, but some		multimedia keypads have buttons numbered from <code class="keycap">1</code> ... <code class="keycap">12</code>.		In these instances, the <code class="keycap">10</code> key is often labeled <code class="keycap">10 /0</code>.</p>
+   <p>The normal <code class="keycap">0</code> ... <code class="keycap">9</code> numpad keys
+		are encoded as <code class="key">"0"</code> ... <code class="key">"9"</code>, but some
+		multimedia keypads have buttons numbered from <code class="keycap">1</code> ... <code class="keycap">12</code>.
+		In these instances, the <code class="keycap">10</code> key is often labeled <code class="keycap">10 /0</code>.</p>
    <p class="note" role="note"> Note: The <code class="keycap">10</code> or <code class="keycap">10 /0</code> key MUST be assigned a <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> value of <code class="key">"0"</code>. </p>
    <table class="data-table full-width" id="key-table-multimedia-numpad">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-34">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-32">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
       <td class="key-table-key"><code class="key" id="key-Key11">"Key11"</code>
-      <td>The <code class="keycap">11</code> key found on media numpads that						have buttons from <code class="keycap">1</code> ... <code class="keycap">12</code>.
+      <td>The <code class="keycap">11</code> key found on media numpads that						have buttons from <code class="keycap">1</code> ... <code class="keycap">12</code>. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-Key12">"Key12"</code>
-      <td>The <code class="keycap">12</code> key found on media numpads that						have buttons from <code class="keycap">1</code> ... <code class="keycap">12</code>.
+      <td>The <code class="keycap">12</code> key found on media numpads that						have buttons from <code class="keycap">1</code> ... <code class="keycap">12</code>. 
    </table>
    <h3 class="heading settled" data-level="3.12" id="keys-audio"><span class="secno">3.12. </span><span class="content">Audio Keys</span><a class="self-link" href="#keys-audio"></a></h3>
    <p>Multimedia keys related to audio.</p>
    <table class="data-table full-width" id="key-table-audio">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-35">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-33">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2353,7 +2376,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-speech">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-36">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-34">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2370,7 +2393,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-apps">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-37">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-35">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2417,7 +2440,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-browser">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-38">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-36">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2446,7 +2469,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-mobile-phone">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-39">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-37">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2490,7 +2513,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
    <table class="data-table full-width" id="key-table-tv">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-40">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-38">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2585,7 +2608,7 @@ and with all modifer keys removed except for <code class="keycap">Shift</code> a
       <td>Timer programming. (<code class="android">KEYCODE_TV_TIMER_PROGRAMMING</code>)
    </table>
    <h3 class="heading settled" data-level="3.18" id="keys-media-controller"><span class="secno">3.18. </span><span class="content">Media Controller Keys</span><a class="self-link" href="#keys-media-controller"></a></h3>
-   <p>The <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-41">key attribute values</a> for media controllers (e.g. remote controls for
+   <p>The <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-39">key attribute values</a> for media controllers (e.g. remote controls for
 		television, audio systems, and set-top boxes) are derived in part from
 		the consumer electronics technical specifications:</p>
    <ul>
@@ -2602,7 +2625,7 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
    <table class="data-table full-width" id="key-table-media-controller">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-42">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-40">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2830,7 +2853,7 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
    <table class="data-table full-width" id="key-table-media-controller-dup">
     <thead>
      <tr>
-      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-43">key attribute value</a>
+      <th style="width:25%"><a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-41">key attribute value</a>
       <th style="width:80%">Typical Usage (Non-normative)
     <tbody>
      <tr>
@@ -2950,9 +2973,11 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
+   <li><a href="#combining-character">combining character</a><span>, in §2.1</span>
    <li><a href="#key-attribute-value">key attribute value</a><span>, in §2</span>
+   <li><a href="#key-string">key string</a><span>, in §2.1</span>
    <li><a href="#named-key-attribute-value">named key attribute value</a><span>, in §3</span>
-   <li><a href="#printable-character">printable character</a><span>, in §2.1</span>
+   <li><a href="#non-control-character">non-control character</a><span>, in §2.1</span>
    <li><a href="#dfn-processing-equivalence">processing equivalence</a><span>, in §Unnumbered section</span>
    <li><a href="#select-an-appropriate-key-attribute-value">select an appropriate key attribute value</a><span>, in §2.2.1</span>
   </ul>
@@ -2981,6 +3006,8 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
    <dd>Gary Kacmarcik; Travis Leithead. <a href="https://www.w3.org/TR/uievents-code/">UI Events KeyboardEvent code Values</a>. 24 October 2016. WD. URL: <a href="https://www.w3.org/TR/uievents-code/">https://www.w3.org/TR/uievents-code/</a>
    <dt id="biblio-unicode">[Unicode]
    <dd><a href="http://www.unicode.org/versions/latest/">The Unicode Standard</a>. URL: <a href="http://www.unicode.org/versions/latest/">http://www.unicode.org/versions/latest/</a>
+   <dt id="biblio-unicodenormalizationforms">[UnicodeNormalizationForms]
+   <dd><a href="http://unicode.org/reports/tr15/">Unicode Standard Annex #15 - Unicode Normalization Forms</a>. 24 Feb 2016. URL: <a href="http://unicode.org/reports/tr15/">http://unicode.org/reports/tr15/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
@@ -3007,35 +3034,47 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
     <li><a href="#ref-for-key-attribute-value-1">1. Introduction</a>
     <li><a href="#ref-for-key-attribute-value-2">1.1. Stylistic Conventions</a>
     <li><a href="#ref-for-key-attribute-value-3">2. Keyboard Event key Attribute Values</a> <a href="#ref-for-key-attribute-value-4">(2)</a> <a href="#ref-for-key-attribute-value-5">(3)</a>
-    <li><a href="#ref-for-key-attribute-value-6">2.1. Unicode Values</a> <a href="#ref-for-key-attribute-value-7">(2)</a> <a href="#ref-for-key-attribute-value-8">(3)</a> <a href="#ref-for-key-attribute-value-9">(4)</a>
-    <li><a href="#ref-for-key-attribute-value-10">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-key-attribute-value-11">(2)</a> <a href="#ref-for-key-attribute-value-12">(3)</a> <a href="#ref-for-key-attribute-value-13">(4)</a> <a href="#ref-for-key-attribute-value-14">(5)</a> <a href="#ref-for-key-attribute-value-15">(6)</a> <a href="#ref-for-key-attribute-value-16">(7)</a> <a href="#ref-for-key-attribute-value-17">(8)</a> <a href="#ref-for-key-attribute-value-18">(9)</a>
-    <li><a href="#ref-for-key-attribute-value-19">3. Named key Attribute Values</a>
-    <li><a href="#ref-for-key-attribute-value-20">3.1. Special Keys</a> <a href="#ref-for-key-attribute-value-21">(2)</a>
-    <li><a href="#ref-for-key-attribute-value-22">3.2. Modifier Keys</a> <a href="#ref-for-key-attribute-value-23">(2)</a>
-    <li><a href="#ref-for-key-attribute-value-24">3.3. Whitespace Keys</a>
-    <li><a href="#ref-for-key-attribute-value-25">3.4. Navigation Keys</a>
-    <li><a href="#ref-for-key-attribute-value-26">3.5. Editing Keys</a>
-    <li><a href="#ref-for-key-attribute-value-27">3.6. UI Keys</a>
-    <li><a href="#ref-for-key-attribute-value-28">3.7. Device Keys</a>
-    <li><a href="#ref-for-key-attribute-value-29">3.8. IME and Composition Keys</a> <a href="#ref-for-key-attribute-value-30">(2)</a> <a href="#ref-for-key-attribute-value-31">(3)</a>
-    <li><a href="#ref-for-key-attribute-value-32">3.9. General-Purpose Function Keys</a>
-    <li><a href="#ref-for-key-attribute-value-33">3.10. Multimedia Keys</a>
-    <li><a href="#ref-for-key-attribute-value-34">3.11. Multimedia Numpad Keys</a>
-    <li><a href="#ref-for-key-attribute-value-35">3.12. Audio Keys</a>
-    <li><a href="#ref-for-key-attribute-value-36">3.13. Speech Keys</a>
-    <li><a href="#ref-for-key-attribute-value-37">3.14. Application Keys</a>
-    <li><a href="#ref-for-key-attribute-value-38">3.15. Browser Keys</a>
-    <li><a href="#ref-for-key-attribute-value-39">3.16. Mobile Phone Keys</a>
-    <li><a href="#ref-for-key-attribute-value-40">3.17. TV Keys</a>
-    <li><a href="#ref-for-key-attribute-value-41">3.18. Media Controller Keys</a> <a href="#ref-for-key-attribute-value-42">(2)</a> <a href="#ref-for-key-attribute-value-43">(3)</a>
+    <li><a href="#ref-for-key-attribute-value-6">2.1. Unicode Values</a> <a href="#ref-for-key-attribute-value-7">(2)</a>
+    <li><a href="#ref-for-key-attribute-value-8">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-key-attribute-value-9">(2)</a> <a href="#ref-for-key-attribute-value-10">(3)</a> <a href="#ref-for-key-attribute-value-11">(4)</a> <a href="#ref-for-key-attribute-value-12">(5)</a> <a href="#ref-for-key-attribute-value-13">(6)</a> <a href="#ref-for-key-attribute-value-14">(7)</a> <a href="#ref-for-key-attribute-value-15">(8)</a> <a href="#ref-for-key-attribute-value-16">(9)</a>
+    <li><a href="#ref-for-key-attribute-value-17">3. Named key Attribute Values</a>
+    <li><a href="#ref-for-key-attribute-value-18">3.1. Special Keys</a> <a href="#ref-for-key-attribute-value-19">(2)</a>
+    <li><a href="#ref-for-key-attribute-value-20">3.2. Modifier Keys</a> <a href="#ref-for-key-attribute-value-21">(2)</a>
+    <li><a href="#ref-for-key-attribute-value-22">3.3. Whitespace Keys</a>
+    <li><a href="#ref-for-key-attribute-value-23">3.4. Navigation Keys</a>
+    <li><a href="#ref-for-key-attribute-value-24">3.5. Editing Keys</a>
+    <li><a href="#ref-for-key-attribute-value-25">3.6. UI Keys</a>
+    <li><a href="#ref-for-key-attribute-value-26">3.7. Device Keys</a>
+    <li><a href="#ref-for-key-attribute-value-27">3.8. IME and Composition Keys</a> <a href="#ref-for-key-attribute-value-28">(2)</a> <a href="#ref-for-key-attribute-value-29">(3)</a>
+    <li><a href="#ref-for-key-attribute-value-30">3.9. General-Purpose Function Keys</a>
+    <li><a href="#ref-for-key-attribute-value-31">3.10. Multimedia Keys</a>
+    <li><a href="#ref-for-key-attribute-value-32">3.11. Multimedia Numpad Keys</a>
+    <li><a href="#ref-for-key-attribute-value-33">3.12. Audio Keys</a>
+    <li><a href="#ref-for-key-attribute-value-34">3.13. Speech Keys</a>
+    <li><a href="#ref-for-key-attribute-value-35">3.14. Application Keys</a>
+    <li><a href="#ref-for-key-attribute-value-36">3.15. Browser Keys</a>
+    <li><a href="#ref-for-key-attribute-value-37">3.16. Mobile Phone Keys</a>
+    <li><a href="#ref-for-key-attribute-value-38">3.17. TV Keys</a>
+    <li><a href="#ref-for-key-attribute-value-39">3.18. Media Controller Keys</a> <a href="#ref-for-key-attribute-value-40">(2)</a> <a href="#ref-for-key-attribute-value-41">(3)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="printable-character">
-   <b><a href="#printable-character">#printable-character</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="key-string">
+   <b><a href="#key-string">#key-string</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-printable-character-1">2. Keyboard Event key Attribute Values</a>
-    <li><a href="#ref-for-printable-character-2">2.1. Unicode Values</a> <a href="#ref-for-printable-character-3">(2)</a> <a href="#ref-for-printable-character-4">(3)</a> <a href="#ref-for-printable-character-5">(4)</a>
-    <li><a href="#ref-for-printable-character-6">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-printable-character-7">(2)</a> <a href="#ref-for-printable-character-8">(3)</a>
+    <li><a href="#ref-for-key-string-1">2. Keyboard Event key Attribute Values</a>
+    <li><a href="#ref-for-key-string-2">2.1. Unicode Values</a> <a href="#ref-for-key-string-3">(2)</a> <a href="#ref-for-key-string-4">(3)</a> <a href="#ref-for-key-string-5">(4)</a>
+    <li><a href="#ref-for-key-string-6">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-key-string-7">(2)</a> <a href="#ref-for-key-string-8">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="non-control-character">
+   <b><a href="#non-control-character">#non-control-character</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-non-control-character-1">2.1. Unicode Values</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="combining-character">
+   <b><a href="#combining-character">#combining-character</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-combining-character-1">2.1. Unicode Values</a> <a href="#ref-for-combining-character-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="select-an-appropriate-key-attribute-value">
