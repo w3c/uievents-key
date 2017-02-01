@@ -251,8 +251,8 @@ path: stylesheet-extra.include
 			1. Else, if the key event has any modifier keys other than [=glyph modifier keys=], then
 
 				1. Set |key| to the [=key string=] that would have been generated
-					by this event if it had been typed with the default keyboard layout,
-					and with all modifer keys removed except for [=glyph modifier keys=].
+					by this event if it had been typed with all modifer keys removed
+					except for [=glyph modifier keys=].
 
 			1. Return |key| as the [=key attribute value=] for this key event.
 
@@ -268,20 +268,21 @@ path: stylesheet-extra.include
 			</p>
 
 			<p class="example">
-				On a US keyboard with a right-handed single-hand Dvorak key mapping, the
+				On a US keyboard with a right-handed Dvorak key mapping, the
 				[=key attribute value=] for the key labeled KEYCAP{Q} is
 				KEY_NOLINK{5} (or KEY_NOLINK{%} with KEYCAP{Shift} modifier).
 			</p>
 
 			<p class="example">
 				On the same US Dvorak keyboard layout as the previous example, the
-				[=key attribute value=] for KEYCAP{Control} + KEYCAP{Q} is KEY_NOLINK{q}
+				[=key attribute value=] for KEYCAP{Control} + KEYCAP{Q} is KEY_NOLINK{5}
 				(because that is what the default layout would produce).
 			</p>
 			
 			<p class="example">
 				On a Bolnagri keyboard layout, the [=key attribute value=] for the
-				key labeled KEYCAP{Q} is UNI{U+200C} (ZWNJ or Zero Width Non-Joining Space).
+				key labeled KEYCAP{Q} is a string containing the single Unicode
+				character UNI{U+200C} (ZWNJ or Zero Width Non-Joining Space).
 			</p>
 
 			<p class="example">
