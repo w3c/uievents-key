@@ -1737,8 +1737,8 @@ key event, then</p>
       <ol>
        <li data-md="">
         <p>Set <var>key</var> to the <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-8">key string</a> that would have been generated
-by this event if it had been typed with the default keyboard layout,
-and with all modifer keys removed except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-modifier-key-2">glyph modifier keys</a>.</p>
+by this event if it had been typed with all modifer keys removed
+except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-modifier-key-2">glyph modifier keys</a>.</p>
       </ol>
      <li data-md="">
       <p>Return <var>key</var> as the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-8">key attribute value</a> for this key event.</p>
@@ -1746,10 +1746,11 @@ and with all modifer keys removed except for <a data-link-type="dfn" href="#glyp
     <p class="example" id="example-e3fd6ad9"><a class="self-link" href="#example-e3fd6ad9"></a> On a standard US keyboard, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-9">key attribute value</a> for the key labeled <code class="keycap">Q</code> is <code class="key">"q"</code> (or <code class="key">"Q"</code> if the <code class="keycap">Shift</code> modifier
 				key is also held). </p>
     <p class="example" id="example-ed0acddc"><a class="self-link" href="#example-ed0acddc"></a> On a standard US keyboard, <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-10">key attribute value</a> for <code class="keycap">Control</code> + <code class="keycap">Q</code> is <code class="key">"q"</code>. </p>
-    <p class="example" id="example-1e69f142"><a class="self-link" href="#example-1e69f142"></a> On a US keyboard with a right-handed single-hand Dvorak key mapping, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-11">key attribute value</a> for the key labeled <code class="keycap">Q</code> is <code class="key">"5"</code> (or <code class="key">"%"</code> with <code class="keycap">Shift</code> modifier). </p>
-    <p class="example" id="example-2d6703f5"><a class="self-link" href="#example-2d6703f5"></a> On the same US Dvorak keyboard layout as the previous example, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-12">key attribute value</a> for <code class="keycap">Control</code> + <code class="keycap">Q</code> is <code class="key">"q"</code> (because that is what the default layout would produce). </p>
-    <p class="example" id="example-dde0e10f"><a class="self-link" href="#example-dde0e10f"></a> On a Bolnagri keyboard layout, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-13">key attribute value</a> for the
-				key labeled <code class="keycap">Q</code> is <code class="unicode">U+200C</code> (ZWNJ or Zero Width Non-Joining Space). </p>
+    <p class="example" id="example-2a6f8f12"><a class="self-link" href="#example-2a6f8f12"></a> On a US keyboard with a right-handed Dvorak key mapping, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-11">key attribute value</a> for the key labeled <code class="keycap">Q</code> is <code class="key">"5"</code> (or <code class="key">"%"</code> with <code class="keycap">Shift</code> modifier). </p>
+    <p class="example" id="example-0cf0faf6"><a class="self-link" href="#example-0cf0faf6"></a> On the same US Dvorak keyboard layout as the previous example, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-12">key attribute value</a> for <code class="keycap">Control</code> + <code class="keycap">Q</code> is <code class="key">"5"</code>. </p>
+    <p class="example" id="example-4ae70ba1"><a class="self-link" href="#example-4ae70ba1"></a> On a Bolnagri keyboard layout, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-13">key attribute value</a> for the
+				key labeled <code class="keycap">Q</code> is a string containing the single Unicode
+				character <code class="unicode">U+200C</code> (ZWNJ or Zero Width Non-Joining Space). </p>
     <p class="example" id="example-200a3751"><a class="self-link" href="#example-200a3751"></a> On a French PC keyboard with a standard French mapping, the <code class="keycap">^</code> key acts as a <a data-link-type="dfn" href="http://www.w3.org/TR/uievents/#dead-key">dead key</a> for the combining circumflex diacritical mark.
 				The <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-14">key attribute value</a> for this keyboard event is <code class="key">"<a href="#key-Dead">Dead</a>"</code>. </p>
     <p class="example" id="example-5a7acd5e"><a class="self-link" href="#example-5a7acd5e"></a> Also on a French keyboard with a standard French mapping, the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-15">key attribute value</a> for the <code class="keycap">é</code> key (which corresponds to the <code class="keycap">2</code> key on a US keyboard) is <code class="key">"é"</code> (<code class="unicode">U+00E9</code>). </p>
