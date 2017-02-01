@@ -6,7 +6,7 @@ Level:
 Group: webplatform
 Status: WD
 TR: http://www.w3.org/TR/uievents-key/
-ED: https://github.com/w3c/uievents-key/
+ED: https://w3c.github.io/uievents-key/
 Repository: w3c/uievents-key
 Previous Version:
 	http://www.w3.org/TR/2015/WD-uievents-key-20151215/
