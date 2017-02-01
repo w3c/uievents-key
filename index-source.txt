@@ -229,6 +229,9 @@ path: stylesheet-extra.include
 		
 	<h3 id="selecting-key-attribute-values">Selecting {{KeyboardEvent/key}} Attribute Values</h3>
 
+		A <dfn>glyph modifier key</dfn> is any of the following modifier keys:
+		KEYCAP{Shift}, KEYCAP{CapsLock} or KEYCAP{AltGr}.
+		
 		<div class="algorithm" data-algorithm="clipboard-read">
 		<h4 id="h-clipboard-read"><dfn>select an appropriate key attribute value</dfn></h4>
 		To [=select an appropriate key attribute value=] to store in a {{KeyboardEvent}}'s
@@ -245,16 +248,13 @@ path: stylesheet-extra.include
 			
 				1. Set |key| to that [=key string=] value.
 
-			1. Else, if the key event has any modifier keys other than KEYCAP{Shift} or
-				KEYCAP{AltGr}, then
+			1. Else, if the key event has any modifier keys other than [=glyph modifier keys=], then
 
 				1. Set |key| to the [=key string=] that would have been generated
 					by this event if it had been typed with the default keyboard layout,
-					and with all modifer keys removed except for KEYCAP{Shift} and
-					KEYCAP{AltGr}. 
+					and with all modifer keys removed except for [=glyph modifier keys=].
 
 			1. Return |key| as the [=key attribute value=] for this key event.
-
 
 			<p class="example">
 				On a standard US keyboard, the [=key attribute value=] for the key labeled

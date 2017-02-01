@@ -1483,11 +1483,11 @@ code.vk {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>UI Events KeyboardEvent key Values</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C Working Draft, <time class="dt-updated" datetime="2017-01-31">31 January 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C Working Draft, <time class="dt-updated" datetime="2017-02-01">1 February 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="https://www.w3.org/TR/2017/WD-uievents-key-20170131/">https://www.w3.org/TR/2017/WD-uievents-key-20170131/</a>
+     <dd><a class="u-url" href="https://www.w3.org/TR/2017/WD-uievents-key-20170201/">https://www.w3.org/TR/2017/WD-uievents-key-20170201/</a>
      <dt>Latest published version:
      <dd><a href="http://www.w3.org/TR/uievents-key/">http://www.w3.org/TR/uievents-key/</a>
      <dt>Editor's Draft:
@@ -1712,6 +1712,7 @@ because accents must be ordered before substituting with a precomposed version)<
      <p><code class="unicode">U+007F</code> <code class="key">"<a href="#key-Delete">Delete</a>"</code></p>
    </ul>
    <h3 class="heading settled" data-level="2.2" id="selecting-key-attribute-values"><span class="secno">2.2. </span><span class="content">Selecting <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> Attribute Values</span><a class="self-link" href="#selecting-key-attribute-values"></a></h3>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="glyph-modifier-key">glyph modifier key</dfn> is any of the following modifier keys: <code class="keycap">Shift</code>, <code class="keycap">CapsLock</code> or <code class="keycap">AltGr</code>.</p>
    <div class="algorithm" data-algorithm="clipboard-read">
     <h4 class="heading settled" data-level="2.2.1" id="h-clipboard-read"><span class="secno">2.2.1. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="select-an-appropriate-key-attribute-value">select an appropriate key attribute value</dfn></span><a class="self-link" href="#h-clipboard-read"></a></h4>
      To <a data-link-type="dfn" href="#select-an-appropriate-key-attribute-value" id="ref-for-select-an-appropriate-key-attribute-value-1">select an appropriate key attribute value</a> to store in a <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent">KeyboardEvent</a></code>'s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> attribute, run these steps: 
@@ -1732,12 +1733,12 @@ key event, then</p>
         <p>Set <var>key</var> to that <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-7">key string</a> value.</p>
       </ol>
      <li data-md="">
-      <p>Else, if the key event has any modifier keys other than <code class="keycap">Shift</code> or <code class="keycap">AltGr</code>, then</p>
+      <p>Else, if the key event has any modifier keys other than <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-modifier-key-1">glyph modifier keys</a>, then</p>
       <ol>
        <li data-md="">
         <p>Set <var>key</var> to the <a data-link-type="dfn" href="#key-string" id="ref-for-key-string-8">key string</a> that would have been generated
 by this event if it had been typed with the default keyboard layout,
-and with all modifer keys removed except for <code class="keycap">Shift</code> and <code class="keycap">AltGr</code>.</p>
+and with all modifer keys removed except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-modifier-key-2">glyph modifier keys</a>.</p>
       </ol>
      <li data-md="">
       <p>Return <var>key</var> as the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-8">key attribute value</a> for this key event.</p>
@@ -2974,6 +2975,7 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#combining-character">combining character</a><span>, in §2.1</span>
+   <li><a href="#glyph-modifier-key">glyph modifier key</a><span>, in §2.2</span>
    <li><a href="#key-attribute-value">key attribute value</a><span>, in §2</span>
    <li><a href="#key-string">key string</a><span>, in §2.1</span>
    <li><a href="#named-key-attribute-value">named key attribute value</a><span>, in §3</span>
@@ -3075,6 +3077,12 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
    <b><a href="#combining-character">#combining-character</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-combining-character-1">2.1. Unicode Values</a> <a href="#ref-for-combining-character-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="glyph-modifier-key">
+   <b><a href="#glyph-modifier-key">#glyph-modifier-key</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-glyph-modifier-key-1">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-glyph-modifier-key-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="select-an-appropriate-key-attribute-value">
