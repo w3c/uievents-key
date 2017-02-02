@@ -1483,11 +1483,11 @@ code.vk {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1>UI Events KeyboardEvent key Values</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C Working Draft, <time class="dt-updated" datetime="2017-02-01">1 February 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C Working Draft, <time class="dt-updated" datetime="2017-02-02">2 February 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="https://www.w3.org/TR/2017/WD-uievents-key-20170201/">https://www.w3.org/TR/2017/WD-uievents-key-20170201/</a>
+     <dd><a class="u-url" href="https://www.w3.org/TR/2017/WD-uievents-key-20170202/">https://www.w3.org/TR/2017/WD-uievents-key-20170202/</a>
      <dt>Latest published version:
      <dd><a href="http://www.w3.org/TR/uievents-key/">http://www.w3.org/TR/uievents-key/</a>
      <dt>Editor's Draft:
@@ -1607,7 +1607,7 @@ of the UI Events Specification <a data-link-type="biblio" href="#biblio-uievents
    <p>This specification uses the following conventions:</p>
    <ul>
     <li data-md="">
-     <p>The <a data-link-type="dfn" href="http://www.w3.org/TR/uievents/#key-legends"><em>key cap</em></a> printed on a key is shown as <code class="keycap">↓</code>, <code class="keycap">=</code> or <code class="keycap">Q</code>. This is used to refer to a
+     <p>The <em><a data-link-type="dfn" href="http://www.w3.org/TR/uievents/#key-legends">key cap</a></em> printed on a key is shown as <code class="keycap">↓</code>, <code class="keycap">=</code> or <code class="keycap">Q</code>. This is used to refer to a
 key from the user’s perspective without regard for the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> and <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-code">code</a></code> values in the
 generated <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent">KeyboardEvent</a></code>.</p>
     <li data-md="">
@@ -1617,7 +1617,7 @@ generated <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/u
     <li data-md="">
      <p>Valid <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value-2">key attribute values</a> (i.e., the value of <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent">KeyboardEvent</a></code>.<code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code>) are shown as: <code class="key">"<a href="#key-ArrowDown">ArrowDown</a>"</code>, <code class="key">"="</code>, <code class="key">"q"</code> or <code class="key">"Q"</code>.</p>
     <li data-md="">
-     <p>Names of key codes associated with the physical keys (i.e., the
+     <p>Valid <a data-link-type="dfn" href="http://www.w3.org/TR/uievents-key/#key-value-tables">key code attribute values</a> (i.e., the
 value of <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent">KeyboardEvent</a></code>.<code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-code">code</a></code>) are shown as: <code class="code">"ArrowDown"</code>, <code class="code">"Equal"</code> or <code class="code">"KeyQ"</code>.</p>
    </ul>
    <h2 class="heading settled" data-level="2" id="key-attr-values"><span class="secno">2. </span><span class="content">Keyboard Event <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> Attribute Values</span><a class="self-link" href="#key-attr-values"></a></h2>
@@ -1771,7 +1771,7 @@ except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-
    <p>A conforming implementation of the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent">KeyboardEvent</a></code> interface MUST support
 	this set of values for use in the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> attributes,
 	although not all values MAY be available on all platforms or devices.</p>
-   <p>Future versions of this specification MAY include key values not included
+   <p>Future versions of this specification MAY include <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> values not included
 	here, which have become common since the publication of this specification.</p>
    <p class="note" role="note"> Note: While every attempt has been made to make this list of values as complete as possible,
 	new values will periodically need to be defined as new input devices are introduced.
@@ -2996,6 +2996,11 @@ Interface on UPnPTM Networks and the Internet <a data-link-type="biblio" href="#
      <li><a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a>
      <li><a href="http://www.w3.org/TR/uievents/#key-legends">key cap</a>
      <li><a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-location">location</a>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[UIEvents-Code]</a> defines the following terms:
+    <ul>
+     <li><a href="http://www.w3.org/TR/uievents-key/#key-value-tables">key code attribute value</a>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
