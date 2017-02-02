@@ -158,10 +158,7 @@ class Parser():
 			error('Unable to open "%s" for writing: %s' % (dst, e))
 
 		for line in infile:
-			#print '>>%s>>' % line
 			new_line = self.process_line(line)
-			#print '<<%s<<' % new_line
-			#print
 			outfile.write(new_line)
 
 		outfile.close()
