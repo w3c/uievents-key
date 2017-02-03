@@ -28,5 +28,5 @@ file.
 ## Visitors Who Read This Spec Also Read
 
 * UI Events : [Github project](https://github.com/w3c/uievents/), [Link to spec](https://w3c.github.io/uievents/)
-* UI Events KeyboardEvent code Values : [Github project](https://github.com/w3c/uievents-code/), [link to spec](https://w3c.github.io/uievents-code/)
+* UI Events KeyboardEvent code Values : [Github project](https://github.com/w3c/uievents-code/), [Link to spec](https://w3c.github.io/uievents-code/)
 
