@@ -1,0 +1,3768 @@
+<!doctype html><html lang="en">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <title>UI Events KeyboardEvent key Implementation Report</title>
+  <link href="https://www.w3.org/StyleSheets/TR/W3C-ED" rel="stylesheet" type="text/css">
+<style data-fill-with="stylesheet">/******************************************************************************
+ *                   Style sheet for the W3C specifications                   *
+ *
+ * Special classes handled by this style sheet include:
+ *
+ * Indices
+ *   - .toc for the Table of Contents (<ol class="toc">)
+ *     + <span class="secno"> for the section numbers
+ *   - #toc for the Table of Contents (<nav id="toc">)
+ *   - ul.index for Indices (<a href="#ref">term</a><span>, in §N.M</span>)
+ *   - table.index for Index Tables (e.g. for properties or elements)
+ *
+ * Structural Markup
+ *   - table.data for general data tables
+ *     -> use 'scope' attribute, <colgroup>, <thead>, and <tbody> for best results !
+ *     -> use <table class='complex data'> for extra-complex tables
+ *     -> use <td class='long'> for paragraph-length cell content
+ *     -> use <td class='pre'> when manual line breaks/indentation would help readability
+ *   - dl.switch for switch statements
+ *   - ol.algorithm for algorithms (helps to visualize nesting)
+ *   - .figure and .caption (HTML4) and figure and figcaption (HTML5)
+ *     -> .sidefigure for right-floated figures
+ *   - ins/del
+ *
+ * Code
+ *   - pre and code
+ *
+ * Special Sections
+ *   - .note       for informative notes             (div, p, span, aside, details)
+ *   - .example    for informative examples          (div, p, pre, span)
+ *   - .issue      for issues                        (div, p, span)
+ *   - .assertion  for assertions                    (div, p, span)
+ *   - .advisement for loud normative statements     (div, p, strong)
+ *   - .annoying-warning for spec obsoletion notices (div, aside, details)
+ *
+ * Definition Boxes
+ *   - pre.def   for WebIDL definitions
+ *   - table.def for tables that define other entities (e.g. CSS properties)
+ *   - dl.def    for definition lists that define other entitles (e.g. HTML elements)
+ *
+ * Numbering
+ *   - .secno for section numbers in .toc and headings (<span class='secno'>3.2</span>)
+ *   - .marker for source-inserted example/figure/issue numbers (<span class='marker'>Issue 4</span>)
+ *   - ::before styled for CSS-generated issue/example/figure numbers:
+ *     -> Documents wishing to use this only need to add
+ *        figcaption::before,
+ *        .caption::before { content: "Figure "  counter(figure) " ";  }
+ *        .example::before { content: "Example " counter(example) " "; }
+ *        .issue::before   { content: "Issue "   counter(issue) " ";   }
+ *
+ * Header Stuff (ignore, just don't conflict with these classes)
+ *   - .head for the header
+ *   - .copyright for the copyright
+ *
+ * Miscellaneous
+ *   - .overlarge for things that should be as wide as possible, even if
+ *     that overflows the body text area. This can be used on an item or
+ *     on its container, depending on the effect desired.
+ *     Note that this styling basically doesn't help at all when printing,
+ *     since A4 paper isn't much wider than the max-width here.
+ *     It's better to design things to fit into a narrower measure if possible.
+ *   - js-added ToC jump links (see fixup.js)
+ *
+ ******************************************************************************/
+
+/******************************************************************************/
+/*                                   Body                                     */
+/******************************************************************************/
+
+	body {
+		counter-reset: example figure issue;
+
+		/* Layout */
+		max-width: 50em;               /* limit line length to 50em for readability   */
+		margin: 0 auto;                /* center text within page                     */
+		padding: 1.6em 1.5em 2em 50px; /* assume 16px font size for downlevel clients */
+		padding: 1.6em 1.5em 2em calc(26px + 1.5em); /* leave space for status flag     */
+
+		/* Typography */
+		line-height: 1.5;
+		font-family: sans-serif;
+		widows: 2;
+		orphans: 2;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		hyphens: auto;
+
+		/* Colors */
+		color: black;
+		background: white top left fixed no-repeat;
+		background-size: 25px auto;
+	}
+
+
+/******************************************************************************/
+/*                         Front Matter & Navigation                          */
+/******************************************************************************/
+
+/** Header ********************************************************************/
+
+	div.head { margin-bottom: 1em }
+	div.head hr { border-style: solid; }
+
+	div.head h1 {
+		font-weight: bold;
+		margin: 0 0 .1em;
+		font-size: 220%;
+	}
+
+	div.head h2 { margin-bottom: 1.5em;}
+
+/** W3C Logo ******************************************************************/
+
+	.head .logo {
+		float: right;
+		margin: 0.4rem 0 0.2rem .4rem;
+	}
+
+	.head img[src*="logos/W3C"] {
+		display: block;
+		border: solid #1a5e9a;
+		border-width: .65rem .7rem .6rem;
+		border-radius: .4rem;
+		background: #1a5e9a;
+		color: white;
+		font-weight: bold;
+	}
+
+	.head a:hover > img[src*="logos/W3C"],
+	.head a:focus > img[src*="logos/W3C"] {
+		opacity: .8;
+	}
+
+	.head a:active > img[src*="logos/W3C"] {
+		background: #c00;
+		border-color: #c00;
+	}
+
+	/* see also additional rules in Link Styling section */
+
+/** Copyright *****************************************************************/
+
+	p.copyright,
+	p.copyright small { font-size: small }
+
+/** Back to Top / ToC Toggle **************************************************/
+
+	@media print {
+		#toc-nav {
+			display: none;
+		}
+	}
+	@media not print {
+		#toc-nav {
+			position: fixed;
+			z-index: 2;
+			bottom: 0; left: 0;
+			margin: 0;
+			min-width: 1.33em;
+			border-top-right-radius: 2rem;
+			box-shadow: 0 0 2px;
+			font-size: 1.5em;
+			color: black;
+		}
+		#toc-nav > a {
+			display: block;
+			white-space: nowrap;
+
+			height: 1.33em;
+			padding: .1em 0.3em;
+			margin: 0;
+
+			background: white;
+			box-shadow: 0 0 2px;
+			border: none;
+			border-top-right-radius: 1.33em;
+			background: white;
+		}
+		#toc-nav > #toc-jump {
+			padding-bottom: 2em;
+			margin-bottom: -1.9em;
+		}
+
+		#toc-nav > a:hover,
+		#toc-nav > a:focus {
+			background: #f8f8f8;
+		}
+		#toc-nav > a:not(:hover):not(:focus) {
+			color: #707070;
+		}
+
+		/* statusbar gets in the way on keyboard focus; remove once browsers fix */
+		#toc-nav > a[href="#toc"]:not(:hover):focus:last-child {
+			padding-bottom: 1.5rem;
+		}
+
+		#toc-nav:not(:hover) > a:not(:focus) > span + span {
+			/* Ideally this uses :focus-within on #toc-nav */
+			display: none;
+		}
+		#toc-nav > a > span + span {
+			padding-right: 0.2em;
+		}
+
+		#toc-toggle-inline {
+			vertical-align: 0.05em;
+			font-size: 80%;
+			color: gray;
+			color: hsla(203,20%,40%,.7);
+			border-style: none;
+			background: transparent;
+			position: relative;
+		}
+		#toc-toggle-inline:hover:not(:active),
+		#toc-toggle-inline:focus:not(:active) {
+			text-shadow: 1px 1px silver;
+			top: -1px;
+			left: -1px;
+		}
+
+		#toc-nav :active {
+			color: #C00;
+		}
+	}
+
+/** ToC Sidebar ***************************************************************/
+
+	/* Floating sidebar */
+	@media screen {
+		body.toc-sidebar #toc {
+			position: fixed;
+			top: 0; bottom: 0;
+			left: 0;
+			width: 23.5em;
+			max-width: 80%;
+			max-width: calc(100% - 2em - 26px);
+			overflow: auto;
+			padding: 0 1em;
+			padding-left: 42px;
+			padding-left: calc(1em + 26px);
+			background: inherit;
+			background-color: #f7f8f9;
+			z-index: 1;
+			box-shadow: -.1em 0 .25em rgba(0,0,0,.1) inset;
+		}
+		body.toc-sidebar #toc h2 {
+			margin-top: .8rem;
+			font-variant: small-caps;
+			font-variant: all-small-caps;
+			text-transform: lowercase;
+			font-weight: bold;
+			color: gray;
+			color: hsla(203,20%,40%,.7);
+		}
+		body.toc-sidebar #toc-jump:not(:focus) {
+			width: 0;
+			height: 0;
+			padding: 0;
+			position: absolute;
+			overflow: hidden;
+		}
+	}
+	/* Hide main scroller when only the ToC is visible anyway */
+	@media screen and (max-width: 28em) {
+		body.toc-sidebar {
+			overflow: hidden;
+		}
+	}
+
+	/* Sidebar with its own space */
+	@media screen and (min-width: 78em) {
+		body:not(.toc-inline) #toc {
+			position: fixed;
+			top: 0; bottom: 0;
+			left: 0;
+			width: 23.5em;
+			overflow: auto;
+			padding: 0 1em;
+			padding-left: 42px;
+			padding-left: calc(1em + 26px);
+			background: inherit;
+			background-color: #f7f8f9;
+			z-index: 1;
+			box-shadow: -.1em 0 .25em rgba(0,0,0,.1) inset;
+		}
+		body:not(.toc-inline) #toc h2 {
+			margin-top: .8rem;
+			font-variant: small-caps;
+			font-variant: all-small-caps;
+			text-transform: lowercase;
+			font-weight: bold;
+			color: gray;
+			color: hsla(203,20%,40%,.7);
+		}
+
+		body:not(.toc-inline) {
+			padding-left: 29em;
+		}
+		/* See also Overflow section at the bottom */
+
+		body:not(.toc-inline) #toc-jump:not(:focus) {
+			width: 0;
+			height: 0;
+			padding: 0;
+			position: absolute;
+			overflow: hidden;
+		}
+	}
+	@media screen and (min-width: 90em) {
+		body:not(.toc-inline) {
+			margin: 0 4em;
+		}
+	}
+
+/******************************************************************************/
+/*                                Sectioning                                  */
+/******************************************************************************/
+
+/** Headings ******************************************************************/
+
+	h1, h2, h3, h4, h5, h6, dt {
+		page-break-after: avoid;
+		page-break-inside: avoid;
+		font: 100% sans-serif;   /* Reset all font styling to clear out UA styles */
+		font-family: inherit;    /* Inherit the font family. */
+		line-height: 1.2;        /* Keep wrapped headings compact */
+		hyphens: manual;         /* Hyphenated headings look weird */
+	}
+
+	h2, h3, h4, h5, h6 {
+		margin-top: 3rem;
+	}
+
+	h1, h2, h3 {
+		color: #005A9C;
+		background: transparent;
+	}
+
+	h1 { font-size: 170%; }
+	h2 { font-size: 140%; }
+	h3 { font-size: 120%; }
+	h4 { font-weight: bold; }
+	h5 { font-style: italic; }
+	h6 { font-variant: small-caps; }
+	dt { font-weight: bold; }
+
+/** Subheadings ***************************************************************/
+
+	h1 + h2,
+	#subtitle {
+		/* #subtitle is a subtitle in an H2 under the H1 */
+		margin-top: 0;
+	}
+	h2 + h3,
+	h3 + h4,
+	h4 + h5,
+	h5 + h6 {
+		margin-top: 1.2em; /* = 1 x line-height */
+	}
+
+/** Section divider ***********************************************************/
+
+	:not(.head) > hr {
+		font-size: 1.5em;
+		text-align: center;
+		margin: 1em auto;
+		height: auto;
+		border: transparent solid 0;
+		background: transparent;
+	}
+	:not(.head) > hr::before {
+		content: "\2727\2003\2003\2727\2003\2003\2727";
+	}
+
+/******************************************************************************/
+/*                            Paragraphs and Lists                            */
+/******************************************************************************/
+
+	p {
+		margin: 1em 0;
+	}
+
+	dd > p:first-child,
+	li > p:first-child {
+		margin-top: 0;
+	}
+
+	ul, ol {
+		margin-left: 0;
+		padding-left: 2em;
+	}
+
+	li {
+		margin: 0.25em 0 0.5em;
+		padding: 0;
+	}
+
+	dl dd {
+		margin: 0 0 .5em 2em;
+	}
+
+	.head dd + dd { /* compact for header */
+		margin-top: -.5em;
+	}
+
+	/* Style for algorithms */
+	ol.algorithm ol:not(.algorithm),
+	.algorithm > ol ol:not(.algorithm) {
+	 border-left: 0.5em solid #DEF;
+	}
+
+	/* Put nice boxes around each algorithm. */
+	[data-algorithm]:not(.heading) {
+	  padding: .5em;
+	  border: thin solid #ddd; border-radius: .5em;
+	  margin: .5em 0;
+	}
+	[data-algorithm]:not(.heading) > :first-child {
+	  margin-top: 0;
+	}
+	[data-algorithm]:not(.heading) > :last-child {
+	  margin-bottom: 0;
+	}
+
+	/* Style for switch/case <dl>s */
+	dl.switch > dd > ol.only,
+	dl.switch > dd > .only > ol {
+	 margin-left: 0;
+	}
+	dl.switch > dd > ol.algorithm,
+	dl.switch > dd > .algorithm > ol {
+	 margin-left: -2em;
+	}
+	dl.switch {
+	 padding-left: 2em;
+	}
+	dl.switch > dt {
+	 text-indent: -1.5em;
+	 margin-top: 1em;
+	}
+	dl.switch > dt + dt {
+	 margin-top: 0;
+	}
+	dl.switch > dt::before {
+	 content: '\21AA';
+	 padding: 0 0.5em 0 0;
+	 display: inline-block;
+	 width: 1em;
+	 text-align: right;
+	 line-height: 0.5em;
+	}
+
+/** Terminology Markup ********************************************************/
+
+
+/******************************************************************************/
+/*                                 Inline Markup                              */
+/******************************************************************************/
+
+/** Terminology Markup ********************************************************/
+	dfn   { /* Defining instance */
+		font-weight: bolder;
+	}
+	a > i { /* Instance of term */
+		font-style: normal;
+	}
+	dt dfn code, code.idl {
+		font-size: normal;
+	}
+	dfn var {
+		font-style: normal;
+	}
+
+/** Change Marking ************************************************************/
+
+	del { color: red;  text-decoration: line-through; }
+	ins { color: #080; text-decoration: underline;    }
+
+/** Miscellaneous improvements to inline formatting ***************************/
+
+	sup {
+		vertical-align: super;
+		font-size: 80%
+	}
+
+/******************************************************************************/
+/*                                    Code                                    */
+/******************************************************************************/
+
+/** General monospace/pre rules ***********************************************/
+
+	pre, code, samp {
+		font-family: Menlo, Consolas, "DejaVu Sans Mono", Monaco, monospace;
+		font-size: .9em;
+		page-break-inside: avoid;
+		hyphens: none;
+		text-transform: none;
+	}
+	pre code,
+	code code {
+		font-size: 100%;
+	}
+
+	pre {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		overflow: auto;
+	}
+
+/** Inline Code fragments *****************************************************/
+
+  /* Do something nice. */
+
+/******************************************************************************/
+/*                                    Links                                   */
+/******************************************************************************/
+
+/** General Hyperlinks ********************************************************/
+
+	/* We hyperlink a lot, so make it less intrusive */
+	a[href] {
+		color: #034575;
+		text-decoration: none;
+		border-bottom: 1px solid #707070;
+		/* Need a bit of extending for it to look okay */
+		padding: 0 1px 0;
+		margin: 0 -1px 0;
+	}
+	a:visited {
+		border-bottom-color: #BBB;
+	}
+
+	/* Use distinguishing colors when user is interacting with the link */
+	a[href]:focus,
+	a[href]:hover {
+		background: #f8f8f8;
+		background: rgba(75%, 75%, 75%, .25);
+		border-bottom-width: 3px;
+		margin-bottom: -2px;
+	}
+	a[href]:active {
+		color: #C00;
+		border-color: #C00;
+	}
+
+	/* Backout above styling for W3C logo */
+	.head .logo,
+	.head .logo a {
+		border: none;
+		text-decoration: none;
+		background: transparent;
+	}
+
+/******************************************************************************/
+/*                                    Images                                  */
+/******************************************************************************/
+
+	img {
+		border-style: none;
+	}
+
+	/* For autogen numbers, add
+	   .caption::before, figcaption::before { content: "Figure " counter(figure) ". "; }
+	*/
+
+	figure, .figure, .sidefigure {
+		page-break-inside: avoid;
+		text-align: center;
+		margin: 2.5em 0;
+	}
+	.figure img,    .sidefigure img,    figure img,
+	.figure object, .sidefigure object, figure object {
+		max-width: 100%;
+		margin: auto;
+	}
+	.figure pre, .sidefigure pre, figure pre {
+		text-align: left;
+		display: table;
+		margin: 1em auto;
+	}
+	.figure table, figure table {
+		margin: auto;
+	}
+	@media screen and (min-width: 20em) {
+		.sidefigure {
+			float: right;
+			width: 50%;
+			margin: 0 0 0.5em 0.5em
+		}
+	}
+	.caption, figcaption, caption {
+		font-style: italic;
+		font-size: 90%;
+	}
+	.caption::before, figcaption::before, figcaption > .marker {
+		font-weight: bold;
+	}
+	.caption, figcaption {
+		counter-increment: figure;
+	}
+
+	/* DL list is indented 2em, but figure inside it is not */
+	dd > .figure, dd > figure { margin-left: -2em }
+
+/******************************************************************************/
+/*                             Colored Boxes                                  */
+/******************************************************************************/
+
+	.issue, .note, .example, .assertion, .advisement, blockquote {
+		padding: .5em;
+		border: .5em;
+		border-left-style: solid;
+		page-break-inside: avoid;
+	}
+	span.issue, span.note {
+		padding: .1em .5em .15em;
+		border-right-style: solid;
+	}
+
+	.issue,
+	.note,
+	.example,
+	.advisement,
+	.assertion,
+	blockquote {
+		margin: 1em auto;
+	}
+	.note  > p:first-child,
+	.issue > p:first-child,
+	blockquote > :first-child {
+		margin-top: 0;
+	}
+	blockquote > :last-child {
+		margin-bottom: 0;
+	}
+
+/** Blockquotes ***************************************************************/
+
+	blockquote {
+		border-color: silver;
+	}
+
+/** Open issue ****************************************************************/
+
+	.issue {
+		border-color: #E05252;
+		background: #FBE9E9;
+		counter-increment: issue;
+		overflow: auto;
+	}
+	.issue::before, .issue > .marker {
+		text-transform: uppercase;
+		color: #AE1E1E;
+		padding-right: 1em;
+		text-transform: uppercase;
+	}
+	/* Add .issue::before { content: "Issue " counter(issue) " "; } for autogen numbers,
+	   or use class="marker" to mark up the issue number in source. */
+
+/** Example *******************************************************************/
+
+	.example {
+		border-color: #E0CB52;
+		background: #FCFAEE;
+		counter-increment: example;
+		overflow: auto;
+		clear: both;
+	}
+	.example::before, .example > .marker {
+		text-transform: uppercase;
+		color: #827017;
+		min-width: 7.5em;
+		display: block;
+	}
+	/* Add .example::before { content: "Example " counter(example) " "; } for autogen numbers,
+	   or use class="marker" to mark up the example number in source. */
+
+/** Non-normative Note ********************************************************/
+
+	.note {
+		border-color: #52E052;
+		background: #E9FBE9;
+		overflow: auto;
+	}
+
+	.note::before, .note > .marker,
+	details.note > summary::before,
+	details.note > summary > .marker {
+		text-transform: uppercase;
+		display: block;
+		color: hsl(120, 70%, 30%);
+	}
+	/* Add .note::before { content: "Note"; } for autogen label,
+	   or use class="marker" to mark up the label in source. */
+
+	details.note > summary {
+		display: block;
+		color: hsl(120, 70%, 30%);
+	}
+	details.note[open] > summary {
+		border-bottom: 1px silver solid;
+	}
+
+/** Assertion Box *************************************************************/
+	/*  for assertions in algorithms */
+
+	.assertion {
+		border-color: #AAA;
+		background: #EEE;
+	}
+
+/** Advisement Box ************************************************************/
+	/*  for attention-grabbing normative statements */
+
+	.advisement {
+		border-color: orange;
+		border-style: none solid;
+		background: #FFEECC;
+	}
+	strong.advisement {
+		display: block;
+		text-align: center;
+	}
+	.advisement > .marker {
+		color: #B35F00;
+	}
+
+/** Spec Obsoletion Notice ****************************************************/
+	/* obnoxious obsoletion notice for older/abandoned specs. */
+
+	details {
+		display: block;
+	}
+	summary {
+		font-weight: bolder;
+	}
+
+	.annoying-warning:not(details),
+	details.annoying-warning:not([open]) > summary,
+	details.annoying-warning[open] {
+		background: #fdd;
+		color: red;
+		font-weight: bold;
+		padding: .75em 1em;
+		border: thick red;
+		border-style: solid;
+		border-radius: 1em;
+	}
+	.annoying-warning :last-child {
+		margin-bottom: 0;
+	}
+
+@media not print {
+	details.annoying-warning[open] {
+		position: fixed;
+		left: 1em;
+		right: 1em;
+		bottom: 1em;
+		z-index: 1000;
+	}
+}
+
+	details.annoying-warning:not([open]) > summary {
+		text-align: center;
+	}
+
+/** Entity Definition Boxes ***************************************************/
+
+	.def {
+		padding: .5em 1em;
+		background: #DEF;
+		margin: 1.2em 0;
+		border-left: 0.5em solid #8CCBF2;
+	}
+
+/******************************************************************************/
+/*                                    Tables                                  */
+/******************************************************************************/
+
+	th, td {
+		text-align: left;
+		text-align: start;
+	}
+
+/** Property/Descriptor Definition Tables *************************************/
+
+	table.def {
+		/* inherits .def box styling, see above */
+		width: 100%;
+		border-spacing: 0;
+	}
+
+	table.def td,
+	table.def th {
+		padding: 0.5em;
+		vertical-align: baseline;
+		border-bottom: 1px solid #bbd7e9;
+	}
+
+	table.def > tbody > tr:last-child th,
+	table.def > tbody > tr:last-child td {
+		border-bottom: 0;
+	}
+
+	table.def th {
+		font-style: italic;
+		font-weight: normal;
+		padding-left: 1em;
+		width: 3em;
+	}
+
+	/* For when values are extra-complex and need formatting for readability */
+	table td.pre {
+		white-space: pre-wrap;
+	}
+
+	/* A footnote at the bottom of a def table */
+	table.def           td.footnote {
+		padding-top: 0.6em;
+	}
+	table.def           td.footnote::before {
+		content: " ";
+		display: block;
+		height: 0.6em;
+		width: 4em;
+		border-top: thin solid;
+	}
+
+/** Data tables (and properly marked-up index tables) *************************/
+	/*
+		 <table class="data"> highlights structural relationships in a table
+		 when correct markup is used (e.g. thead/tbody, th vs. td, scope attribute)
+
+		 Use class="complex data" for particularly complicated tables --
+		 (This will draw more lines: busier, but clearer.)
+
+		 Use class="long" on table cells with paragraph-like contents
+		 (This will adjust text alignment accordingly.)
+		 Alternately use class="longlastcol" on tables, to have the last column assume "long".
+	*/
+
+	table {
+		word-wrap: normal;
+		overflow-wrap: normal;
+		hyphens: manual;
+	}
+
+	table.data,
+	table.index {
+		margin: 1em auto;
+		border-collapse: collapse;
+		border: hidden;
+		width: 100%;
+	}
+	table.data caption,
+	table.index caption {
+		max-width: 50em;
+		margin: 0 auto 1em;
+	}
+
+	table.data td,  table.data th,
+	table.index td, table.index th {
+		padding: 0.5em 1em;
+		border-width: 1px;
+		border-color: silver;
+		border-top-style: solid;
+	}
+
+	table.data thead td:empty {
+		padding: 0;
+		border: 0;
+	}
+
+	table.data  thead,
+	table.index thead,
+	table.data  tbody,
+	table.index tbody {
+		border-bottom: 2px solid;
+	}
+
+	table.data colgroup,
+	table.index colgroup {
+		border-left: 2px solid;
+	}
+
+	table.data  tbody th:first-child,
+	table.index tbody th:first-child  {
+		border-right: 2px solid;
+		border-top: 1px solid silver;
+		padding-right: 1em;
+	}
+
+	table.data th[colspan],
+	table.data td[colspan] {
+		text-align: center;
+	}
+
+	table.complex.data th,
+	table.complex.data td {
+		border: 1px solid silver;
+		text-align: center;
+	}
+
+	table.data.longlastcol td:last-child,
+	table.data td.long {
+	 vertical-align: baseline;
+	 text-align: left;
+	}
+
+	table.data img {
+		vertical-align: middle;
+	}
+
+
+/*
+Alternate table alignment rules
+
+	table.data,
+	table.index {
+		text-align: center;
+	}
+
+	table.data  thead th[scope="row"],
+	table.index thead th[scope="row"] {
+		text-align: right;
+	}
+
+	table.data  tbody th:first-child,
+	table.index tbody th:first-child  {
+		text-align: right;
+	}
+
+Possible extra rowspan handling
+
+	table.data  tbody th[rowspan]:not([rowspan='1']),
+	table.index tbody th[rowspan]:not([rowspan='1']),
+	table.data  tbody td[rowspan]:not([rowspan='1']),
+	table.index tbody td[rowspan]:not([rowspan='1']) {
+		border-left: 1px solid silver;
+	}
+
+	table.data  tbody th[rowspan]:first-child,
+	table.index tbody th[rowspan]:first-child,
+	table.data  tbody td[rowspan]:first-child,
+	table.index tbody td[rowspan]:first-child{
+		border-left: 0;
+		border-right: 1px solid silver;
+	}
+*/
+
+/******************************************************************************/
+/*                                  Indices                                   */
+/******************************************************************************/
+
+
+/** Table of Contents *********************************************************/
+
+	.toc a {
+		/* More spacing; use padding to make it part of the click target. */
+		padding-top: 0.1rem;
+		/* Larger, more consistently-sized click target */
+		display: block;
+		/* Reverse color scheme */
+		color: black;
+		border-color: #3980B5;
+		border-bottom-width: 3px !important;
+		margin-bottom: 0px !important;
+	}
+	.toc a:visited {
+		border-color: #054572;
+	}
+	.toc a:not(:focus):not(:hover) {
+		/* Allow colors to cascade through from link styling */
+		border-bottom-color: transparent;
+	}
+
+	.toc, .toc ol, .toc ul, .toc li {
+		list-style: none; /* Numbers must be inlined into source */
+		/* because generated content isn't search/selectable and markers can't do multilevel yet */
+		margin:  0;
+		padding: 0;
+		line-height: 1.1rem; /* consistent spacing */
+	}
+
+	/* ToC not indented until third level, but font style & margins show hierarchy */
+	.toc > li             { font-weight: bold;   }
+	.toc > li li          { font-weight: normal; }
+	.toc > li li li       { font-size:   95%;    }
+	.toc > li li li li    { font-size:   90%;    }
+	.toc > li li li li li { font-size:   85%;    }
+
+	.toc > li             { margin: 1.5rem 0;    }
+	.toc > li li          { margin: 0.3rem 0;    }
+	.toc > li li li       { margin-left: 2rem;   }
+
+	/* Section numbers in a column of their own */
+	.toc .secno {
+		float: left;
+		width: 4rem;
+		white-space: nowrap;
+	}
+	.toc > li li li li .secno {
+		font-size: 85%;
+	}
+	.toc > li li li li li .secno {
+		font-size: 100%;
+	}
+
+	:not(li) > .toc              { margin-left:  5rem; }
+	.toc .secno                  { margin-left: -5rem; }
+	.toc > li li li .secno       { margin-left: -7rem; }
+	.toc > li li li li .secno    { margin-left: -9rem; }
+	.toc > li li li li li .secno { margin-left: -11rem; }
+
+	/* Tighten up indentation in narrow ToCs */
+	@media (max-width: 30em) {
+		:not(li) > .toc              { margin-left:  4rem; }
+		.toc .secno                  { margin-left: -4rem; }
+		.toc > li li li              { margin-left:  1rem; }
+		.toc > li li li .secno       { margin-left: -5rem; }
+		.toc > li li li li .secno    { margin-left: -6rem; }
+		.toc > li li li li li .secno { margin-left: -7rem; }
+	}
+	@media screen and (min-width: 78em) {
+		body:not(.toc-inline) :not(li) > .toc              { margin-left:  4rem; }
+		body:not(.toc-inline) .toc .secno                  { margin-left: -4rem; }
+		body:not(.toc-inline) .toc > li li li              { margin-left:  1rem; }
+		body:not(.toc-inline) .toc > li li li .secno       { margin-left: -5rem; }
+		body:not(.toc-inline) .toc > li li li li .secno    { margin-left: -6rem; }
+		body:not(.toc-inline) .toc > li li li li li .secno { margin-left: -7rem; }
+	}
+	body.toc-sidebar #toc :not(li) > .toc              { margin-left:  4rem; }
+	body.toc-sidebar #toc .toc .secno                  { margin-left: -4rem; }
+	body.toc-sidebar #toc .toc > li li li              { margin-left:  1rem; }
+	body.toc-sidebar #toc .toc > li li li .secno       { margin-left: -5rem; }
+	body.toc-sidebar #toc .toc > li li li li .secno    { margin-left: -6rem; }
+	body.toc-sidebar #toc .toc > li li li li li .secno { margin-left: -7rem; }
+
+	.toc li {
+		clear: both;
+	}
+
+
+/** Index *********************************************************************/
+
+	/* Index Lists: Layout */
+	ul.index       { margin-left: 0; columns: 15em; text-indent: 1em hanging; }
+	ul.index li    { margin-left: 0; list-style: none; break-inside: avoid; }
+	ul.index li li { margin-left: 1em }
+	ul.index dl    { margin-top: 0; }
+	ul.index dt    { margin: .2em 0 .2em 20px;}
+	ul.index dd    { margin: .2em 0 .2em 40px;}
+	/* Index Lists: Typography */
+	ul.index ul,
+	ul.index dl { font-size: smaller; }
+	@media not print {
+		ul.index li span {
+			white-space: nowrap;
+			color: transparent; }
+		ul.index li a:hover + span,
+		ul.index li a:focus + span {
+			color: #707070;
+		}
+	}
+
+/** Index Tables *****************************************************/
+	/* See also the data table styling section, which this effectively subclasses */
+
+	table.index {
+		font-size: small;
+		border-collapse: collapse;
+		border-spacing: 0;
+		text-align: left;
+		margin: 1em 0;
+	}
+
+	table.index td,
+	table.index th {
+		padding: 0.4em;
+	}
+
+	table.index tr:hover td:not([rowspan]),
+	table.index tr:hover th:not([rowspan]) {
+		background: #f7f8f9;
+	}
+
+	/* The link in the first column in the property table (formerly a TD) */
+	table.index th:first-child a {
+		font-weight: bold;
+	}
+
+/******************************************************************************/
+/*                                    Print                                   */
+/******************************************************************************/
+
+	@media print {
+		/* Pages have their own margins. */
+		html {
+			margin: 0;
+		}
+		/* Serif for print. */
+		body {
+			font-family: serif;
+		}
+	}
+	@page {
+		margin: 1.5cm 1.1cm;
+	}
+
+/******************************************************************************/
+/*                                    Legacy                                  */
+/******************************************************************************/
+
+	/* This rule is inherited from past style sheets. No idea what it's for. */
+	.hide { display: none }
+
+
+
+/******************************************************************************/
+/*                             Overflow Control                               */
+/******************************************************************************/
+
+	.figure .caption, .sidefigure .caption, figcaption {
+		/* in case figure is overlarge, limit caption to 50em */
+		max-width: 50rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.overlarge > table {
+		/* limit preferred width of table */
+		max-width: 50em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@media (min-width: 55em) {
+		.overlarge {
+			margin-left: calc(13px + 26.5rem - 50vw);
+			margin-right: calc(13px + 26.5rem - 50vw);
+			max-width: none;
+		}
+	}
+	@media screen and (min-width: 78em) {
+		body:not(.toc-inline) .overlarge {
+			/* 30.5em body padding 50em content area */
+			margin-left: calc(40em - 50vw) !important;
+			margin-right: calc(40em - 50vw) !important;
+		}
+	}
+	@media screen and (min-width: 90em) {
+		body:not(.toc-inline) .overlarge {
+			/* 4em html margin 30.5em body padding 50em content area */
+			margin-left: 0 !important;
+			margin-right: calc(84.5em - 100vw) !important;
+		}
+	}
+
+	@media not print {
+		.overlarge {
+			overflow-x: auto;
+			/* See Lea Verou's explanation background-attachment:
+			 * http://lea.verou.me/2012/04/background-attachment-local/
+			 *
+			background: top left  / 4em 100% linear-gradient(to right,  #ffffff, rgba(255, 255, 255, 0)) local,
+			            top right / 4em 100% linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0)) local,
+			            top left  / 1em 100% linear-gradient(to right,  #c3c3c5, rgba(195, 195, 197, 0)) scroll,
+			            top right / 1em 100% linear-gradient(to left, #c3c3c5, rgba(195, 195, 197, 0)) scroll,
+			            white;
+			background-repeat: no-repeat;
+			*/
+		}
+	}
+</style>
+  <meta content="Bikeshed version 6465e1e635d337ce46d971a19374b9e5bbfa26b6" name="generator">
+<style>
+
+/* Used when spelling out words or symbols phonetically. */
+span.phonetic {
+	font-style: italic;
+}
+
+
+/* KEY
+ * Denotes a key value (the value of the KeyboardEvent.key property).
+ */
+code.key {
+	color: #191970;
+	background-color: #b0e0e6;
+	padding: 0 2px;
+	border: 1px solid #b0d0d6;
+	border-radius: 3px;
+	display: inline-block;
+	direction: ltr;
+}
+code.key a:link, code.key a:visited {
+	color: #191970;
+    text-decoration: none;
+}
+code.key:hover, code.key a:hover {
+	color: #000000;
+	background-color: #b0d0d6;
+}
+
+/* CODE
+ * Denotes a code value that indicates the physical location of the key on
+ * the keyboard). This is the value of the KeyboardEvent.code property.
+ */
+code.code {
+	color: #191970;
+	background-color: #ffc4ff;
+	padding: 0 2px;
+	border: 1px solid #f0a4f0;
+	border-radius: 3px;
+}
+code.code a:link, code.code a:visited {
+	color: #191970;
+    text-decoration: none;
+}
+code.code:hover, code.code a:hover {
+	color: #000000;
+	background-color: #f0a4f0;
+}
+
+/* Denotes a string displayed on the keycap. */
+code.keycap {
+	padding: 0 2px;
+	border: 1px solid black;
+	border-radius: 3px;
+}
+
+/* Denotes a Unicode code-point for the character. */
+code.unicode {
+	color: #191970;
+	background-color: #98fb98;
+}
+
+/* Denotes an example glyph for the character. */
+code.glyph {
+  color: #191970;
+  background-color: #ffe4b5;
+}
+
+
+code.android {
+	color: #408040;
+}
+
+code.appcommand {
+	color: #404080;
+}
+
+code.vk {
+	color: #804040;
+}
+
+
+/* Formatting for data tables (including the keyboard codes) */
+.data-table {
+	border-collapse:collapse;
+	text-align:left;
+	width: 100%;
+}
+
+.data-table th {
+	background:none repeat scroll 0 0 #B9C9FE;
+	border-bottom:1px solid #FFFFFF;
+	border-top:4px solid #AABCFE;
+	color:#003399;
+	font-weight:normal;
+	padding: 0.4em 1em;
+}
+
+.data-table td {
+	background:none repeat scroll 0 0 #E8EDFF;
+	border-bottom:1px solid #FFFFFF;
+	border-top:1px solid transparent;
+	color:#666699;
+	padding: 0.4em 1em;
+}
+
+.data-table tr:hover td {
+	background:none repeat scroll 0 0 #D0DAFD;
+	color:#333399;
+}
+
+/* The cell in a key table that contains the key name. */
+.key-table-key {
+	vertical-align: top;
+}
+
+.key-impl-data {
+	vertical-align: top;
+	text-align: center;
+}
+
+.key-impl-yes {
+	color: #0a0;
+	font-weight: bold;
+}
+
+.key-impl-no {
+	color: #f00;
+	font-weight: bold;
+}
+
+</style>
+<style>/* style-md-lists */
+
+            /* This is a weird hack for me not yet following the commonmark spec
+               regarding paragraph and lists. */
+            [data-md] > :first-child {
+                margin-top: 0;
+            }
+            [data-md] > :last-child {
+                margin-bottom: 0;
+            }</style>
+<style>/* style-counters */
+
+            body {
+                counter-reset: example figure issue;
+            }
+            .issue {
+                counter-increment: issue;
+            }
+            .issue:not(.no-marker)::before {
+                content: "Issue " counter(issue);
+            }
+
+            .example {
+                counter-increment: example;
+            }
+            .example:not(.no-marker)::before {
+                content: "Example " counter(example);
+            }
+            .invalid.example:not(.no-marker)::before,
+            .illegal.example:not(.no-marker)::before {
+                content: "Invalid Example" counter(example);
+            }
+
+            figcaption {
+                counter-increment: figure;
+            }
+            figcaption:not(.no-marker)::before {
+                content: "Figure " counter(figure) " ";
+            }</style>
+<style>/* style-selflinks */
+
+            .heading, .issue, .note, .example, li, dt {
+                position: relative;
+            }
+            a.self-link {
+                position: absolute;
+                top: 0;
+                left: calc(-1 * (3.5rem - 26px));
+                width: calc(3.5rem - 26px);
+                height: 2em;
+                text-align: center;
+                border: none;
+                transition: opacity .2s;
+                opacity: .5;
+            }
+            a.self-link:hover {
+                opacity: 1;
+            }
+            .heading > a.self-link {
+                font-size: 83%;
+            }
+            li > a.self-link {
+                left: calc(-1 * (3.5rem - 26px) - 2em);
+            }
+            dfn > a.self-link {
+                top: auto;
+                left: auto;
+                opacity: 0;
+                width: 1.5em;
+                height: 1.5em;
+                background: gray;
+                color: white;
+                font-style: normal;
+                transition: opacity .2s, background-color .2s, color .2s;
+            }
+            dfn:hover > a.self-link {
+                opacity: 1;
+            }
+            dfn > a.self-link:hover {
+                color: black;
+            }
+
+            a.self-link::before            { content: "¶"; }
+            .heading > a.self-link::before { content: "§"; }
+            dfn > a.self-link::before      { content: "#"; }</style>
+<style>/* style-autolinks */
+
+            .css.css, .property.property, .descriptor.descriptor {
+                color: #005a9c;
+                font-size: inherit;
+                font-family: inherit;
+            }
+            .css::before, .property::before, .descriptor::before {
+                content: "‘";
+            }
+            .css::after, .property::after, .descriptor::after {
+                content: "’";
+            }
+            .property, .descriptor {
+                /* Don't wrap property and descriptor names */
+                white-space: nowrap;
+            }
+            .type { /* CSS value <type> */
+                font-style: italic;
+            }
+            pre .property::before, pre .property::after {
+                content: "";
+            }
+            [data-link-type="property"]::before,
+            [data-link-type="propdesc"]::before,
+            [data-link-type="descriptor"]::before,
+            [data-link-type="value"]::before,
+            [data-link-type="function"]::before,
+            [data-link-type="at-rule"]::before,
+            [data-link-type="selector"]::before,
+            [data-link-type="maybe"]::before {
+                content: "‘";
+            }
+            [data-link-type="property"]::after,
+            [data-link-type="propdesc"]::after,
+            [data-link-type="descriptor"]::after,
+            [data-link-type="value"]::after,
+            [data-link-type="function"]::after,
+            [data-link-type="at-rule"]::after,
+            [data-link-type="selector"]::after,
+            [data-link-type="maybe"]::after {
+                content: "’";
+            }
+
+            [data-link-type].production::before,
+            [data-link-type].production::after,
+            .prod [data-link-type]::before,
+            .prod [data-link-type]::after {
+                content: "";
+            }
+
+            [data-link-type=element],
+            [data-link-type=element-attr] {
+                font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+                font-size: .9em;
+            }
+            [data-link-type=element]::before { content: "<" }
+            [data-link-type=element]::after  { content: ">" }
+
+            [data-link-type=biblio] {
+                white-space: pre;
+            }</style>
+ <body class="h-entry">
+  <div class="head">
+   <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
+   <h1>UI Events KeyboardEvent key Implementation Report</h1>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-10-04">4 October 2017</time></span></h2>
+   <div data-fill-with="spec-metadata">
+    <dl>
+     <dt>This version:
+     <dd><a class="u-url" href="https://w3c.github.io/uievents-key/">https://w3c.github.io/uievents-key/</a>
+     <dt>Previous Versions:
+     <dd><a href="" rel="previous"></a>
+     <dd><a href="http://www.w3.org/TR/2015/WD-uievents-key-20151215/" rel="previous">http://www.w3.org/TR/2015/WD-uievents-key-20151215/</a>
+     <dt>Feedback:
+     <dd><span><a href="mailto:public-webapps@w3.org?subject=%5Buievents-key-impl%5D%20YOUR%20TOPIC%20HERE">public-webapps@w3.org</a> with subject line “<kbd>[uievents-key-impl] <i data-lt="">… message topic …</i></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-webapps/" rel="discussion">archives</a>)</span>
+     <dt>Issue Tracking:
+     <dd><a href="https://github.com/w3c/uievents-key/issues/">GitHub</a>
+     <dt class="editor">Editor:
+     <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:garykac@google.com">Gary Kacmarcik</a> (<span class="p-org org">Google</span>)
+    </dl>
+   </div>
+   <div data-fill-with="warning"></div>
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2017 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <hr title="Separator for header">
+  </div>
+  <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
+  <div class="p-summary" data-fill-with="abstract">
+   <p>This document reports on implementations of the <a data-link-type="biblio" href="#biblio-uievents-key">[UIEvents-Key]</a> specification.</p>
+  </div>
+  <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
+  <div data-fill-with="status">
+   <p> This is a public copy of the editors’ draft.
+  It is provided for discussion only and may change at any moment.
+  Its publication here does not imply endorsement of its contents by W3C.
+  Don’t cite this document other than as work in progress. </p>
+   <p> <strong>Changes to this document may be tracked at <a href="https://github.com/w3c/uievents-key">https://github.com/w3c/uievents-key</a>.</strong> </p>
+   <p> If you wish to make comments regarding this document, please send them to this specification’s <a href="https://github.com/w3c/uievents-key">GitHub repository</a> or (<a href="http://lists.w3.org/Archives/Public/public-webapps/">archived</a>) public mailing list <a href="mailto:public-webapps@w3.org?Subject=%5Buievents-key-impl%5D%20PUT%20SUBJECT%20HERE">public-webapps@w3.org</a> (see <a href="http://www.w3.org/Mail/Request">instructions</a>). When sending e-mail, please put the text “uievents-key-impl” in the subject, preferably like this: “[uievents-key-impl] <em>…summary of comment…</em>. All comments are welcome. </p>
+   <p> This document was produced by the <a href="https://www.w3.org/WebPlatform/WG/">Web Platform Working Group</a>. </p>
+   <p> This document was produced by a group operating under
+  the <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>.
+  W3C maintains a <a href="https://www.w3.org/2004/01/pp-impl/83482/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
+  that page also includes instructions for disclosing a patent.
+  An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2015/Process-20150901/" id="w3c_process_revision">1 September 2015 W3C Process Document</a>. </p>
+   <p></p>
+  </div>
+  <div data-fill-with="at-risk"></div>
+  <nav data-fill-with="table-of-contents" id="toc">
+   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
+   <ol class="toc" role="directory">
+    <li><a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
+    <li><a href="#key-attribute"><span class="secno">2</span> <span class="content">The <code class="idl"><span>key</span></code> Attribute</span></a>
+    <li><a href="#unnamed-key-attribute-values"><span class="secno">3</span> <span class="content">Unnamed <code class="idl"><span>key</span></code> Attribute Values</span></a>
+    <li>
+     <a href="#named-key-attribute-values"><span class="secno">4</span> <span class="content">Named <code class="idl"><span>key</span></code> Attribute Values</span></a>
+     <ol class="toc">
+      <li><a href="#standard-required-keys"><span class="secno">4.1</span> <span class="content">Standard Named Keys</span></a>
+      <li><a href="#editing-keys"><span class="secno">4.2</span> <span class="content">Editing and IME Named Keys</span></a>
+      <li><a href="#optional-keys"><span class="secno">4.3</span> <span class="content">Device-specific Named Keys</span></a>
+     </ol>
+    <li><a href="#acknowledgements-contributors"><span class="secno">5</span> <span class="content">Acknowledgements</span></a>
+    <li>
+     <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
+     <ol class="toc">
+      <li><a href="#conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
+      <li><a href="#conformant-algorithms"><span class="secno"></span> <span class="content">Conformant Algorithms</span></a>
+     </ol>
+    <li>
+     <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
+     <ol class="toc">
+      <li><a href="#index-defined-here"><span class="secno"></span> <span class="content">Terms defined by this specification</span></a>
+      <li><a href="#index-defined-elsewhere"><span class="secno"></span> <span class="content">Terms defined by reference</span></a>
+     </ol>
+    <li>
+     <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
+     <ol class="toc">
+      <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
+     </ol>
+   </ol>
+  </nav>
+  <main>
+   <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
+   <p>This document summarizes the current implementation status of the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> attribute and its values.</p>
+   <p>The following versions of each user agents were tested:</p>
+   <ul>
+    <li data-md="">
+     <p>Google Chrome 60.0.3112.113 (OS X 10.12.2, Windows 10, Ubuntu)</p>
+    <li data-md="">
+     <p>Microsoft Edge 40.15063.0.0 (Windows 10)</p>
+    <li data-md="">
+     <p>Mozilla Firefox 55.0 (OS X 10.12.2, Windows 10, Ubuntu)</p>
+    <li data-md="">
+     <p>Apple Safari 10.0.2 (OS X 10.12.2)</p>
+   </ul>
+   <h2 class="heading settled" data-level="2" id="key-attribute"><span class="secno">2. </span><span class="content">The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> Attribute</span><a class="self-link" href="#key-attribute"></a></h2>
+   <table class="data-table full-width" id="key-attribute-impl">
+    <thead>
+     <tr>
+      <th><code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#keyboardevent-keyboardevent">KeyboardEvent</a></code> attribute
+      <th class="key-impl-data">Chrome
+      <th class="key-impl-data">Edge
+      <th class="key-impl-data">Firefox
+      <th class="key-impl-data">Safari
+      <th>Notes
+    <tbody>
+     <tr>
+      <td><code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+   </table>
+   <h2 class="heading settled" data-level="3" id="unnamed-key-attribute-values"><span class="secno">3. </span><span class="content">Unnamed <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> Attribute Values</span><a class="self-link" href="#unnamed-key-attribute-values"></a></h2>
+   <p>The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> attribute can contain any character that can be
+	produced by any key in any locale, so it is beyond the scope of this document
+	to attempt to enumerate all possible values that can be contained.</p>
+   <p>This section provides a basic sampling of key types and identifies if those
+	keys are generally supported by the user agent.</p>
+   <table class="data-table full-width" id="key-table-unnamed">
+    <thead>
+     <tr>
+      <th><a data-link-type="dfn" href="http://www.w3.org/TR/uievents-key/#">key attribute value</a>
+      <th class="key-impl-data">Chrome
+      <th class="key-impl-data">Edge
+      <th class="key-impl-data">Firefox
+      <th class="key-impl-data">Safari
+      <th>Notes
+    <tbody>
+     <tr>
+      <td class="key-table-key"><code class="key">"A"</code>...<code class="key">"Z"</code>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><code class="key">"0"</code>...<code class="key">"9"</code>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><code class="key">" "</code>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+   </table>
+   <h2 class="heading settled" data-level="4" id="named-key-attribute-values"><span class="secno">4. </span><span class="content">Named <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a></code> Attribute Values</span><a class="self-link" href="#named-key-attribute-values"></a></h2>
+   <h3 class="heading settled" data-level="4.1" id="standard-required-keys"><span class="secno">4.1. </span><span class="content">Standard Named Keys</span><a class="self-link" href="#standard-required-keys"></a></h3>
+   <p>This section lists the basic set of named key attributes that corresponds
+		to values generated by a standard keyboard layout.</p>
+   <table class="data-table full-width" id="key-table-required">
+    <thead>
+     <tr>
+      <th><a data-link-type="dfn" href="http://www.w3.org/TR/uievents-key/#">key attribute value</a>
+      <th class="key-impl-data">Chrome
+      <th class="key-impl-data">Edge
+      <th class="key-impl-data">Firefox
+      <th class="key-impl-data">Safari
+      <th>Notes
+    <tbody>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Unidentified"><code class="key">"Unidentified"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Modifier Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Alt"><code class="key">"Alt"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AltGraph"><code class="key">"AltGraph"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-CapsLock"><code class="key">"CapsLock"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Control"><code class="key">"Control"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Meta"><code class="key">"Meta"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Firefox returns "OS"; Edge returns "Win"
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NumLock"><code class="key">"NumLock"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ScrollLock"><code class="key">"ScrollLock"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Shift"><code class="key">"Shift"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Whitespace Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Enter"><code class="key">"Enter"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Tab"><code class="key">"Tab"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Navigation Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ArrowDown"><code class="key">"ArrowDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Edge returns "Down"
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ArrowLeft"><code class="key">"ArrowLeft"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Edge returns "Left"
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ArrowRight"><code class="key">"ArrowRight"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Edge returns "Right"
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ArrowUp"><code class="key">"ArrowUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Edge returns "Up"
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-End"><code class="key">"End"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Home"><code class="key">"Home"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PageDown"><code class="key">"PageDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PageUp"><code class="key">"PageUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Editing Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Backspace"><code class="key">"Backspace"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Delete"><code class="key">"Delete"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Edge returns "Del"
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Insert"><code class="key">"Insert"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">UI Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ContextMenu"><code class="key">"ContextMenu"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Edge returns "Apps"
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Escape"><code class="key">"Escape"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Edge returns "Esc"
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Pause"><code class="key">"Pause"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Device Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PrintScreen"><code class="key">"PrintScreen"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">General-Purpose Function Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F1"><code class="key">"F1"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Chrome opens help page and doesn’t send keyup event
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F2"><code class="key">"F2"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F3"><code class="key">"F3"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Chrome/Firefox open Find bar. Chrome doesn’t send keyup event
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F4"><code class="key">"F4"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F5"><code class="key">"F5"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Chrome/Firefox refresh page
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F6"><code class="key">"F6"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F7"><code class="key">"F7"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Firefox enables/disables Caret Browsing.
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F8"><code class="key">"F8"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F9"><code class="key">"F9"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F10"><code class="key">"F10"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F11"><code class="key">"F11"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Chrome enters/leaves fullscreen 
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F12"><code class="key">"F12"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Chome/Firefox open/close debug console.
+   </table>
+   <h3 class="heading settled" data-level="4.2" id="editing-keys"><span class="secno">4.2. </span><span class="content">Editing and IME Named Keys</span><a class="self-link" href="#editing-keys"></a></h3>
+   <p>Since some of these values are dependent on specific keyboards, user agents
+		are not not expected to support all of these values.</p>
+   <table class="data-table full-width" id="key-table-editing">
+    <thead>
+     <tr>
+      <th><a data-link-type="dfn" href="http://www.w3.org/TR/uievents-key/#">key attribute value</a>
+      <th class="key-impl-data">Chrome
+      <th class="key-impl-data">Edge
+      <th class="key-impl-data">Firefox
+      <th class="key-impl-data">Safari
+      <th>Notes
+    <tbody>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Editing Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Clear"><code class="key">"Clear"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Copy"><code class="key">"Copy"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-CrSel"><code class="key">"CrSel"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Cut"><code class="key">"Cut"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-EraseEof"><code class="key">"EraseEof"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ExSel"><code class="key">"ExSel"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Paste"><code class="key">"Paste"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Redo"><code class="key">"Redo"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Undo"><code class="key">"Undo"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">IME and Composition Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AllCandidates"><code class="key">"AllCandidates"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Alphanumeric"><code class="key">"Alphanumeric"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-CodeInput"><code class="key">"CodeInput"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Compose"><code class="key">"Compose"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Convert"><code class="key">"Convert"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Dead"><code class="key">"Dead"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FinalMode"><code class="key">"FinalMode"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GroupFirst"><code class="key">"GroupFirst"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GroupLast"><code class="key">"GroupLast"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GroupNext"><code class="key">"GroupNext"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GroupPrevious"><code class="key">"GroupPrevious"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ModeChange"><code class="key">"ModeChange"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NextCandidate"><code class="key">"NextCandidate"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NonConvert"><code class="key">"NonConvert"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PreviousCandidate"><code class="key">"PreviousCandidate"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Process"><code class="key">"Process"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-SingleCandidate"><code class="key">"SingleCandidate"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">IME keys specific to Korean keyboards
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-HangulMode"><code class="key">"HangulMode"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-HanjaMode"><code class="key">"HanjaMode"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-JunjaMode"><code class="key">"JunjaMode"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">IME keys specific to Japanese keyboards
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Eisu"><code class="key">"Eisu"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Hankaku"><code class="key">"Hankaku"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Hiragana"><code class="key">"Hiragana"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-HiraganaKatakana"><code class="key">"HiraganaKatakana"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-KanaMode"><code class="key">"KanaMode"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-KanjiMode"><code class="key">"KanjiMode"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Katakana"><code class="key">"Katakana"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Romaji"><code class="key">"Romaji"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Zenkaku"><code class="key">"Zenkaku"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ZenkakuHankaku"><code class="key">"ZenkakuHankaku"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+   </table>
+   <h3 class="heading settled" data-level="4.3" id="optional-keys"><span class="secno">4.3. </span><span class="content">Device-specific Named Keys</span><a class="self-link" href="#optional-keys"></a></h3>
+   <p>This sections lists named key attributes that correspond to values
+		generated by keys found on specialized keyboards, for example:</p>
+   <ul>
+    <li data-md="">
+     <p>Multimedia keyboards</p>
+    <li data-md="">
+     <p>Keyboard with special IME support</p>
+    <li data-md="">
+     <p>Remote control devices</p>
+   </ul>
+   <p>Because of the device-specific nature of these values, it is not expected that
+		user agents will support all of these values</p>
+   <table class="data-table full-width" id="key-table-optional">
+    <thead>
+     <tr>
+      <th><a data-link-type="dfn" href="http://www.w3.org/TR/uievents-key/#">key attribute value</a>
+      <th class="key-impl-data">Chrome
+      <th class="key-impl-data">Edge
+      <th class="key-impl-data">Firefox
+      <th class="key-impl-data">Safari
+      <th>Notes
+    <tbody>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Modifier Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Fn"><code class="key">"Fn"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FnLock"><code class="key">"FnLock"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Symbol"><code class="key">"Symbol"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-SymbolLock"><code class="key">"SymbolLock"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Legacy modifier keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Hyper"><code class="key">"Hyper"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Super"><code class="key">"Super"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">UI Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Accept"><code class="key">"Accept"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Again"><code class="key">"Again"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Attn"><code class="key">"Attn"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Cancel"><code class="key">"Cancel"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Execute"><code class="key">"Execute"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Find"><code class="key">"Find"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Help"><code class="key">"Help"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Play"><code class="key">"Play"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Props"><code class="key">"Props"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Select"><code class="key">"Select"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ZoomIn"><code class="key">"ZoomIn"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ZoomOut"><code class="key">"ZoomOut"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Device Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-BrightnessDown"><code class="key">"BrightnessDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-BrightnessUp"><code class="key">"BrightnessUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Eject"><code class="key">"Eject"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LogOff"><code class="key">"LogOff"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Power"><code class="key">"Power"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PowerOff"><code class="key">"PowerOff"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Hibernate"><code class="key">"Hibernate"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Standby"><code class="key">"Standby"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-WakeUp"><code class="key">"WakeUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">General-Purpose Function Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Soft1"><code class="key">"Soft1"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Soft2"><code class="key">"Soft2"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Soft3"><code class="key">"Soft3"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Soft4"><code class="key">"Soft4"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Multimedia Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ChannelDown"><code class="key">"ChannelDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ChannelUp"><code class="key">"ChannelUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Close"><code class="key">"Close"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MailForward"><code class="key">"MailForward"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MailReply"><code class="key">"MailReply"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MailSend"><code class="key">"MailSend"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaClose"><code class="key">"MediaClose"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaFastForward"><code class="key">"MediaFastForward"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaPause"><code class="key">"MediaPause"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaPlay"><code class="key">"MediaPlay"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaPlayPause"><code class="key">"MediaPlayPause"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaRecord"><code class="key">"MediaRecord"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaRewind"><code class="key">"MediaRewind"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaStop"><code class="key">"MediaStop"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaTrackNext"><code class="key">"MediaTrackNext"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaTrackPrevious"><code class="key">"MediaTrackPrevious"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-New"><code class="key">"New"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Open"><code class="key">"Open"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Print"><code class="key">"Print"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Firefox returns PrintScreen; Chrome returns Undefined
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Save"><code class="key">"Save"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-SpellCheck"><code class="key">"SpellCheck"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Multimedia Numpad Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Key11"><code class="key">"Key11"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Key12"><code class="key">"Key12"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Audio Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioBalanceLeft"><code class="key">"AudioBalanceLeft"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioBalanceRight"><code class="key">"AudioBalanceRight"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioBassBoostDown"><code class="key">"AudioBassBoostDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioBassBoostToggle"><code class="key">"AudioBassBoostToggle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioBassBoostUp"><code class="key">"AudioBassBoostUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioFaderFront"><code class="key">"AudioFaderFront"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioFaderRear"><code class="key">"AudioFaderRear"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioSurroundModeNext"><code class="key">"AudioSurroundModeNext"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioTrebleDown"><code class="key">"AudioTrebleDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioTrebleUp"><code class="key">"AudioTrebleUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioVolumeDown"><code class="key">"AudioVolumeDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioVolumeUp"><code class="key">"AudioVolumeUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AudioVolumeMute"><code class="key">"AudioVolumeMute"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MicrophoneToggle"><code class="key">"MicrophoneToggle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MicrophoneVolumeDown"><code class="key">"MicrophoneVolumeDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MicrophoneVolumeUp"><code class="key">"MicrophoneVolumeUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MicrophoneVolumeMute"><code class="key">"MicrophoneVolumeMute"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Speech Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-SpeechCorrectionList"><code class="key">"SpeechCorrectionList"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-SpeechInputToggle"><code class="key">"SpeechInputToggle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Application Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchApplication1"><code class="key">"LaunchApplication1"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchApplication2"><code class="key">"LaunchApplication2"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchCalendar"><code class="key">"LaunchCalendar"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchContacts"><code class="key">"LaunchContacts"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchMail"><code class="key">"LaunchMail"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchMediaPlayer"><code class="key">"LaunchMediaPlayer"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchMusicPlayer"><code class="key">"LaunchMusicPlayer"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchPhone"><code class="key">"LaunchPhone"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchScreenSaver"><code class="key">"LaunchScreenSaver"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchSpreadsheet"><code class="key">"LaunchSpreadsheet"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchWebBrowser"><code class="key">"LaunchWebBrowser"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchWebCam"><code class="key">"LaunchWebCam"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LaunchWordProcessor"><code class="key">"LaunchWordProcessor"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Browser Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-BrowserBack"><code class="key">"BrowserBack"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-BrowserFavorites"><code class="key">"BrowserFavorites"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>Key handled by browser in Firefox
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-BrowserForward"><code class="key">"BrowserForward"</code></a>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Yes</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-BrowserHome"><code class="key">"BrowserHome"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-BrowserRefresh"><code class="key">"BrowserRefresh"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-BrowserSearch"><code class="key">"BrowserSearch"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-BrowserStop"><code class="key">"BrowserStop"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Mobile Phone Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AppSwitch"><code class="key">"AppSwitch"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Call"><code class="key">"Call"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Camera"><code class="key">"Camera"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-CameraFocus"><code class="key">"CameraFocus"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-EndCall"><code class="key">"EndCall"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GoBack"><code class="key">"GoBack"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GoHome"><code class="key">"GoHome"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-HeadsetHook"><code class="key">"HeadsetHook"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LastNumberRedial"><code class="key">"LastNumberRedial"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Notification"><code class="key">"Notification"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MannerMode"><code class="key">"MannerMode"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-VoiceDial"><code class="key">"VoiceDial"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">TV Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TV"><code class="key">"TV"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TV3DMode"><code class="key">"TV3DMode"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVAntennaCable"><code class="key">"TVAntennaCable"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVAudioDescription"><code class="key">"TVAudioDescription"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVAudioDescriptionMixDown"><code class="key">"TVAudioDescriptionMixDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVAudioDescriptionMixUp"><code class="key">"TVAudioDescriptionMixUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVContentsMenu"><code class="key">"TVContentsMenu"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVDataService"><code class="key">"TVDataService"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVInput"><code class="key">"TVInput"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVInputComponent1"><code class="key">"TVInputComponent1"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVInputComponent2"><code class="key">"TVInputComponent2"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVInputComposite1"><code class="key">"TVInputComposite1"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVInputComposite2"><code class="key">"TVInputComposite2"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVInputHDMI1"><code class="key">"TVInputHDMI1"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVInputHDMI2"><code class="key">"TVInputHDMI2"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVInputHDMI3"><code class="key">"TVInputHDMI3"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVInputHDMI4"><code class="key">"TVInputHDMI4"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVInputVGA1"><code class="key">"TVInputVGA1"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVMediaContext"><code class="key">"TVMediaContext"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVNetwork"><code class="key">"TVNetwork"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVNumberEntry"><code class="key">"TVNumberEntry"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVPower"><code class="key">"TVPower"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVRadioService"><code class="key">"TVRadioService"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVSatellite"><code class="key">"TVSatellite"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVSatelliteBS"><code class="key">"TVSatelliteBS"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVSatelliteCS"><code class="key">"TVSatelliteCS"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVSatelliteToggle"><code class="key">"TVSatelliteToggle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVTerrestrialAnalog"><code class="key">"TVTerrestrialAnalog"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVTerrestrialDigital"><code class="key">"TVTerrestrialDigital"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-TVTimer"><code class="key">"TVTimer"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td colspan="6" style="background-color: #B9C9FE">Media Controller Keys
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AVRInput"><code class="key">"AVRInput"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AVRPower"><code class="key">"AVRPower"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ColorF0Red"><code class="key">"ColorF0Red"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ColorF1Green"><code class="key">"ColorF1Green"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ColorF2Yellow"><code class="key">"ColorF2Yellow"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ColorF3Blue"><code class="key">"ColorF3Blue"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ColorF4Grey"><code class="key">"ColorF4Grey"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ColorF5Brown"><code class="key">"ColorF5Brown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ClosedCaptionToggle"><code class="key">"ClosedCaptionToggle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Dimmer"><code class="key">"Dimmer"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-DisplaySwap"><code class="key">"DisplaySwap"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-DVR"><code class="key">"DVR"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Exit"><code class="key">"Exit"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteClear0"><code class="key">"FavoriteClear0"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteClear1"><code class="key">"FavoriteClear1"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteClear2"><code class="key">"FavoriteClear2"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteClear3"><code class="key">"FavoriteClear3"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteRecall0"><code class="key">"FavoriteRecall0"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteRecall1"><code class="key">"FavoriteRecall1"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteRecall2"><code class="key">"FavoriteRecall2"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteRecall3"><code class="key">"FavoriteRecall3"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteStore0"><code class="key">"FavoriteStore0"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteStore1"><code class="key">"FavoriteStore1"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteStore2"><code class="key">"FavoriteStore2"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FavoriteStore3"><code class="key">"FavoriteStore3"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Guide"><code class="key">"Guide"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GuideNextDay"><code class="key">"GuideNextDay"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GuidePreviousDay"><code class="key">"GuidePreviousDay"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Info"><code class="key">"Info"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-InstantReplay"><code class="key">"InstantReplay"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Link"><code class="key">"Link"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ListProgram"><code class="key">"ListProgram"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-LiveContent"><code class="key">"LiveContent"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Lock"><code class="key">"Lock"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaApps"><code class="key">"MediaApps"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaAudioTrack"><code class="key">"MediaAudioTrack"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaLast"><code class="key">"MediaLast"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaSkipBackward"><code class="key">"MediaSkipBackward"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaSkipForward"><code class="key">"MediaSkipForward"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaStepBackward"><code class="key">"MediaStepBackward"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaStepForward"><code class="key">"MediaStepForward"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-MediaTopMenu"><code class="key">"MediaTopMenu"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NavigateIn"><code class="key">"NavigateIn"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NavigateNext"><code class="key">"NavigateNext"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NavigateOut"><code class="key">"NavigateOut"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NavigatePrevious"><code class="key">"NavigatePrevious"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NextFavoriteChannel"><code class="key">"NextFavoriteChannel"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NextUserProfile"><code class="key">"NextUserProfile"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-OnDemand"><code class="key">"OnDemand"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Pairing"><code class="key">"Pairing"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PinPDown"><code class="key">"PinPDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PinPMove"><code class="key">"PinPMove"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PinPToggle"><code class="key">"PinPToggle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PinPUp"><code class="key">"PinPUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PlaySpeedDown"><code class="key">"PlaySpeedDown"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PlaySpeedReset"><code class="key">"PlaySpeedReset"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PlaySpeedUp"><code class="key">"PlaySpeedUp"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-RandomToggle"><code class="key">"RandomToggle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-RcLowBattery"><code class="key">"RcLowBattery"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-RecordSpeedNext"><code class="key">"RecordSpeedNext"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-RfBypass"><code class="key">"RfBypass"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ScanChannelsToggle"><code class="key">"ScanChannelsToggle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ScreenModeNext"><code class="key">"ScreenModeNext"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Settings"><code class="key">"Settings"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-SplitScreenToggle"><code class="key">"SplitScreenToggle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-STBInput"><code class="key">"STBInput"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-STBPower"><code class="key">"STBPower"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Subtitle"><code class="key">"Subtitle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Teletext"><code class="key">"Teletext"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-VideoModeNext"><code class="key">"VideoModeNext"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Wink"><code class="key">"Wink"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ZoomToggle"><code class="key">"ZoomToggle"</code></a>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td class="key-impl-data"><span class="key-impl-no">No</span>
+      <td>
+   </table>
+   <h2 class="heading settled" data-level="5" id="acknowledgements-contributors"><span class="secno">5. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements-contributors"></a></h2>
+   <p>Special thanks to Masayuki Nakano (Mozilla) for his work gathering some of the
+	implementation data that was used in this document - particularly those relating
+	to IMEs and composition.</p>
+  </main>
+  <div data-fill-with="conformance">
+   <h2 class="no-ref no-num heading settled" id="conformance"><span class="content">Conformance</span><a class="self-link" href="#conformance"></a></h2>
+   <h3 class="no-ref no-num heading settled" id="conventions"><span class="content">Document conventions</span><a class="self-link" href="#conventions"></a></h3>
+   <p>Conformance requirements are expressed with a combination of
+    descriptive assertions and RFC 2119 terminology. The key words “MUST”,
+    “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”,
+    “RECOMMENDED”, “MAY”, and “OPTIONAL” in the normative parts of this
+    document are to be interpreted as described in RFC 2119.
+    However, for readability, these words do not appear in all uppercase
+    letters in this specification. </p>
+   <p>All of the text of this specification is normative except sections
+    explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a></p>
+   <p>Examples in this specification are introduced with the words “for example”
+    or are set apart from the normative text with <code>class="example"</code>,
+    like this: </p>
+   <div class="example" id="example-f839f6c8">
+    <a class="self-link" href="#example-f839f6c8"></a> 
+    <p>This is an example of an informative example.</p>
+   </div>
+   <p>Informative notes begin with the word “Note” and are set apart from the
+    normative text with <code>class="note"</code>, like this: </p>
+   <p class="note" role="note">Note, this is an informative note.</p>
+   <h3 class="no-ref no-num heading settled" id="conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#conformant-algorithms"></a></h3>
+   <p>Requirements phrased in the imperative as part of algorithms (such as
+    "strip any leading space characters" or "return false and abort these
+    steps") are to be interpreted with the meaning of the key word ("must",
+    "should", "may", etc) used in introducing the algorithm.</p>
+   <p>Conformance requirements phrased as algorithms or specific steps can be
+    implemented in any manner, so long as the end result is <dfn data-dfn-type="dfn" data-lt="processing equivalence" data-noexport="" id="dfn-processing-equivalence">equivalent<a class="self-link" href="#dfn-processing-equivalence"></a></dfn>. In
+    particular, the algorithms defined in this specification are intended to
+    be easy to understand and are not intended to be performant. Implementers
+    are encouraged to optimize.</p>
+  </div>
+<script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+  <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
+  <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
+  <ul class="index">
+   <li><a href="#dfn-processing-equivalence">processing equivalence</a><span>, in §Unnumbered section</span>
+  </ul>
+  <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
+  <ul class="index">
+   <li>
+    <a data-link-type="biblio">[uievents]</a> defines the following terms:
+    <ul>
+     <li><a href="https://www.w3.org/TR/uievents/#keyboardevent-keyboardevent">KeyboardEvent</a>
+     <li><a href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key">key</a>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[UIEvents-Key]</a> defines the following terms:
+    <ul>
+     <li><a href="http://www.w3.org/TR/uievents-key/#">key attribute value</a>
+    </ul>
+  </ul>
+  <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
+  <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
+  <dl>
+   <dt id="biblio-rfc2119">[RFC2119]
+   <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+   <dt id="biblio-uievents">[UIEVENTS]
+   <dd>Gary Kacmarcik; Travis Leithead. <a href="https://github.com/w3c/uievents/">UI Events</a>. URL: <a href="https://github.com/w3c/uievents/">https://github.com/w3c/uievents/</a>
+   <dt id="biblio-uievents-key">[UIEvents-Key]
+   <dd>Gary Kacmarcik; Travis Leithead. <a href="https://w3c.github.io/uievents-key/">UI Events KeyboardEvent key Values</a>. URL: <a href="https://w3c.github.io/uievents-key/">https://w3c.github.io/uievents-key/</a>
+  </dl>
