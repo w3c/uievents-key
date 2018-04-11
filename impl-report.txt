@@ -5,10 +5,8 @@ Shortname: uievents-key-impl
 Level:
 Group: webplatform
 Status: ED
-ED: https://w3c.github.io/uievents-key/
+ED: https://w3c.github.io/uievents-key/impl-report.html
 Repository: w3c/uievents-key
-Previous Version:
-	http://www.w3.org/TR/2015/WD-uievents-key-20151215/
 Editor: Gary Kacmarcik, Google, garykac@google.com
 Abstract:
 	This document reports on implementations of the [[!UIEvents-Key]] specification.
