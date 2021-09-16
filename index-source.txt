@@ -843,6 +843,12 @@ path: stylesheet-extra.include
 			KEY_DUP Unidentified		This key value is used when an implementations is unable to identify another key value, due to either hardware, platform, or software constraints. (VK_UNDEFINED)
 		END_KEY_TABLE
 
+<h2 id="accessibility">Accessibility</h2>
+
+	This specification simply defines a set of values that are valid for use in the
+	{{KeyboardEvent/key}} attribute. Thus, it does not introduce any features that have
+	accessibility concerns.
+
 <h2 id="acknowledgements-contributors">Acknowledgements</h2>
 
 	Over the years, many people contributed to the DOM {{KeyboardEvent}}
