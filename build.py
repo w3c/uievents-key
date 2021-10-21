@@ -7,7 +7,7 @@ USER_AGENTS = ['Chrome', 'Edge', 'Firefox', 'Safari']
 
 
 def error(msg):
-	print 'Error: %s' % (msg)
+	print('Error: %s' % (msg))
 	sys.exit(1)
 
 class Parser():
@@ -239,7 +239,7 @@ class Parser():
 			m = re.match(r'^(\s*)(<!--.+-->)?(\s*)$', line)
 			if m:
 				return ''
-			print '*** ERROR *** unrecognized line in IMPL table: ' + line
+			print('*** ERROR *** unrecognized line in IMPL table: ' + line)
 			return ''
 			
 		return self.process_text(line)
@@ -277,10 +277,10 @@ def main():
 		src = f[0]
 		dst = f[1]
 		
-		print 'Pre-processing %s -> %s' % (src, dst)
+		print('Pre-processing %s -> %s' % (src, dst))
 		parser.process(src, dst)
 
-		print 'Bikeshedding %s...' % dst
+		print('Bikeshedding %s...' % dst)
 		subprocess.call(["bikeshed", "spec", dst])
 
 if __name__ == '__main__':
