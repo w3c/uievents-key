@@ -59,9 +59,9 @@ Abstract:
 		"date": "24 Feb 2016"
 	},
 	"WEB4CE": {
-		"title": "ANSI/CEA-2014-B, Web-based Protocol and Framework for Remote User Interface on UPnPTM Networks and the Internet (Web4CE)",
-		"href": "http://www.ce.org/Standards/Standard-Listings/R7-Home-Network-Committee/CEA-2014-B-(ANSI%29.aspx",
-		"publisher": "Consumer Electronics Association",
+		"title": "ANSI/CTA-2014-B, Web-based Protocol and Framework for Remote User Interface on UPnP Networks and the Internet (Web4CE)",
+		"href": "https://standards.cta.tech/apps/group_public/project/details.php?project_id=220",
+		"publisher": "Consumer Technology Association",
 		"date": "January 2011"
 	},
 	"WmAppCommand": {
@@ -733,8 +733,8 @@ path: stylesheet-extra.include
 
 		*	DTV Application Software Environment [[DASE]]
 		*	Open Cable Application Platform 1.1.3 [[OCAP]]
-		*	ANSI/CEA-2014-B, Web-based Protocol and Framework for Remote User
-			Interface on UPnPTM Networks and the Internet [[WEB4CE]]
+		*	ANSI/CTA-2014-B, Web-based Protocol and Framework for Remote User
+			Interface on UPnP Networks and the Internet [[WEB4CE]]
 		*	Android KeyEvent KEYCODEs [[AndroidKeycode]]
 
 		BEGIN_KEY_TABLE media-controller
