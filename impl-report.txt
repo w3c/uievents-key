@@ -3,7 +3,7 @@
 <pre class="metadata">
 Shortname: uievents-key-impl
 Level:
-Group: webplatform
+Group: webapps
 Status: ED
 ED: https://w3c.github.io/uievents-key/impl-report.html
 Repository: w3c/uievents-key
