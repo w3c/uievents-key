@@ -23,26 +23,64 @@ path: stylesheet-extra.include
 
 <h2 id="introduction">Introduction</h2>
 
-	This document summarizes the current implementation status of the 
+	The [[!UIEvents-Code]] specification defines the set of values that are valid for use
+	in the {{KeyboardEvent/key}} attribute.
+
+	This document summarizes the current implementation status of the
 	{{KeyboardEvent/key}} attribute and its values.
 
 	The following versions of each user agents were tested:
 	* Google Chrome 60.0.3112.113 (OS X 10.12.2, Windows 10, Ubuntu)
 	* Microsoft Edge 40.15063.0.0 (Windows 10)
 	* Mozilla Firefox 55.0 (OS X 10.12.2, Windows 10, Ubuntu)
-	* Apple Safari 10.0.2 (OS X 10.12.2)
+	* Apple Safari Version 15.0 (OS X 11.6)
+
+<h2 id="methodology">Methodology</h2>
+
+	Because there is no automated way to test these key press events (expecially
+	considering that international keyboard are often required), these tests were all
+	performed manually.
+	
+	Manual tests were performed by visiting the
+	<a href="https://domeventviewer.com/key-event-viewer.html">domeeventviewer.com/key-event-viewer.html</a>
+	test page and examining the "key" column after pressing the key being tested. To test
+	keys (like "AltGraph") that are only present on keyboards for certain locales,
+	this requires using a keyboard from a locale that contains the key being tested.
+
+	For purposes of this report, Chrome, Firefox and Safari are considered independent
+	implementations.
+
+<h2 id="results">Results</h2>
+	
+<h3 id="summary">Summary</h3>
+
+	Manual tests for all ***TODO*** required values of the {{KeyboardEvent/key}} attribute
+	<b>Pass</b> in at least 2 independent implementations.
+	
+	The Candidate Recommendation exit criteria are therefore fulfilled.  
+	
+	In addition, the specification describes ***TODO*** optional values that may be used to
+	support multimedia or legacy keyboards. Of these, manual tests confirm that Xxx of these
+	Pass in at least 2 independent implementations.
 
 <h2 id="key-attribute">The {{KeyboardEvent/key}} Attribute</h2>
 
 <table id="key-attribute-impl" class="data-table full-width">
-<thead><tr><th>{{KeyboardEvent}} attribute</th><th class="key-impl-data">Chrome</th><th class="key-impl-data">Edge</th><th class="key-impl-data">Firefox</th><th class="key-impl-data">Safari</th><th>Notes</th></tr></thead>
+<thead><tr>
+	<th>{{KeyboardEvent}} attribute</th>
+	<th class="key-impl-data">Chrome</th>
+	<th class="key-impl-data">Edge</th>
+	<th class="key-impl-data">Firefox</th>
+	<th class="key-impl-data">Safari</th>
+	<th>Notes</th>
+</tr></thead>
 <tbody>
 <tr>
 	<td>{{KeyboardEvent/key}}</td>
-	<td class="key-impl-data"><span class="key-impl-yes">Yes</span></td>
-	<td class="key-impl-data"><span class="key-impl-yes">Yes</span></td>
-	<td class="key-impl-data"><span class="key-impl-yes">Yes</span></td>
-	<td class="key-impl-data"><span class="key-impl-no">No</span></td>
+	<td class="key-impl-data"><span class="key-impl-yes">Pass</span></td>
+	<td class="key-impl-data"><span class="key-impl-yes">Pass</span></td>
+	<td class="key-impl-data"><span class="key-impl-yes">Pass</span></td>
+	<td class="key-impl-data"><span class="key-impl-no">Fail</span></td>
 	<td></td>
 </tr>
 </tbody></table>
@@ -58,9 +96,9 @@ path: stylesheet-extra.include
 
 		BEGIN_KEY_IMPL_TABLE unnamed keys
 			<!--     Key-name					Chrome	Edge	Firefox	Safari	Notes	-->
-			KEY_IMPL_NOLINK A-Z					Y		Y		Y		N
-			KEY_IMPL_NOLINK 0-9					Y		Y		Y		N
-			KEY_IMPL_NOLINK Space				Y		Y		Y		N		
+			KEY_IMPL_NOLINK A-Z					Y		Y		Y		F
+			KEY_IMPL_NOLINK 0-9					Y		Y		Y		F
+			KEY_IMPL_NOLINK Space				Y		Y		Y		F		
 		END_KEY_IMPL_TABLE
 
 <h2 id="named-key-attribute-values">Named {{KeyboardEvent/key}} Attribute Values</h2>
@@ -72,58 +110,58 @@ path: stylesheet-extra.include
 	
 		BEGIN_KEY_IMPL_TABLE required named keys
 			<!--     Key-name					Chrome	Edge	Firefox	Safari	Notes	-->
-			KEY_IMPL Unidentified				Y		Y		Y		N
+			KEY_IMPL Unidentified				Y		Y		Y		F
 
 			KEY_IMPL_SECTION Modifier Keys
-			KEY_IMPL Alt						Y		Y		Y		N
-			KEY_IMPL AltGraph					Y		N		Y		N
-			KEY_IMPL CapsLock					Y		Y		Y		N
-			KEY_IMPL Control					Y		Y		Y		N
-			KEY_IMPL Meta						Y		N		N		N		Firefox returns "OS"; Edge returns "Win"
-			KEY_IMPL NumLock					Y		Y		Y		N
-			KEY_IMPL ScrollLock					Y		Y		Y		N
-			KEY_IMPL Shift						Y		Y		Y		N
+			KEY_IMPL Alt						Y		Y		Y		F
+			KEY_IMPL AltGraph					Y		F		Y		F
+			KEY_IMPL CapsLock					Y		Y		Y		F
+			KEY_IMPL Control					Y		Y		Y		F
+			KEY_IMPL Meta						Y		F		F		F		Firefox returns "OS"; Edge returns "Win"
+			KEY_IMPL NumLock					Y		Y		Y		F
+			KEY_IMPL ScrollLock					Y		Y		Y		F
+			KEY_IMPL Shift						Y		Y		Y		F
 
 			KEY_IMPL_SECTION Whitespace Keys
-			KEY_IMPL Enter						Y		Y		Y		N
-			KEY_IMPL Tab						Y		Y		Y		N
+			KEY_IMPL Enter						Y		Y		Y		F
+			KEY_IMPL Tab						Y		Y		Y		F
 
 			KEY_IMPL_SECTION Navigation Keys
-			KEY_IMPL ArrowDown					Y		N		Y		N		Edge returns "Down"
-			KEY_IMPL ArrowLeft					Y		N		Y		N		Edge returns "Left"
-			KEY_IMPL ArrowRight					Y		N		Y		N		Edge returns "Right"
-			KEY_IMPL ArrowUp					Y		N		Y		N		Edge returns "Up"
-			KEY_IMPL End						Y		Y		Y		N
-			KEY_IMPL Home						Y		Y		Y		N
-			KEY_IMPL PageDown					Y		Y		Y		N
-			KEY_IMPL PageUp						Y		Y		Y		N
+			KEY_IMPL ArrowDown					Y		F		Y		F		Edge returns "Down"
+			KEY_IMPL ArrowLeft					Y		F		Y		F		Edge returns "Left"
+			KEY_IMPL ArrowRight					Y		F		Y		F		Edge returns "Right"
+			KEY_IMPL ArrowUp					Y		F		Y		F		Edge returns "Up"
+			KEY_IMPL End						Y		Y		Y		F
+			KEY_IMPL Home						Y		Y		Y		F
+			KEY_IMPL PageDown					Y		Y		Y		F
+			KEY_IMPL PageUp						Y		Y		Y		F
 
 			KEY_IMPL_SECTION Editing Keys
-			KEY_IMPL Backspace					Y		Y		Y		N
-			KEY_IMPL Delete						Y		N		Y		N		Edge returns "Del"
-			KEY_IMPL Insert						Y		Y		Y		N
+			KEY_IMPL Backspace					Y		Y		Y		F
+			KEY_IMPL Delete						Y		F		Y		F		Edge returns "Del"
+			KEY_IMPL Insert						Y		Y		Y		F
 
 			KEY_IMPL_SECTION UI Keys
-			KEY_IMPL ContextMenu				Y		N		Y		N		Edge returns "Apps"
-			KEY_IMPL Escape						Y		N		Y		N		Edge returns "Esc"
-			KEY_IMPL Pause						Y		Y		Y		N
+			KEY_IMPL ContextMenu				Y		F		Y		F		Edge returns "Apps"
+			KEY_IMPL Escape						Y		F		Y		F		Edge returns "Esc"
+			KEY_IMPL Pause						Y		Y		Y		F
 
 			KEY_IMPL_SECTION Device Keys
-			KEY_IMPL PrintScreen				Y		Y		Y		N
+			KEY_IMPL PrintScreen				Y		Y		Y		F
 
 			KEY_IMPL_SECTION General-Purpose Function Keys
-			KEY_IMPL F1							Y		Y		Y		N		Chrome opens help page and doesn't send keyup event
-			KEY_IMPL F2							Y		Y		Y		N
-			KEY_IMPL F3							Y		Y		Y		N		Chrome/Firefox open Find bar. Chrome doesn't send keyup event
-			KEY_IMPL F4							Y		Y		Y		N
-			KEY_IMPL F5							Y		Y		Y		N		Chrome/Firefox refresh page
-			KEY_IMPL F6							Y		Y		Y		N
-			KEY_IMPL F7							Y		Y		Y		N		Firefox enables/disables Caret Browsing.
-			KEY_IMPL F8							Y		Y		Y		N
-			KEY_IMPL F9							Y		Y		Y		N
-			KEY_IMPL F10						Y		Y		Y		N
-			KEY_IMPL F11						Y		Y		Y		N		Chrome enters/leaves fullscreen   
-			KEY_IMPL F12						Y		Y		Y		N		Chome/Firefox open/close debug console.
+			KEY_IMPL F1							Y		Y		Y		F		Chrome opens help page and doesn't send keyup event
+			KEY_IMPL F2							Y		Y		Y		F
+			KEY_IMPL F3							Y		Y		Y		F		Chrome/Firefox open Find bar. Chrome doesn't send keyup event
+			KEY_IMPL F4							Y		Y		Y		F
+			KEY_IMPL F5							Y		Y		Y		F		Chrome/Firefox refresh page
+			KEY_IMPL F6							Y		Y		Y		F
+			KEY_IMPL F7							Y		Y		Y		F		Firefox enables/disables Caret Browsing.
+			KEY_IMPL F8							Y		Y		Y		F
+			KEY_IMPL F9							Y		Y		Y		F
+			KEY_IMPL F10						Y		Y		Y		F
+			KEY_IMPL F11						Y		Y		Y		F		Chrome enters/leaves fullscreen   
+			KEY_IMPL F12						Y		Y		Y		F		Chome/Firefox open/close debug console.
 		END_KEY_IMPL_TABLE
 
 	<h3 id="editing-keys">Editing and IME Named Keys</h3>
@@ -135,51 +173,51 @@ path: stylesheet-extra.include
 			<!--     Key-name					Chrome	Edge	Firefox	Safari	Notes	-->
 
 			KEY_IMPL_SECTION Editing Keys
-			KEY_IMPL Clear						Y		Y		Y		N
-			KEY_IMPL Copy						N		N		N		N
-			KEY_IMPL CrSel						Y		Y		Y		N
-			KEY_IMPL Cut						N		N		N		N
-			KEY_IMPL EraseEof					Y		Y		Y		N
-			KEY_IMPL ExSel						Y		Y		Y		N
-			KEY_IMPL Paste						N		N		N		N
-			KEY_IMPL Redo						N		N		Y		N
-			KEY_IMPL Undo						Y		N		Y		N
+			KEY_IMPL Clear						Y		Y		Y		F
+			KEY_IMPL Copy						F		F		F		F
+			KEY_IMPL CrSel						Y		Y		Y		F
+			KEY_IMPL Cut						F		F		F		F
+			KEY_IMPL EraseEof					Y		Y		Y		F
+			KEY_IMPL ExSel						Y		Y		Y		F
+			KEY_IMPL Paste						F		F		F		F
+			KEY_IMPL Redo						F		F		Y		F
+			KEY_IMPL Undo						Y		F		Y		F
 
 			KEY_IMPL_SECTION IME and Composition Keys
-			KEY_IMPL AllCandidates				N		N		N		N
-			KEY_IMPL Alphanumeric				Y		N		Y		N
-			KEY_IMPL CodeInput					N		N		N		N
-			KEY_IMPL Compose					N		N		N		N
-			KEY_IMPL Convert					Y		Y		Y		N
-			KEY_IMPL Dead						N		N		N		N
-			KEY_IMPL FinalMode					Y		N		Y		N
-			KEY_IMPL GroupFirst					N		N		N		N
-			KEY_IMPL GroupLast					N		N		N		N
-			KEY_IMPL GroupNext					N		N		N		N
-			KEY_IMPL GroupPrevious				N		N		N		N
-			KEY_IMPL ModeChange					Y		Y		Y		N
-			KEY_IMPL NextCandidate				N		N		N		N
-			KEY_IMPL NonConvert					Y		Y		Y		N
-			KEY_IMPL PreviousCandidate			N		N		N		N
-			KEY_IMPL Process					Y		N		N		N
-			KEY_IMPL SingleCandidate			N		N		N		N
+			KEY_IMPL AllCandidates				F		F		F		F
+			KEY_IMPL Alphanumeric				Y		F		Y		F
+			KEY_IMPL CodeInput					F		F		F		F
+			KEY_IMPL Compose					F		F		F		F
+			KEY_IMPL Convert					Y		Y		Y		F
+			KEY_IMPL Dead						F		F		F		F
+			KEY_IMPL FinalMode					Y		F		Y		F
+			KEY_IMPL GroupFirst					F		F		F		F
+			KEY_IMPL GroupLast					F		F		F		F
+			KEY_IMPL GroupNext					F		F		F		F
+			KEY_IMPL GroupPrevious				F		F		F		F
+			KEY_IMPL ModeChange					Y		Y		Y		F
+			KEY_IMPL NextCandidate				F		F		F		F
+			KEY_IMPL NonConvert					Y		Y		Y		F
+			KEY_IMPL PreviousCandidate			F		F		F		F
+			KEY_IMPL Process					Y		F		F		F
+			KEY_IMPL SingleCandidate			F		F		F		F
 
 			KEY_IMPL_SECTION IME keys specific to Korean keyboards
-			KEY_IMPL HangulMode					Y		N		Y		N
-			KEY_IMPL HanjaMode					Y		N		Y		N
-			KEY_IMPL JunjaMode					Y		Y		Y		N
+			KEY_IMPL HangulMode					Y		F		Y		F
+			KEY_IMPL HanjaMode					Y		F		Y		F
+			KEY_IMPL JunjaMode					Y		Y		Y		F
 
 			KEY_IMPL_SECTION IME keys specific to Japanese keyboards
-			KEY_IMPL Eisu						N		N		N		N
-			KEY_IMPL Hankaku					Y		N		Y		N
-			KEY_IMPL Hiragana					Y		N		Y		N
-			KEY_IMPL HiraganaKatakana			N		N		N		N
-			KEY_IMPL KanaMode					Y		Y		Y		N
-			KEY_IMPL KanjiMode					Y		Y		Y		N
-			KEY_IMPL Katakana					Y		N		Y		N
-			KEY_IMPL Romaji						Y		N		Y		N
-			KEY_IMPL Zenkaku					Y		N		Y		N
-			KEY_IMPL ZenkakuHankaku				N		N		N		N
+			KEY_IMPL Eisu						F		F		F		F
+			KEY_IMPL Hankaku					Y		F		Y		F
+			KEY_IMPL Hiragana					Y		F		Y		F
+			KEY_IMPL HiraganaKatakana			F		F		F		F
+			KEY_IMPL KanaMode					Y		Y		Y		F
+			KEY_IMPL KanjiMode					Y		Y		Y		F
+			KEY_IMPL Katakana					Y		F		Y		F
+			KEY_IMPL Romaji						Y		F		Y		F
+			KEY_IMPL Zenkaku					Y		F		Y		F
+			KEY_IMPL ZenkakuHankaku				F		F		F		F
 
 		END_KEY_IMPL_TABLE
 
@@ -198,239 +236,239 @@ path: stylesheet-extra.include
 			<!--     Key-name					Chrome	Edge	Firefox	Safari	Notes	-->
 
 			KEY_IMPL_SECTION Modifier Keys
-			KEY_IMPL Fn							N		N		N		N
-			KEY_IMPL FnLock						N		N		N		N
-			KEY_IMPL Symbol						N		N		N		N
-			KEY_IMPL SymbolLock					N		N		N		N
+			KEY_IMPL Fn							F		F		F		F
+			KEY_IMPL FnLock						F		F		F		F
+			KEY_IMPL Symbol						F		F		F		F
+			KEY_IMPL SymbolLock					F		F		F		F
 
 			KEY_IMPL_SECTION Legacy modifier keys
-			KEY_IMPL Hyper						N		N		N		N
-			KEY_IMPL Super						N		N		N		N
+			KEY_IMPL Hyper						F		F		F		F
+			KEY_IMPL Super						F		F		F		F
 
 			KEY_IMPL_SECTION UI Keys
-			KEY_IMPL Accept						Y		Y		Y		N
-			KEY_IMPL Again						N		N		N		N
-			KEY_IMPL Attn						Y		Y		Y		N
-			KEY_IMPL Cancel						Y		N		Y		N
-			KEY_IMPL Execute					Y		Y		Y		N
-			KEY_IMPL Find						N		N		N		N
-			KEY_IMPL Help						Y		Y		Y		N
-			KEY_IMPL Play						Y		Y		Y		N
-			KEY_IMPL Props						N		N		N		N
-			KEY_IMPL Select						Y		Y		Y		N
-			KEY_IMPL ZoomIn						N		N		N		N
-			KEY_IMPL ZoomOut					N		N		N		N
+			KEY_IMPL Accept						Y		Y		Y		F
+			KEY_IMPL Again						F		F		F		F
+			KEY_IMPL Attn						Y		Y		Y		F
+			KEY_IMPL Cancel						Y		F		Y		F
+			KEY_IMPL Execute					Y		Y		Y		F
+			KEY_IMPL Find						F		F		F		F
+			KEY_IMPL Help						Y		Y		Y		F
+			KEY_IMPL Play						Y		Y		Y		F
+			KEY_IMPL Props						F		F		F		F
+			KEY_IMPL Select						Y		Y		Y		F
+			KEY_IMPL ZoomIn						F		F		F		F
+			KEY_IMPL ZoomOut					F		F		F		F
 
 			KEY_IMPL_SECTION Device Keys
-			KEY_IMPL BrightnessDown				N		N		N		N
-			KEY_IMPL BrightnessUp				N		N		N		N
-			KEY_IMPL Eject						N		N		N		N
-			KEY_IMPL LogOff						N		N		N		N
-			KEY_IMPL Power						N		N		N		N
-			KEY_IMPL PowerOff					N		N		N		N
-			KEY_IMPL Hibernate					N		N		N		N
-			KEY_IMPL Standby					Y		N		Y		N
-			KEY_IMPL WakeUp						N		N		N		N
+			KEY_IMPL BrightnessDown				F		F		F		F
+			KEY_IMPL BrightnessUp				F		F		F		F
+			KEY_IMPL Eject						F		F		F		F
+			KEY_IMPL LogOff						F		F		F		F
+			KEY_IMPL Power						F		F		F		F
+			KEY_IMPL PowerOff					F		F		F		F
+			KEY_IMPL Hibernate					F		F		F		F
+			KEY_IMPL Standby					Y		F		Y		F
+			KEY_IMPL WakeUp						F		F		F		F
 
 			KEY_IMPL_SECTION General-Purpose Function Keys
-			KEY_IMPL Soft1						N		N		N		N
-			KEY_IMPL Soft2						N		N		N		N
-			KEY_IMPL Soft3						N		N		N		N
-			KEY_IMPL Soft4						N		N		N		N
+			KEY_IMPL Soft1						F		F		F		F
+			KEY_IMPL Soft2						F		F		F		F
+			KEY_IMPL Soft3						F		F		F		F
+			KEY_IMPL Soft4						F		F		F		F
 
 			KEY_IMPL_SECTION Multimedia Keys
-			KEY_IMPL ChannelDown				N		N		N		N
-			KEY_IMPL ChannelUp					N		N		N		N
-			KEY_IMPL Close						N		N		Y		N
-			KEY_IMPL MailForward				Y		N		Y		N
-			KEY_IMPL MailReply					Y		N		Y		N
-			KEY_IMPL MailSend					Y		N		Y		N
-			KEY_IMPL MediaClose					N		N		N		N
-			KEY_IMPL MediaFastForward			N		N		N		N
-			KEY_IMPL MediaPause					N		N		N		N
-			KEY_IMPL MediaPlay					N		N		N		N
-			KEY_IMPL MediaPlayPause				Y		N		Y		N
-			KEY_IMPL MediaRecord				N		N		N		N
-			KEY_IMPL MediaRewind				N		N		N		N
-			KEY_IMPL MediaStop					Y		N		Y		N
-			KEY_IMPL MediaTrackNext				Y		N		Y		N
-			KEY_IMPL MediaTrackPrevious			Y		N		Y		N
-			KEY_IMPL New						N		N		Y		N
-			KEY_IMPL Open						Y		N		Y		N
-			KEY_IMPL Print						N		N		N		N		Firefox returns PrintScreen; Chrome returns Undefined
-			KEY_IMPL Save						N		N		Y		N
-			KEY_IMPL SpellCheck					N		N		N		N
+			KEY_IMPL ChannelDown				F		F		F		F
+			KEY_IMPL ChannelUp					F		F		F		F
+			KEY_IMPL Close						F		F		Y		F
+			KEY_IMPL MailForward				Y		F		Y		F
+			KEY_IMPL MailReply					Y		F		Y		F
+			KEY_IMPL MailSend					Y		F		Y		F
+			KEY_IMPL MediaClose					F		F		F		F
+			KEY_IMPL MediaFastForward			F		F		F		F
+			KEY_IMPL MediaPause					F		F		F		F
+			KEY_IMPL MediaPlay					F		F		F		F
+			KEY_IMPL MediaPlayPause				Y		F		Y		F
+			KEY_IMPL MediaRecord				F		F		F		F
+			KEY_IMPL MediaRewind				F		F		F		F
+			KEY_IMPL MediaStop					Y		F		Y		F
+			KEY_IMPL MediaTrackNext				Y		F		Y		F
+			KEY_IMPL MediaTrackPrevious			Y		F		Y		F
+			KEY_IMPL New						F		F		Y		F
+			KEY_IMPL Open						Y		F		Y		F
+			KEY_IMPL Print						F		F		F		F		Firefox returns PrintScreen; Chrome returns Undefined
+			KEY_IMPL Save						F		F		Y		F
+			KEY_IMPL SpellCheck					F		F		F		F
 
 			KEY_IMPL_SECTION Multimedia Numpad Keys
-			KEY_IMPL Key11						N		N		N		N
-			KEY_IMPL Key12						N		N		N		N
+			KEY_IMPL Key11						F		F		F		F
+			KEY_IMPL Key12						F		F		F		F
 
 			KEY_IMPL_SECTION Audio Keys
-			KEY_IMPL AudioBalanceLeft			N		N		N		N
-			KEY_IMPL AudioBalanceRight			N		N		N		N
-			KEY_IMPL AudioBassBoostDown			N		N		N		N
-			KEY_IMPL AudioBassBoostToggle		N		N		N		N
-			KEY_IMPL AudioBassBoostUp			N		N		N		N
-			KEY_IMPL AudioFaderFront			N		N		N		N
-			KEY_IMPL AudioFaderRear				N		N		N		N
-			KEY_IMPL AudioSurroundModeNext		N		N		N		N
-			KEY_IMPL AudioTrebleDown			N		N		N		N
-			KEY_IMPL AudioTrebleUp				N		N		N		N
-			KEY_IMPL AudioVolumeDown			Y		N		Y		N
-			KEY_IMPL AudioVolumeUp				Y		N		Y		N
-			KEY_IMPL AudioVolumeMute			Y		N		Y		N
-			KEY_IMPL MicrophoneToggle			N		N		N		N
-			KEY_IMPL MicrophoneVolumeDown		N		N		N		N
-			KEY_IMPL MicrophoneVolumeUp			N		N		N		N
-			KEY_IMPL MicrophoneVolumeMute		N		N		N		N
+			KEY_IMPL AudioBalanceLeft			F		F		F		F
+			KEY_IMPL AudioBalanceRight			F		F		F		F
+			KEY_IMPL AudioBassBoostDown			F		F		F		F
+			KEY_IMPL AudioBassBoostToggle		F		F		F		F
+			KEY_IMPL AudioBassBoostUp			F		F		F		F
+			KEY_IMPL AudioFaderFront			F		F		F		F
+			KEY_IMPL AudioFaderRear				F		F		F		F
+			KEY_IMPL AudioSurroundModeNext		F		F		F		F
+			KEY_IMPL AudioTrebleDown			F		F		F		F
+			KEY_IMPL AudioTrebleUp				F		F		F		F
+			KEY_IMPL AudioVolumeDown			Y		F		Y		F
+			KEY_IMPL AudioVolumeUp				Y		F		Y		F
+			KEY_IMPL AudioVolumeMute			Y		F		Y		F
+			KEY_IMPL MicrophoneToggle			F		F		F		F
+			KEY_IMPL MicrophoneVolumeDown		F		F		F		F
+			KEY_IMPL MicrophoneVolumeUp			F		F		F		F
+			KEY_IMPL MicrophoneVolumeMute		F		F		F		F
 
 			KEY_IMPL_SECTION Speech Keys
-			KEY_IMPL SpeechCorrectionList		N		N		N		N
-			KEY_IMPL SpeechInputToggle			N		N		N		N
+			KEY_IMPL SpeechCorrectionList		F		F		F		F
+			KEY_IMPL SpeechInputToggle			F		F		F		F
 
 			KEY_IMPL_SECTION Application Keys
-			KEY_IMPL LaunchApplication1			N		N		N		N
-			KEY_IMPL LaunchApplication2			N		N		N		N
-			KEY_IMPL LaunchCalendar				N		N		N		N
-			KEY_IMPL LaunchContacts				N		N		N		N
-			KEY_IMPL LaunchMail					N		N		N		N
-			KEY_IMPL LaunchMediaPlayer			N		N		N		N
-			KEY_IMPL LaunchMusicPlayer			N		N		N		N
-			KEY_IMPL LaunchPhone				N		N		N		N
-			KEY_IMPL LaunchScreenSaver			N		N		N		N
-			KEY_IMPL LaunchSpreadsheet			N		N		N		N
-			KEY_IMPL LaunchWebBrowser			N		N		N		N
-			KEY_IMPL LaunchWebCam				N		N		N		N
-			KEY_IMPL LaunchWordProcessor		N		N		N		N
+			KEY_IMPL LaunchApplication1			F		F		F		F
+			KEY_IMPL LaunchApplication2			F		F		F		F
+			KEY_IMPL LaunchCalendar				F		F		F		F
+			KEY_IMPL LaunchContacts				F		F		F		F
+			KEY_IMPL LaunchMail					F		F		F		F
+			KEY_IMPL LaunchMediaPlayer			F		F		F		F
+			KEY_IMPL LaunchMusicPlayer			F		F		F		F
+			KEY_IMPL LaunchPhone				F		F		F		F
+			KEY_IMPL LaunchScreenSaver			F		F		F		F
+			KEY_IMPL LaunchSpreadsheet			F		F		F		F
+			KEY_IMPL LaunchWebBrowser			F		F		F		F
+			KEY_IMPL LaunchWebCam				F		F		F		F
+			KEY_IMPL LaunchWordProcessor		F		F		F		F
 
 			KEY_IMPL_SECTION Browser Keys
-			KEY_IMPL BrowserBack				Y		N		Y		N
-			KEY_IMPL BrowserFavorites			Y		N		N		N		Key handled by browser in Firefox
-			KEY_IMPL BrowserForward				Y		N		Y		N
-			KEY_IMPL BrowserHome				N		N		N		N
-			KEY_IMPL BrowserRefresh				N		N		N		N
-			KEY_IMPL BrowserSearch				N		N		N		N
-			KEY_IMPL BrowserStop				N		N		N		N
+			KEY_IMPL BrowserBack				Y		F		Y		F
+			KEY_IMPL BrowserFavorites			Y		F		F		F		Key handled by browser in Firefox
+			KEY_IMPL BrowserForward				Y		F		Y		F
+			KEY_IMPL BrowserHome				F		F		F		F
+			KEY_IMPL BrowserRefresh				F		F		F		F
+			KEY_IMPL BrowserSearch				F		F		F		F
+			KEY_IMPL BrowserStop				F		F		F		F
 
 			KEY_IMPL_SECTION Mobile Phone Keys
-			KEY_IMPL AppSwitch					N		N		N		N
-			KEY_IMPL Call						N		N		N		N
-			KEY_IMPL Camera						N		N		N		N
-			KEY_IMPL CameraFocus				N		N		N		N
-			KEY_IMPL EndCall					N		N		N		N
-			KEY_IMPL GoBack						N		N		N		N
-			KEY_IMPL GoHome						N		N		N		N
-			KEY_IMPL HeadsetHook				N		N		N		N
-			KEY_IMPL LastNumberRedial			N		N		N		N
-			KEY_IMPL Notification				N		N		N		N
-			KEY_IMPL MannerMode					N		N		N		N
-			KEY_IMPL VoiceDial					N		N		N		N
+			KEY_IMPL AppSwitch					F		F		F		F
+			KEY_IMPL Call						F		F		F		F
+			KEY_IMPL Camera						F		F		F		F
+			KEY_IMPL CameraFocus				F		F		F		F
+			KEY_IMPL EndCall					F		F		F		F
+			KEY_IMPL GoBack						F		F		F		F
+			KEY_IMPL GoHome						F		F		F		F
+			KEY_IMPL HeadsetHook				F		F		F		F
+			KEY_IMPL LastNumberRedial			F		F		F		F
+			KEY_IMPL Notification				F		F		F		F
+			KEY_IMPL MannerMode					F		F		F		F
+			KEY_IMPL VoiceDial					F		F		F		F
 
 			KEY_IMPL_SECTION TV Keys
-			KEY_IMPL TV							N		N		N		N
-			KEY_IMPL TV3DMode					N		N		N		N
-			KEY_IMPL TVAntennaCable				N		N		N		N
-			KEY_IMPL TVAudioDescription			N		N		N		N
-			KEY_IMPL TVAudioDescriptionMixDown	N		N		N		N
-			KEY_IMPL TVAudioDescriptionMixUp	N		N		N		N
-			KEY_IMPL TVContentsMenu				N		N		N		N
-			KEY_IMPL TVDataService				N		N		N		N
-			KEY_IMPL TVInput					N		N		N		N
-			KEY_IMPL TVInputComponent1			N		N		N		N
-			KEY_IMPL TVInputComponent2			N		N		N		N
-			KEY_IMPL TVInputComposite1			N		N		N		N
-			KEY_IMPL TVInputComposite2			N		N		N		N
-			KEY_IMPL TVInputHDMI1				N		N		N		N
-			KEY_IMPL TVInputHDMI2				N		N		N		N
-			KEY_IMPL TVInputHDMI3				N		N		N		N
-			KEY_IMPL TVInputHDMI4				N		N		N		N
-			KEY_IMPL TVInputVGA1				N		N		N		N
-			KEY_IMPL TVMediaContext				N		N		N		N
-			KEY_IMPL TVNetwork					N		N		N		N
-			KEY_IMPL TVNumberEntry				N		N		N		N
-			KEY_IMPL TVPower					N		N		N		N
-			KEY_IMPL TVRadioService				N		N		N		N
-			KEY_IMPL TVSatellite				N		N		N		N
-			KEY_IMPL TVSatelliteBS				N		N		N		N
-			KEY_IMPL TVSatelliteCS				N		N		N		N
-			KEY_IMPL TVSatelliteToggle			N		N		N		N
-			KEY_IMPL TVTerrestrialAnalog		N		N		N		N
-			KEY_IMPL TVTerrestrialDigital		N		N		N		N
-			KEY_IMPL TVTimer					N		N		N		N
+			KEY_IMPL TV							F		F		F		F
+			KEY_IMPL TV3DMode					F		F		F		F
+			KEY_IMPL TVAntennaCable				F		F		F		F
+			KEY_IMPL TVAudioDescription			F		F		F		F
+			KEY_IMPL TVAudioDescriptionMixDown	F		F		F		F
+			KEY_IMPL TVAudioDescriptionMixUp	F		F		F		F
+			KEY_IMPL TVContentsMenu				F		F		F		F
+			KEY_IMPL TVDataService				F		F		F		F
+			KEY_IMPL TVInput					F		F		F		F
+			KEY_IMPL TVInputComponent1			F		F		F		F
+			KEY_IMPL TVInputComponent2			F		F		F		F
+			KEY_IMPL TVInputComposite1			F		F		F		F
+			KEY_IMPL TVInputComposite2			F		F		F		F
+			KEY_IMPL TVInputHDMI1				F		F		F		F
+			KEY_IMPL TVInputHDMI2				F		F		F		F
+			KEY_IMPL TVInputHDMI3				F		F		F		F
+			KEY_IMPL TVInputHDMI4				F		F		F		F
+			KEY_IMPL TVInputVGA1				F		F		F		F
+			KEY_IMPL TVMediaContext				F		F		F		F
+			KEY_IMPL TVNetwork					F		F		F		F
+			KEY_IMPL TVNumberEntry				F		F		F		F
+			KEY_IMPL TVPower					F		F		F		F
+			KEY_IMPL TVRadioService				F		F		F		F
+			KEY_IMPL TVSatellite				F		F		F		F
+			KEY_IMPL TVSatelliteBS				F		F		F		F
+			KEY_IMPL TVSatelliteCS				F		F		F		F
+			KEY_IMPL TVSatelliteToggle			F		F		F		F
+			KEY_IMPL TVTerrestrialAnalog		F		F		F		F
+			KEY_IMPL TVTerrestrialDigital		F		F		F		F
+			KEY_IMPL TVTimer					F		F		F		F
 
 			KEY_IMPL_SECTION Media Controller Keys
-			KEY_IMPL AVRInput					N		N		N		N
-			KEY_IMPL AVRPower					N		N		N		N
-			KEY_IMPL ColorF0Red					N		N		N		N
-			KEY_IMPL ColorF1Green				N		N		N		N
-			KEY_IMPL ColorF2Yellow				N		N		N		N
-			KEY_IMPL ColorF3Blue				N		N		N		N
-			KEY_IMPL ColorF4Grey				N		N		N		N
-			KEY_IMPL ColorF5Brown				N		N		N		N
-			KEY_IMPL ClosedCaptionToggle		N		N		N		N
-			KEY_IMPL Dimmer						N		N		N		N
-			KEY_IMPL DisplaySwap				N		N		N		N
-			KEY_IMPL DVR						N		N		N		N
-			KEY_IMPL Exit						N		N		N		N
-			KEY_IMPL FavoriteClear0				N		N		N		N
-			KEY_IMPL FavoriteClear1				N		N		N		N
-			KEY_IMPL FavoriteClear2				N		N		N		N
-			KEY_IMPL FavoriteClear3				N		N		N		N
-			KEY_IMPL FavoriteRecall0			N		N		N		N
-			KEY_IMPL FavoriteRecall1			N		N		N		N
-			KEY_IMPL FavoriteRecall2			N		N		N		N
-			KEY_IMPL FavoriteRecall3			N		N		N		N
-			KEY_IMPL FavoriteStore0				N		N		N		N
-			KEY_IMPL FavoriteStore1				N		N		N		N
-			KEY_IMPL FavoriteStore2				N		N		N		N
-			KEY_IMPL FavoriteStore3				N		N		N		N
-			KEY_IMPL Guide						N		N		N		N
-			KEY_IMPL GuideNextDay				N		N		N		N
-			KEY_IMPL GuidePreviousDay			N		N		N		N
-			KEY_IMPL Info						N		N		N		N
-			KEY_IMPL InstantReplay				N		N		N		N
-			KEY_IMPL Link						N		N		N		N
-			KEY_IMPL ListProgram				N		N		N		N
-			KEY_IMPL LiveContent				N		N		N		N
-			KEY_IMPL Lock						N		N		N		N
-			KEY_IMPL MediaApps					N		N		N		N
-			KEY_IMPL MediaAudioTrack			N		N		N		N
-			KEY_IMPL MediaLast					N		N		N		N
-			KEY_IMPL MediaSkipBackward			N		N		N		N
-			KEY_IMPL MediaSkipForward			N		N		N		N
-			KEY_IMPL MediaStepBackward			N		N		N		N
-			KEY_IMPL MediaStepForward			N		N		N		N
-			KEY_IMPL MediaTopMenu				N		N		N		N
-			KEY_IMPL NavigateIn					N		N		N		N
-			KEY_IMPL NavigateNext				N		N		N		N
-			KEY_IMPL NavigateOut				N		N		N		N
-			KEY_IMPL NavigatePrevious			N		N		N		N
-			KEY_IMPL NextFavoriteChannel		N		N		N		N
-			KEY_IMPL NextUserProfile			N		N		N		N
-			KEY_IMPL OnDemand					N		N		N		N
-			KEY_IMPL Pairing					N		N		N		N
-			KEY_IMPL PinPDown					N		N		N		N
-			KEY_IMPL PinPMove					N		N		N		N
-			KEY_IMPL PinPToggle					N		N		N		N
-			KEY_IMPL PinPUp						N		N		N		N
-			KEY_IMPL PlaySpeedDown				N		N		N		N
-			KEY_IMPL PlaySpeedReset				N		N		N		N
-			KEY_IMPL PlaySpeedUp				N		N		N		N
-			KEY_IMPL RandomToggle				N		N		N		N
-			KEY_IMPL RcLowBattery				N		N		N		N
-			KEY_IMPL RecordSpeedNext			N		N		N		N
-			KEY_IMPL RfBypass					N		N		N		N
-			KEY_IMPL ScanChannelsToggle			N		N		N		N
-			KEY_IMPL ScreenModeNext				N		N		N		N
-			KEY_IMPL Settings					N		N		N		N
-			KEY_IMPL SplitScreenToggle			N		N		N		N
-			KEY_IMPL STBInput					N		N		N		N
-			KEY_IMPL STBPower					N		N		N		N
-			KEY_IMPL Subtitle					N		N		N		N
-			KEY_IMPL Teletext					N		N		N		N
-			KEY_IMPL VideoModeNext				N		N		N		N
-			KEY_IMPL Wink						N		N		N		N
-			KEY_IMPL ZoomToggle					N		N		N		N
+			KEY_IMPL AVRInput					F		F		F		F
+			KEY_IMPL AVRPower					F		F		F		F
+			KEY_IMPL ColorF0Red					F		F		F		F
+			KEY_IMPL ColorF1Green				F		F		F		F
+			KEY_IMPL ColorF2Yellow				F		F		F		F
+			KEY_IMPL ColorF3Blue				F		F		F		F
+			KEY_IMPL ColorF4Grey				F		F		F		F
+			KEY_IMPL ColorF5Brown				F		F		F		F
+			KEY_IMPL ClosedCaptionToggle		F		F		F		F
+			KEY_IMPL Dimmer						F		F		F		F
+			KEY_IMPL DisplaySwap				F		F		F		F
+			KEY_IMPL DVR						F		F		F		F
+			KEY_IMPL Exit						F		F		F		F
+			KEY_IMPL FavoriteClear0				F		F		F		F
+			KEY_IMPL FavoriteClear1				F		F		F		F
+			KEY_IMPL FavoriteClear2				F		F		F		F
+			KEY_IMPL FavoriteClear3				F		F		F		F
+			KEY_IMPL FavoriteRecall0			F		F		F		F
+			KEY_IMPL FavoriteRecall1			F		F		F		F
+			KEY_IMPL FavoriteRecall2			F		F		F		F
+			KEY_IMPL FavoriteRecall3			F		F		F		F
+			KEY_IMPL FavoriteStore0				F		F		F		F
+			KEY_IMPL FavoriteStore1				F		F		F		F
+			KEY_IMPL FavoriteStore2				F		F		F		F
+			KEY_IMPL FavoriteStore3				F		F		F		F
+			KEY_IMPL Guide						F		F		F		F
+			KEY_IMPL GuideNextDay				F		F		F		F
+			KEY_IMPL GuidePreviousDay			F		F		F		F
+			KEY_IMPL Info						F		F		F		F
+			KEY_IMPL InstantReplay				F		F		F		F
+			KEY_IMPL Link						F		F		F		F
+			KEY_IMPL ListProgram				F		F		F		F
+			KEY_IMPL LiveContent				F		F		F		F
+			KEY_IMPL Lock						F		F		F		F
+			KEY_IMPL MediaApps					F		F		F		F
+			KEY_IMPL MediaAudioTrack			F		F		F		F
+			KEY_IMPL MediaLast					F		F		F		F
+			KEY_IMPL MediaSkipBackward			F		F		F		F
+			KEY_IMPL MediaSkipForward			F		F		F		F
+			KEY_IMPL MediaStepBackward			F		F		F		F
+			KEY_IMPL MediaStepForward			F		F		F		F
+			KEY_IMPL MediaTopMenu				F		F		F		F
+			KEY_IMPL NavigateIn					F		F		F		F
+			KEY_IMPL NavigateNext				F		F		F		F
+			KEY_IMPL NavigateOut				F		F		F		F
+			KEY_IMPL NavigatePrevious			F		F		F		F
+			KEY_IMPL NextFavoriteChannel		F		F		F		F
+			KEY_IMPL NextUserProfile			F		F		F		F
+			KEY_IMPL OnDemand					F		F		F		F
+			KEY_IMPL Pairing					F		F		F		F
+			KEY_IMPL PinPDown					F		F		F		F
+			KEY_IMPL PinPMove					F		F		F		F
+			KEY_IMPL PinPToggle					F		F		F		F
+			KEY_IMPL PinPUp						F		F		F		F
+			KEY_IMPL PlaySpeedDown				F		F		F		F
+			KEY_IMPL PlaySpeedReset				F		F		F		F
+			KEY_IMPL PlaySpeedUp				F		F		F		F
+			KEY_IMPL RandomToggle				F		F		F		F
+			KEY_IMPL RcLowBattery				F		F		F		F
+			KEY_IMPL RecordSpeedNext			F		F		F		F
+			KEY_IMPL RfBypass					F		F		F		F
+			KEY_IMPL ScanChannelsToggle			F		F		F		F
+			KEY_IMPL ScreenModeNext				F		F		F		F
+			KEY_IMPL Settings					F		F		F		F
+			KEY_IMPL SplitScreenToggle			F		F		F		F
+			KEY_IMPL STBInput					F		F		F		F
+			KEY_IMPL STBPower					F		F		F		F
+			KEY_IMPL Subtitle					F		F		F		F
+			KEY_IMPL Teletext					F		F		F		F
+			KEY_IMPL VideoModeNext				F		F		F		F
+			KEY_IMPL Wink						F		F		F		F
+			KEY_IMPL ZoomToggle					F		F		F		F
 		END_KEY_IMPL_TABLE
 
 <h2 id="acknowledgements-contributors">Acknowledgements</h2>

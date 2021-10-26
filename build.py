@@ -63,10 +63,13 @@ class Parser():
 			value = self.impl_info[ua]
 			data = ''
 			if value == 'Y':
-				data = '<span class="key-impl-yes">Yes</span>'
-			elif value == 'N':
-				data = '<span class="key-impl-no">No</span>'
+				data = '<span class="key-impl-yes">Pass</span>'
+			elif value == 'F':
+				data = '<span class="key-impl-no">Fail</span>'
+			elif value == '?':
+				data = '<span>?</span>'
 			else:
+				print("ERROR processing impl table:", value)
 				data = '<span>?</span>'
 			result += '<td class="key-impl-data">%s</td>' % (data)
 		notes = self.impl_notes
