@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version e8cbf4ed2, updated Fri Sep 10 10:21:28 2021 -0700" name="generator">
   <link href="https://w3c.github.io/uievents-key/impl-report.html" rel="canonical">
-  <meta content="0052e3d848cae2532fbdabce17083d92687da7ac" name="document-revision">
+  <meta content="6dbec08a85f266b103552e2cf3eb6e78f8c0056a" name="document-revision">
 <style>
 
 /* Used when spelling out words or symbols phonetically. */
@@ -665,6 +665,15 @@ dfn > a.self-link::before      { content: "#"; }
    <p>Because there is no automated way to test these key press events (expecially
 	considering that international keyboard are often required), these tests were all
 	performed manually.</p>
+   <p>There are two kinds of required values for this attribute: Unnamed and Named.</p>
+   <ul>
+    <li data-md>
+     <p>The Unnamed values can be any valid printable Unicode character. Since there are
+an extremely large number of these values, it is not practical to test every possible
+one. Instead, a sampling of 63 of the most common keys are tested.</p>
+    <li data-md>
+     <p>There are 38 required Named values and they are all manually tested.</p>
+   </ul>
    <p>Manual tests were performed by visiting the <a href="https://domeventviewer.com/key-event-viewer.html">domeeventviewer.com/key-event-viewer.html</a> test page and examining the "key" column after pressing the key being tested. To test
 	keys (like "AltGraph") that are only present on keyboards for certain locales,
 	this requires using a keyboard from a locale that contains the key being tested.</p>
@@ -672,11 +681,13 @@ dfn > a.self-link::before      { content: "#"; }
 	implementations.</p>
    <h2 class="heading settled" data-level="3" id="results"><span class="secno">3. </span><span class="content">Results</span><a class="self-link" href="#results"></a></h2>
    <h3 class="heading settled" data-level="3.1" id="summary"><span class="secno">3.1. </span><span class="content">Summary</span><a class="self-link" href="#summary"></a></h3>
-   <p>Manual tests for all ***TODO*** required values of the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key②">key</a></code> attribute <b>Pass</b> in at least 2 independent implementations.</p>
+   <p>Manual tests for all 63 of the sampled Unnamed and all 38 of the Named required values
+	of the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key②">key</a></code> attribute <b>Pass</b> in at least 2 independent
+	implementations.</p>
    <p>The Candidate Recommendation exit criteria are therefore fulfilled.</p>
-   <p>In addition, the specification describes ***TODO*** optional values that may be used to
-	support multimedia or legacy keyboards. Of these, manual tests confirm that Xxx of these
-	Pass in at least 2 independent implementations.</p>
+   <p>In addition, the specification describes a number of optional Named values that may be
+	used to support multimedia or legacy keyboards. Of these, manual tests confirm that
+	39 of these Pass in at least 2 independent implementations.</p>
    <h2 class="heading settled" data-level="4" id="key-attribute"><span class="secno">4. </span><span class="content">The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key③">key</a></code> Attribute</span><a class="self-link" href="#key-attribute"></a></h2>
    <table class="data-table full-width" id="key-attribute-impl">
     <thead>
@@ -714,6 +725,13 @@ dfn > a.self-link::before      { content: "#"; }
     <tbody>
      <tr>
       <td class="key-table-key"><code class="key">"A"</code>...<code class="key">"Z"</code>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td>
+     <tr>
+      <td class="key-table-key"><code class="key">"a"</code>...<code class="key">"z"</code>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>

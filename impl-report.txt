@@ -41,6 +41,14 @@ path: stylesheet-extra.include
 	considering that international keyboard are often required), these tests were all
 	performed manually.
 	
+	There are two kinds of required values for this attribute: Unnamed and Named.
+	
+	* The Unnamed values can be any valid printable Unicode character. Since there are
+		an extremely large number of these values, it is not practical to test every possible
+		one. Instead, a sampling of 63 of the most common keys are tested.
+	
+	* There are 38 required Named values and they are all manually tested.
+	
 	Manual tests were performed by visiting the
 	<a href="https://domeventviewer.com/key-event-viewer.html">domeeventviewer.com/key-event-viewer.html</a>
 	test page and examining the "key" column after pressing the key being tested. To test
@@ -54,14 +62,15 @@ path: stylesheet-extra.include
 	
 <h3 id="summary">Summary</h3>
 
-	Manual tests for all ***TODO*** required values of the {{KeyboardEvent/key}} attribute
-	<b>Pass</b> in at least 2 independent implementations.
+	Manual tests for all 63 of the sampled Unnamed and all 38 of the Named required values
+	of the {{KeyboardEvent/key}} attribute <b>Pass</b> in at least 2 independent
+	implementations.
 	
 	The Candidate Recommendation exit criteria are therefore fulfilled.  
 	
-	In addition, the specification describes ***TODO*** optional values that may be used to
-	support multimedia or legacy keyboards. Of these, manual tests confirm that Xxx of these
-	Pass in at least 2 independent implementations.
+	In addition, the specification describes a number of optional Named values that may be
+	used to support multimedia or legacy keyboards. Of these, manual tests confirm that
+	39 of these Pass in at least 2 independent implementations.
 
 <h2 id="key-attribute">The {{KeyboardEvent/key}} Attribute</h2>
 
@@ -97,6 +106,7 @@ path: stylesheet-extra.include
 		BEGIN_KEY_IMPL_TABLE unnamed keys
 			<!--     Key-name					Chrome	Edge	Firefox	Safari	Notes	-->
 			KEY_IMPL_NOLINK A-Z					Y		Y		Y		Y
+			KEY_IMPL_NOLINK a-z					Y		Y		Y		Y
 			KEY_IMPL_NOLINK 0-9					Y		Y		Y		Y
 			KEY_IMPL_NOLINK Space				Y		Y		Y		Y		
 		END_KEY_IMPL_TABLE
