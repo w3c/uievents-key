@@ -17,6 +17,7 @@ class Parser():
 		self.in_table = False
 
 		self.key = None
+		self.opt = ''
 		self.desc = ''
 		self.is_dup = False
 
@@ -31,14 +32,20 @@ class Parser():
 		if self.key == None:
 			return ''
 
+		req = "Yes"
+		if self.opt:
+			req = "No"
 		if self.is_dup:
 			return (
 				'<tr><td class="key-table-key"><code class="key">"%s"</code></td>\n'
-				'<td>%s</td></tr>\n') % (self.key, self.desc)
+    			'<td class="key-table-required">%s</td>'
+				'<td>%s</td></tr>\n') % (self.key, req, self.desc)
 
 		return (
-			'<tr><td class="key-table-key"><code class="key" id="key-%s">"%s"</code></td>\n'
-			'<td>%s</td></tr>\n') % (self.key, self.key, self.desc)
+			'<tr>'
+			'<td class="key-table-key"><code class="key" id="key-%s">"%s"</code></td>\n'
+			'<td class="key-table-required">%s</td>'
+			'<td>%s</td></tr>\n') % (self.key, self.key, req, self.desc)
 
 	def table_row_impl(self):
 		if self.impl_section:
@@ -154,20 +161,22 @@ class Parser():
 		return desc
 
 	def process_line(self, line):
-		m = re.match(r'^.*KEY (\w+)\s*(.*)$', line)
+		m = re.match(r'^.*KEY(_OPT)? (\w+)\s*(.*)$', line)
 		if m:
 			# Write out previous key.
 			result = self.table_row()
-			self.key = m.group(1)
-			self.desc = self.process_text(m.group(2))
+			self.opt = m.group(1)
+			self.key = m.group(2)
+			self.desc = self.process_text(m.group(3))
 			self.is_dup = False
 			return result
 
-		m = re.match(r'^.*KEY_DUP (\w+)\s*(.*)$', line)
+		m = re.match(r'^.*KEY_DUP(_OPT)? (\w+)\s*(.*)$', line)
 		if m:
 			result = self.table_row()
-			self.key = m.group(1)
-			self.desc = self.process_text(m.group(2))
+			self.opt = m.group(1)
+			self.key = m.group(2)
+			self.desc = self.process_text(m.group(3))
 			self.is_dup = True
 			return result
 
@@ -178,7 +187,11 @@ class Parser():
 			name = m.group(1)
 			return (
 				'<table id="key-table-%s" class="data-table full-width">\n'
-				'<thead><tr><th style="width:25%%">[=key attribute value=]</th><th style="width:80%%">Typical Usage (Non-normative)</th></tr></thead>\n'
+				'<thead><tr>'
+				'<th style="width:20%%">[=key attribute value=]</th>'
+				'<th style="width:10%%">Required</th>'
+				'<th style="width:70%%">Typical Usage (Non-normative)</th>'
+				'</tr></thead>\n'
 				'<tbody>\n') % name
 
 		m = re.match(r'^.*END_KEY_TABLE', line)

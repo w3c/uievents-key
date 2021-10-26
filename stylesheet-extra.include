@@ -114,6 +114,11 @@ code.vk {
 	vertical-align: top;
 }
 
+.key-table-required {
+	vertical-align: top;
+	text-align: center;
+}
+
 .key-impl-data {
 	vertical-align: top;
 	text-align: center;

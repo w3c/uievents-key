@@ -359,35 +359,35 @@ path: stylesheet-extra.include
 	<h3 id="keys-modifier">Modifier Keys</h3>
 
 		BEGIN_KEY_TABLE modifier
-			KEY Alt			The KEYCAP{Alt} (Alternative) key.<br/>
-							This key enables the alternate modifier function for interpreting concurrent or subsequent keyboard input.<br/>
-							This key value is also used for the Apple KEYCAP{Option} key.
-			KEY AltGraph	The Alternate Graphics (KEYCAP{AltGr} or KEYCAP{AltGraph}) key.
-							This key is used enable the ISO Level 3 shift modifier (the standard KEYCAP{Shift} key is the level 2 modifier).
-							See [[ISO9995-1]].
-			KEY CapsLock	The KEYCAP{Caps Lock} (Capital) key.
-							Toggle capital character lock function for interpreting subsequent keyboard input event.
-			KEY Control		The KEYCAP{Control} or KEYCAP{Ctrl} key, to enable control modifier function for interpreting concurrent or subsequent keyboard input.
-			KEY Fn			The Function switch KEYCAP{Fn} key.<br/>
-							Activating this key simultaneously with another key changes that key's value to an alternate character or function.
-							This key is often handled directly in the keyboard hardware and does not usually generate key events.
-			KEY FnLock		The Function-Lock (KEYCAP{FnLock} or KEYCAP{F-Lock}) key.
-							Activating this key switches the mode of the keyboard to changes some keys' values to an alternate character or function.
-							This key is often handled directly in the keyboard hardware and does not usually generate key events.
-			KEY Meta		The KEYCAP{Meta} key, to enable meta modifier function for interpreting concurrent or subsequent keyboard input.
-							This key value is used for the <q>Windows Logo</q> key and the Apple KEYCAP{Command} or KEYCAP{&#x2318;} key.
-			KEY NumLock		The KEYCAP{NumLock} or Number Lock key, to toggle numpad mode function for interpreting subsequent keyboard input.
-			KEY ScrollLock	The KEYCAP{Scroll Lock} key, to toggle between scrolling and cursor movement modes.
-			KEY Shift		The KEYCAP{Shift} key, to enable shift modifier function for interpreting concurrent or subsequent keyboard input.
-			KEY Symbol		The Symbol modifier key (used on some virtual keyboards).
-			KEY SymbolLock	The Symbol Lock key.
+			KEY Alt				The KEYCAP{Alt} (Alternative) key.<br/>
+								This key enables the alternate modifier function for interpreting concurrent or subsequent keyboard input.<br/>
+								This key value is also used for the Apple KEYCAP{Option} key.
+			KEY AltGraph		The Alternate Graphics (KEYCAP{AltGr} or KEYCAP{AltGraph}) key.
+								This key is used enable the ISO Level 3 shift modifier (the standard KEYCAP{Shift} key is the level 2 modifier).
+								See [[ISO9995-1]].
+			KEY CapsLock		The KEYCAP{Caps Lock} (Capital) key.
+								Toggle capital character lock function for interpreting subsequent keyboard input event.
+			KEY Control			The KEYCAP{Control} or KEYCAP{Ctrl} key, to enable control modifier function for interpreting concurrent or subsequent keyboard input.
+			KEY_OPT Fn			The Function switch KEYCAP{Fn} key.<br/>
+								Activating this key simultaneously with another key changes that key's value to an alternate character or function.
+								This key is often handled directly in the keyboard hardware and does not usually generate key events.
+			KEY_OPT FnLock		The Function-Lock (KEYCAP{FnLock} or KEYCAP{F-Lock}) key.
+								Activating this key switches the mode of the keyboard to changes some keys' values to an alternate character or function.
+								This key is often handled directly in the keyboard hardware and does not usually generate key events.
+			KEY Meta			The KEYCAP{Meta} key, to enable meta modifier function for interpreting concurrent or subsequent keyboard input.
+								This key value is used for the <q>Windows Logo</q> key and the Apple KEYCAP{Command} or KEYCAP{&#x2318;} key.
+			KEY NumLock			The KEYCAP{NumLock} or Number Lock key, to toggle numpad mode function for interpreting subsequent keyboard input.
+			KEY ScrollLock		The KEYCAP{Scroll Lock} key, to toggle between scrolling and cursor movement modes.
+			KEY Shift			The KEYCAP{Shift} key, to enable shift modifier function for interpreting concurrent or subsequent keyboard input.
+			KEY_OPT Symbol		The Symbol modifier key (used on some virtual keyboards).
+			KEY_OPT SymbolLock	The Symbol Lock key.
 		END_KEY_TABLE
 
 		Legacy modifier keys:
 
 		BEGIN_KEY_TABLE modifier-legacy
-			KEY Hyper		The KEYCAP{Hyper} key.
-			KEY Super		The KEYCAP{Super} key.
+			KEY_OPT Hyper		The KEYCAP{Hyper} key.
+			KEY_OPT Super		The KEYCAP{Super} key.
 		END_KEY_TABLE
 
 	<h3 id="keys-whitespace">Whitespace Keys</h3>
@@ -418,117 +418,117 @@ path: stylesheet-extra.include
 	<h3 id="keys-editing">Editing Keys</h3>
 
 		BEGIN_KEY_TABLE editing
-			KEY Backspace	The Backspace key. This key value is also used for the key labeled KEYCAP{Delete} on MacOS keyboards.
-			KEY Clear		Remove the currently selected input.
-			KEY Copy		Copy the current selection. (APPCOMMAND_COPY)
-			KEY CrSel		The Cursor Select (Crsel) key.
-			KEY Cut			Cut the current selection. (APPCOMMAND_CUT)
-			KEY Delete		The Delete (Del) Key.
-							This key value is also used for the key labeled KEYCAP{Delete} on MacOS keyboards when modified by the KEYCAP{Fn} key.
-			KEY EraseEof	The Erase to End of Field key.  This key deletes all characters from the current cursor position to the end of the current field.
-			KEY ExSel		The Extend Selection (Exsel) key.
-			KEY Insert		The Insert (Ins) key, to toggle between text modes for insertion or overtyping. (KEYCODE_INSERT)
-			KEY Paste		The Paste key. (APPCOMMAND_PASTE)
-			KEY Redo		Redo the last action. (APPCOMMAND_REDO)
-			KEY Undo		Undo the last action. (APPCOMMAND_UNDO)
+			KEY Backspace		The Backspace key. This key value is also used for the key labeled KEYCAP{Delete} on MacOS keyboards.
+			KEY_OPT Clear		Remove the currently selected input.
+			KEY_OPT Copy		Copy the current selection. (APPCOMMAND_COPY)
+			KEY_OPT CrSel		The Cursor Select (Crsel) key.
+			KEY_OPT Cut			Cut the current selection. (APPCOMMAND_CUT)
+			KEY Delete			The Delete (Del) Key.
+								This key value is also used for the key labeled KEYCAP{Delete} on MacOS keyboards when modified by the KEYCAP{Fn} key.
+			KEY_OPT EraseEof	The Erase to End of Field key.  This key deletes all characters from the current cursor position to the end of the current field.
+			KEY_OPT ExSel		The Extend Selection (Exsel) key.
+			KEY Insert			The Insert (Ins) key, to toggle between text modes for insertion or overtyping. (KEYCODE_INSERT)
+			KEY_OPT Paste		The Paste key. (APPCOMMAND_PASTE)
+			KEY_OPT Redo		Redo the last action. (APPCOMMAND_REDO)
+			KEY_OPT Undo		Undo the last action. (APPCOMMAND_UNDO)
 		END_KEY_TABLE
 
 	<h3 id="keys-ui">UI Keys</h3>
 
 		BEGIN_KEY_TABLE ui
-			KEY Accept		The Accept (Commit, OK) key. Accept current option or input method sequence conversion.
-			KEY Again		The Again key, to redo or repeat an action.
-			KEY Attn		The Attention (Attn) key.
-			KEY Cancel		The Cancel key.
-			KEY ContextMenu	Show the application's context menu.
-							This key is commonly found between the right KEYCAP{Meta} key and the right KEYCAP{Control} key.
-			KEY Escape		The KEYCAP{Esc} key. This key was originally used to initiate an escape sequence, but is
-							now more generally used to exit or "escape" the current context, such as closing a dialog
-							or exiting full screen mode.
-			KEY Execute		The Execute key.
-			KEY Find		Open the Find dialog. (APPCOMMAND_FIND)
-			KEY Help		Open a help dialog or toggle display of help information. (APPCOMMAND_HELP, KEYCODE_HELP)
-			KEY Pause		Pause the current state or application (as appropriate).
-							<p class="note">Do not use this value for the KEYCAP{Pause} button on media controllers. Use KEY{MediaPause} instead.</p>
-			KEY Play		Play or resume the current state or application (as appropriate).
-							<p class="note">Do not use this value for the KEYCAP{Play} button on media controllers. Use KEY{MediaPlay} instead.</p>
-			KEY Props		The properties (Props) key.
-			KEY Select		The Select key.
-			KEY ZoomIn		The ZoomIn key. (KEYCODE_ZOOM_IN)
-			KEY ZoomOut		The ZoomOut key. (KEYCODE_ZOOM_OUT)
+			KEY_OPT Accept		The Accept (Commit, OK) key. Accept current option or input method sequence conversion.
+			KEY_OPT Again		The Again key, to redo or repeat an action.
+			KEY_OPT Attn		The Attention (Attn) key.
+			KEY_OPT Cancel		The Cancel key.
+			KEY ContextMenu		Show the application's context menu.
+								This key is commonly found between the right KEYCAP{Meta} key and the right KEYCAP{Control} key.
+			KEY Escape			The KEYCAP{Esc} key. This key was originally used to initiate an escape sequence, but is
+								now more generally used to exit or "escape" the current context, such as closing a dialog
+								or exiting full screen mode.
+			KEY_OPT Execute		The Execute key.
+			KEY_OPT Find		Open the Find dialog. (APPCOMMAND_FIND)
+			KEY Help			Open a help dialog or toggle display of help information. (APPCOMMAND_HELP, KEYCODE_HELP)
+			KEY Pause			Pause the current state or application (as appropriate).
+								<p class="note">Do not use this value for the KEYCAP{Pause} button on media controllers. Use KEY{MediaPause} instead.</p>
+			KEY_OPT Play		Play or resume the current state or application (as appropriate).
+								<p class="note">Do not use this value for the KEYCAP{Play} button on media controllers. Use KEY{MediaPlay} instead.</p>
+			KEY_OPT Props		The properties (Props) key.
+			KEY_OPT Select		The Select key.
+			KEY_OPT ZoomIn		The ZoomIn key. (KEYCODE_ZOOM_IN)
+			KEY_OPT ZoomOut		The ZoomOut key. (KEYCODE_ZOOM_OUT)
 		END_KEY_TABLE
 
 	<h3 id="keys-device">Device Keys</h3>
 
 		BEGIN_KEY_TABLE device
-			KEY BrightnessDown	The Brightness Down key. Typically controls the display brightness. (KEYCODE_BRIGHTNESS_DOWN)
-			KEY BrightnessUp	The Brightness Up key. Typically controls the display brightness. (KEYCODE_BRIGHTNESS_UP)
-			KEY Eject			Toggle removable media to eject (open) and insert (close) state. (KEYCODE_MEDIA_EJECT)
-			KEY LogOff			The LogOff key.
-			KEY Power			Toggle power state. (KEYCODE_POWER)
-								<p class="note">Note: Some devices might not expose this key to the operating environment.</p>
-			KEY PowerOff		The KEYCAP{PowerOff} key. Sometime called KEYCAP{PowerDown}.
-			KEY PrintScreen		The KEYCAP{Print Screen} or KEYCAP{SnapShot} key, to initiate print-screen function.
-			KEY Hibernate		The Hibernate key.
-								This key saves the current state of the computer to disk so that it can be restored. The computer will then shutdown.
-			KEY Standby			The Standby key.
-								This key turns off the display and places the computer into a low-power mode without completely shutting down.
-								It is sometimes labelled KEYCAP{Suspend} or KEYCAP{Sleep} key. (KEYCODE_SLEEP)
-			KEY WakeUp			The WakeUp key. (KEYCODE_WAKEUP)
+			KEY_OPT BrightnessDown	The Brightness Down key. Typically controls the display brightness. (KEYCODE_BRIGHTNESS_DOWN)
+			KEY_OPT BrightnessUp	The Brightness Up key. Typically controls the display brightness. (KEYCODE_BRIGHTNESS_UP)
+			KEY_OPT Eject			Toggle removable media to eject (open) and insert (close) state. (KEYCODE_MEDIA_EJECT)
+			KEY_OPT LogOff			The LogOff key.
+			KEY_OPT Power			Toggle power state. (KEYCODE_POWER)
+									<p class="note">Note: Some devices might not expose this key to the operating environment.</p>
+			KEY_OPT PowerOff		The KEYCAP{PowerOff} key. Sometime called KEYCAP{PowerDown}.
+			KEY PrintScreen			The KEYCAP{Print Screen} or KEYCAP{SnapShot} key, to initiate print-screen function.
+			KEY_OPT Hibernate		The Hibernate key.
+									This key saves the current state of the computer to disk so that it can be restored. The computer will then shutdown.
+			KEY_OPT Standby			The Standby key.
+									This key turns off the display and places the computer into a low-power mode without completely shutting down.
+									It is sometimes labelled KEYCAP{Suspend} or KEYCAP{Sleep} key. (KEYCODE_SLEEP)
+			KEY_OPT WakeUp			The WakeUp key. (KEYCODE_WAKEUP)
 		END_KEY_TABLE
 
 	<h3 id="keys-composition">IME and Composition Keys</h3>
 
 		BEGIN_KEY_TABLE composition
-			KEY AllCandidates	The All Candidates key, to initate the multi-candidate mode.
-			KEY Alphanumeric	The Alphanumeric key.
-			KEY CodeInput		The Code Input key, to initiate the Code Input mode to allow characters to be entered by their code points.
-			KEY Compose			The Compose key, also known as <em>Multi_key</em> on the X Window System.  This key acts in a manner similar to a
-								dead key, triggering a mode where subsequent key presses are combined to produce a different character.
-			KEY Convert			The Convert key, to convert the current input method sequence.
-			KEY Dead			A dead key combining key. It may be any combining key from any keyboard layout. For example, on a
-								PC/AT French keyboard, using a French mapping and without any modifier activiated, this is the key value
-								UNI{U+0302} COMBINING CIRCUMFLEX ACCENT. In another layout this might be a different unicode combining key.<br/>
-								For applications that need to differentiate between specific combining characters, the associated [=compositionupdate=]
-								event's data attribute provides the specific key value.
-			KEY FinalMode		The Final Mode KEYCAP{Final} key used on some Asian keyboards, to enable the final mode for IMEs.
-			KEY GroupFirst		Switch to the first character group. (ISO/IEC 9995)
-			KEY GroupLast		Switch to the last character group. (ISO/IEC 9995)
-			KEY GroupNext		Switch to the next character group. (ISO/IEC 9995)
-			KEY GroupPrevious	Switch to the previous character group. (ISO/IEC 9995)
-			KEY ModeChange		The Mode Change key, to toggle between or cycle through input modes of IMEs.
-			KEY NextCandidate	The Next Candidate function key.
-			KEY NonConvert		The NonConvert ("Don't Convert") key, to accept current input method sequence without conversion in IMEs.
-			KEY PreviousCandidate	The Previous Candidate function key.
-			KEY Process			The Process key.
-			KEY SingleCandidate	The Single Candidate function key.
+			KEY_OPT AllCandidates	The All Candidates key, to initate the multi-candidate mode.
+			KEY_OPT Alphanumeric	The Alphanumeric key.
+			KEY_OPT CodeInput		The Code Input key, to initiate the Code Input mode to allow characters to be entered by their code points.
+			KEY_OPT Compose			The Compose key, also known as <em>Multi_key</em> on the X Window System.  This key acts in a manner similar to a
+									dead key, triggering a mode where subsequent key presses are combined to produce a different character.
+			KEY_OPT Convert			The Convert key, to convert the current input method sequence.
+			KEY_OPT Dead			A dead key combining key. It may be any combining key from any keyboard layout. For example, on a
+									PC/AT French keyboard, using a French mapping and without any modifier activiated, this is the key value
+									UNI{U+0302} COMBINING CIRCUMFLEX ACCENT. In another layout this might be a different unicode combining key.<br/>
+									For applications that need to differentiate between specific combining characters, the associated [=compositionupdate=]
+									event's data attribute provides the specific key value.
+			KEY_OPT FinalMode		The Final Mode KEYCAP{Final} key used on some Asian keyboards, to enable the final mode for IMEs.
+			KEY_OPT GroupFirst		Switch to the first character group. (ISO/IEC 9995)
+			KEY_OPT GroupLast		Switch to the last character group. (ISO/IEC 9995)
+			KEY_OPT GroupNext		Switch to the next character group. (ISO/IEC 9995)
+			KEY_OPT GroupPrevious	Switch to the previous character group. (ISO/IEC 9995)
+			KEY_OPT ModeChange		The Mode Change key, to toggle between or cycle through input modes of IMEs.
+			KEY_OPT NextCandidate	The Next Candidate function key.
+			KEY_OPT NonConvert		The NonConvert ("Don't Convert") key, to accept current input method sequence without conversion in IMEs.
+			KEY_OPT PreviousCandidate	The Previous Candidate function key.
+			KEY_OPT Process			The Process key.
+			KEY_OPT SingleCandidate	The Single Candidate function key.
 		END_KEY_TABLE
 
 		Keys specific to Korean keyboards:
 
 		BEGIN_KEY_TABLE ime-korean
-			KEY HangulMode	The Hangul (Korean characters) Mode key, to toggle between Hangul and English modes.
-			KEY HanjaMode	The Hanja (Korean characters) Mode key.
-			KEY JunjaMode	The Junja (Korean characters) Mode key.
+			KEY_OPT HangulMode	The Hangul (Korean characters) Mode key, to toggle between Hangul and English modes.
+			KEY_OPT HanjaMode	The Hanja (Korean characters) Mode key.
+			KEY_OPT JunjaMode	The Junja (Korean characters) Mode key.
 		END_KEY_TABLE
 
 		Keys specific to Japanese keyboards:
 
 		BEGIN_KEY_TABLE ime-japanese
-			KEY Eisu			The Eisu key. This key may close the IME, but its purpose
-								is defined by the current IME. (KEYCODE_EISU)
-			KEY Hankaku			The (Half-Width) Characters key.
-			KEY Hiragana		The Hiragana (Japanese Kana characters) key.
-			KEY HiraganaKatakana	The Hiragana/Katakana toggle key. (KEYCODE_KATAKANA_HIRAGANA)
-			KEY KanaMode		The Kana Mode (Kana Lock) key. This key is used to enter
-								hiragana mode (typically from romaji mode).
-			KEY KanjiMode		The Kanji (Japanese name for ideographic characters of Chinese origin) Mode key.
-								This key is typically used to switch to a hiragana keyboard for
-								the purpose of converting input into kanji. (KEYCODE_KANA)
-			KEY Katakana		The Katakana (Japanese Kana characters) key.
-			KEY Romaji			The Roman characters function key.
-			KEY Zenkaku			The Zenkaku (Full-Width) Characters key.
-			KEY ZenkakuHankaku	The Zenkaku/Hankaku (full-width/half-width) toggle key. (KEYCODE_ZENKAKU_HANKAKU)
+			KEY_OPT Eisu			The Eisu key. This key may close the IME, but its purpose
+									is defined by the current IME. (KEYCODE_EISU)
+			KEY_OPT Hankaku			The (Half-Width) Characters key.
+			KEY_OPT Hiragana		The Hiragana (Japanese Kana characters) key.
+			KEY_OPT HiraganaKatakana	The Hiragana/Katakana toggle key. (KEYCODE_KATAKANA_HIRAGANA)
+			KEY_OPT KanaMode		The Kana Mode (Kana Lock) key. This key is used to enter
+									hiragana mode (typically from romaji mode).
+			KEY_OPT KanjiMode		The Kanji (Japanese name for ideographic characters of Chinese origin) Mode key.
+									This key is typically used to switch to a hiragana keyboard for
+									the purpose of converting input into kanji. (KEYCODE_KANA)
+			KEY_OPT Katakana		The Katakana (Japanese Kana characters) key.
+			KEY_OPT Romaji			The Roman characters function key.
+			KEY_OPT Zenkaku			The Zenkaku (Full-Width) Characters key.
+			KEY_OPT ZenkakuHankaku	The Zenkaku/Hankaku (full-width/half-width) toggle key. (KEYCODE_ZENKAKU_HANKAKU)
 		END_KEY_TABLE
 
 	<h3 id="keys-function">General-Purpose Function Keys</h3>
@@ -552,10 +552,10 @@ path: stylesheet-extra.include
 			KEY F10		The F10 key, a general purpose function key, as index 10.
 			KEY F11		The F11 key, a general purpose function key, as index 11.
 			KEY F12		The F12 key, a general purpose function key, as index 12.
-			KEY Soft1	General purpose virtual function key, as index 1.
-			KEY Soft2	General purpose virtual function key, as index 2.
-			KEY Soft3	General purpose virtual function key, as index 3.
-			KEY Soft4	General purpose virtual function key, as index 4.
+			KEY_OPT Soft1	General purpose virtual function key, as index 1.
+			KEY_OPT Soft2	General purpose virtual function key, as index 2.
+			KEY_OPT Soft3	General purpose virtual function key, as index 3.
+			KEY_OPT Soft4	General purpose virtual function key, as index 4.
 		END_KEY_TABLE
 
 	<h3 id="keys-multimedia">Multimedia Keys</h3>
@@ -563,28 +563,28 @@ path: stylesheet-extra.include
 		These are extra keys found on "multimedia" keyboards.
 
 		BEGIN_KEY_TABLE multimedia
-			KEY ChannelDown		Select next (numerically or logically) lower channel. (APPCOMMAND_MEDIA_CHANNEL_DOWN, KEYCODE_CHANNEL_DOWN)
-			KEY ChannelUp		Select next (numerically or logically) higher channel. (APPCOMMAND_MEDIA_CHANNEL_UP, KEYCODE_CHANNEL_UP)
-			KEY Close			Close the current document or message (Note: This doesn't close the application). (APPCOMMAND_CLOSE)
-			KEY MailForward		Open an editor to forward the current message. (APPCOMMAND_FORWARD_MAIL)
-			KEY MailReply		Open an editor to reply to the current message. (APPCOMMAND_REPLY_TO_MAIL)
-			KEY MailSend		Send the current message. (APPCOMMAND_SEND_MAIL)
-			KEY MediaClose		Close the current media, for example to close a CD or DVD tray. (KEYCODE_MEDIA_CLOSE)
-			KEY MediaFastForward	Initiate or continue forward playback at faster than normal speed, or increase speed if already fast forwarding. (APPCOMMAND_MEDIA_FAST_FORWARD, KEYCODE_MEDIA_FAST_FORWARD)
-			KEY MediaPause		Pause the currently playing media. (APPCOMMAND_MEDIA_PAUSE, KEYCODE_MEDIA_PAUSE)
-								<p class="note">Media controller devices should use this value rather than KEY{Pause} for their pause keys.</p>
-			KEY MediaPlay		Initiate or continue media playback at normal speed, if not currently playing at normal speed. (APPCOMMAND_MEDIA_PLAY, KEYCODE_MEDIA_PLAY)
-			KEY MediaPlayPause	Toggle media between play and pause states. (APPCOMMAND_MEDIA_PLAY_PAUSE, KEYCODE_MEDIA_PLAY_PAUSE)
-			KEY MediaRecord		Initiate or resume recording of currently selected media. (APPCOMMAND_MEDIA_RECORD, KEYCODE_MEDIA_RECORD)
-			KEY MediaRewind		Initiate or continue reverse playback at faster than normal speed, or increase speed if already rewinding. (APPCOMMAND_MEDIA_REWIND, KEYCODE_MEDIA_REWIND)
-			KEY MediaStop		Stop media playing, pausing, forwarding, rewinding, or recording, if not already stopped. (APPCOMMAND_MEDIA_STOP, KEYCODE_MEDIA_STOP)
-			KEY MediaTrackNext	Seek to next media or program track. (APPCOMMAND_MEDIA_NEXTTRACK, KEYCODE_MEDIA_NEXT)
-			KEY MediaTrackPrevious	Seek to previous media or program track. (APPCOMMAND_MEDIA_PREVIOUSTRACK, KEYCODE_MEDIA_PREVIOUS)
-			KEY New				Open a new document or message. (APPCOMMAND_NEW)
-			KEY Open			Open an existing document or message. (APPCOMMAND_OPEN)
-			KEY Print			Print the current document or message. (APPCOMMAND_PRINT)
-			KEY Save			Save the current document or message. (APPCOMMAND_SAVE)
-			KEY SpellCheck		Spellcheck the current document or selection. (APPCOMMAND_SPELL_CHECK)
+			KEY_OPT ChannelDown		Select next (numerically or logically) lower channel. (APPCOMMAND_MEDIA_CHANNEL_DOWN, KEYCODE_CHANNEL_DOWN)
+			KEY_OPT ChannelUp		Select next (numerically or logically) higher channel. (APPCOMMAND_MEDIA_CHANNEL_UP, KEYCODE_CHANNEL_UP)
+			KEY_OPT Close			Close the current document or message (Note: This doesn't close the application). (APPCOMMAND_CLOSE)
+			KEY_OPT MailForward		Open an editor to forward the current message. (APPCOMMAND_FORWARD_MAIL)
+			KEY_OPT MailReply		Open an editor to reply to the current message. (APPCOMMAND_REPLY_TO_MAIL)
+			KEY_OPT MailSend		Send the current message. (APPCOMMAND_SEND_MAIL)
+			KEY_OPT MediaClose		Close the current media, for example to close a CD or DVD tray. (KEYCODE_MEDIA_CLOSE)
+			KEY_OPT MediaFastForward	Initiate or continue forward playback at faster than normal speed, or increase speed if already fast forwarding. (APPCOMMAND_MEDIA_FAST_FORWARD, KEYCODE_MEDIA_FAST_FORWARD)
+			KEY_OPT MediaPause		Pause the currently playing media. (APPCOMMAND_MEDIA_PAUSE, KEYCODE_MEDIA_PAUSE)
+									<p class="note">Media controller devices should use this value rather than KEY{Pause} for their pause keys.</p>
+			KEY_OPT MediaPlay		Initiate or continue media playback at normal speed, if not currently playing at normal speed. (APPCOMMAND_MEDIA_PLAY, KEYCODE_MEDIA_PLAY)
+			KEY_OPT MediaPlayPause	Toggle media between play and pause states. (APPCOMMAND_MEDIA_PLAY_PAUSE, KEYCODE_MEDIA_PLAY_PAUSE)
+			KEY_OPT MediaRecord		Initiate or resume recording of currently selected media. (APPCOMMAND_MEDIA_RECORD, KEYCODE_MEDIA_RECORD)
+			KEY_OPT MediaRewind		Initiate or continue reverse playback at faster than normal speed, or increase speed if already rewinding. (APPCOMMAND_MEDIA_REWIND, KEYCODE_MEDIA_REWIND)
+			KEY_OPT MediaStop		Stop media playing, pausing, forwarding, rewinding, or recording, if not already stopped. (APPCOMMAND_MEDIA_STOP, KEYCODE_MEDIA_STOP)
+			KEY_OPT MediaTrackNext	Seek to next media or program track. (APPCOMMAND_MEDIA_NEXTTRACK, KEYCODE_MEDIA_NEXT)
+			KEY_OPT MediaTrackPrevious	Seek to previous media or program track. (APPCOMMAND_MEDIA_PREVIOUSTRACK, KEYCODE_MEDIA_PREVIOUS)
+			KEY_OPT New				Open a new document or message. (APPCOMMAND_NEW)
+			KEY_OPT Open			Open an existing document or message. (APPCOMMAND_OPEN)
+			KEY_OPT Print			Print the current document or message. (APPCOMMAND_PRINT)
+			KEY_OPT Save			Save the current document or message. (APPCOMMAND_SAVE)
+			KEY_OPT SpellCheck		Spellcheck the current document or selection. (APPCOMMAND_SPELL_CHECK)
 		END_KEY_TABLE
 
 	<h3 id="keys-multimedia-numpad">Multimedia Numpad Keys</h3>
@@ -600,10 +600,10 @@ path: stylesheet-extra.include
 		</p>
 
 		BEGIN_KEY_TABLE multimedia-numpad
-			KEY Key11	The KEYCAP{11} key found on media numpads that
-						have buttons from KEYCAP{1} ... KEYCAP{12}.
-			KEY Key12	The KEYCAP{12} key found on media numpads that
-						have buttons from KEYCAP{1} ... KEYCAP{12}.
+			KEY_OPT Key11	The KEYCAP{11} key found on media numpads that
+							have buttons from KEYCAP{1} ... KEYCAP{12}.
+			KEY_OPT Key12	The KEYCAP{12} key found on media numpads that
+							have buttons from KEYCAP{1} ... KEYCAP{12}.
 		END_KEY_TABLE
 
 	<h3 id="keys-audio">Audio Keys</h3>
@@ -611,23 +611,23 @@ path: stylesheet-extra.include
 		Multimedia keys related to audio.
 
 		BEGIN_KEY_TABLE audio
-			KEY AudioBalanceLeft		Adjust audio balance leftward. (VK_AUDIO_BALANCE_LEFT)
-			KEY AudioBalanceRight		Adjust audio balance rightward. (VK_AUDIO_BALANCE_RIGHT)
-			KEY AudioBassBoostDown		Decrease audio bass boost or cycle down through bass boost states. (APPCOMMAND_BASS_DOWN, VK_BASS_BOOST_DOWN)
-			KEY AudioBassBoostToggle	Toggle bass boost on/off. (APPCOMMAND_BASS_BOOST)
-			KEY AudioBassBoostUp		Increase audio bass boost or cycle up through bass boost states. (APPCOMMAND_BASS_UP, VK_BASS_BOOST_UP)
-			KEY AudioFaderFront			Adjust audio fader towards front. (VK_FADER_FRONT)
-			KEY AudioFaderRear			Adjust audio fader towards rear. (VK_FADER_REAR)
-			KEY AudioSurroundModeNext	Advance surround audio mode to next available mode. (VK_SURROUND_MODE_NEXT)
-			KEY AudioTrebleDown			Decrease treble. (APPCOMMAND_TREBLE_DOWN)
-			KEY AudioTrebleUp			Increase treble. (APPCOMMAND_TREBLE_UP)
-			KEY AudioVolumeDown			Decrease audio volume. (APPCOMMAND_VOLUME_DOWN, KEYCODE_VOLUME_DOWN)
-			KEY AudioVolumeUp			Increase audio volume. (APPCOMMAND_VOLUME_UP, KEYCODE_VOLUME_UP)
-			KEY AudioVolumeMute			Toggle between muted state and prior volume level. (APPCOMMAND_VOLUME_MUTE, KEYCODE_VOLUME_MUTE)
-			KEY MicrophoneToggle		Toggle the microphone on/off. (APPCOMMAND_MIC_ON_OFF_TOGGLE)
-			KEY MicrophoneVolumeDown	Decrease microphone volume. (APPCOMMAND_MICROPHONE_VOLUME_DOWN)
-			KEY MicrophoneVolumeUp		Increase microphone volume. (APPCOMMAND_MICROPHONE_VOLUME_UP)
-			KEY MicrophoneVolumeMute	Mute the microphone. (APPCOMMAND_MICROPHONE_VOLUME_MUTE, KEYCODE_MUTE)
+			KEY_OPT AudioBalanceLeft		Adjust audio balance leftward. (VK_AUDIO_BALANCE_LEFT)
+			KEY_OPT AudioBalanceRight		Adjust audio balance rightward. (VK_AUDIO_BALANCE_RIGHT)
+			KEY_OPT AudioBassBoostDown		Decrease audio bass boost or cycle down through bass boost states. (APPCOMMAND_BASS_DOWN, VK_BASS_BOOST_DOWN)
+			KEY_OPT AudioBassBoostToggle	Toggle bass boost on/off. (APPCOMMAND_BASS_BOOST)
+			KEY_OPT AudioBassBoostUp		Increase audio bass boost or cycle up through bass boost states. (APPCOMMAND_BASS_UP, VK_BASS_BOOST_UP)
+			KEY_OPT AudioFaderFront			Adjust audio fader towards front. (VK_FADER_FRONT)
+			KEY_OPT AudioFaderRear			Adjust audio fader towards rear. (VK_FADER_REAR)
+			KEY_OPT AudioSurroundModeNext	Advance surround audio mode to next available mode. (VK_SURROUND_MODE_NEXT)
+			KEY_OPT AudioTrebleDown			Decrease treble. (APPCOMMAND_TREBLE_DOWN)
+			KEY_OPT AudioTrebleUp			Increase treble. (APPCOMMAND_TREBLE_UP)
+			KEY_OPT AudioVolumeDown			Decrease audio volume. (APPCOMMAND_VOLUME_DOWN, KEYCODE_VOLUME_DOWN)
+			KEY_OPT AudioVolumeUp			Increase audio volume. (APPCOMMAND_VOLUME_UP, KEYCODE_VOLUME_UP)
+			KEY_OPT AudioVolumeMute			Toggle between muted state and prior volume level. (APPCOMMAND_VOLUME_MUTE, KEYCODE_VOLUME_MUTE)
+			KEY_OPT MicrophoneToggle		Toggle the microphone on/off. (APPCOMMAND_MIC_ON_OFF_TOGGLE)
+			KEY_OPT MicrophoneVolumeDown	Decrease microphone volume. (APPCOMMAND_MICROPHONE_VOLUME_DOWN)
+			KEY_OPT MicrophoneVolumeUp		Increase microphone volume. (APPCOMMAND_MICROPHONE_VOLUME_UP)
+			KEY_OPT MicrophoneVolumeMute	Mute the microphone. (APPCOMMAND_MICROPHONE_VOLUME_MUTE, KEYCODE_MUTE)
 		END_KEY_TABLE
 
 	<h3 id="keys-speech">Speech Keys</h3>
@@ -635,8 +635,8 @@ path: stylesheet-extra.include
 		Multimedia keys related to speech recognition.
 
 		BEGIN_KEY_TABLE speech
-			KEY SpeechCorrectionList	Show correction list when a word is incorrectly identified. (APPCOMMAND_CORRECTION_LIST)
-			KEY SpeechInputToggle		Toggle between dictation mode and command/control mode. (APPCOMMAND_DICTATE_OR_COMMAND_CONTROL_TOGGLE)
+			KEY_OPT SpeechCorrectionList	Show correction list when a word is incorrectly identified. (APPCOMMAND_CORRECTION_LIST)
+			KEY_OPT SpeechInputToggle		Toggle between dictation mode and command/control mode. (APPCOMMAND_DICTATE_OR_COMMAND_CONTROL_TOGGLE)
 		END_KEY_TABLE
 
 	<h3 id="keys-apps">Application Keys</h3>
@@ -646,83 +646,83 @@ path: stylesheet-extra.include
 		of the application.
 
 		BEGIN_KEY_TABLE apps
-			KEY LaunchApplication1	The first generic "LaunchApplication" key. This is commonly associated with launching "My Computer", and may have a computer symbol on the key. (APPCOMMAND_LAUNCH_APP1)
-			KEY LaunchApplication2	The second generic "LaunchApplication" key. This is commonly associated with launching "Calculator", and may have a calculator symbol on the key. (APPCOMMAND_LAUNCH_APP2, KEYCODE_CALCULATOR)
-			KEY LaunchCalendar		The "Calendar" key. (KEYCODE_CALENDAR)
-			KEY LaunchContacts		The "Contacts" key. (KEYCODE_CONTACTS)
-			KEY LaunchMail			The "Mail" key. (APPCOMMAND_LAUNCH_MAIL)
-			KEY LaunchMediaPlayer	The "Media Player" key. (APPCOMMAND_LAUNCH_MEDIA_SELECT)
-			KEY LaunchMusicPlayer	The "Music Player" key.
-			KEY LaunchPhone			The "Phone" key.
-			KEY LaunchScreenSaver	The "Screen Saver" key.
-			KEY LaunchSpreadsheet	The "Spreadsheet" key.
-			KEY LaunchWebBrowser	The "Web Browser" key.
-			KEY LaunchWebCam		The "WebCam" key.
-			KEY LaunchWordProcessor	The "Word Processor" key.
+			KEY_OPT LaunchApplication1	The first generic "LaunchApplication" key. This is commonly associated with launching "My Computer", and may have a computer symbol on the key. (APPCOMMAND_LAUNCH_APP1)
+			KEY_OPT LaunchApplication2	The second generic "LaunchApplication" key. This is commonly associated with launching "Calculator", and may have a calculator symbol on the key. (APPCOMMAND_LAUNCH_APP2, KEYCODE_CALCULATOR)
+			KEY_OPT LaunchCalendar		The "Calendar" key. (KEYCODE_CALENDAR)
+			KEY_OPT LaunchContacts		The "Contacts" key. (KEYCODE_CONTACTS)
+			KEY_OPT LaunchMail			The "Mail" key. (APPCOMMAND_LAUNCH_MAIL)
+			KEY_OPT LaunchMediaPlayer	The "Media Player" key. (APPCOMMAND_LAUNCH_MEDIA_SELECT)
+			KEY_OPT LaunchMusicPlayer	The "Music Player" key.
+			KEY_OPT LaunchPhone			The "Phone" key.
+			KEY_OPT LaunchScreenSaver	The "Screen Saver" key.
+			KEY_OPT LaunchSpreadsheet	The "Spreadsheet" key.
+			KEY_OPT LaunchWebBrowser	The "Web Browser" key.
+			KEY_OPT LaunchWebCam		The "WebCam" key.
+			KEY_OPT LaunchWordProcessor	The "Word Processor" key.
 		END_KEY_TABLE
 
 	<h3 id="keys-browser">Browser Keys</h3>
 
 		BEGIN_KEY_TABLE browser
-			KEY BrowserBack			Navigate to previous content or page in current history. (APPCOMMAND_BROWSER_BACKWARD)
-			KEY BrowserFavorites	Open the list of browser favorites. (APPCOMMAND_BROWSER_FAVORITES)
-			KEY BrowserForward		Navigate to next content or page in current history. (APPCOMMAND_BROWSER_FORWARD)
-			KEY BrowserHome			Go to the user's preferred home page. (APPCOMMAND_BROWSER_HOME)
-			KEY BrowserRefresh		Refresh the current page or content. (APPCOMMAND_BROWSER_REFRESH)
-			KEY BrowserSearch		Call up the user's preferred search page. (APPCOMMAND_BROWSER_SEARCH)
-			KEY BrowserStop			Stop loading the current page or content. (APPCOMMAND_BROWSER_STOP)
+			KEY_OPT BrowserBack			Navigate to previous content or page in current history. (APPCOMMAND_BROWSER_BACKWARD)
+			KEY_OPT BrowserFavorites	Open the list of browser favorites. (APPCOMMAND_BROWSER_FAVORITES)
+			KEY_OPT BrowserForward		Navigate to next content or page in current history. (APPCOMMAND_BROWSER_FORWARD)
+			KEY_OPT BrowserHome			Go to the user's preferred home page. (APPCOMMAND_BROWSER_HOME)
+			KEY_OPT BrowserRefresh		Refresh the current page or content. (APPCOMMAND_BROWSER_REFRESH)
+			KEY_OPT BrowserSearch		Call up the user's preferred search page. (APPCOMMAND_BROWSER_SEARCH)
+			KEY_OPT BrowserStop			Stop loading the current page or content. (APPCOMMAND_BROWSER_STOP)
 		END_KEY_TABLE
 
 	<h3 id="keys-mobile">Mobile Phone Keys</h3>
 
 		BEGIN_KEY_TABLE mobile-phone
-			KEY AppSwitch		The Application switch key, which provides a list of recent apps to switch between. (KEYCODE_APP_SWITCH)
-			KEY Call			The Call key. (KEYCODE_CALL)
-			KEY Camera			The Camera key. (KEYCODE_CAMERA)
-			KEY CameraFocus		The Camera focus key. (KEYCODE_FOCUS)
-			KEY EndCall			The End Call key. (KEYCODE_ENDCALL)
-			KEY GoBack			The Back key. (KEYCODE_BACK)
-			KEY GoHome			The Home key, which goes to the phone's main screen. (KEYCODE_HOME)
-			KEY HeadsetHook		The Headset Hook key. (KEYCODE_HEADSETHOOK)
-			KEY LastNumberRedial	The Last Number Redial key.
-			KEY Notification	The Notification key. (KEYCODE_NOTIFICATION)
-			KEY MannerMode		Toggle between manner mode state: silent, vibrate, ring, ... (KEYCODE_MANNER_MODE)
-			KEY VoiceDial		The Voice Dial key.
+			KEY_OPT AppSwitch		The Application switch key, which provides a list of recent apps to switch between. (KEYCODE_APP_SWITCH)
+			KEY_OPT Call			The Call key. (KEYCODE_CALL)
+			KEY_OPT Camera			The Camera key. (KEYCODE_CAMERA)
+			KEY_OPT CameraFocus		The Camera focus key. (KEYCODE_FOCUS)
+			KEY_OPT EndCall			The End Call key. (KEYCODE_ENDCALL)
+			KEY_OPT GoBack			The Back key. (KEYCODE_BACK)
+			KEY_OPT GoHome			The Home key, which goes to the phone's main screen. (KEYCODE_HOME)
+			KEY_OPT HeadsetHook		The Headset Hook key. (KEYCODE_HEADSETHOOK)
+			KEY_OPT LastNumberRedial	The Last Number Redial key.
+			KEY_OPT Notification	The Notification key. (KEYCODE_NOTIFICATION)
+			KEY_OPT MannerMode		Toggle between manner mode state: silent, vibrate, ring, ... (KEYCODE_MANNER_MODE)
+			KEY_OPT VoiceDial		The Voice Dial key.
 		END_KEY_TABLE
 
 	<h3 id="keys-tv">TV Keys</h3>
 
 		BEGIN_KEY_TABLE tv
-			KEY TV					Switch to viewing TV. (KEYCODE_TV)
-			KEY TV3DMode			TV 3D Mode. (KEYCODE_3D_MODE)
-			KEY TVAntennaCable		Toggle between antenna and cable input. (KEYCODE_TV_ANTENNA_CABLE)
-			KEY TVAudioDescription			Audio description. (KEYCODE_TV_AUDIO_DESCRIPTION)
-			KEY TVAudioDescriptionMixDown	Audio description mixing volume down. (KEYCODE_TV_AUDIO_DESCRIPTION_MIX_DOWN)
-			KEY TVAudioDescriptionMixUp		Audio description mixing volume up. (KEYCODE_TV_AUDIO_DESCRIPTION_MIX_UP)
-			KEY TVContentsMenu		Contents menu. (KEYCODE_TV_CONTENTS_MENU)
-			KEY TVDataService		Contents menu. (KEYCODE_TV_DATA_SERVICE)
-			KEY TVInput				Switch the input mode on an external TV. (KEYCODE_TV_INPUT)
-			KEY TVInputComponent1	Switch to component input #1. (KEYCODE_TV_INPUT_COMPONENT_1)
-			KEY TVInputComponent2	Switch to component input #2. (KEYCODE_TV_INPUT_COMPONENT_2)
-			KEY TVInputComposite1	Switch to composite input #1. (KEYCODE_TV_INPUT_COMPOSITE_1)
-			KEY TVInputComposite2	Switch to composite input #2. (KEYCODE_TV_INPUT_COMPOSITE_2)
-			KEY TVInputHDMI1		Switch to HDMI input #1. (KEYCODE_TV_INPUT_HDMI_1)
-			KEY TVInputHDMI2		Switch to HDMI input #2. (KEYCODE_TV_INPUT_HDMI_2)
-			KEY TVInputHDMI3		Switch to HDMI input #3. (KEYCODE_TV_INPUT_HDMI_3)
-			KEY TVInputHDMI4		Switch to HDMI input #4. (KEYCODE_TV_INPUT_HDMI_4)
-			KEY TVInputVGA1			Switch to VGA input #1. (KEYCODE_TV_INPUT_VGA_1)
-			KEY TVMediaContext		Media context menu. (KEYCODE_TV_MEDIA_CONTEXT_MENU)
-			KEY TVNetwork			Toggle network. (KEYCODE_TV_NETWORK)
-			KEY TVNumberEntry		Number entry. (KEYCODE_TV_NUMBER_ENTRY)
-			KEY TVPower				Toggle the power on an external TV. (KEYCODE_TV_POWER)
-			KEY TVRadioService		Radio. (KEYCODE_TV_RADIO_SERVICE)
-			KEY TVSatellite			Satellite. (KEYCODE_TV_SATELLITE)
-			KEY TVSatelliteBS		Broadcast Satellite. (KEYCODE_TV_SATELLITE_BS)
-			KEY TVSatelliteCS		Communication Satellite. (KEYCODE_TV_SATELLITE_CS)
-			KEY TVSatelliteToggle		Toggle between available satellites. (KEYCODE_TV_SATELLITE_SERVICE)
-			KEY TVTerrestrialAnalog		Analog Terrestrial. (KEYCODE_TV_TERRESTRIAL_ANALOG)
-			KEY TVTerrestrialDigital	Digital Terrestrial. (KEYCODE_TV_TERRESTRIAL_DIGITAL)
-			KEY TVTimer					Timer programming. (KEYCODE_TV_TIMER_PROGRAMMING)
+			KEY_OPT TV					Switch to viewing TV. (KEYCODE_TV)
+			KEY_OPT TV3DMode			TV 3D Mode. (KEYCODE_3D_MODE)
+			KEY_OPT TVAntennaCable		Toggle between antenna and cable input. (KEYCODE_TV_ANTENNA_CABLE)
+			KEY_OPT TVAudioDescription			Audio description. (KEYCODE_TV_AUDIO_DESCRIPTION)
+			KEY_OPT TVAudioDescriptionMixDown	Audio description mixing volume down. (KEYCODE_TV_AUDIO_DESCRIPTION_MIX_DOWN)
+			KEY_OPT TVAudioDescriptionMixUp		Audio description mixing volume up. (KEYCODE_TV_AUDIO_DESCRIPTION_MIX_UP)
+			KEY_OPT TVContentsMenu		Contents menu. (KEYCODE_TV_CONTENTS_MENU)
+			KEY_OPT TVDataService		Contents menu. (KEYCODE_TV_DATA_SERVICE)
+			KEY_OPT TVInput				Switch the input mode on an external TV. (KEYCODE_TV_INPUT)
+			KEY_OPT TVInputComponent1	Switch to component input #1. (KEYCODE_TV_INPUT_COMPONENT_1)
+			KEY_OPT TVInputComponent2	Switch to component input #2. (KEYCODE_TV_INPUT_COMPONENT_2)
+			KEY_OPT TVInputComposite1	Switch to composite input #1. (KEYCODE_TV_INPUT_COMPOSITE_1)
+			KEY_OPT TVInputComposite2	Switch to composite input #2. (KEYCODE_TV_INPUT_COMPOSITE_2)
+			KEY_OPT TVInputHDMI1		Switch to HDMI input #1. (KEYCODE_TV_INPUT_HDMI_1)
+			KEY_OPT TVInputHDMI2		Switch to HDMI input #2. (KEYCODE_TV_INPUT_HDMI_2)
+			KEY_OPT TVInputHDMI3		Switch to HDMI input #3. (KEYCODE_TV_INPUT_HDMI_3)
+			KEY_OPT TVInputHDMI4		Switch to HDMI input #4. (KEYCODE_TV_INPUT_HDMI_4)
+			KEY_OPT TVInputVGA1			Switch to VGA input #1. (KEYCODE_TV_INPUT_VGA_1)
+			KEY_OPT TVMediaContext		Media context menu. (KEYCODE_TV_MEDIA_CONTEXT_MENU)
+			KEY_OPT TVNetwork			Toggle network. (KEYCODE_TV_NETWORK)
+			KEY_OPT TVNumberEntry		Number entry. (KEYCODE_TV_NUMBER_ENTRY)
+			KEY_OPT TVPower				Toggle the power on an external TV. (KEYCODE_TV_POWER)
+			KEY_OPT TVRadioService		Radio. (KEYCODE_TV_RADIO_SERVICE)
+			KEY_OPT TVSatellite			Satellite. (KEYCODE_TV_SATELLITE)
+			KEY_OPT TVSatelliteBS		Broadcast Satellite. (KEYCODE_TV_SATELLITE_BS)
+			KEY_OPT TVSatelliteCS		Communication Satellite. (KEYCODE_TV_SATELLITE_CS)
+			KEY_OPT TVSatelliteToggle		Toggle between available satellites. (KEYCODE_TV_SATELLITE_SERVICE)
+			KEY_OPT TVTerrestrialAnalog		Analog Terrestrial. (KEYCODE_TV_TERRESTRIAL_ANALOG)
+			KEY_OPT TVTerrestrialDigital	Digital Terrestrial. (KEYCODE_TV_TERRESTRIAL_DIGITAL)
+			KEY_OPT TVTimer					Timer programming. (KEYCODE_TV_TIMER_PROGRAMMING)
 		END_KEY_TABLE
 
 	<h3 id="keys-media-controller">Media Controller Keys</h3>
@@ -738,79 +738,79 @@ path: stylesheet-extra.include
 		*	Android KeyEvent KEYCODEs [[AndroidKeycode]]
 
 		BEGIN_KEY_TABLE media-controller
-			KEY AVRInput			Switch the input mode on an external AVR (audio/video receiver). (KEYCODE_AVR_INPUT)
-			KEY AVRPower			Toggle the power on an external AVR (audio/video receiver). (KEYCODE_AVR_POWER)
-			KEY ColorF0Red			General purpose color-coded media function key, as index 0 (red). (VK_COLORED_KEY_0, KEYCODE_PROG_RED)
-			KEY ColorF1Green		General purpose color-coded media function key, as index 1 (green). (VK_COLORED_KEY_1, KEYCODE_PROG_GREEN)
-			KEY ColorF2Yellow		General purpose color-coded media function key, as index 2 (yellow). (VK_COLORED_KEY_2, KEYCODE_PROG_YELLOW)
-			KEY ColorF3Blue			General purpose color-coded media function key, as index 3 (blue). (VK_COLORED_KEY_3, KEYCODE_PROG_BLUE)
-			KEY ColorF4Grey			General purpose color-coded media function key, as index 4 (grey). (VK_COLORED_KEY_4)
-			KEY ColorF5Brown		General purpose color-coded media function key, as index 5 (brown). (VK_COLORED_KEY_5)
-			KEY ClosedCaptionToggle	Toggle the display of Closed Captions. (VK_CC, KEYCODE_CAPTIONS)
-			KEY Dimmer				Adjust brightness of device, by toggling between or cycling through states. (VK_DIMMER)
-			KEY DisplaySwap			Swap video sources. (VK_DISPLAY_SWAP)
-			KEY DVR					Select Digital Video Rrecorder. (KEYCODE_DVR)
-			KEY Exit				Exit the current application. (VK_EXIT)
-			KEY FavoriteClear0		Clear program or content stored as favorite 0. (VK_CLEAR_FAVORITE_0)
-			KEY FavoriteClear1		Clear program or content stored as favorite 1. (VK_CLEAR_FAVORITE_1)
-			KEY FavoriteClear2		Clear program or content stored as favorite 2. (VK_CLEAR_FAVORITE_2)
-			KEY FavoriteClear3		Clear program or content stored as favorite 3. (VK_CLEAR_FAVORITE_3)
-			KEY FavoriteRecall0		Select (recall) program or content stored as favorite 0. (VK_RECALL_FAVORITE_0)
-			KEY FavoriteRecall1		Select (recall) program or content stored as favorite 1. (VK_RECALL_FAVORITE_1)
-			KEY FavoriteRecall2		Select (recall) program or content stored as favorite 2. (VK_RECALL_FAVORITE_2)
-			KEY FavoriteRecall3		Select (recall) program or content stored as favorite 3. (VK_RECALL_FAVORITE_3)
-			KEY FavoriteStore0		Store current program or content as favorite 0. (VK_STORE_FAVORITE_0)
-			KEY FavoriteStore1		Store current program or content as favorite 1. (VK_STORE_FAVORITE_1)
-			KEY FavoriteStore2		Store current program or content as favorite 2. (VK_STORE_FAVORITE_2)
-			KEY FavoriteStore3		Store current program or content as favorite 3. (VK_STORE_FAVORITE_3)
-			KEY Guide				Toggle display of program or content guide. (VK_GUIDE, KEYCODE_GUIDE)
-			KEY GuideNextDay		If guide is active and displayed, then display next day's content. (VK_NEXT_DAY)
-			KEY GuidePreviousDay	If guide is active and displayed, then display previous day's content. (VK_PREV_DAY)
-			KEY Info				Toggle display of information about currently selected context or media. (VK_INFO, KEYCODE_INFO)
-			KEY InstantReplay		Toggle instant replay. (VK_INSTANT_REPLAY)
-			KEY Link				Launch linked content, if available and appropriate. (VK_LINK)
-			KEY ListProgram			List the current program. (VK_LIST)
-			KEY LiveContent			Toggle display listing of currently available live content or programs. (VK_LIVE)
-			KEY Lock				Lock or unlock current content or program. (VK_LOCK)
-			KEY MediaApps			Show a list of media applications: audio/video players and image viewers. (VK_APPS)
+			KEY_OPT AVRInput			Switch the input mode on an external AVR (audio/video receiver). (KEYCODE_AVR_INPUT)
+			KEY_OPT AVRPower			Toggle the power on an external AVR (audio/video receiver). (KEYCODE_AVR_POWER)
+			KEY_OPT ColorF0Red			General purpose color-coded media function key, as index 0 (red). (VK_COLORED_KEY_0, KEYCODE_PROG_RED)
+			KEY_OPT ColorF1Green		General purpose color-coded media function key, as index 1 (green). (VK_COLORED_KEY_1, KEYCODE_PROG_GREEN)
+			KEY_OPT ColorF2Yellow		General purpose color-coded media function key, as index 2 (yellow). (VK_COLORED_KEY_2, KEYCODE_PROG_YELLOW)
+			KEY_OPT ColorF3Blue			General purpose color-coded media function key, as index 3 (blue). (VK_COLORED_KEY_3, KEYCODE_PROG_BLUE)
+			KEY_OPT ColorF4Grey			General purpose color-coded media function key, as index 4 (grey). (VK_COLORED_KEY_4)
+			KEY_OPT ColorF5Brown		General purpose color-coded media function key, as index 5 (brown). (VK_COLORED_KEY_5)
+			KEY_OPT ClosedCaptionToggle	Toggle the display of Closed Captions. (VK_CC, KEYCODE_CAPTIONS)
+			KEY_OPT Dimmer				Adjust brightness of device, by toggling between or cycling through states. (VK_DIMMER)
+			KEY_OPT DisplaySwap			Swap video sources. (VK_DISPLAY_SWAP)
+			KEY_OPT DVR					Select Digital Video Rrecorder. (KEYCODE_DVR)
+			KEY_OPT Exit				Exit the current application. (VK_EXIT)
+			KEY_OPT FavoriteClear0		Clear program or content stored as favorite 0. (VK_CLEAR_FAVORITE_0)
+			KEY_OPT FavoriteClear1		Clear program or content stored as favorite 1. (VK_CLEAR_FAVORITE_1)
+			KEY_OPT FavoriteClear2		Clear program or content stored as favorite 2. (VK_CLEAR_FAVORITE_2)
+			KEY_OPT FavoriteClear3		Clear program or content stored as favorite 3. (VK_CLEAR_FAVORITE_3)
+			KEY_OPT FavoriteRecall0		Select (recall) program or content stored as favorite 0. (VK_RECALL_FAVORITE_0)
+			KEY_OPT FavoriteRecall1		Select (recall) program or content stored as favorite 1. (VK_RECALL_FAVORITE_1)
+			KEY_OPT FavoriteRecall2		Select (recall) program or content stored as favorite 2. (VK_RECALL_FAVORITE_2)
+			KEY_OPT FavoriteRecall3		Select (recall) program or content stored as favorite 3. (VK_RECALL_FAVORITE_3)
+			KEY_OPT FavoriteStore0		Store current program or content as favorite 0. (VK_STORE_FAVORITE_0)
+			KEY_OPT FavoriteStore1		Store current program or content as favorite 1. (VK_STORE_FAVORITE_1)
+			KEY_OPT FavoriteStore2		Store current program or content as favorite 2. (VK_STORE_FAVORITE_2)
+			KEY_OPT FavoriteStore3		Store current program or content as favorite 3. (VK_STORE_FAVORITE_3)
+			KEY_OPT Guide				Toggle display of program or content guide. (VK_GUIDE, KEYCODE_GUIDE)
+			KEY_OPT GuideNextDay		If guide is active and displayed, then display next day's content. (VK_NEXT_DAY)
+			KEY_OPT GuidePreviousDay	If guide is active and displayed, then display previous day's content. (VK_PREV_DAY)
+			KEY_OPT Info				Toggle display of information about currently selected context or media. (VK_INFO, KEYCODE_INFO)
+			KEY_OPT InstantReplay		Toggle instant replay. (VK_INSTANT_REPLAY)
+			KEY_OPT Link				Launch linked content, if available and appropriate. (VK_LINK)
+			KEY_OPT ListProgram			List the current program. (VK_LIST)
+			KEY_OPT LiveContent			Toggle display listing of currently available live content or programs. (VK_LIVE)
+			KEY_OPT Lock				Lock or unlock current content or program. (VK_LOCK)
+			KEY_OPT MediaApps			Show a list of media applications: audio/video players and image viewers. (VK_APPS)
 									<p class="note">Do not confuse this key value with the Windows' VK_APPS / VK_CONTEXT_MENU key, which is encoded as KEY{ContextMenu}.</p>
-			KEY MediaAudioTrack		Audio track key. (KEYCODE_MEDIA_AUDIO_TRACK)
-			KEY MediaLast			Select previously selected channel or media. (VK_LAST, KEYCODE_LAST_CHANNEL)
-			KEY MediaSkipBackward	Skip backward to next content or program. (KEYCODE_MEDIA_SKIP_BACKWARD)
-			KEY MediaSkipForward	Skip forward to next content or program. (VK_SKIP, KEYCODE_MEDIA_SKIP_FORWARD)
-			KEY MediaStepBackward	Step backward to next content or program. (KEYCODE_MEDIA_STEP_BACKWARD)
-			KEY MediaStepForward	Step forward to next content or program. (KEYCODE_MEDIA_STEP_FORWARD)
-			KEY MediaTopMenu		Media top menu. (KEYCODE_MEDIA_TOP_MENU)
-			KEY NavigateIn			Navigate in. (KEYCODE_NAVIGATE_IN)
-			KEY NavigateNext		Navigate to next key. (KEYCODE_NAVIGATE_NEXT)
-			KEY NavigateOut			Navigate out. (KEYCODE_NAVIGATE_OUT)
-			KEY NavigatePrevious	Navigate to previous key. (KEYCODE_NAVIGATE_PREVIOUS)
-			KEY NextFavoriteChannel	Cycle to next favorite channel (in favorites list). (VK_NEXT_FAVORITE_CHANNEL)
-			KEY NextUserProfile		Cycle to next user profile (if there are multiple user profiles). (VK_USER)
-			KEY OnDemand			Access on-demand content or programs. (VK_ON_DEMAND)
-			KEY Pairing				Pairing key to pair devices. (KEYCODE_PAIRING)
-			KEY PinPDown			Move picture-in-picture window down. (VK_PINP_DOWN)
-			KEY PinPMove			Move picture-in-picture window. (VK_PINP_MOVE)
-			KEY PinPToggle			Toggle display of picture-in-picture window. (VK_PINP_TOGGLE)
-			KEY PinPUp				Move picture-in-picture window up. (VK_PINP_UP)
-			KEY PlaySpeedDown		Decrease media playback speed. (VK_PLAY_SPEED_DOWN)
-			KEY PlaySpeedReset		Reset playback to normal speed. (VK_PLAY_SPEED_RESET)
-			KEY PlaySpeedUp			Increase media playback speed. (VK_PLAY_SPEED_UP)
-			KEY RandomToggle		Toggle random media or content shuffle mode. (VK_RANDOM_TOGGLE)
-			KEY RcLowBattery		Not a physical key, but this key code is sent when the remote control battery is low. (VK_RC_LOW_BATTERY)
-			KEY RecordSpeedNext		Toggle or cycle between media recording speeds. (VK_RECORD_SPEED_NEXT)
-			KEY RfBypass			Toggle RF (radio frequency) input bypass mode (pass RF input directly to the RF output). (VK_RF_BYPASS)
-			KEY ScanChannelsToggle	Toggle scan channels mode. (VK_SCAN_CHANNELS_TOGGLE)
-			KEY ScreenModeNext		Advance display screen mode to next available mode. (VK_SCREEN_MODE_NEXT)
-			KEY Settings			Toggle display of device settings screen. (VK_SETTINGS, KEYCODE_SETTINGS)
-			KEY SplitScreenToggle	Toggle split screen mode. (VK_SPLIT_SCREEN_TOGGLE)
-			KEY STBInput			Switch the input mode on an external STB (set top box). (KEYCODE_STB_INPUT)
-			KEY STBPower			Toggle the power on an external STB (set top box). (KEYCODE_STB_POWER)
-			KEY Subtitle			Toggle display of subtitles, if available. (VK_SUBTITLE)
-			KEY Teletext			Toggle display of teletext, if available (VK_TELETEXT, KEYCODE_TV_TELETEXT).
-			KEY VideoModeNext		Advance video mode to next available mode. (VK_VIDEO_MODE_NEXT)
-			KEY Wink				Cause device to identify itself in some manner, e.g., audibly or visibly. (VK_WINK)
-			KEY ZoomToggle			Toggle between full-screen and scaled content, or alter magnification level. (VK_ZOOM, KEYCODE_TV_ZOOM_MODE)
+			KEY_OPT MediaAudioTrack		Audio track key. (KEYCODE_MEDIA_AUDIO_TRACK)
+			KEY_OPT MediaLast			Select previously selected channel or media. (VK_LAST, KEYCODE_LAST_CHANNEL)
+			KEY_OPT MediaSkipBackward	Skip backward to next content or program. (KEYCODE_MEDIA_SKIP_BACKWARD)
+			KEY_OPT MediaSkipForward	Skip forward to next content or program. (VK_SKIP, KEYCODE_MEDIA_SKIP_FORWARD)
+			KEY_OPT MediaStepBackward	Step backward to next content or program. (KEYCODE_MEDIA_STEP_BACKWARD)
+			KEY_OPT MediaStepForward	Step forward to next content or program. (KEYCODE_MEDIA_STEP_FORWARD)
+			KEY_OPT MediaTopMenu		Media top menu. (KEYCODE_MEDIA_TOP_MENU)
+			KEY_OPT NavigateIn			Navigate in. (KEYCODE_NAVIGATE_IN)
+			KEY_OPT NavigateNext		Navigate to next key. (KEYCODE_NAVIGATE_NEXT)
+			KEY_OPT NavigateOut			Navigate out. (KEYCODE_NAVIGATE_OUT)
+			KEY_OPT NavigatePrevious	Navigate to previous key. (KEYCODE_NAVIGATE_PREVIOUS)
+			KEY_OPT NextFavoriteChannel	Cycle to next favorite channel (in favorites list). (VK_NEXT_FAVORITE_CHANNEL)
+			KEY_OPT NextUserProfile		Cycle to next user profile (if there are multiple user profiles). (VK_USER)
+			KEY_OPT OnDemand			Access on-demand content or programs. (VK_ON_DEMAND)
+			KEY_OPT Pairing				Pairing key to pair devices. (KEYCODE_PAIRING)
+			KEY_OPT PinPDown			Move picture-in-picture window down. (VK_PINP_DOWN)
+			KEY_OPT PinPMove			Move picture-in-picture window. (VK_PINP_MOVE)
+			KEY_OPT PinPToggle			Toggle display of picture-in-picture window. (VK_PINP_TOGGLE)
+			KEY_OPT PinPUp				Move picture-in-picture window up. (VK_PINP_UP)
+			KEY_OPT PlaySpeedDown		Decrease media playback speed. (VK_PLAY_SPEED_DOWN)
+			KEY_OPT PlaySpeedReset		Reset playback to normal speed. (VK_PLAY_SPEED_RESET)
+			KEY_OPT PlaySpeedUp			Increase media playback speed. (VK_PLAY_SPEED_UP)
+			KEY_OPT RandomToggle		Toggle random media or content shuffle mode. (VK_RANDOM_TOGGLE)
+			KEY_OPT RcLowBattery		Not a physical key, but this key code is sent when the remote control battery is low. (VK_RC_LOW_BATTERY)
+			KEY_OPT RecordSpeedNext		Toggle or cycle between media recording speeds. (VK_RECORD_SPEED_NEXT)
+			KEY_OPT RfBypass			Toggle RF (radio frequency) input bypass mode (pass RF input directly to the RF output). (VK_RF_BYPASS)
+			KEY_OPT ScanChannelsToggle	Toggle scan channels mode. (VK_SCAN_CHANNELS_TOGGLE)
+			KEY_OPT ScreenModeNext		Advance display screen mode to next available mode. (VK_SCREEN_MODE_NEXT)
+			KEY_OPT Settings			Toggle display of device settings screen. (VK_SETTINGS, KEYCODE_SETTINGS)
+			KEY_OPT SplitScreenToggle	Toggle split screen mode. (VK_SPLIT_SCREEN_TOGGLE)
+			KEY_OPT STBInput			Switch the input mode on an external STB (set top box). (KEYCODE_STB_INPUT)
+			KEY_OPT STBPower			Toggle the power on an external STB (set top box). (KEYCODE_STB_POWER)
+			KEY_OPT Subtitle			Toggle display of subtitles, if available. (VK_SUBTITLE)
+			KEY_OPT Teletext			Toggle display of teletext, if available (VK_TELETEXT, KEYCODE_TV_TELETEXT).
+			KEY_OPT VideoModeNext		Advance video mode to next available mode. (VK_VIDEO_MODE_NEXT)
+			KEY_OPT Wink				Cause device to identify itself in some manner, e.g., audibly or visibly. (VK_WINK)
+			KEY_OPT ZoomToggle			Toggle between full-screen and scaled content, or alter magnification level. (VK_ZOOM, KEYCODE_TV_ZOOM_MODE)
 		END_KEY_TABLE
 
 		Some of the keys defined in the media controller standards already have
@@ -818,29 +818,29 @@ path: stylesheet-extra.include
 		following table summarizes the key values that MUST be used:
 
 		BEGIN_KEY_TABLE media-controller-dup
-			KEY_DUP AudioVolumeDown		Decrease audio volume. (VK_VOLUME_DOWN)
-			KEY_DUP AudioVolumeUp		Increase audio volume. (VK_VOLUME_UP)
-			KEY_DUP AudioVolumeMute		Toggle between muted state and prior volume level. (VK_VOLUME_MUTE)
-			KEY_DUP BrowserBack			Navigate to previous content or page in current history. (VK_BACK)
-			KEY_DUP BrowserForward		Navigate to next content or page in current history. (VK_FORWARD)
-			KEY_DUP ChannelDown			Select next (numerically or logically) lower channel. (VK_CHANNEL_DOWN)
-			KEY_DUP ChannelUp			Select next (numerically or logically) higher channel. (VK_CHANNEL_UP)
-			KEY_DUP ContextMenu			Toggle display of the on-screen menu. (VK_MENU)
-			KEY_DUP Eject				Toggle removable media to eject (open) and insert (close) state. (VK_EJECT_TOGGLE)
-			KEY_DUP End					The End key, used with keyboard entry to go to the end of content. (VK_GO_TO_END)
-			KEY_DUP Enter				The Enter key, to activate current selection or accept current input. (VK_SELECT)
-			KEY_DUP Home				The Home key, used with keyboard entry, to go to start of content. (VK_GO_TO_START)
-			KEY_DUP MediaFastForward	Initiate or continue forward playback at faster than normal speed, or increase speed if already fast forwarding. (VK_FAST_FWD)
-			KEY_DUP MediaPlay			Initiate or continue media playback at normal speed, if not currently playing at normal speed. (VK_PLAY)
-			KEY_DUP MediaPlayPause		Toggle media between play and pause states. (VK_PLAY_PAUSE)
-			KEY_DUP MediaRecord			Initiate or resume recording of currently selected media. (VK_RECORD)
-			KEY_DUP MediaRewind			Initiate or continue reverse playback at faster than normal speed, or increase speed if already rewinding. (VK_REWIND)
-			KEY_DUP MediaStop			Stop media playing, pausing, forwarding, rewinding, or recording, if not already stopped. (VK_STOP)
-			KEY_DUP MediaNextTrack		Seek to next media or program track. (VK_TRACK_NEXT)
-			KEY_DUP MediaPause			Pause the currently playing media. (VK_PAUSE)
-			KEY_DUP MediaPreviousTrack	Seek to previous media or program track. (VK_TRACK_PREV)
-			KEY_DUP Power				Toggle power state. (VK_POWER)
-			KEY_DUP Unidentified		This key value is used when an implementations is unable to identify another key value, due to either hardware, platform, or software constraints. (VK_UNDEFINED)
+			KEY_DUP_OPT AudioVolumeDown		Decrease audio volume. (VK_VOLUME_DOWN)
+			KEY_DUP_OPT AudioVolumeUp		Increase audio volume. (VK_VOLUME_UP)
+			KEY_DUP_OPT AudioVolumeMute		Toggle between muted state and prior volume level. (VK_VOLUME_MUTE)
+			KEY_DUP_OPT BrowserBack			Navigate to previous content or page in current history. (VK_BACK)
+			KEY_DUP_OPT BrowserForward		Navigate to next content or page in current history. (VK_FORWARD)
+			KEY_DUP_OPT ChannelDown			Select next (numerically or logically) lower channel. (VK_CHANNEL_DOWN)
+			KEY_DUP_OPT ChannelUp			Select next (numerically or logically) higher channel. (VK_CHANNEL_UP)
+			KEY_DUP ContextMenu				Toggle display of the on-screen menu. (VK_MENU)
+			KEY_DUP_OPT Eject				Toggle removable media to eject (open) and insert (close) state. (VK_EJECT_TOGGLE)
+			KEY_DUP End						The End key, used with keyboard entry to go to the end of content. (VK_GO_TO_END)
+			KEY_DUP Enter					The Enter key, to activate current selection or accept current input. (VK_SELECT)
+			KEY_DUP Home					The Home key, used with keyboard entry, to go to start of content. (VK_GO_TO_START)
+			KEY_DUP_OPT MediaFastForward	Initiate or continue forward playback at faster than normal speed, or increase speed if already fast forwarding. (VK_FAST_FWD)
+			KEY_DUP_OPT MediaPlay			Initiate or continue media playback at normal speed, if not currently playing at normal speed. (VK_PLAY)
+			KEY_DUP_OPT MediaPlayPause		Toggle media between play and pause states. (VK_PLAY_PAUSE)
+			KEY_DUP_OPT MediaRecord			Initiate or resume recording of currently selected media. (VK_RECORD)
+			KEY_DUP_OPT MediaRewind			Initiate or continue reverse playback at faster than normal speed, or increase speed if already rewinding. (VK_REWIND)
+			KEY_DUP_OPT MediaStop			Stop media playing, pausing, forwarding, rewinding, or recording, if not already stopped. (VK_STOP)
+			KEY_DUP_OPT MediaNextTrack		Seek to next media or program track. (VK_TRACK_NEXT)
+			KEY_DUP_OPT MediaPause			Pause the currently playing media. (VK_PAUSE)
+			KEY_DUP_OPT MediaPreviousTrack	Seek to previous media or program track. (VK_TRACK_PREV)
+			KEY_DUP_OPT Power				Toggle power state. (VK_POWER)
+			KEY_DUP Unidentified			This key value is used when an implementations is unable to identify another key value, due to either hardware, platform, or software constraints. (VK_UNDEFINED)
 		END_KEY_TABLE
 
 <h2 id="accessibility">Accessibility</h2>
