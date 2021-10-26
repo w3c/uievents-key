@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version e8cbf4ed2, updated Fri Sep 10 10:21:28 2021 -0700" name="generator">
   <link href="https://w3c.github.io/uievents-key/impl-report.html" rel="canonical">
-  <meta content="6b9d023af0c882630464eb3332b05512861fd6b7" name="document-revision">
+  <meta content="0052e3d848cae2532fbdabce17083d92687da7ac" name="document-revision">
 <style>
 
 /* Used when spelling out words or symbols phonetically. */
@@ -657,9 +657,9 @@ dfn > a.self-link::before      { content: "#"; }
     <li data-md>
      <p>Microsoft Edge 40.15063.0.0 (Windows 10)</p>
     <li data-md>
-     <p>Mozilla Firefox 55.0 (OS X 10.12.2, Windows 10, Ubuntu)</p>
+     <p>Mozilla Firefox 55.0 (OS X 10.12.2, Windows 10, Ubuntu) &amp; Nightly 95 (macOS 11.6)</p>
     <li data-md>
-     <p>Apple Safari Version 15.0 (OS X 11.6)</p>
+     <p>Apple Safari Version 15.0 (macOS 11.6)</p>
    </ul>
    <h2 class="heading settled" data-level="2" id="methodology"><span class="secno">2. </span><span class="content">Methodology</span><a class="self-link" href="#methodology"></a></h2>
    <p>Because there is no automated way to test these key press events (expecially
@@ -693,7 +693,7 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
    </table>
    <h2 class="heading settled" data-level="5" id="unnamed-key-attribute-values"><span class="secno">5. </span><span class="content">Unnamed <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key⑤">key</a></code> Attribute Values</span><a class="self-link" href="#unnamed-key-attribute-values"></a></h2>
@@ -717,21 +717,21 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><code class="key">"0"</code>...<code class="key">"9"</code>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><code class="key">" "</code>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
    </table>
    <h2 class="heading settled" data-level="6" id="named-key-attribute-values"><span class="secno">6. </span><span class="content">Named <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key⑦">key</a></code> Attribute Values</span><a class="self-link" href="#named-key-attribute-values"></a></h2>
@@ -753,7 +753,7 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td colspan="6" style="background-color: #B9C9FE">Modifier Keys
@@ -762,56 +762,56 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-AltGraph"><code class="key">"AltGraph"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-CapsLock"><code class="key">"CapsLock"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Control"><code class="key">"Control"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Meta"><code class="key">"Meta"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td>Firefox returns "OS"; Edge returns "Win"
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NumLock"><code class="key">"NumLock"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ScrollLock"><code class="key">"ScrollLock"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Shift"><code class="key">"Shift"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td colspan="6" style="background-color: #B9C9FE">Whitespace Keys
@@ -820,72 +820,72 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Tab"><code class="key">"Tab"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td colspan="6" style="background-color: #B9C9FE">Navigation Keys
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ArrowDown"><code class="key">"ArrowDown"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td>Edge returns "Down"
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ArrowLeft"><code class="key">"ArrowLeft"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td>Edge returns "Left"
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ArrowRight"><code class="key">"ArrowRight"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td>Edge returns "Right"
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ArrowUp"><code class="key">"ArrowUp"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td>Edge returns "Up"
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-End"><code class="key">"End"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Home"><code class="key">"Home"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PageDown"><code class="key">"PageDown"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PageUp"><code class="key">"PageUp"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td colspan="6" style="background-color: #B9C9FE">Editing Keys
@@ -894,44 +894,44 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Delete"><code class="key">"Delete"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td>Edge returns "Del"
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Insert"><code class="key">"Insert"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td colspan="6" style="background-color: #B9C9FE">UI Keys
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ContextMenu"><code class="key">"ContextMenu"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td>Edge returns "Apps"
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span>?</span>
+      <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Escape"><code class="key">"Escape"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td>Edge returns "Esc"
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
+      <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Pause"><code class="key">"Pause"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td colspan="6" style="background-color: #B9C9FE">Device Keys
@@ -940,7 +940,7 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td colspan="6" style="background-color: #B9C9FE">General-Purpose Function Keys
@@ -949,84 +949,84 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>Chrome opens help page and doesn’t send keyup event
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F2"><code class="key">"F2"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F3"><code class="key">"F3"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>Chrome/Firefox open Find bar. Chrome doesn’t send keyup event
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F4"><code class="key">"F4"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F5"><code class="key">"F5"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>Chrome/Firefox refresh page
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F6"><code class="key">"F6"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F7"><code class="key">"F7"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>Firefox enables/disables Caret Browsing.
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F8"><code class="key">"F8"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F9"><code class="key">"F9"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F10"><code class="key">"F10"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F11"><code class="key">"F11"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>Chrome enters/leaves fullscreen 
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-F12"><code class="key">"F12"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>Chome/Firefox open/close debug console.
    </table>
    <h3 class="heading settled" data-level="6.2" id="editing-keys"><span class="secno">6.2. </span><span class="content">Editing and IME Named Keys</span><a class="self-link" href="#editing-keys"></a></h3>
@@ -1049,63 +1049,63 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Copy"><code class="key">"Copy"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-CrSel"><code class="key">"CrSel"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Cut"><code class="key">"Cut"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-EraseEof"><code class="key">"EraseEof"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ExSel"><code class="key">"ExSel"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Paste"><code class="key">"Paste"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Redo"><code class="key">"Redo"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Undo"><code class="key">"Undo"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td colspan="6" style="background-color: #B9C9FE">IME and Composition Keys
@@ -1114,119 +1114,119 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Alphanumeric"><code class="key">"Alphanumeric"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-CodeInput"><code class="key">"CodeInput"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Compose"><code class="key">"Compose"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Convert"><code class="key">"Convert"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Dead"><code class="key">"Dead"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-FinalMode"><code class="key">"FinalMode"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GroupFirst"><code class="key">"GroupFirst"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GroupLast"><code class="key">"GroupLast"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GroupNext"><code class="key">"GroupNext"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-GroupPrevious"><code class="key">"GroupPrevious"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ModeChange"><code class="key">"ModeChange"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NextCandidate"><code class="key">"NextCandidate"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-NonConvert"><code class="key">"NonConvert"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-PreviousCandidate"><code class="key">"PreviousCandidate"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Process"><code class="key">"Process"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-SingleCandidate"><code class="key">"SingleCandidate"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td colspan="6" style="background-color: #B9C9FE">IME keys specific to Korean keyboards
@@ -1235,21 +1235,21 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-HanjaMode"><code class="key">"HanjaMode"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-JunjaMode"><code class="key">"JunjaMode"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td colspan="6" style="background-color: #B9C9FE">IME keys specific to Japanese keyboards
@@ -1258,70 +1258,70 @@ dfn > a.self-link::before      { content: "#"; }
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Hankaku"><code class="key">"Hankaku"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Hiragana"><code class="key">"Hiragana"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-HiraganaKatakana"><code class="key">"HiraganaKatakana"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-KanaMode"><code class="key">"KanaMode"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-KanjiMode"><code class="key">"KanjiMode"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Katakana"><code class="key">"Katakana"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Romaji"><code class="key">"Romaji"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-Zenkaku"><code class="key">"Zenkaku"</code></a>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
      <tr>
       <td class="key-table-key"><a href="https://w3c.github.io/uievents-key/#key-ZenkakuHankaku"><code class="key">"ZenkakuHankaku"</code></a>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
-      <td class="key-impl-data"><span class="key-impl-no">Fail</span>
+      <td class="key-impl-data"><span>?</span>
       <td>
    </table>
    <h3 class="heading settled" data-level="6.3" id="optional-keys"><span class="secno">6.3. </span><span class="content">Device-specific Named Keys</span><a class="self-link" href="#optional-keys"></a></h3>

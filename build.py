@@ -190,7 +190,7 @@ class Parser():
 
 		pattern = r'^\s*KEY_IMPL(?P<nolink>_NOLINK)? (?P<key>[\w-]+)'
 		for ua in USER_AGENTS:
-			pattern += r'\s+(?P<%s>\w+)' % ua
+			pattern += r'\s+(?P<%s>[YF\?])' % ua
 		pattern += r'\s*(?P<Notes>\w.*)?$'
 		m = re.match(pattern, line)
 		if m:

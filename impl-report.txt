@@ -32,8 +32,8 @@ path: stylesheet-extra.include
 	The following versions of each user agents were tested:
 	* Google Chrome 60.0.3112.113 (OS X 10.12.2, Windows 10, Ubuntu)
 	* Microsoft Edge 40.15063.0.0 (Windows 10)
-	* Mozilla Firefox 55.0 (OS X 10.12.2, Windows 10, Ubuntu)
-	* Apple Safari Version 15.0 (OS X 11.6)
+	* Mozilla Firefox 55.0 (OS X 10.12.2, Windows 10, Ubuntu) & Nightly 95 (macOS 11.6)
+	* Apple Safari Version 15.0 (macOS 11.6)
 
 <h2 id="methodology">Methodology</h2>
 
@@ -80,7 +80,7 @@ path: stylesheet-extra.include
 	<td class="key-impl-data"><span class="key-impl-yes">Pass</span></td>
 	<td class="key-impl-data"><span class="key-impl-yes">Pass</span></td>
 	<td class="key-impl-data"><span class="key-impl-yes">Pass</span></td>
-	<td class="key-impl-data"><span class="key-impl-no">Fail</span></td>
+	<td class="key-impl-data"><span class="key-impl-yes">Pass</span></td>
 	<td></td>
 </tr>
 </tbody></table>
@@ -96,9 +96,9 @@ path: stylesheet-extra.include
 
 		BEGIN_KEY_IMPL_TABLE unnamed keys
 			<!--     Key-name					Chrome	Edge	Firefox	Safari	Notes	-->
-			KEY_IMPL_NOLINK A-Z					Y		Y		Y		F
-			KEY_IMPL_NOLINK 0-9					Y		Y		Y		F
-			KEY_IMPL_NOLINK Space				Y		Y		Y		F		
+			KEY_IMPL_NOLINK A-Z					Y		Y		Y		Y
+			KEY_IMPL_NOLINK 0-9					Y		Y		Y		Y
+			KEY_IMPL_NOLINK Space				Y		Y		Y		Y		
 		END_KEY_IMPL_TABLE
 
 <h2 id="named-key-attribute-values">Named {{KeyboardEvent/key}} Attribute Values</h2>
@@ -110,58 +110,58 @@ path: stylesheet-extra.include
 	
 		BEGIN_KEY_IMPL_TABLE required named keys
 			<!--     Key-name					Chrome	Edge	Firefox	Safari	Notes	-->
-			KEY_IMPL Unidentified				Y		Y		Y		F
+			KEY_IMPL Unidentified				Y		Y		Y		Y
 
 			KEY_IMPL_SECTION Modifier Keys
-			KEY_IMPL Alt						Y		Y		Y		F
-			KEY_IMPL AltGraph					Y		F		Y		F
-			KEY_IMPL CapsLock					Y		Y		Y		F
-			KEY_IMPL Control					Y		Y		Y		F
-			KEY_IMPL Meta						Y		F		F		F		Firefox returns "OS"; Edge returns "Win"
-			KEY_IMPL NumLock					Y		Y		Y		F
-			KEY_IMPL ScrollLock					Y		Y		Y		F
-			KEY_IMPL Shift						Y		Y		Y		F
+			KEY_IMPL Alt						Y		Y		Y		Y
+			KEY_IMPL AltGraph					Y		Y		Y		?
+			KEY_IMPL CapsLock					Y		Y		Y		Y
+			KEY_IMPL Control					Y		Y		Y		Y
+			KEY_IMPL Meta						Y		Y		Y		Y
+			KEY_IMPL NumLock					Y		Y		Y		?
+			KEY_IMPL ScrollLock					Y		Y		Y		?
+			KEY_IMPL Shift						Y		Y		Y		Y
 
 			KEY_IMPL_SECTION Whitespace Keys
-			KEY_IMPL Enter						Y		Y		Y		F
-			KEY_IMPL Tab						Y		Y		Y		F
+			KEY_IMPL Enter						Y		Y		Y		Y
+			KEY_IMPL Tab						Y		Y		Y		Y
 
 			KEY_IMPL_SECTION Navigation Keys
-			KEY_IMPL ArrowDown					Y		F		Y		F		Edge returns "Down"
-			KEY_IMPL ArrowLeft					Y		F		Y		F		Edge returns "Left"
-			KEY_IMPL ArrowRight					Y		F		Y		F		Edge returns "Right"
-			KEY_IMPL ArrowUp					Y		F		Y		F		Edge returns "Up"
-			KEY_IMPL End						Y		Y		Y		F
-			KEY_IMPL Home						Y		Y		Y		F
-			KEY_IMPL PageDown					Y		Y		Y		F
-			KEY_IMPL PageUp						Y		Y		Y		F
+			KEY_IMPL ArrowDown					Y		Y		Y		Y
+			KEY_IMPL ArrowLeft					Y		Y		Y		Y
+			KEY_IMPL ArrowRight					Y		Y		Y		Y
+			KEY_IMPL ArrowUp					Y		Y		Y		Y
+			KEY_IMPL End						Y		Y		Y		Y
+			KEY_IMPL Home						Y		Y		Y		Y
+			KEY_IMPL PageDown					Y		Y		Y		Y
+			KEY_IMPL PageUp						Y		Y		Y		Y
 
 			KEY_IMPL_SECTION Editing Keys
-			KEY_IMPL Backspace					Y		Y		Y		F
-			KEY_IMPL Delete						Y		F		Y		F		Edge returns "Del"
-			KEY_IMPL Insert						Y		Y		Y		F
+			KEY_IMPL Backspace					Y		Y		Y		Y
+			KEY_IMPL Delete						Y		Y		Y		Y
+			KEY_IMPL Insert						Y		Y		Y		?
 
 			KEY_IMPL_SECTION UI Keys
-			KEY_IMPL ContextMenu				Y		F		Y		F		Edge returns "Apps"
-			KEY_IMPL Escape						Y		F		Y		F		Edge returns "Esc"
-			KEY_IMPL Pause						Y		Y		Y		F
+			KEY_IMPL ContextMenu				Y		Y		Y		?
+			KEY_IMPL Escape						Y		Y		Y		Y
+			KEY_IMPL Pause						Y		Y		Y		?
 
 			KEY_IMPL_SECTION Device Keys
-			KEY_IMPL PrintScreen				Y		Y		Y		F
+			KEY_IMPL PrintScreen				Y		Y		Y		?
 
 			KEY_IMPL_SECTION General-Purpose Function Keys
-			KEY_IMPL F1							Y		Y		Y		F		Chrome opens help page and doesn't send keyup event
-			KEY_IMPL F2							Y		Y		Y		F
-			KEY_IMPL F3							Y		Y		Y		F		Chrome/Firefox open Find bar. Chrome doesn't send keyup event
-			KEY_IMPL F4							Y		Y		Y		F
-			KEY_IMPL F5							Y		Y		Y		F		Chrome/Firefox refresh page
-			KEY_IMPL F6							Y		Y		Y		F
-			KEY_IMPL F7							Y		Y		Y		F		Firefox enables/disables Caret Browsing.
-			KEY_IMPL F8							Y		Y		Y		F
-			KEY_IMPL F9							Y		Y		Y		F
-			KEY_IMPL F10						Y		Y		Y		F
-			KEY_IMPL F11						Y		Y		Y		F		Chrome enters/leaves fullscreen   
-			KEY_IMPL F12						Y		Y		Y		F		Chome/Firefox open/close debug console.
+			KEY_IMPL F1							Y		Y		Y		Y		Chrome opens help page and doesn't send keyup event
+			KEY_IMPL F2							Y		Y		Y		Y
+			KEY_IMPL F3							Y		Y		Y		Y		Chrome/Firefox open Find bar. Chrome doesn't send keyup event
+			KEY_IMPL F4							Y		Y		Y		Y
+			KEY_IMPL F5							Y		Y		Y		Y		Chrome/Firefox refresh page
+			KEY_IMPL F6							Y		Y		Y		Y
+			KEY_IMPL F7							Y		Y		Y		Y		Firefox enables/disables Caret Browsing.
+			KEY_IMPL F8							Y		Y		Y		Y
+			KEY_IMPL F9							Y		Y		Y		Y
+			KEY_IMPL F10						Y		Y		Y		Y
+			KEY_IMPL F11						Y		Y		Y		Y		Chrome enters/leaves fullscreen   
+			KEY_IMPL F12						Y		Y		Y		Y		Chome/Firefox open/close debug console.
 		END_KEY_IMPL_TABLE
 
 	<h3 id="editing-keys">Editing and IME Named Keys</h3>
@@ -173,51 +173,51 @@ path: stylesheet-extra.include
 			<!--     Key-name					Chrome	Edge	Firefox	Safari	Notes	-->
 
 			KEY_IMPL_SECTION Editing Keys
-			KEY_IMPL Clear						Y		Y		Y		F
-			KEY_IMPL Copy						F		F		F		F
-			KEY_IMPL CrSel						Y		Y		Y		F
-			KEY_IMPL Cut						F		F		F		F
-			KEY_IMPL EraseEof					Y		Y		Y		F
-			KEY_IMPL ExSel						Y		Y		Y		F
-			KEY_IMPL Paste						F		F		F		F
-			KEY_IMPL Redo						F		F		Y		F
-			KEY_IMPL Undo						Y		F		Y		F
+			KEY_IMPL Clear						Y		Y		Y		?
+			KEY_IMPL Copy						F		F		F		?
+			KEY_IMPL CrSel						Y		Y		Y		?
+			KEY_IMPL Cut						F		F		F		?
+			KEY_IMPL EraseEof					Y		Y		Y		?
+			KEY_IMPL ExSel						Y		Y		Y		?
+			KEY_IMPL Paste						F		F		F		?
+			KEY_IMPL Redo						F		F		Y		?
+			KEY_IMPL Undo						Y		F		Y		?
 
 			KEY_IMPL_SECTION IME and Composition Keys
-			KEY_IMPL AllCandidates				F		F		F		F
-			KEY_IMPL Alphanumeric				Y		F		Y		F
-			KEY_IMPL CodeInput					F		F		F		F
-			KEY_IMPL Compose					F		F		F		F
-			KEY_IMPL Convert					Y		Y		Y		F
-			KEY_IMPL Dead						F		F		F		F
-			KEY_IMPL FinalMode					Y		F		Y		F
-			KEY_IMPL GroupFirst					F		F		F		F
-			KEY_IMPL GroupLast					F		F		F		F
-			KEY_IMPL GroupNext					F		F		F		F
-			KEY_IMPL GroupPrevious				F		F		F		F
-			KEY_IMPL ModeChange					Y		Y		Y		F
-			KEY_IMPL NextCandidate				F		F		F		F
-			KEY_IMPL NonConvert					Y		Y		Y		F
-			KEY_IMPL PreviousCandidate			F		F		F		F
-			KEY_IMPL Process					Y		F		F		F
-			KEY_IMPL SingleCandidate			F		F		F		F
+			KEY_IMPL AllCandidates				F		F		F		?
+			KEY_IMPL Alphanumeric				Y		F		Y		?
+			KEY_IMPL CodeInput					F		F		F		?
+			KEY_IMPL Compose					F		F		F		?
+			KEY_IMPL Convert					Y		Y		Y		?
+			KEY_IMPL Dead						F		F		F		?
+			KEY_IMPL FinalMode					Y		F		Y		?
+			KEY_IMPL GroupFirst					F		F		F		?
+			KEY_IMPL GroupLast					F		F		F		?
+			KEY_IMPL GroupNext					F		F		F		?
+			KEY_IMPL GroupPrevious				F		F		F		?
+			KEY_IMPL ModeChange					Y		Y		Y		?
+			KEY_IMPL NextCandidate				F		F		F		?
+			KEY_IMPL NonConvert					Y		Y		Y		?
+			KEY_IMPL PreviousCandidate			F		F		F		?
+			KEY_IMPL Process					Y		F		F		?
+			KEY_IMPL SingleCandidate			F		F		F		?
 
 			KEY_IMPL_SECTION IME keys specific to Korean keyboards
-			KEY_IMPL HangulMode					Y		F		Y		F
-			KEY_IMPL HanjaMode					Y		F		Y		F
-			KEY_IMPL JunjaMode					Y		Y		Y		F
+			KEY_IMPL HangulMode					Y		F		Y		?
+			KEY_IMPL HanjaMode					Y		F		Y		?
+			KEY_IMPL JunjaMode					Y		Y		Y		?
 
 			KEY_IMPL_SECTION IME keys specific to Japanese keyboards
-			KEY_IMPL Eisu						F		F		F		F
-			KEY_IMPL Hankaku					Y		F		Y		F
-			KEY_IMPL Hiragana					Y		F		Y		F
-			KEY_IMPL HiraganaKatakana			F		F		F		F
-			KEY_IMPL KanaMode					Y		Y		Y		F
-			KEY_IMPL KanjiMode					Y		Y		Y		F
-			KEY_IMPL Katakana					Y		F		Y		F
-			KEY_IMPL Romaji						Y		F		Y		F
-			KEY_IMPL Zenkaku					Y		F		Y		F
-			KEY_IMPL ZenkakuHankaku				F		F		F		F
+			KEY_IMPL Eisu						F		F		F		?
+			KEY_IMPL Hankaku					Y		F		Y		?
+			KEY_IMPL Hiragana					Y		F		Y		?
+			KEY_IMPL HiraganaKatakana			F		F		F		?
+			KEY_IMPL KanaMode					Y		Y		Y		?
+			KEY_IMPL KanjiMode					Y		Y		Y		?
+			KEY_IMPL Katakana					Y		F		Y		?
+			KEY_IMPL Romaji						Y		F		Y		?
+			KEY_IMPL Zenkaku					Y		F		Y		?
+			KEY_IMPL ZenkakuHankaku				F		F		F		?
 
 		END_KEY_IMPL_TABLE
 
