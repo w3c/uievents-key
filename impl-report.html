@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version e8cbf4ed2, updated Fri Sep 10 10:21:28 2021 -0700" name="generator">
   <link href="https://w3c.github.io/uievents-key/impl-report.html" rel="canonical">
-  <meta content="6dbec08a85f266b103552e2cf3eb6e78f8c0056a" name="document-revision">
+  <meta content="14221853d91f52146f5aacbefe3bb58a4adbdedb" name="document-revision">
 <style>
 
 /* Used when spelling out words or symbols phonetically. */
@@ -616,17 +616,17 @@ dfn > a.self-link::before      { content: "#"; }
      <a href="#results"><span class="secno">3</span> <span class="content">Results</span></a>
      <ol class="toc">
       <li><a href="#summary"><span class="secno">3.1</span> <span class="content">Summary</span></a>
+      <li>
+       <a href="#raw-results"><span class="secno">3.2</span> <span class="content">Raw Results</span></a>
+       <ol class="toc">
+        <li><a href="#key-attribute"><span class="secno">3.2.1</span> <span class="content">The <code class="idl"><span>key</span></code> Attribute</span></a>
+        <li><a href="#required-unnamed-key-attribute-values"><span class="secno">3.2.2</span> <span class="content">Required Unnamed Keys</span></a>
+        <li><a href="#required-named-key-attribute-values"><span class="secno">3.2.3</span> <span class="content">Required Named Keys</span></a>
+        <li><a href="#optional-editing-named-key-attribute-values"><span class="secno">3.2.4</span> <span class="content">Optional Editing Named Keys</span></a>
+        <li><a href="#optional-device-specific-named-key-attribute-values"><span class="secno">3.2.5</span> <span class="content">Optional Device-specific Named Keys</span></a>
+       </ol>
      </ol>
-    <li><a href="#key-attribute"><span class="secno">4</span> <span class="content">The <code class="idl"><span>key</span></code> Attribute</span></a>
-    <li><a href="#unnamed-key-attribute-values"><span class="secno">5</span> <span class="content">Unnamed <code class="idl"><span>key</span></code> Attribute Values</span></a>
-    <li>
-     <a href="#named-key-attribute-values"><span class="secno">6</span> <span class="content">Named <code class="idl"><span>key</span></code> Attribute Values</span></a>
-     <ol class="toc">
-      <li><a href="#standard-required-keys"><span class="secno">6.1</span> <span class="content">Standard Named Keys</span></a>
-      <li><a href="#editing-keys"><span class="secno">6.2</span> <span class="content">Editing and IME Named Keys</span></a>
-      <li><a href="#optional-keys"><span class="secno">6.3</span> <span class="content">Device-specific Named Keys</span></a>
-     </ol>
-    <li><a href="#acknowledgements-contributors"><span class="secno">7</span> <span class="content">Acknowledgements</span></a>
+    <li><a href="#acknowledgements-contributors"><span class="secno">4</span> <span class="content">Acknowledgements</span></a>
     <li>
      <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ol class="toc">
@@ -688,7 +688,19 @@ one. Instead, a sampling of 63 of the most common keys are tested.</p>
    <p>In addition, the specification describes a number of optional Named values that may be
 	used to support multimedia or legacy keyboards. Of these, manual tests confirm that
 	39 of these Pass in at least 2 independent implementations.</p>
-   <h2 class="heading settled" data-level="4" id="key-attribute"><span class="secno">4. </span><span class="content">The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key③">key</a></code> Attribute</span><a class="self-link" href="#key-attribute"></a></h2>
+   <h3 class="heading settled" data-level="3.2" id="raw-results"><span class="secno">3.2. </span><span class="content">Raw Results</span><a class="self-link" href="#raw-results"></a></h3>
+   <p>The following tables present the result of the manual tests.</p>
+   <p>Entries marked "Pass" generate the expected value when the corresponding key is
+	pressed.</p>
+   <p>Entries marked "Fail" generate some value other than the expected value when the
+	corresponding key is pressed. Wherever possible, a Note is included that provides more
+	information about the failure.</p>
+   <p>Entries marked with a "?" have not been tested, typically because devices
+	with that key were not available (for example, because keyboards with those keys are
+	not supported on that platform).</p>
+   <h4 class="heading settled" data-level="3.2.1" id="key-attribute"><span class="secno">3.2.1. </span><span class="content">The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key③">key</a></code> Attribute</span><a class="self-link" href="#key-attribute"></a></h4>
+   <p>The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key④">key</a></code> attribute (defined in <a data-link-type="biblio" href="#biblio-uievents">[UIEvents]</a>) is present in all
+		browsers tested.</p>
    <table class="data-table full-width" id="key-attribute-impl">
     <thead>
      <tr>
@@ -700,19 +712,19 @@ one. Instead, a sampling of 63 of the most common keys are tested.</p>
       <th>Notes
     <tbody>
      <tr>
-      <td><code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key④">key</a></code>
+      <td><code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key⑤">key</a></code>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
    </table>
-   <h2 class="heading settled" data-level="5" id="unnamed-key-attribute-values"><span class="secno">5. </span><span class="content">Unnamed <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key⑤">key</a></code> Attribute Values</span><a class="self-link" href="#unnamed-key-attribute-values"></a></h2>
+   <h4 class="heading settled" data-level="3.2.2" id="required-unnamed-key-attribute-values"><span class="secno">3.2.2. </span><span class="content">Required Unnamed Keys</span><a class="self-link" href="#required-unnamed-key-attribute-values"></a></h4>
    <p>The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key⑥">key</a></code> attribute can contain any character that can be
-	produced by any key in any locale, so it is beyond the scope of this document
-	to attempt to enumerate all possible values that can be contained.</p>
+		produced by any key in any locale, so it is beyond the scope of this document
+		to attempt to enumerate all possible values that can be contained.</p>
    <p>This section provides a basic sampling of key types and identifies if those
-	keys are generally supported by the user agent.</p>
+		keys are generally supported by the user agent.</p>
    <table class="data-table full-width" id="key-table-unnamed">
     <thead>
      <tr>
@@ -752,8 +764,7 @@ one. Instead, a sampling of 63 of the most common keys are tested.</p>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>
    </table>
-   <h2 class="heading settled" data-level="6" id="named-key-attribute-values"><span class="secno">6. </span><span class="content">Named <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key⑦">key</a></code> Attribute Values</span><a class="self-link" href="#named-key-attribute-values"></a></h2>
-   <h3 class="heading settled" data-level="6.1" id="standard-required-keys"><span class="secno">6.1. </span><span class="content">Standard Named Keys</span><a class="self-link" href="#standard-required-keys"></a></h3>
+   <h4 class="heading settled" data-level="3.2.3" id="required-named-key-attribute-values"><span class="secno">3.2.3. </span><span class="content">Required Named Keys</span><a class="self-link" href="#required-named-key-attribute-values"></a></h4>
    <p>This section lists the basic set of named key attributes that corresponds
 		to values generated by a standard keyboard layout.</p>
    <table class="data-table full-width" id="key-table-required">
@@ -1047,7 +1058,7 @@ one. Instead, a sampling of 63 of the most common keys are tested.</p>
       <td class="key-impl-data"><span class="key-impl-yes">Pass</span>
       <td>Chome/Firefox open/close debug console.
    </table>
-   <h3 class="heading settled" data-level="6.2" id="editing-keys"><span class="secno">6.2. </span><span class="content">Editing and IME Named Keys</span><a class="self-link" href="#editing-keys"></a></h3>
+   <h4 class="heading settled" data-level="3.2.4" id="optional-editing-named-key-attribute-values"><span class="secno">3.2.4. </span><span class="content">Optional Editing Named Keys</span><a class="self-link" href="#optional-editing-named-key-attribute-values"></a></h4>
    <p>Since some of these values are dependent on specific keyboards, user agents
 		are not not expected to support all of these values.</p>
    <table class="data-table full-width" id="key-table-editing">
@@ -1342,7 +1353,7 @@ one. Instead, a sampling of 63 of the most common keys are tested.</p>
       <td class="key-impl-data"><span>?</span>
       <td>
    </table>
-   <h3 class="heading settled" data-level="6.3" id="optional-keys"><span class="secno">6.3. </span><span class="content">Device-specific Named Keys</span><a class="self-link" href="#optional-keys"></a></h3>
+   <h4 class="heading settled" data-level="3.2.5" id="optional-device-specific-named-key-attribute-values"><span class="secno">3.2.5. </span><span class="content">Optional Device-specific Named Keys</span><a class="self-link" href="#optional-device-specific-named-key-attribute-values"></a></h4>
    <p>This sections lists named key attributes that correspond to values
 		generated by keys found on specialized keyboards, for example:</p>
    <ul>
@@ -2843,7 +2854,7 @@ one. Instead, a sampling of 63 of the most common keys are tested.</p>
       <td class="key-impl-data"><span class="key-impl-no">Fail</span>
       <td>
    </table>
-   <h2 class="heading settled" data-level="7" id="acknowledgements-contributors"><span class="secno">7. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements-contributors"></a></h2>
+   <h2 class="heading settled" data-level="4" id="acknowledgements-contributors"><span class="secno">4. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements-contributors"></a></h2>
    <p>Special thanks to Masayuki Nakano (Mozilla) for his work gathering some of the
 	implementation data that was used in this document - particularly those relating
 	to IMEs and composition.</p>
@@ -2888,7 +2899,7 @@ one. Instead, a sampling of 63 of the most common keys are tested.</p>
   <aside class="dfn-panel" data-for="term-for-keyboardevent">
    <a href="https://www.w3.org/TR/uievents/#keyboardevent">https://www.w3.org/TR/uievents/#keyboardevent</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-keyboardevent">4. The key Attribute</a>
+    <li><a href="#ref-for-keyboardevent">3.2.1. The key Attribute</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dom-keyboardevent-key">
@@ -2896,24 +2907,23 @@ one. Instead, a sampling of 63 of the most common keys are tested.</p>
    <ul>
     <li><a href="#ref-for-dom-keyboardevent-key">1. Introduction</a> <a href="#ref-for-dom-keyboardevent-key①">(2)</a>
     <li><a href="#ref-for-dom-keyboardevent-key②">3.1. Summary</a>
-    <li><a href="#ref-for-dom-keyboardevent-key③">4. The key Attribute</a> <a href="#ref-for-dom-keyboardevent-key④">(2)</a>
-    <li><a href="#ref-for-dom-keyboardevent-key⑤">5. Unnamed key Attribute Values</a> <a href="#ref-for-dom-keyboardevent-key⑥">(2)</a>
-    <li><a href="#ref-for-dom-keyboardevent-key⑦">6. Named key Attribute Values</a>
+    <li><a href="#ref-for-dom-keyboardevent-key③">3.2.1. The key Attribute</a> <a href="#ref-for-dom-keyboardevent-key④">(2)</a> <a href="#ref-for-dom-keyboardevent-key⑤">(3)</a>
+    <li><a href="#ref-for-dom-keyboardevent-key⑥">3.2.2. Required Unnamed Keys</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-">
    <a href="http://www.w3.org/TR/uievents-key/#">http://www.w3.org/TR/uievents-key/#</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#termref-for-">5. Unnamed key Attribute Values</a>
-    <li><a href="#termref-for-">6.1. Standard Named Keys</a>
-    <li><a href="#termref-for-">6.2. Editing and IME Named Keys</a>
-    <li><a href="#termref-for-">6.3. Device-specific Named Keys</a>
+    <li><a href="#termref-for-">3.2.2. Required Unnamed Keys</a>
+    <li><a href="#termref-for-">3.2.3. Required Named Keys</a>
+    <li><a href="#termref-for-">3.2.4. Optional Editing Named Keys</a>
+    <li><a href="#termref-for-">3.2.5. Optional Device-specific Named Keys</a>
    </ul>
   </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
-    <a data-link-type="biblio">[uievents]</a> defines the following terms:
+    <a data-link-type="biblio">[UIEvents]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-keyboardevent">KeyboardEvent</span>
      <li><span class="dfn-paneled" id="term-for-dom-keyboardevent-key">key</span>
@@ -2929,7 +2939,7 @@ one. Instead, a sampling of 63 of the most common keys are tested.</p>
   <dl>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
-   <dt id="biblio-uievents">[UIEVENTS]
+   <dt id="biblio-uievents">[UIEvents]
    <dd>Gary Kacmarcik; Travis Leithead; Doug Schepers. <a href="https://www.w3.org/TR/uievents/"><cite>UI Events</cite></a>. 30 May 2019. WD. URL: <a href="https://www.w3.org/TR/uievents/">https://www.w3.org/TR/uievents/</a>
    <dt id="biblio-uievents-code">[UIEvents-Code]
    <dd>Gary Kacmarcik; Travis Leithead. <a href="https://www.w3.org/TR/uievents-code/"><cite>UI Events KeyboardEvent code Values</cite></a>. 1 June 2017. CR. URL: <a href="https://www.w3.org/TR/uievents-code/">https://www.w3.org/TR/uievents-code/</a>
