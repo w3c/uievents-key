@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD" rel="stylesheet">
   <meta content="Bikeshed version e8cbf4ed2, updated Fri Sep 10 10:21:28 2021 -0700" name="generator">
   <link href="http://www.w3.org/TR/uievents-key/" rel="canonical">
-  <meta content="d9391643b0f98fb37d2c1edb4a7290178871e94f" name="document-revision">
+  <meta content="887f46a1e98cca59969899761a63ef674951b8e8" name="document-revision">
 <style>
 
 /* Used when spelling out words or symbols phonetically. */
@@ -635,8 +635,8 @@ except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-
 	more specialized specifications as noted in this document.</p>
    <p>A conforming implementation of the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent" id="ref-for-interface-keyboardevent⑦">KeyboardEvent</a></code> interface MUST support
 	this set of values for use in the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key⑨">key</a></code> attributes,
-	although not all values MAY be available on all platforms or devices.</p>
-   <p>Future versions of this specification MAY include <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⓪">key</a></code> values not included
+	although not all values may be available on all platforms or devices.</p>
+   <p>Future versions of this specification may include <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⓪">key</a></code> values not included
 	here, which have become common since the publication of this specification.</p>
    <p class="note" role="note"> Note: While every attempt has been made to make this list of values as complete as possible,
 	new values will periodically need to be defined as new input devices are introduced.
@@ -1306,7 +1306,7 @@ except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-
 		are encoded as <code class="key">"0"</code> ... <code class="key">"9"</code>, but some
 		multimedia keypads have buttons numbered from <code class="keycap">1</code> ... <code class="keycap">12</code>.
 		In these instances, the <code class="keycap">10</code> key is often labeled <code class="keycap">10 /0</code>.</p>
-   <p class="note" role="note"> Note: The <code class="keycap">10</code> or <code class="keycap">10 /0</code> key MUST be assigned a <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①①">key</a></code> value of <code class="key">"0"</code>. </p>
+   <p class="note" role="note"> Note: If supported, the <code class="keycap">10</code> or <code class="keycap">10 /0</code> key MUST be assigned a <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①①">key</a></code> value of <code class="key">"0"</code>. </p>
    <table class="data-table full-width" id="key-table-multimedia-numpad">
     <thead>
      <tr>
@@ -2021,7 +2021,8 @@ Interface on UPnP Networks and the Internet <a data-link-type="biblio" href="#bi
    </table>
    <p>Some of the keys defined in the media controller standards already have
 		appropriate keys defined in other sections of this specification. These
-		following table summarizes the key values that MUST be used:</p>
+		following table summarizes the key values that MUST be used if these keys are
+		supported:</p>
    <table class="data-table full-width" id="key-table-media-controller-dup">
     <thead>
      <tr>

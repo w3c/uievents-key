@@ -325,9 +325,9 @@ path: stylesheet-extra.include
 
 	A conforming implementation of the {{KeyboardEvent}} interface MUST support
 	this set of values for use in the {{KeyboardEvent/key}} attributes,
-	although not all values MAY be available on all platforms or devices.
+	although not all values may be available on all platforms or devices.
 
-	Future versions of this specification MAY include {{KeyboardEvent/key}} values not included
+	Future versions of this specification may include {{KeyboardEvent/key}} values not included
 	here, which have become common since the publication of this specification.
 
 	<p class="note">	
@@ -595,7 +595,7 @@ path: stylesheet-extra.include
 		In these instances, the KEYCAP{10} key is often labeled KEYCAP{10 /0}.
 
 		<p class="note">
-		Note: The KEYCAP{10} or KEYCAP{10 /0} key MUST be assigned a
+		Note: If supported, the KEYCAP{10} or KEYCAP{10 /0} key MUST be assigned a
 		{{KeyboardEvent/key}} value of KEY_NOLINK{0}.
 		</p>
 
@@ -815,7 +815,8 @@ path: stylesheet-extra.include
 
 		Some of the keys defined in the media controller standards already have
 		appropriate keys defined in other sections of this specification. These
-		following table summarizes the key values that MUST be used:
+		following table summarizes the key values that MUST be used if these keys are
+		supported:
 
 		BEGIN_KEY_TABLE media-controller-dup
 			KEY_DUP_OPT AudioVolumeDown		Decrease audio volume. (VK_VOLUME_DOWN)
