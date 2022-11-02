@@ -866,11 +866,7 @@ path: stylesheet-extra.include
 <h2 id="i18n">I18n</h2>
 
 	The <a href="https://www.w3.org/International/i18n-drafts/techniques/shortchecklist">short I18n checklist</a>
-	has been completed and the following item requires a comment:
-	
-	* <em>"describes a format or data that is likely to need localisation"</em>:
-		This specification defines values that are not intended for display to the user, although there
-		is nothing preventing sites from exposing these values. 
+	has been completed and none of the items apply.
 
 <h2 id="security">Security Considerations</h2>
 
