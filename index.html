@@ -3,10 +3,12 @@
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <title>UI Events KeyboardEvent key Values</title>
-  <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD" rel="stylesheet">
-  <meta content="Bikeshed version e8cbf4ed2, updated Fri Sep 10 10:21:28 2021 -0700" name="generator">
+  <meta content="WD" name="w3c-status">
+  <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD" rel="stylesheet">
+  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
+  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
   <link href="http://www.w3.org/TR/uievents-key/" rel="canonical">
-  <meta content="887f46a1e98cca59969899761a63ef674951b8e8" name="document-revision">
+  <meta content="b23d355c7db78b8b6c3041e1bdfb8ca10f777313" name="document-revision">
 <style>
 
 /* Used when spelling out words or symbols phonetically. */
@@ -276,6 +278,16 @@ figcaption:not(.no-marker)::before {
 
 .dfn-paneled { cursor: pointer; }
 </style>
+<style>/* style-issues */
+
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -351,29 +363,34 @@ dfn > a.self-link::before      { content: "#"; }
     </style>
  <body class="h-entry">
   <div class="head">
-   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
+   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1>UI Events KeyboardEvent key Values</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">W3C Working Draft, <time class="dt-updated" datetime="2021-10-26">26 October 2021</time></span></h2>
-   <div data-fill-with="spec-metadata">
-    <dl>
-     <dt>This version:
-     <dd><a class="u-url" href="https://www.w3.org/TR/2021/WD-uievents-key-20211026/">https://www.w3.org/TR/2021/WD-uievents-key-20211026/</a>
-     <dt>Latest published version:
-     <dd><a href="http://www.w3.org/TR/uievents-key/">http://www.w3.org/TR/uievents-key/</a>
-     <dt>Editor's Draft:
-     <dd><a href="https://w3c.github.io/uievents-key/">https://w3c.github.io/uievents-key/</a>
-     <dt>Previous Versions:
-     <dd><a href rel="prev"></a>
-     <dd><a href="http://www.w3.org/TR/2015/WD-uievents-key-20151215/" rel="prev">http://www.w3.org/TR/2015/WD-uievents-key-20151215/</a>
-     <dt>Issue Tracking:
-     <dd><a href="https://github.com/w3c/uievents-key/issues/">GitHub</a>
-     <dt class="editor">Editors:
-     <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:garykac@google.com">Gary Kacmarcik</a> (<span class="p-org org">Google</span>)
-     <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:travil@microsoft.com">Travis Leithead</a> (<span class="p-org org">Microsoft</span>)
-    </dl>
-   </div>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#WD">W3C Working Draft</a>, <time class="dt-updated" datetime="2022-11-02">2 November 2022</time></p>
+   <details open>
+    <summary>More details about this document</summary>
+    <div data-fill-with="spec-metadata">
+     <dl>
+      <dt>This version:
+      <dd><a class="u-url" href="https://www.w3.org/TR/2022/WD-uievents-key-20221102/">https://www.w3.org/TR/2022/WD-uievents-key-20221102/</a>
+      <dt>Latest published version:
+      <dd><a href="http://www.w3.org/TR/uievents-key/">http://www.w3.org/TR/uievents-key/</a>
+      <dt>Editor's Draft:
+      <dd><a href="https://w3c.github.io/uievents-key/">https://w3c.github.io/uievents-key/</a>
+      <dt>Previous Versions:
+      <dd><a href rel="prev"></a>
+      <dd><a href="http://www.w3.org/TR/2015/WD-uievents-key-20151215/" rel="prev">http://www.w3.org/TR/2015/WD-uievents-key-20151215/</a>
+      <dt>History:
+      <dd><a class="u-url" href="https://www.w3.org/standards/history/uievents-key">https://www.w3.org/standards/history/uievents-key</a>
+      <dt>Feedback:
+      <dd><a href="https://github.com/w3c/uievents-key/issues/">GitHub</a>
+      <dt class="editor">Editors:
+      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:garykac@google.com">Gary Kacmarcik</a> (<span class="p-org org">Google</span>)
+      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:travil@microsoft.com">Travis Leithead</a> (<span class="p-org org">Microsoft</span>)
+     </dl>
+    </div>
+   </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -381,17 +398,18 @@ dfn > a.self-link::before      { content: "#"; }
    <p>This specification defines the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value">key attribute values</a> that must be used for <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent" id="ref-for-interface-keyboardevent">KeyboardEvent</a></code>'s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key">key</a></code> attribute, which is defined as part
 	of the UI Events Specification <a data-link-type="biblio" href="#biblio-uievents">[UIEvents]</a>.</p>
   </div>
-  <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
+  <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em> </p>
-   <p> This document was published by the <a href="https://www.w3.org/2019/webapps/">Web Applications Working Group</a> as a Working Draft. This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation. </p>
+   <p> <em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em> </p>
+   <p> This document was published by the <a href="https://www.w3.org/groups/wg/webapps">Web Applications Working Group</a> as a Working Draft. This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation. </p>
    <p></p>
-   <p> This document was published by the <a href="https://www.w3.org/2019/webapps/">Web Applications Working Group</a> as a Working Draft.
+   <p> This document was published by the <a href="https://www.w3.org/groups/wg/webapps">Web Applications Working Group</a> as a Working Draft using the <a href="https://www.w3.org/2021/Process-20211102/#recs-and-notes">Recommendation
+      track</a>.
 
     Feedback and comments on this specification are welcome. Please use <a href="https://github.com/w3c/uievents-key/issues">GitHub issues</a> Historical discussions can be found in the <a href="https://lists.w3.org/Archives/Public/public-webapps/">public-webapps@w3.org archives</a>. </p>
-   <p> Publication as a Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress. </p>
+   <p> Publication as a Working Draft does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress. </p>
    <p> This document was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/2004/01/pp-impl/114929/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. </p>
-   <p>This document is governed by the <a href="https://www.w3.org/2020/Process-20200915/" id="w3c_process_revision">15 September 2020 W3C Process Document</a>. </p>
+   <p>This document is governed by the <a href="https://www.w3.org/2021/Process-20211102/" id="w3c_process_revision">2 November 2021 W3C Process Document</a>. </p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
@@ -439,12 +457,15 @@ dfn > a.self-link::before      { content: "#"; }
       <li><a href="#keys-media-controller"><span class="secno">3.18</span> <span class="content">Media Controller Keys</span></a>
      </ol>
     <li><a href="#accessibility"><span class="secno">4</span> <span class="content">Accessibility</span></a>
-    <li><a href="#acknowledgements-contributors"><span class="secno">5</span> <span class="content">Acknowledgements</span></a>
+    <li><a href="#i18n"><span class="secno">5</span> <span class="content">I18n</span></a>
+    <li><a href="#security"><span class="secno">6</span> <span class="content">Security Considerations</span></a>
+    <li><a href="#privacy"><span class="secno">7</span> <span class="content">Privacy Considerations</span></a>
+    <li><a href="#acknowledgements-contributors"><span class="secno">8</span> <span class="content">Acknowledgements</span></a>
     <li>
-     <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
+     <a href="#w3c-conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ol class="toc">
-      <li><a href="#conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
-      <li><a href="#conformant-algorithms"><span class="secno"></span> <span class="content">Conformant Algorithms</span></a>
+      <li><a href="#w3c-conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
+      <li><a href="#w3c-conformant-algorithms"><span class="secno"></span> <span class="content">Conformant Algorithms</span></a>
      </ol>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -2126,9 +2147,52 @@ Interface on UPnP Networks and the Internet <a data-link-type="biblio" href="#bi
    <h2 class="heading settled" data-level="4" id="accessibility"><span class="secno">4. </span><span class="content">Accessibility</span><a class="self-link" href="#accessibility"></a></h2>
    <p>This specification simply defines a set of values that are valid for use in the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①②">key</a></code> attribute. Thus, it does not introduce any features that have
 	accessibility concerns.</p>
-   <h2 class="heading settled" data-level="5" id="acknowledgements-contributors"><span class="secno">5. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements-contributors"></a></h2>
+   <p>The <a href="https://w3c.github.io/apa/fast/checklist.html">FAST checklist</a> has been completed and nothing is applicable to this specification.</p>
+   <p>A note related to the FAST checklist item: "If technology provides internationalization support".
+	This specification inherently defines <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①③">key</a></code> values that support international hardware, e.g.,
+	keyboards for different languages or layouts. It also defines many special keys which are given
+	human-readable names (like "Shift", "Control", "Home" or "ArrowLeft").</p>
+   <p>These special key values are defined as human-readable strings so that code to detect special keys
+	can be easier to understand. While these values are not intended to be exposed directly to users,
+	there is nothing preventing that. Apps that choose to expose these values would need to determine
+	whether or not it is appropriate to translate these strings for presentation (e.g.: presenting
+	"Backspace" as "Suppr. arrière" for French users).</p>
+   <h2 class="heading settled" data-level="5" id="i18n"><span class="secno">5. </span><span class="content">I18n</span><a class="self-link" href="#i18n"></a></h2>
+   <p>The <a href="https://www.w3.org/International/i18n-drafts/techniques/shortchecklist">short I18n checklist</a> has been completed and the following item requires a comment:</p>
+   <ul>
+    <li data-md>
+     <p><em>"describes a format or data that is likely to need localisation"</em>:
+This specification defines values that are not intended for display to the user, although there
+is nothing preventing sites from exposing these values.</p>
+   </ul>
+   <h2 class="heading settled" data-level="6" id="security"><span class="secno">6. </span><span class="content">Security Considerations</span><a class="self-link" href="#security"></a></h2>
+   <p>The <a href="https://www.w3.org/TR/security-privacy-questionnaire/">Security and Privacy Self-Review Questionairre</a> has been completed with the following notes:</p>
+   <ul>
+    <li data-md>
+     <p><em>2.1 What information might this feature expose to Web sites or other parties, and for what purposes is that exposure necessary?</em>:
+This spec defines a set of valid values for the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①④">key</a></code> attribute of the various key events. This is necessary so that users can type text.</p>
+    <li data-md>
+     <p><em>2.6 Do the features in your specification expose information about the underlying platform to origins?</em>:
+The various key values could be used to infer that a user is using a keyboard with a particular locale (or IME) enabled.</p>
+    <li data-md>
+     <p><em>2.17 How does your feature handle non-"fully active" documents?</em>:
+This attribute is only associated with key events, and they are not sent if the document is not fully active.</p>
+   </ul>
+   <h2 class="heading settled" data-level="7" id="privacy"><span class="secno">7. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
+   <p>The <a href="https://www.w3.org/TR/security-privacy-questionnaire/">Security and Privacy Self-Review Questionairre</a> has been completed with the following notes:</p>
+   <ul>
+    <li data-md>
+     <p><em>3.5 Legitimate Misuse</em>:
+A site could capture all keypresses and build a map of the values generated by the keyboard. If the
+user types enough values (and doesn’t change keyboard), then the site could try to match those values
+against a database of known keyboard layouts to guess the user’s current keyboard layout. However,
+that’s a concern for the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⑤">key</a></code> attribute itself (defined in the <a data-link-type="biblio" href="#biblio-uievents">[UIEvents]</a> specification) rather than
+something specific to the values defined in this document</p>
+   </ul>
+   <p>Privacy concerns associated with the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⑥">key</a></code> attribute are addressed in the <a data-link-type="biblio" href="#biblio-uievents">[UIEvents]</a> specification.</p>
+   <h2 class="heading settled" data-level="8" id="acknowledgements-contributors"><span class="secno">8. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements-contributors"></a></h2>
    <p>Over the years, many people contributed to the DOM <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent" id="ref-for-interface-keyboardevent⑧">KeyboardEvent</a></code> specifications, including many participants of the DOM Working Group and the
-	WebApps Working Group. The current set of <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①③">key</a></code> values is
+	WebApps Working Group. The current set of <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⑦">key</a></code> values is
 	the result of iterating over many proposals and variations during that time.
 	We especially thank the following participants for their contributions:</p>
    <p>Gary Kacmarcik (Google),
@@ -2137,41 +2201,47 @@ Interface on UPnP Networks and the Internet <a data-link-type="biblio" href="#bi
 	Travis Leithead (Microsoft).</p>
   </main>
   <div data-fill-with="conformance">
-   <h2 class="no-ref no-num heading settled" id="conformance"><span class="content">Conformance</span><a class="self-link" href="#conformance"></a></h2>
-   <h3 class="no-ref no-num heading settled" id="conventions"><span class="content">Document conventions</span><a class="self-link" href="#conventions"></a></h3>
-   <p>Conformance requirements are expressed with a combination of
-    descriptive assertions and RFC 2119 terminology. The key words “MUST”,
-    “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”,
-    “RECOMMENDED”, “MAY”, and “OPTIONAL” in the normative parts of this
-    document are to be interpreted as described in RFC 2119.
-    However, for readability, these words do not appear in all uppercase
-    letters in this specification. </p>
-   <p>All of the text of this specification is normative except sections
-    explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a></p>
+   <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
+   <h3 class="no-ref no-num heading settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
+   <p>Conformance requirements are expressed
+    with a combination of descriptive assertions
+    and RFC 2119 terminology.
+    The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL”
+    in the normative parts of this document
+    are to be interpreted as described in RFC 2119.
+    However, for readability,
+    these words do not appear in all uppercase letters in this specification. </p>
+   <p>All of the text of this specification is normative
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
    <p>Examples in this specification are introduced with the words “for example”
-    or are set apart from the normative text with <code>class="example"</code>,
+    or are set apart from the normative text
+    with <code>class="example"</code>,
     like this: </p>
-   <div class="example" id="example-ae2b6bc0">
-    <a class="self-link" href="#example-ae2b6bc0"></a> 
-    <p>This is an example of an informative example.</p>
+   <div class="example" id="w3c-example">
+    <a class="self-link" href="#w3c-example"></a> 
+    <p>This is an example of an informative example. </p>
    </div>
-   <p>Informative notes begin with the word “Note” and are set apart from the
-    normative text with <code>class="note"</code>, like this: </p>
+   <p>Informative notes begin with the word “Note”
+    and are set apart from the normative text
+    with <code>class="note"</code>,
+    like this: </p>
    <p class="note" role="note">Note, this is an informative note.</p>
-   <h3 class="no-ref no-num heading settled" id="conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#conformant-algorithms"></a></h3>
-   <p>Requirements phrased in the imperative as part of algorithms (such as
-    "strip any leading space characters" or "return false and abort these
-    steps") are to be interpreted with the meaning of the key word ("must",
-    "should", "may", etc) used in introducing the algorithm.</p>
-   <p>Conformance requirements phrased as algorithms or specific steps can be
-    implemented in any manner, so long as the end result is equivalent. In
-    particular, the algorithms defined in this specification are intended to
-    be easy to understand and are not intended to be performant. Implementers
-    are encouraged to optimize.</p>
+   <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
+   <p>Requirements phrased in the imperative as part of algorithms
+    (such as "strip any leading space characters"
+    or "return false and abort these steps")
+    are to be interpreted with the meaning of the key word
+    ("must", "should", "may", etc)
+    used in introducing the algorithm. </p>
+   <p>Conformance requirements phrased as algorithms or specific steps
+    can be implemented in any manner,
+    so long as the end result is equivalent.
+    In particular, the algorithms defined in this specification
+    are intended to be easy to understand
+    and are not intended to be performant.
+    Implementers are encouraged to optimize. </p>
   </div>
-  <p id="back-to-top" role="navigation"><a href="#toc"><abbr title="Back to top">↑</abbr></a></p>
-  . 
-<script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+<script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
@@ -2192,7 +2262,7 @@ Interface on UPnP Networks and the Internet <a data-link-type="biblio" href="#bi
     <li><a href="#ref-for-interface-keyboardevent⑤">2. Keyboard Event key Attribute Values</a>
     <li><a href="#ref-for-interface-keyboardevent⑥">2.2.1. select an appropriate key attribute value</a>
     <li><a href="#ref-for-interface-keyboardevent⑦">3. Named key Attribute Values</a>
-    <li><a href="#ref-for-interface-keyboardevent⑧">5. Acknowledgements</a>
+    <li><a href="#ref-for-interface-keyboardevent⑧">8. Acknowledgements</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dom-keyboardevent-code">
@@ -2225,8 +2295,10 @@ Interface on UPnP Networks and the Internet <a data-link-type="biblio" href="#bi
     <li><a href="#ref-for-dom-keyboardevent-key⑦">2.2.1. select an appropriate key attribute value</a>
     <li><a href="#ref-for-dom-keyboardevent-key⑧">3. Named key Attribute Values</a> <a href="#ref-for-dom-keyboardevent-key⑨">(2)</a> <a href="#ref-for-dom-keyboardevent-key①⓪">(3)</a>
     <li><a href="#ref-for-dom-keyboardevent-key①①">3.11. Multimedia Numpad Keys</a>
-    <li><a href="#ref-for-dom-keyboardevent-key①②">4. Accessibility</a>
-    <li><a href="#ref-for-dom-keyboardevent-key①③">5. Acknowledgements</a>
+    <li><a href="#ref-for-dom-keyboardevent-key①②">4. Accessibility</a> <a href="#ref-for-dom-keyboardevent-key①③">(2)</a>
+    <li><a href="#ref-for-dom-keyboardevent-key①④">6. Security Considerations</a>
+    <li><a href="#ref-for-dom-keyboardevent-key①⑤">7. Privacy Considerations</a> <a href="#ref-for-dom-keyboardevent-key①⑥">(2)</a>
+    <li><a href="#ref-for-dom-keyboardevent-key①⑦">8. Acknowledgements</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-key-legends">
@@ -2272,7 +2344,7 @@ Interface on UPnP Networks and the Internet <a data-link-type="biblio" href="#bi
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-uievents">[UIEvents]
-   <dd>Gary Kacmarcik; Travis Leithead; Doug Schepers. <a href="https://www.w3.org/TR/uievents/"><cite>UI Events</cite></a>. 30 May 2019. WD. URL: <a href="https://www.w3.org/TR/uievents/">https://www.w3.org/TR/uievents/</a>
+   <dd>Gary Kacmarcik; Travis Leithead. <a href="https://www.w3.org/TR/uievents/"><cite>UI Events</cite></a>. 29 June 2022. WD. URL: <a href="https://www.w3.org/TR/uievents/">https://www.w3.org/TR/uievents/</a>
    <dt id="biblio-uievents-code">[UIEvents-Code]
    <dd>Gary Kacmarcik; Travis Leithead. <a href="https://www.w3.org/TR/uievents-code/"><cite>UI Events KeyboardEvent code Values</cite></a>. 1 June 2017. CR. URL: <a href="https://www.w3.org/TR/uievents-code/">https://www.w3.org/TR/uievents-code/</a>
    <dt id="biblio-unicode">[Unicode]
