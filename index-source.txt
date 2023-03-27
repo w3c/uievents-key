@@ -52,12 +52,6 @@ Abstract:
 		"publisher": "Cable Television Laboratories, Inc.",
 		"date": "03 June 2010"
 	},
-	"UnicodeNormalizationForms": {
-		"title": "Unicode Standard Annex #15 - Unicode Normalization Forms",
-		"href": "http://unicode.org/reports/tr15/",
-		"publisher": "The Unicode Consortium",
-		"date": "24 Feb 2016"
-	},
 	"WEB4CE": {
 		"title": "ANSI/CTA-2014-B, Web-based Protocol and Framework for Remote User Interface on UPnP Networks and the Internet (Web4CE)",
 		"href": "https://standards.cta.tech/apps/group_public/project/details.php?project_id=220",
@@ -156,7 +150,7 @@ path: stylesheet-extra.include
 
 		A <dfn>key string</dfn> is a string containing a 0 or 1 [=non-control characters=]
 		("base" characters) followed by 0 or more [=combining characters=]. The string MUST
-		be in Normalized Form C (NFC) as described in [[!UnicodeNormalizationForms]].
+		be in Normalized Form C (NFC) as described in [[!UAX15]].
 		
 		A <dfn>non-control character</dfn> is any valid Unicode character except
 		those that are part of the "Other, Control" ("Cc") General Category.

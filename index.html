@@ -6,9 +6,9 @@
   <meta content="WD" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
+  <meta content="Bikeshed version d9bd89757, updated Thu Mar 23 10:06:53 2023 -0700" name="generator">
   <link href="http://www.w3.org/TR/uievents-key/" rel="canonical">
-  <meta content="9863c85a5093b95b2adb3d5e10d863012a492650" name="document-revision">
+  <meta content="6742c9291c23aaa12d934e9e0177bbfaf7c1e33a" name="document-revision">
 <style>
 
 /* Used when spelling out words or symbols phonetically. */
@@ -147,7 +147,6 @@ code.vk {
 
 </style>
 <style>/* style-autolinks */
-
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -207,9 +206,9 @@ pre .property::before, pre .property::after {
 
 [data-link-type=biblio] {
     white-space: pre;
-}</style>
+}
+</style>
 <style>/* style-counters */
-
 body {
     counter-reset: example figure issue;
 }
@@ -236,9 +235,9 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
-}</style>
+}
+</style>
 <style>/* style-dfn-panel */
-
 :root {
     --dfnpanel-bg: #ddd;
     --dfnpanel-text: var(--text);
@@ -246,10 +245,10 @@ figcaption:not(.no-marker)::before {
 .dfn-panel {
     position: absolute;
     z-index: 35;
-    height: auto;
-    width: -webkit-fit-content;
-    width: fit-content;
+    width: 20em;
+    min-width: min-content;
     max-width: 300px;
+    height: auto;
     max-height: 500px;
     overflow: auto;
     padding: 0.5em 0.75em;
@@ -257,6 +256,7 @@ figcaption:not(.no-marker)::before {
     background: var(--dfnpanel-bg);
     color: var(--dfnpanel-text);
     border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
 }
 .dfn-panel:not(.on) { display: none; }
 .dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
@@ -279,7 +279,6 @@ figcaption:not(.no-marker)::before {
 .dfn-paneled { cursor: pointer; }
 </style>
 <style>/* style-issues */
-
 a[href].issue-return {
     float: right;
     float: inline-end;
@@ -289,7 +288,6 @@ a[href].issue-return {
 }
 </style>
 <style>/* style-md-lists */
-
 /* This is a weird hack for me not yet following the commonmark spec
    regarding paragraph and lists. */
 [data-md] > :first-child {
@@ -297,7 +295,8 @@ a[href].issue-return {
 }
 [data-md] > :last-child {
     margin-bottom: 0;
-}</style>
+}
+</style>
 <style>/* style-selflinks */
 
 :root {
@@ -324,6 +323,14 @@ a.self-link:hover {
 }
 .heading > a.self-link {
     font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
 }
 li > a.self-link {
     left: calc(-1 * (3.5rem - 26px) - 2em);
@@ -365,13 +372,13 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1>UI Events KeyboardEvent key Values</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#WD">W3C Working Draft</a>, <time class="dt-updated" datetime="2022-11-02">2 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#WD">W3C Working Draft</a>, <time class="dt-updated" datetime="2023-03-27">27 March 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://www.w3.org/TR/2022/WD-uievents-key-20221102/">https://www.w3.org/TR/2022/WD-uievents-key-20221102/</a>
+      <dd><a class="u-url" href="https://www.w3.org/TR/2023/WD-uievents-key-20230327/">https://www.w3.org/TR/2023/WD-uievents-key-20230327/</a>
       <dt>Latest published version:
       <dd><a href="http://www.w3.org/TR/uievents-key/">http://www.w3.org/TR/uievents-key/</a>
       <dt>Editor's Draft:
@@ -390,13 +397,13 @@ dfn > a.self-link::before      { content: "#"; }
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
    <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
    <p>This specification defines the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value">key attribute values</a> that must be used for <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent" id="ref-for-interface-keyboardevent">KeyboardEvent</a></code>'s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key">key</a></code> attribute, which is defined as part
-	of the UI Events Specification <a data-link-type="biblio" href="#biblio-uievents">[UIEvents]</a>.</p>
+	of the UI Events Specification <a data-link-type="biblio" href="#biblio-uievents" title="UI Events">[UIEvents]</a>.</p>
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
@@ -487,7 +494,7 @@ dfn > a.self-link::before      { content: "#"; }
 	in the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent" id="ref-for-interface-keyboardevent①">KeyboardEvent</a></code>'s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①">key</a></code> attribute to encode the key’s
 	meaning. Note that the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key②">key</a></code> value for a particular key will differ
 	based on the user’s current locale setting. For a value that is based only on the key’s
-	physical location on the keyboard and does not vary based on locale, see <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-code" id="ref-for-dom-keyboardevent-code">code</a></code> described in <a data-link-type="biblio" href="#biblio-uievents-code">[UIEvents-Code]</a>.</p>
+	physical location on the keyboard and does not vary based on locale, see <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-code" id="ref-for-dom-keyboardevent-code">code</a></code> described in <a data-link-type="biblio" href="#biblio-uievents-code" title="UI Events KeyboardEvent code Values">[UIEvents-Code]</a>.</p>
    <h3 class="heading settled" data-level="1.1" id="style-conventions"><span class="secno">1.1. </span><span class="content">Stylistic Conventions</span><a class="self-link" href="#style-conventions"></a></h3>
    <p>This specification uses the following conventions:</p>
    <ul>
@@ -498,7 +505,7 @@ generated <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/u
     <li data-md>
      <p>Glyphs representing character are shown as: <code class="glyph">"a"</code>, <code class="glyph">"é"</code>, <code class="glyph">"ر"</code>, <code class="glyph">"字"</code>.</p>
     <li data-md>
-     <p>Unicode <a data-link-type="biblio" href="#biblio-unicode">[Unicode]</a> code points are shown as: <code class="unicode">U+003d</code>.</p>
+     <p>Unicode <a data-link-type="biblio" href="#biblio-unicode" title="The Unicode Standard">[Unicode]</a> code points are shown as: <code class="unicode">U+003d</code>.</p>
     <li data-md>
      <p>Valid <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value②">key attribute values</a> (i.e., the value of
 a <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent" id="ref-for-interface-keyboardevent③">KeyboardEvent</a></code>'s <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key④">key</a></code> attribute) are shown as: <code class="key">"<a href="#key-ArrowDown">ArrowDown</a>"</code>, <code class="key">"="</code>, <code class="key">"q"</code> or <code class="key">"Q"</code>.</p>
@@ -530,7 +537,7 @@ in effect.</p>
 		We introduce the concept of a <a data-link-type="dfn" href="#key-string" id="ref-for-key-string①">key string</a> to identify the set of
 		Unicode strings that are appropriate for use as a <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value⑦">key attribute value</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="key-string">key string</dfn> is a string containing a 0 or 1 <a data-link-type="dfn" href="#non-control-character" id="ref-for-non-control-character">non-control characters</a> ("base" characters) followed by 0 or more <a data-link-type="dfn" href="#combining-character" id="ref-for-combining-character">combining characters</a>. The string MUST
-		be in Normalized Form C (NFC) as described in <a data-link-type="biblio" href="#biblio-unicodenormalizationforms">[UnicodeNormalizationForms]</a>.</p>
+		be in Normalized Form C (NFC) as described in <a data-link-type="biblio" href="#biblio-uax15" title="Unicode Normalization Forms">[UAX15]</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="non-control-character">non-control character</dfn> is any valid Unicode character except
 		those that are part of the "Other, Control" ("Cc") General Category.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="combining-character">combining character</dfn> is any valid Unicode character in the
@@ -650,9 +657,9 @@ except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-
    <p>The <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value⑤">named key attribute values</a> defined here are based
 	in part on the sets of keycodes from
 	the <code>java.awt.event.KeyEvent</code> interface of the Java Platform,
-	Standard Edition 6 API Specification <a data-link-type="biblio" href="#biblio-keyeventjava">[KeyEventJava]</a>, and the <code>System.Windows.Forms.Keys</code> key enumeration of the Microsoft .NET
-	Framework 4.0 Class Library <a data-link-type="biblio" href="#biblio-keysnet">[KeysNet]</a>. Additional information in this spec
-	comes from Microsoft’s WM_APPCOMMAND messages <a data-link-type="biblio" href="#biblio-wmappcommand">[WmAppCommand]</a>, and other
+	Standard Edition 6 API Specification <a data-link-type="biblio" href="#biblio-keyeventjava" title="Java™ Platform, Standard Edition 6 API Specification, Class java.awt.events.KeyEvent">[KeyEventJava]</a>, and the <code>System.Windows.Forms.Keys</code> key enumeration of the Microsoft .NET
+	Framework 4.0 Class Library <a data-link-type="biblio" href="#biblio-keysnet" title=".NET Framework 4.5 Class Library, Keys Enumeration">[KeysNet]</a>. Additional information in this spec
+	comes from Microsoft’s WM_APPCOMMAND messages <a data-link-type="biblio" href="#biblio-wmappcommand" title="MSDN WM_APPCOMMAND message">[WmAppCommand]</a>, and other
 	more specialized specifications as noted in this document.</p>
    <p>A conforming implementation of the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent" id="ref-for-interface-keyboardevent⑦">KeyboardEvent</a></code> interface MUST support
 	this set of values for use in the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key⑨">key</a></code> attributes,
@@ -698,7 +705,7 @@ except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-
       <td class="key-table-key"><code class="key" id="key-AltGraph">"AltGraph"</code>
       <td class="key-table-required">Yes
       <td>The Alternate Graphics (<code class="keycap">AltGr</code> or <code class="keycap">AltGraph</code>) key.								This key is used enable the ISO Level 3 shift modifier (the standard <code class="keycap">Shift</code> key is the level 2 modifier).
-								See <a data-link-type="biblio" href="#biblio-iso9995-1">[ISO9995-1]</a>. 
+								See <a data-link-type="biblio" href="#biblio-iso9995-1" title="ISO/IEC 9995-1:2009 Information technology -- Keyboard layouts for text and office systems -- Part 1: General principles governing keyboard layouts">[ISO9995-1]</a>. 
      <tr>
       <td class="key-table-key"><code class="key" id="key-CapsLock">"CapsLock"</code>
       <td class="key-table-required">Yes
@@ -1733,14 +1740,14 @@ except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-
 		the consumer electronics technical specifications:</p>
    <ul>
     <li data-md>
-     <p>DTV Application Software Environment <a data-link-type="biblio" href="#biblio-dase">[DASE]</a></p>
+     <p>DTV Application Software Environment <a data-link-type="biblio" href="#biblio-dase" title="ATSC A/100-2, DTV Application Software Environment Level 1 (DASE-1) Part 2: Declarative Applications and Environment">[DASE]</a></p>
     <li data-md>
-     <p>Open Cable Application Platform 1.1.3 <a data-link-type="biblio" href="#biblio-ocap">[OCAP]</a></p>
+     <p>Open Cable Application Platform 1.1.3 <a data-link-type="biblio" href="#biblio-ocap" title="Open Cable Application Platform 1.1.3">[OCAP]</a></p>
     <li data-md>
      <p>ANSI/CTA-2014-B, Web-based Protocol and Framework for Remote User
-Interface on UPnP Networks and the Internet <a data-link-type="biblio" href="#biblio-web4ce">[WEB4CE]</a></p>
+Interface on UPnP Networks and the Internet <a data-link-type="biblio" href="#biblio-web4ce" title="ANSI/CTA-2014-B, Web-based Protocol and Framework for Remote User Interface on UPnP Networks and the Internet (Web4CE)">[WEB4CE]</a></p>
     <li data-md>
-     <p>Android KeyEvent KEYCODEs <a data-link-type="biblio" href="#biblio-androidkeycode">[AndroidKeycode]</a></p>
+     <p>Android KeyEvent KEYCODEs <a data-link-type="biblio" href="#biblio-androidkeycode" title="Android KeyEvent">[AndroidKeycode]</a></p>
    </ul>
    <table class="data-table full-width" id="key-table-media-controller">
     <thead>
@@ -2171,7 +2178,7 @@ key events. This is necessary so that users can type text.</p>
 This attribute is only associated with key events, and events are not sent if the document is
 not fully active.</p>
    </ul>
-   <p>Security concerns associated with the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⑤">key</a></code> attribute are addressed in the <a data-link-type="biblio" href="#biblio-uievents">[UIEvents]</a> specification.</p>
+   <p>Security concerns associated with the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⑤">key</a></code> attribute are addressed in the <a data-link-type="biblio" href="#biblio-uievents" title="UI Events">[UIEvents]</a> specification.</p>
    <h2 class="heading settled" data-level="7" id="privacy"><span class="secno">7. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
    <p>The <a href="https://www.w3.org/TR/security-privacy-questionnaire/">Security and Privacy Self-Review Questionairre</a> has been completed with the following notes:</p>
    <ul>
@@ -2185,10 +2192,10 @@ enabled.</p>
 A site could capture all keypresses and build a map of the values generated by the keyboard. If the
 user types enough values (and doesn’t change keyboard), then the site could try to match those values
 against a database of known keyboard layouts to guess the user’s current keyboard layout. However,
-that’s a concern for the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⑦">key</a></code> attribute itself (defined in the <a data-link-type="biblio" href="#biblio-uievents">[UIEvents]</a> specification) rather than
+that’s a concern for the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⑦">key</a></code> attribute itself (defined in the <a data-link-type="biblio" href="#biblio-uievents" title="UI Events">[UIEvents]</a> specification) rather than
 something specific to the values defined in this document</p>
    </ul>
-   <p>Privacy concerns associated with the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⑧">key</a></code> attribute are addressed in the <a data-link-type="biblio" href="#biblio-uievents">[UIEvents]</a> specification.</p>
+   <p>Privacy concerns associated with the <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⑧">key</a></code> attribute are addressed in the <a data-link-type="biblio" href="#biblio-uievents" title="UI Events">[UIEvents]</a> specification.</p>
    <h2 class="heading settled" data-level="8" id="acknowledgements-contributors"><span class="secno">8. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements-contributors"></a></h2>
    <p>Over the years, many people contributed to the DOM <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#interface-keyboardevent" id="ref-for-interface-keyboardevent⑧">KeyboardEvent</a></code> specifications, including many participants of the DOM Working Group and the
 	WebApps Working Group. The current set of <code class="idl"><a data-link-type="idl" href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key" id="ref-for-dom-keyboardevent-key①⑨">key</a></code> values is
@@ -2211,7 +2218,7 @@ something specific to the values defined in this document</p>
     However, for readability,
     these words do not appear in all uppercase letters in this specification. </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
@@ -2252,8 +2259,8 @@ something specific to the values defined in this document</p>
    <li><a href="#non-control-character">non-control character</a><span>, in § 2.1</span>
    <li><a href="#select-an-appropriate-key-attribute-value">select an appropriate key attribute value</a><span>, in § 2.2.1</span>
   </ul>
-  <aside class="dfn-panel" data-for="term-for-interface-keyboardevent">
-   <a href="http://www.w3.org/TR/uievents/#interface-keyboardevent">http://www.w3.org/TR/uievents/#interface-keyboardevent</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-b8f7f30fcf257828a84afe4c745d501f" class="dfn-panel" data-for="b8f7f30fcf257828a84afe4c745d501f" id="infopanel-for-b8f7f30fcf257828a84afe4c745d501f">
+   <span id="infopaneltitle-for-b8f7f30fcf257828a84afe4c745d501f" style="display:none">Info about the 'KeyboardEvent' external reference.</span><a href="http://www.w3.org/TR/uievents/#interface-keyboardevent">http://www.w3.org/TR/uievents/#interface-keyboardevent</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-interface-keyboardevent">Unnumbered Section</a>
     <li><a href="#ref-for-interface-keyboardevent①">1. Introduction</a>
@@ -2264,27 +2271,27 @@ something specific to the values defined in this document</p>
     <li><a href="#ref-for-interface-keyboardevent⑧">8. Acknowledgements</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-keyboardevent-code">
-   <a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-code">http://www.w3.org/TR/uievents/#dom-keyboardevent-code</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-26cbf7220c693bc9b6b442ac1d5900bd" class="dfn-panel" data-for="26cbf7220c693bc9b6b442ac1d5900bd" id="infopanel-for-26cbf7220c693bc9b6b442ac1d5900bd">
+   <span id="infopaneltitle-for-26cbf7220c693bc9b6b442ac1d5900bd" style="display:none">Info about the 'code' external reference.</span><a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-code">http://www.w3.org/TR/uievents/#dom-keyboardevent-code</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-keyboardevent-code">1. Introduction</a>
     <li><a href="#ref-for-dom-keyboardevent-code①">1.1. Stylistic Conventions</a> <a href="#ref-for-dom-keyboardevent-code②">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-compositionupdate">
-   <a href="http://www.w3.org/TR/uievents/#compositionupdate">http://www.w3.org/TR/uievents/#compositionupdate</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-6b0a2096dc09db3f92ddc1041f72b49e" class="dfn-panel" data-for="6b0a2096dc09db3f92ddc1041f72b49e" id="infopanel-for-6b0a2096dc09db3f92ddc1041f72b49e">
+   <span id="infopaneltitle-for-6b0a2096dc09db3f92ddc1041f72b49e" style="display:none">Info about the 'compositionupdate' external reference.</span><a href="http://www.w3.org/TR/uievents/#compositionupdate">http://www.w3.org/TR/uievents/#compositionupdate</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-compositionupdate">3.8. IME and Composition Keys</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dead-key">
-   <a href="http://www.w3.org/TR/uievents/#dead-key">http://www.w3.org/TR/uievents/#dead-key</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-8b32100884b34e07e667931d3fccbc73" class="dfn-panel" data-for="8b32100884b34e07e667931d3fccbc73" id="infopanel-for-8b32100884b34e07e667931d3fccbc73">
+   <span id="infopaneltitle-for-8b32100884b34e07e667931d3fccbc73" style="display:none">Info about the 'dead key' external reference.</span><a href="http://www.w3.org/TR/uievents/#dead-key">http://www.w3.org/TR/uievents/#dead-key</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dead-key">2.2.1. select an appropriate key attribute value</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-keyboardevent-key">
-   <a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">http://www.w3.org/TR/uievents/#dom-keyboardevent-key</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-5a37412907a5f54af6179b0d810e8dd9" class="dfn-panel" data-for="5a37412907a5f54af6179b0d810e8dd9" id="infopanel-for-5a37412907a5f54af6179b0d810e8dd9">
+   <span id="infopaneltitle-for-5a37412907a5f54af6179b0d810e8dd9" style="display:none">Info about the 'key' external reference.</span><a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">http://www.w3.org/TR/uievents/#dom-keyboardevent-key</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-keyboardevent-key">Unnumbered Section</a>
     <li><a href="#ref-for-dom-keyboardevent-key①">1. Introduction</a> <a href="#ref-for-dom-keyboardevent-key②">(2)</a>
@@ -2300,20 +2307,20 @@ something specific to the values defined in this document</p>
     <li><a href="#ref-for-dom-keyboardevent-key①⑨">8. Acknowledgements</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-key-legends">
-   <a href="http://www.w3.org/TR/uievents/#key-legends">http://www.w3.org/TR/uievents/#key-legends</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-73bcdbdf9fa8fdde54286595b9ca7ad3" class="dfn-panel" data-for="73bcdbdf9fa8fdde54286595b9ca7ad3" id="infopanel-for-73bcdbdf9fa8fdde54286595b9ca7ad3">
+   <span id="infopaneltitle-for-73bcdbdf9fa8fdde54286595b9ca7ad3" style="display:none">Info about the 'key cap' external reference.</span><a href="http://www.w3.org/TR/uievents/#key-legends">http://www.w3.org/TR/uievents/#key-legends</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-key-legends">1.1. Stylistic Conventions</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-keyboardevent-location">
-   <a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-location">http://www.w3.org/TR/uievents/#dom-keyboardevent-location</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-17af8a01895ed485222030d3855b81c9" class="dfn-panel" data-for="17af8a01895ed485222030d3855b81c9" id="infopanel-for-17af8a01895ed485222030d3855b81c9">
+   <span id="infopaneltitle-for-17af8a01895ed485222030d3855b81c9" style="display:none">Info about the 'location' external reference.</span><a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-location">http://www.w3.org/TR/uievents/#dom-keyboardevent-location</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-keyboardevent-location">2. Keyboard Event key Attribute Values</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-key-value-tables">
-   <a href="http://www.w3.org/TR/uievents-key/#key-value-tables">http://www.w3.org/TR/uievents-key/#key-value-tables</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-7cea50bd80f7e9b6c0511b9b71cfe5c0" class="dfn-panel" data-for="7cea50bd80f7e9b6c0511b9b71cfe5c0" id="infopanel-for-7cea50bd80f7e9b6c0511b9b71cfe5c0">
+   <span id="infopaneltitle-for-7cea50bd80f7e9b6c0511b9b71cfe5c0" style="display:none">Info about the 'key code attribute value' external reference.</span><a href="http://www.w3.org/TR/uievents-key/#key-value-tables">http://www.w3.org/TR/uievents-key/#key-value-tables</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-key-value-tables">1.1. Stylistic Conventions</a>
    </ul>
@@ -2323,18 +2330,18 @@ something specific to the values defined in this document</p>
    <li>
     <a data-link-type="biblio">[UIEvents]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-interface-keyboardevent">KeyboardEvent</span>
-     <li><span class="dfn-paneled" id="term-for-dom-keyboardevent-code">code</span>
-     <li><span class="dfn-paneled" id="term-for-compositionupdate">compositionupdate</span>
-     <li><span class="dfn-paneled" id="term-for-dead-key">dead key</span>
-     <li><span class="dfn-paneled" id="term-for-dom-keyboardevent-key">key</span>
-     <li><span class="dfn-paneled" id="term-for-key-legends">key cap</span>
-     <li><span class="dfn-paneled" id="term-for-dom-keyboardevent-location">location</span>
+     <li><span class="dfn-paneled" id="b8f7f30fcf257828a84afe4c745d501f">KeyboardEvent</span>
+     <li><span class="dfn-paneled" id="26cbf7220c693bc9b6b442ac1d5900bd">code</span>
+     <li><span class="dfn-paneled" id="6b0a2096dc09db3f92ddc1041f72b49e">compositionupdate</span>
+     <li><span class="dfn-paneled" id="8b32100884b34e07e667931d3fccbc73">dead key</span>
+     <li><span class="dfn-paneled" id="5a37412907a5f54af6179b0d810e8dd9">key</span>
+     <li><span class="dfn-paneled" id="73bcdbdf9fa8fdde54286595b9ca7ad3">key cap</span>
+     <li><span class="dfn-paneled" id="17af8a01895ed485222030d3855b81c9">location</span>
     </ul>
    <li>
     <a data-link-type="biblio">[UIEvents-Code]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-key-value-tables">key code attribute value</span>
+     <li><span class="dfn-paneled" id="7cea50bd80f7e9b6c0511b9b71cfe5c0">key code attribute value</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -2342,14 +2349,14 @@ something specific to the values defined in this document</p>
   <dl>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
+   <dt id="biblio-uax15">[UAX15]
+   <dd>Ken Whistler. <a href="https://www.unicode.org/reports/tr15/tr15-53.html"><cite>Unicode Normalization Forms</cite></a>. 17 August 2022. Unicode Standard Annex #15. URL: <a href="https://www.unicode.org/reports/tr15/tr15-53.html">https://www.unicode.org/reports/tr15/tr15-53.html</a>
    <dt id="biblio-uievents">[UIEvents]
-   <dd>Gary Kacmarcik; Travis Leithead. <a href="https://www.w3.org/TR/uievents/"><cite>UI Events</cite></a>. 29 June 2022. WD. URL: <a href="https://www.w3.org/TR/uievents/">https://www.w3.org/TR/uievents/</a>
+   <dd>Gary Kacmarcik; Travis Leithead. <a href="https://www.w3.org/TR/uievents/"><cite>UI Events</cite></a>. 13 September 2022. WD. URL: <a href="https://www.w3.org/TR/uievents/">https://www.w3.org/TR/uievents/</a>
    <dt id="biblio-uievents-code">[UIEvents-Code]
    <dd>Gary Kacmarcik; Travis Leithead. <a href="https://www.w3.org/TR/uievents-code/"><cite>UI Events KeyboardEvent code Values</cite></a>. 1 June 2017. CR. URL: <a href="https://www.w3.org/TR/uievents-code/">https://www.w3.org/TR/uievents-code/</a>
    <dt id="biblio-unicode">[Unicode]
    <dd><a href="https://www.unicode.org/versions/latest/"><cite>The Unicode Standard</cite></a>. URL: <a href="https://www.unicode.org/versions/latest/">https://www.unicode.org/versions/latest/</a>
-   <dt id="biblio-unicodenormalizationforms">[UnicodeNormalizationForms]
-   <dd><a href="http://unicode.org/reports/tr15/"><cite>Unicode Standard Annex #15 - Unicode Normalization Forms</cite></a>. 24 Feb 2016. URL: <a href="http://unicode.org/reports/tr15/">http://unicode.org/reports/tr15/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
@@ -2370,8 +2377,8 @@ something specific to the values defined in this document</p>
    <dt id="biblio-wmappcommand">[WmAppCommand]
    <dd><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms646275(v=vs.85).aspx"><cite>MSDN WM_APPCOMMAND message</cite></a>. URL: <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms646275(v=vs.85).aspx">https://msdn.microsoft.com/en-us/library/windows/desktop/ms646275(v=vs.85).aspx</a>
   </dl>
-  <aside class="dfn-panel" data-for="key-attribute-value">
-   <b><a href="#key-attribute-value">#key-attribute-value</a></b><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-key-attribute-value" class="dfn-panel" data-for="key-attribute-value" id="infopanel-for-key-attribute-value">
+   <span id="infopaneltitle-for-key-attribute-value" style="display:none">Info about the 'key attribute value' definition.</span><b><a href="#key-attribute-value">#key-attribute-value</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-key-attribute-value①">1. Introduction</a>
     <li><a href="#ref-for-key-attribute-value②">1.1. Stylistic Conventions</a>
@@ -2399,40 +2406,40 @@ something specific to the values defined in this document</p>
     <li><a href="#ref-for-key-attribute-value③⑨">3.18. Media Controller Keys</a> <a href="#ref-for-key-attribute-value④⓪">(2)</a> <a href="#ref-for-key-attribute-value④①">(3)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="key-string">
-   <b><a href="#key-string">#key-string</a></b><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-key-string" class="dfn-panel" data-for="key-string" id="infopanel-for-key-string">
+   <span id="infopaneltitle-for-key-string" style="display:none">Info about the 'key string' definition.</span><b><a href="#key-string">#key-string</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-key-string">2. Keyboard Event key Attribute Values</a>
     <li><a href="#ref-for-key-string①">2.1. Unicode Values</a> <a href="#ref-for-key-string②">(2)</a> <a href="#ref-for-key-string③">(3)</a> <a href="#ref-for-key-string④">(4)</a>
     <li><a href="#ref-for-key-string⑤">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-key-string⑥">(2)</a> <a href="#ref-for-key-string⑦">(3)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="non-control-character">
-   <b><a href="#non-control-character">#non-control-character</a></b><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-non-control-character" class="dfn-panel" data-for="non-control-character" id="infopanel-for-non-control-character">
+   <span id="infopaneltitle-for-non-control-character" style="display:none">Info about the 'non-control character' definition.</span><b><a href="#non-control-character">#non-control-character</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-non-control-character">2.1. Unicode Values</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="combining-character">
-   <b><a href="#combining-character">#combining-character</a></b><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-combining-character" class="dfn-panel" data-for="combining-character" id="infopanel-for-combining-character">
+   <span id="infopaneltitle-for-combining-character" style="display:none">Info about the 'combining character' definition.</span><b><a href="#combining-character">#combining-character</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-combining-character">2.1. Unicode Values</a> <a href="#ref-for-combining-character①">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="glyph-modifier-key">
-   <b><a href="#glyph-modifier-key">#glyph-modifier-key</a></b><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-glyph-modifier-key" class="dfn-panel" data-for="glyph-modifier-key" id="infopanel-for-glyph-modifier-key">
+   <span id="infopaneltitle-for-glyph-modifier-key" style="display:none">Info about the 'glyph modifier key' definition.</span><b><a href="#glyph-modifier-key">#glyph-modifier-key</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-glyph-modifier-key">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-glyph-modifier-key①">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="select-an-appropriate-key-attribute-value">
-   <b><a href="#select-an-appropriate-key-attribute-value">#select-an-appropriate-key-attribute-value</a></b><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-select-an-appropriate-key-attribute-value" class="dfn-panel" data-for="select-an-appropriate-key-attribute-value" id="infopanel-for-select-an-appropriate-key-attribute-value">
+   <span id="infopaneltitle-for-select-an-appropriate-key-attribute-value" style="display:none">Info about the 'select an appropriate key attribute value' definition.</span><b><a href="#select-an-appropriate-key-attribute-value">#select-an-appropriate-key-attribute-value</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-select-an-appropriate-key-attribute-value">2.2.1. select an appropriate key attribute value</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="named-key-attribute-value">
-   <b><a href="#named-key-attribute-value">#named-key-attribute-value</a></b><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-named-key-attribute-value" class="dfn-panel" data-for="named-key-attribute-value" id="infopanel-for-named-key-attribute-value">
+   <span id="infopaneltitle-for-named-key-attribute-value" style="display:none">Info about the 'named key attribute value' definition.</span><b><a href="#named-key-attribute-value">#named-key-attribute-value</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-named-key-attribute-value">2. Keyboard Event key Attribute Values</a>
     <li><a href="#ref-for-named-key-attribute-value①">2.1.1. Control Characters</a>
@@ -2441,69 +2448,124 @@ something specific to the values defined in this document</p>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
-
-document.body.addEventListener("click", function(e) {
-    var queryAll = function(sel) { return [].slice.call(document.querySelectorAll(sel)); }
-    // Find the dfn element or panel, if any, that was clicked on.
-    var el = e.target;
-    var target;
-    var hitALink = false;
-    while(el.parentElement) {
-        if(el.tagName == "A") {
-            // Clicking on a link in a <dfn> shouldn't summon the panel
-            hitALink = true;
-        }
-        if(el.classList.contains("dfn-paneled")) {
-            target = "dfn";
-            break;
-        }
-        if(el.classList.contains("dfn-panel")) {
-            target = "dfn-panel";
-            break;
-        }
-        el = el.parentElement;
+"use strict";
+{
+    function queryAll(sel) {
+        return [].slice.call(document.querySelectorAll(sel));
     }
-    if(target != "dfn-panel") {
+
+    // Add popup behavior to all dfns to show the corresponding dfn-panel.
+    var dfns = document.querySelectorAll('.dfn-paneled');
+    for (let dfn of dfns) { insertDfnPopupAction(dfn); }
+
+    document.body.addEventListener("click", (e) => {
+        // If not handled already, just hide all dfn panels.
+        hideAllDfnPanels();
+    });
+
+    function hideAllDfnPanels() {
         // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(function(el){
-            el.classList.remove("on");
-            el.classList.remove("activated");
-        });
-    }
-    if(target == "dfn" && !hitALink) {
-        // open the panel
-        var dfnPanel = document.querySelector(".dfn-panel[data-for='" + el.id + "']");
-        if(dfnPanel) {
-            dfnPanel.classList.add("on");
-            var rect = el.getBoundingClientRect();
-            dfnPanel.style.left = window.scrollX + rect.right + 5 + "px";
-            dfnPanel.style.top = window.scrollY + rect.top + "px";
-            var panelRect = dfnPanel.getBoundingClientRect();
-            var panelWidth = panelRect.right - panelRect.left;
-            if(panelRect.right > document.body.scrollWidth && (rect.left - (panelWidth + 5)) > 0) {
-                // Reposition, because the panel is overflowing
-                dfnPanel.style.left = window.scrollX + rect.left - (panelWidth + 5) + "px";
-            }
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + el.id + "']");
-        }
-    } else if(target == "dfn-panel") {
-        // Switch it to "activated" state, which pins it.
-        el.classList.add("activated");
-        el.style.left = null;
-        el.style.top = null;
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
     }
 
-});
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn) {
+        // Find dfn panel
+        const dfnPanel = document.querySelector(`.dfn-panel[data-for='${dfn.id}']`);
+        if (dfnPanel) {
+            const panelWrapper = document.createElement('span');
+            panelWrapper.appendChild(dfnPanel);
+            panelWrapper.style.position = "relative";
+            panelWrapper.style.height = "0px";
+            dfn.insertAdjacentElement("afterend", panelWrapper);
+            dfn.setAttribute('role', 'button');
+            dfn.setAttribute('aria-expanded', 'false')
+            dfn.tabIndex = 0;
+            dfn.classList.add('has-dfn-panel');
+            dfn.addEventListener('click', (event) => {
+                showDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+            });
+            dfn.addEventListener('keypress', (event) => {
+                const kc = event.keyCode;
+                // 32->Space, 13->Enter
+                if(kc == 32 || kc == 13) {
+                    toggleDfnPanel(dfnPanel, dfn);
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+            });
+
+            dfnPanel.addEventListener('click', (event) => {
+                pinDfnPanel(dfnPanel);
+                event.stopPropagation();
+            });
+
+            dfnPanel.addEventListener('keydown', (event) => {
+                if(event.keyCode == 27) { // Escape key
+                    hideDfnPanel(dfnPanel, dfn);
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+            })
+
+        } else {
+            console.log("Couldn't find .dfn-panel[data-for='" + dfn.id + "']");
+        }
+    }
+}
 </script>
 <script>/* script-var-click-highlighting */
 
-    document.addEventListener("click", e=>{
-        if(e.target.nodeName == "VAR") {
-            highlightSameAlgoVars(e.target);
-        }
-    });
+    "use strict";
     {
+        document.addEventListener("click", e=>{
+            if(e.target.nodeName == "VAR") {
+                highlightSameAlgoVars(e.target);
+            }
+        });
         const indexCounts = new Map();
         const indexNames = new Map();
         function highlightSameAlgoVars(v) {
