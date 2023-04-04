@@ -108,7 +108,7 @@ path: stylesheet-extra.include
 		*   Glyphs representing character are shown as: GLYPH{a}, GLYPH{é},
 			GLYPH{ر}, GLYPH{字}.
 
-		*   Unicode [[!Unicode]] code points are shown as: UNI{U+003d}.
+		*   Unicode [[!Unicode]] code points are shown as: UNI{U+003D}.
 
 		*   Valid [=key attribute values=] (i.e., the value of
 			a {{KeyboardEvent}}'s {{KeyboardEvent/key}} attribute) are shown as:
@@ -186,7 +186,7 @@ path: stylesheet-extra.include
 			
 			* KEY_NOLINK{&#x0020} = UNI{U+0020} Space
 
-			* KEY_NOLINK{&#x00a0} = UNI{U+00a0} No-Break Space
+			* KEY_NOLINK{&#x00a0} = UNI{U+00A0} No-Break Space
 			
 			* KEY_NOLINK{&#x2009} = UNI{U+2009} Thin Space
 
@@ -196,14 +196,14 @@ path: stylesheet-extra.include
 		<div class="example">
 			The following are some examples of [=key strings=] with [=combining characters=]:
 		
-			* KEY_NOLINK{&#x00f4} = UNI{U+00f4}
-				(NOT "o" + " &#x0302" (UNI{U+006f} UNI{U+0302})
+			* KEY_NOLINK{&#x00f4} = UNI{U+00F4}
+				(NOT "o" + " &#x0302" (UNI{U+006F} UNI{U+0302})
 				because pre-composed characters must be used if available)
 
-			* KEY_NOLINK{&#x1e0d&#x0307} = UNI{U+1e0d} + UNI{U+0307}
+			* KEY_NOLINK{&#x1e0d&#x0307} = UNI{U+1E0D} + UNI{U+0307}
 				(NOT "d" + " &#x0323" + " &#x0307" (UNI{U+0064} UNI{U+0323} UNI{U+0307})
 				because precomposed characters must be used if available,
-				and NOT "&#x1e0b" + " &#x0323" (UNI{U+1e0b} UNI{U+0323})
+				and NOT "&#x1e0b" + " &#x0323" (UNI{U+1E0B} UNI{U+0323})
 				because accents must be ordered before substituting with a precomposed version)
 		</div>
 		
