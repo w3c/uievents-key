@@ -11,7 +11,7 @@ Repository: w3c/uievents-key
 Previous Version:
 	http://www.w3.org/TR/2015/WD-uievents-key-20151215/
 Editor: Gary Kacmarcik, Google, garykac@google.com
-Editor: Travis Leithead, Microsoft, travil@microsoft.com
+Editor: Travis Leithead, Invited Expert, travisleithead@hotmail.com
 Abstract:
 	This specification defines the [=key attribute values=] that must be used for
 	{{KeyboardEvent}}'s {{KeyboardEvent/key}} attribute, which is defined as part
