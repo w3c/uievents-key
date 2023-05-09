@@ -6,9 +6,9 @@
   <meta content="WD" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version d9bd89757, updated Thu Mar 23 10:06:53 2023 -0700" name="generator">
+  <meta content="Bikeshed version 3383f409d, updated Fri Apr 28 15:49:22 2023 -0700" name="generator">
   <link href="http://www.w3.org/TR/uievents-key/" rel="canonical">
-  <meta content="6742c9291c23aaa12d934e9e0177bbfaf7c1e33a" name="document-revision">
+  <meta content="0fe3d58dad5c4041bff6c3df4d4192afa1671550" name="document-revision">
 <style>
 
 /* Used when spelling out words or symbols phonetically. */
@@ -246,8 +246,7 @@ figcaption:not(.no-marker)::before {
     position: absolute;
     z-index: 35;
     width: 20em;
-    min-width: min-content;
-    max-width: 300px;
+    width: 300px;
     height: auto;
     max-height: 500px;
     overflow: auto;
@@ -264,8 +263,15 @@ figcaption:not(.no-marker)::before {
 .dfn-panel a { color: var(--dfnpanel-text); }
 .dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
 .dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0; }
-.dfn-panel li { list-style: inside; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .dfn-panel.activated {
     display: inline-block;
     position: fixed;
@@ -276,7 +282,7 @@ figcaption:not(.no-marker)::before {
     max-height: 30vh;
 }
 
-.dfn-paneled { cursor: pointer; }
+.dfn-paneled[role="button"] { cursor: pointer; }
 </style>
 <style>/* style-issues */
 a[href].issue-return {
@@ -358,27 +364,26 @@ a.self-link::before            { content: "¶"; }
 dfn > a.self-link::before      { content: "#"; }
 </style>
 <style>/* style-var-click-highlighting */
-
-    var { cursor: pointer; }
-    var.selected0 { background-color: #F4D200; box-shadow: 0 0 0 2px #F4D200; }
-    var.selected1 { background-color: #FF87A2; box-shadow: 0 0 0 2px #FF87A2; }
-    var.selected2 { background-color: #96E885; box-shadow: 0 0 0 2px #96E885; }
-    var.selected3 { background-color: #3EEED2; box-shadow: 0 0 0 2px #3EEED2; }
-    var.selected4 { background-color: #EACFB6; box-shadow: 0 0 0 2px #EACFB6; }
-    var.selected5 { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DDFF; }
-    var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
-    </style>
+var { cursor: pointer; }
+var.selected0 { background-color: #F4D200; box-shadow: 0 0 0 2px #F4D200; }
+var.selected1 { background-color: #FF87A2; box-shadow: 0 0 0 2px #FF87A2; }
+var.selected2 { background-color: #96E885; box-shadow: 0 0 0 2px #96E885; }
+var.selected3 { background-color: #3EEED2; box-shadow: 0 0 0 2px #3EEED2; }
+var.selected4 { background-color: #EACFB6; box-shadow: 0 0 0 2px #EACFB6; }
+var.selected5 { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DDFF; }
+var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
+</style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1>UI Events KeyboardEvent key Values</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#WD">W3C Working Draft</a>, <time class="dt-updated" datetime="2023-03-27">27 March 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#WD">W3C Working Draft</a>, <time class="dt-updated" datetime="2023-05-09">9 May 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://www.w3.org/TR/2023/WD-uievents-key-20230327/">https://www.w3.org/TR/2023/WD-uievents-key-20230327/</a>
+      <dd><a class="u-url" href="https://www.w3.org/TR/2023/WD-uievents-key-20230509/">https://www.w3.org/TR/2023/WD-uievents-key-20230509/</a>
       <dt>Latest published version:
       <dd><a href="http://www.w3.org/TR/uievents-key/">http://www.w3.org/TR/uievents-key/</a>
       <dt>Editor's Draft:
@@ -392,7 +397,7 @@ dfn > a.self-link::before      { content: "#"; }
       <dd><a href="https://github.com/w3c/uievents-key/issues/">GitHub</a>
       <dt class="editor">Editors:
       <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:garykac@google.com">Gary Kacmarcik</a> (<span class="p-org org">Google</span>)
-      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:travil@microsoft.com">Travis Leithead</a> (<span class="p-org org">Microsoft</span>)
+      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:travisleithead@hotmail.com">Travis Leithead</a> (<span class="p-org org">Invited Expert</span>)
      </dl>
     </div>
    </details>
@@ -2232,20 +2237,22 @@ something specific to the values defined in this document</p>
     with <code>class="note"</code>,
     like this: </p>
    <p class="note" role="note">Note, this is an informative note.</p>
-   <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
-   <p>Requirements phrased in the imperative as part of algorithms
+   <section>
+    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
+    <p>Requirements phrased in the imperative as part of algorithms
     (such as "strip any leading space characters"
     or "return false and abort these steps")
     are to be interpreted with the meaning of the key word
     ("must", "should", "may", etc)
     used in introducing the algorithm. </p>
-   <p>Conformance requirements phrased as algorithms or specific steps
+    <p>Conformance requirements phrased as algorithms or specific steps
     can be implemented in any manner,
     so long as the end result is equivalent.
     In particular, the algorithms defined in this specification
     are intended to be easy to understand
     and are not intended to be performant.
     Implementers are encouraged to optimize. </p>
+   </section>
   </div>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
@@ -2259,89 +2266,23 @@ something specific to the values defined in this document</p>
    <li><a href="#non-control-character">non-control character</a><span>, in § 2.1</span>
    <li><a href="#select-an-appropriate-key-attribute-value">select an appropriate key attribute value</a><span>, in § 2.2.1</span>
   </ul>
-  <aside aria-labelledby="infopaneltitle-for-b8f7f30fcf257828a84afe4c745d501f" class="dfn-panel" data-for="b8f7f30fcf257828a84afe4c745d501f" id="infopanel-for-b8f7f30fcf257828a84afe4c745d501f">
-   <span id="infopaneltitle-for-b8f7f30fcf257828a84afe4c745d501f" style="display:none">Info about the 'KeyboardEvent' external reference.</span><a href="http://www.w3.org/TR/uievents/#interface-keyboardevent">http://www.w3.org/TR/uievents/#interface-keyboardevent</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-interface-keyboardevent">Unnumbered Section</a>
-    <li><a href="#ref-for-interface-keyboardevent①">1. Introduction</a>
-    <li><a href="#ref-for-interface-keyboardevent②">1.1. Stylistic Conventions</a> <a href="#ref-for-interface-keyboardevent③">(2)</a> <a href="#ref-for-interface-keyboardevent④">(3)</a>
-    <li><a href="#ref-for-interface-keyboardevent⑤">2. Keyboard Event key Attribute Values</a>
-    <li><a href="#ref-for-interface-keyboardevent⑥">2.2.1. select an appropriate key attribute value</a>
-    <li><a href="#ref-for-interface-keyboardevent⑦">3. Named key Attribute Values</a>
-    <li><a href="#ref-for-interface-keyboardevent⑧">8. Acknowledgements</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-26cbf7220c693bc9b6b442ac1d5900bd" class="dfn-panel" data-for="26cbf7220c693bc9b6b442ac1d5900bd" id="infopanel-for-26cbf7220c693bc9b6b442ac1d5900bd">
-   <span id="infopaneltitle-for-26cbf7220c693bc9b6b442ac1d5900bd" style="display:none">Info about the 'code' external reference.</span><a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-code">http://www.w3.org/TR/uievents/#dom-keyboardevent-code</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-keyboardevent-code">1. Introduction</a>
-    <li><a href="#ref-for-dom-keyboardevent-code①">1.1. Stylistic Conventions</a> <a href="#ref-for-dom-keyboardevent-code②">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-6b0a2096dc09db3f92ddc1041f72b49e" class="dfn-panel" data-for="6b0a2096dc09db3f92ddc1041f72b49e" id="infopanel-for-6b0a2096dc09db3f92ddc1041f72b49e">
-   <span id="infopaneltitle-for-6b0a2096dc09db3f92ddc1041f72b49e" style="display:none">Info about the 'compositionupdate' external reference.</span><a href="http://www.w3.org/TR/uievents/#compositionupdate">http://www.w3.org/TR/uievents/#compositionupdate</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-compositionupdate">3.8. IME and Composition Keys</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-8b32100884b34e07e667931d3fccbc73" class="dfn-panel" data-for="8b32100884b34e07e667931d3fccbc73" id="infopanel-for-8b32100884b34e07e667931d3fccbc73">
-   <span id="infopaneltitle-for-8b32100884b34e07e667931d3fccbc73" style="display:none">Info about the 'dead key' external reference.</span><a href="http://www.w3.org/TR/uievents/#dead-key">http://www.w3.org/TR/uievents/#dead-key</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dead-key">2.2.1. select an appropriate key attribute value</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-5a37412907a5f54af6179b0d810e8dd9" class="dfn-panel" data-for="5a37412907a5f54af6179b0d810e8dd9" id="infopanel-for-5a37412907a5f54af6179b0d810e8dd9">
-   <span id="infopaneltitle-for-5a37412907a5f54af6179b0d810e8dd9" style="display:none">Info about the 'key' external reference.</span><a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-key">http://www.w3.org/TR/uievents/#dom-keyboardevent-key</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-keyboardevent-key">Unnumbered Section</a>
-    <li><a href="#ref-for-dom-keyboardevent-key①">1. Introduction</a> <a href="#ref-for-dom-keyboardevent-key②">(2)</a>
-    <li><a href="#ref-for-dom-keyboardevent-key③">1.1. Stylistic Conventions</a> <a href="#ref-for-dom-keyboardevent-key④">(2)</a>
-    <li><a href="#ref-for-dom-keyboardevent-key⑤">2. Keyboard Event key Attribute Values</a>
-    <li><a href="#ref-for-dom-keyboardevent-key⑥">2.2. Selecting key Attribute Values</a>
-    <li><a href="#ref-for-dom-keyboardevent-key⑦">2.2.1. select an appropriate key attribute value</a>
-    <li><a href="#ref-for-dom-keyboardevent-key⑧">3. Named key Attribute Values</a> <a href="#ref-for-dom-keyboardevent-key⑨">(2)</a> <a href="#ref-for-dom-keyboardevent-key①⓪">(3)</a>
-    <li><a href="#ref-for-dom-keyboardevent-key①①">3.11. Multimedia Numpad Keys</a>
-    <li><a href="#ref-for-dom-keyboardevent-key①②">4. Accessibility</a> <a href="#ref-for-dom-keyboardevent-key①③">(2)</a>
-    <li><a href="#ref-for-dom-keyboardevent-key①④">6. Security Considerations</a> <a href="#ref-for-dom-keyboardevent-key①⑤">(2)</a>
-    <li><a href="#ref-for-dom-keyboardevent-key①⑥">7. Privacy Considerations</a> <a href="#ref-for-dom-keyboardevent-key①⑦">(2)</a> <a href="#ref-for-dom-keyboardevent-key①⑧">(3)</a>
-    <li><a href="#ref-for-dom-keyboardevent-key①⑨">8. Acknowledgements</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-73bcdbdf9fa8fdde54286595b9ca7ad3" class="dfn-panel" data-for="73bcdbdf9fa8fdde54286595b9ca7ad3" id="infopanel-for-73bcdbdf9fa8fdde54286595b9ca7ad3">
-   <span id="infopaneltitle-for-73bcdbdf9fa8fdde54286595b9ca7ad3" style="display:none">Info about the 'key cap' external reference.</span><a href="http://www.w3.org/TR/uievents/#key-legends">http://www.w3.org/TR/uievents/#key-legends</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-key-legends">1.1. Stylistic Conventions</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-17af8a01895ed485222030d3855b81c9" class="dfn-panel" data-for="17af8a01895ed485222030d3855b81c9" id="infopanel-for-17af8a01895ed485222030d3855b81c9">
-   <span id="infopaneltitle-for-17af8a01895ed485222030d3855b81c9" style="display:none">Info about the 'location' external reference.</span><a href="http://www.w3.org/TR/uievents/#dom-keyboardevent-location">http://www.w3.org/TR/uievents/#dom-keyboardevent-location</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-keyboardevent-location">2. Keyboard Event key Attribute Values</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-7cea50bd80f7e9b6c0511b9b71cfe5c0" class="dfn-panel" data-for="7cea50bd80f7e9b6c0511b9b71cfe5c0" id="infopanel-for-7cea50bd80f7e9b6c0511b9b71cfe5c0">
-   <span id="infopaneltitle-for-7cea50bd80f7e9b6c0511b9b71cfe5c0" style="display:none">Info about the 'key code attribute value' external reference.</span><a href="http://www.w3.org/TR/uievents-key/#key-value-tables">http://www.w3.org/TR/uievents-key/#key-value-tables</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-key-value-tables">1.1. Stylistic Conventions</a>
-   </ul>
-  </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
     <a data-link-type="biblio">[UIEvents]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="b8f7f30fcf257828a84afe4c745d501f">KeyboardEvent</span>
-     <li><span class="dfn-paneled" id="26cbf7220c693bc9b6b442ac1d5900bd">code</span>
-     <li><span class="dfn-paneled" id="6b0a2096dc09db3f92ddc1041f72b49e">compositionupdate</span>
-     <li><span class="dfn-paneled" id="8b32100884b34e07e667931d3fccbc73">dead key</span>
-     <li><span class="dfn-paneled" id="5a37412907a5f54af6179b0d810e8dd9">key</span>
-     <li><span class="dfn-paneled" id="73bcdbdf9fa8fdde54286595b9ca7ad3">key cap</span>
-     <li><span class="dfn-paneled" id="17af8a01895ed485222030d3855b81c9">location</span>
+     <li><span class="dfn-paneled" id="cf0cb46e">KeyboardEvent</span>
+     <li><span class="dfn-paneled" id="a04c3d95">code</span>
+     <li><span class="dfn-paneled" id="77d2c11d">compositionupdate</span>
+     <li><span class="dfn-paneled" id="48eb4513">dead key</span>
+     <li><span class="dfn-paneled" id="1bbfdeca">key</span>
+     <li><span class="dfn-paneled" id="01d2e35c">key cap</span>
+     <li><span class="dfn-paneled" id="922ac9dd">location</span>
     </ul>
    <li>
     <a data-link-type="biblio">[UIEvents-Code]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="7cea50bd80f7e9b6c0511b9b71cfe5c0">key code attribute value</span>
+     <li><span class="dfn-paneled" id="76d11bdd">key code attribute value</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -2377,91 +2318,68 @@ something specific to the values defined in this document</p>
    <dt id="biblio-wmappcommand">[WmAppCommand]
    <dd><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms646275(v=vs.85).aspx"><cite>MSDN WM_APPCOMMAND message</cite></a>. URL: <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms646275(v=vs.85).aspx">https://msdn.microsoft.com/en-us/library/windows/desktop/ms646275(v=vs.85).aspx</a>
   </dl>
-  <aside aria-labelledby="infopaneltitle-for-key-attribute-value" class="dfn-panel" data-for="key-attribute-value" id="infopanel-for-key-attribute-value">
-   <span id="infopaneltitle-for-key-attribute-value" style="display:none">Info about the 'key attribute value' definition.</span><b><a href="#key-attribute-value">#key-attribute-value</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-key-attribute-value①">1. Introduction</a>
-    <li><a href="#ref-for-key-attribute-value②">1.1. Stylistic Conventions</a>
-    <li><a href="#ref-for-key-attribute-value③">2. Keyboard Event key Attribute Values</a> <a href="#ref-for-key-attribute-value④">(2)</a> <a href="#ref-for-key-attribute-value⑤">(3)</a>
-    <li><a href="#ref-for-key-attribute-value⑥">2.1. Unicode Values</a> <a href="#ref-for-key-attribute-value⑦">(2)</a>
-    <li><a href="#ref-for-key-attribute-value⑧">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-key-attribute-value⑨">(2)</a> <a href="#ref-for-key-attribute-value①⓪">(3)</a> <a href="#ref-for-key-attribute-value①①">(4)</a> <a href="#ref-for-key-attribute-value①②">(5)</a> <a href="#ref-for-key-attribute-value①③">(6)</a> <a href="#ref-for-key-attribute-value①④">(7)</a> <a href="#ref-for-key-attribute-value①⑤">(8)</a> <a href="#ref-for-key-attribute-value①⑥">(9)</a>
-    <li><a href="#ref-for-key-attribute-value①⑦">3. Named key Attribute Values</a>
-    <li><a href="#ref-for-key-attribute-value①⑧">3.1. Special Keys</a> <a href="#ref-for-key-attribute-value①⑨">(2)</a>
-    <li><a href="#ref-for-key-attribute-value②⓪">3.2. Modifier Keys</a> <a href="#ref-for-key-attribute-value②①">(2)</a>
-    <li><a href="#ref-for-key-attribute-value②②">3.3. Whitespace Keys</a>
-    <li><a href="#ref-for-key-attribute-value②③">3.4. Navigation Keys</a>
-    <li><a href="#ref-for-key-attribute-value②④">3.5. Editing Keys</a>
-    <li><a href="#ref-for-key-attribute-value②⑤">3.6. UI Keys</a>
-    <li><a href="#ref-for-key-attribute-value②⑥">3.7. Device Keys</a>
-    <li><a href="#ref-for-key-attribute-value②⑦">3.8. IME and Composition Keys</a> <a href="#ref-for-key-attribute-value②⑧">(2)</a> <a href="#ref-for-key-attribute-value②⑨">(3)</a>
-    <li><a href="#ref-for-key-attribute-value③⓪">3.9. General-Purpose Function Keys</a>
-    <li><a href="#ref-for-key-attribute-value③①">3.10. Multimedia Keys</a>
-    <li><a href="#ref-for-key-attribute-value③②">3.11. Multimedia Numpad Keys</a>
-    <li><a href="#ref-for-key-attribute-value③③">3.12. Audio Keys</a>
-    <li><a href="#ref-for-key-attribute-value③④">3.13. Speech Keys</a>
-    <li><a href="#ref-for-key-attribute-value③⑤">3.14. Application Keys</a>
-    <li><a href="#ref-for-key-attribute-value③⑥">3.15. Browser Keys</a>
-    <li><a href="#ref-for-key-attribute-value③⑦">3.16. Mobile Phone Keys</a>
-    <li><a href="#ref-for-key-attribute-value③⑧">3.17. TV Keys</a>
-    <li><a href="#ref-for-key-attribute-value③⑨">3.18. Media Controller Keys</a> <a href="#ref-for-key-attribute-value④⓪">(2)</a> <a href="#ref-for-key-attribute-value④①">(3)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-key-string" class="dfn-panel" data-for="key-string" id="infopanel-for-key-string">
-   <span id="infopaneltitle-for-key-string" style="display:none">Info about the 'key string' definition.</span><b><a href="#key-string">#key-string</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-key-string">2. Keyboard Event key Attribute Values</a>
-    <li><a href="#ref-for-key-string①">2.1. Unicode Values</a> <a href="#ref-for-key-string②">(2)</a> <a href="#ref-for-key-string③">(3)</a> <a href="#ref-for-key-string④">(4)</a>
-    <li><a href="#ref-for-key-string⑤">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-key-string⑥">(2)</a> <a href="#ref-for-key-string⑦">(3)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-non-control-character" class="dfn-panel" data-for="non-control-character" id="infopanel-for-non-control-character">
-   <span id="infopaneltitle-for-non-control-character" style="display:none">Info about the 'non-control character' definition.</span><b><a href="#non-control-character">#non-control-character</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-non-control-character">2.1. Unicode Values</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-combining-character" class="dfn-panel" data-for="combining-character" id="infopanel-for-combining-character">
-   <span id="infopaneltitle-for-combining-character" style="display:none">Info about the 'combining character' definition.</span><b><a href="#combining-character">#combining-character</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-combining-character">2.1. Unicode Values</a> <a href="#ref-for-combining-character①">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-glyph-modifier-key" class="dfn-panel" data-for="glyph-modifier-key" id="infopanel-for-glyph-modifier-key">
-   <span id="infopaneltitle-for-glyph-modifier-key" style="display:none">Info about the 'glyph modifier key' definition.</span><b><a href="#glyph-modifier-key">#glyph-modifier-key</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-glyph-modifier-key">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-glyph-modifier-key①">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-select-an-appropriate-key-attribute-value" class="dfn-panel" data-for="select-an-appropriate-key-attribute-value" id="infopanel-for-select-an-appropriate-key-attribute-value">
-   <span id="infopaneltitle-for-select-an-appropriate-key-attribute-value" style="display:none">Info about the 'select an appropriate key attribute value' definition.</span><b><a href="#select-an-appropriate-key-attribute-value">#select-an-appropriate-key-attribute-value</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-select-an-appropriate-key-attribute-value">2.2.1. select an appropriate key attribute value</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-named-key-attribute-value" class="dfn-panel" data-for="named-key-attribute-value" id="infopanel-for-named-key-attribute-value">
-   <span id="infopaneltitle-for-named-key-attribute-value" style="display:none">Info about the 'named key attribute value' definition.</span><b><a href="#named-key-attribute-value">#named-key-attribute-value</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-named-key-attribute-value">2. Keyboard Event key Attribute Values</a>
-    <li><a href="#ref-for-named-key-attribute-value①">2.1.1. Control Characters</a>
-    <li><a href="#ref-for-named-key-attribute-value②">2.2.1. select an appropriate key attribute value</a> <a href="#ref-for-named-key-attribute-value③">(2)</a> <a href="#ref-for-named-key-attribute-value④">(3)</a>
-    <li><a href="#ref-for-named-key-attribute-value⑤">3. Named key Attribute Values</a> <a href="#ref-for-named-key-attribute-value⑥">(2)</a>
-   </ul>
-  </aside>
 <script>/* script-dfn-panel */
 "use strict";
 {
-    function queryAll(sel) {
-        return [].slice.call(document.querySelectorAll(sel));
+    const dfnsJson = window.dfnsJson || {};
+
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
 
-    // Add popup behavior to all dfns to show the corresponding dfn-panel.
-    var dfns = document.querySelectorAll('.dfn-paneled');
-    for (let dfn of dfns) { insertDfnPopupAction(dfn); }
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
+            }
+        }
+    }
 
-    document.body.addEventListener("click", (e) => {
-        // If not handled already, just hide all dfn panels.
-        hideAllDfnPanels();
-    });
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
 
     function hideAllDfnPanels() {
         // Turn off any currently "on" or "activated" panels.
@@ -2511,52 +2429,260 @@ something specific to the values defined in this document</p>
         }
     }
 
-    function insertDfnPopupAction(dfn) {
+    function insertDfnPopupAction(dfn, dfnPanel) {
         // Find dfn panel
-        const dfnPanel = document.querySelector(`.dfn-panel[data-for='${dfn.id}']`);
-        if (dfnPanel) {
-            const panelWrapper = document.createElement('span');
-            panelWrapper.appendChild(dfnPanel);
-            panelWrapper.style.position = "relative";
-            panelWrapper.style.height = "0px";
-            dfn.insertAdjacentElement("afterend", panelWrapper);
-            dfn.setAttribute('role', 'button');
-            dfn.setAttribute('aria-expanded', 'false')
-            dfn.tabIndex = 0;
-            dfn.classList.add('has-dfn-panel');
-            dfn.addEventListener('click', (event) => {
-                showDfnPanel(dfnPanel, dfn);
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
                 event.stopPropagation();
-            });
-            dfn.addEventListener('keypress', (event) => {
-                const kc = event.keyCode;
-                // 32->Space, 13->Enter
-                if(kc == 32 || kc == 13) {
-                    toggleDfnPanel(dfnPanel, dfn);
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-            });
+                event.preventDefault();
+            }
+        });
 
-            dfnPanel.addEventListener('click', (event) => {
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
                 pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
                 event.stopPropagation();
-            });
-
-            dfnPanel.addEventListener('keydown', (event) => {
-                if(event.keyCode == 27) { // Escape key
-                    hideDfnPanel(dfnPanel, dfn);
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-            })
-
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + dfn.id + "']");
-        }
+                event.preventDefault();
+            }
+        })
     }
 }
 </script>
+<script>/* script-dfn-panel-json */
+window.dfnpanelData = {};
+window.dfnpanelData['cf0cb46e'] = {"dfnID": "cf0cb46e", "url": "http://www.w3.org/TR/uievents/#interface-keyboardevent", "dfnText": "KeyboardEvent", "refSections": [{"refs": [{"id": "ref-for-interface-keyboardevent"}], "title": "Unnumbered Section"}, {"refs": [{"id": "ref-for-interface-keyboardevent\u2460"}], "title": "1. Introduction"}, {"refs": [{"id": "ref-for-interface-keyboardevent\u2461"}, {"id": "ref-for-interface-keyboardevent\u2462"}, {"id": "ref-for-interface-keyboardevent\u2463"}], "title": "1.1. Stylistic Conventions"}, {"refs": [{"id": "ref-for-interface-keyboardevent\u2464"}], "title": "2. Keyboard Event key Attribute Values"}, {"refs": [{"id": "ref-for-interface-keyboardevent\u2465"}], "title": "2.2.1. select an appropriate key attribute value"}, {"refs": [{"id": "ref-for-interface-keyboardevent\u2466"}], "title": "3. Named key Attribute Values"}, {"refs": [{"id": "ref-for-interface-keyboardevent\u2467"}], "title": "8. Acknowledgements"}], "external": true};
+window.dfnpanelData['a04c3d95'] = {"dfnID": "a04c3d95", "url": "http://www.w3.org/TR/uievents/#dom-keyboardevent-code", "dfnText": "code", "refSections": [{"refs": [{"id": "ref-for-dom-keyboardevent-code"}], "title": "1. Introduction"}, {"refs": [{"id": "ref-for-dom-keyboardevent-code\u2460"}, {"id": "ref-for-dom-keyboardevent-code\u2461"}], "title": "1.1. Stylistic Conventions"}], "external": true};
+window.dfnpanelData['77d2c11d'] = {"dfnID": "77d2c11d", "url": "http://www.w3.org/TR/uievents/#compositionupdate", "dfnText": "compositionupdate", "refSections": [{"refs": [{"id": "ref-for-compositionupdate"}], "title": "3.8. IME and Composition Keys"}], "external": true};
+window.dfnpanelData['48eb4513'] = {"dfnID": "48eb4513", "url": "http://www.w3.org/TR/uievents/#dead-key", "dfnText": "dead key", "refSections": [{"refs": [{"id": "ref-for-dead-key"}], "title": "2.2.1. select an appropriate key attribute value"}], "external": true};
+window.dfnpanelData['1bbfdeca'] = {"dfnID": "1bbfdeca", "url": "http://www.w3.org/TR/uievents/#dom-keyboardevent-key", "dfnText": "key", "refSections": [{"refs": [{"id": "ref-for-dom-keyboardevent-key"}], "title": "Unnumbered Section"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2460"}, {"id": "ref-for-dom-keyboardevent-key\u2461"}], "title": "1. Introduction"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2462"}, {"id": "ref-for-dom-keyboardevent-key\u2463"}], "title": "1.1. Stylistic Conventions"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2464"}], "title": "2. Keyboard Event key Attribute Values"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2465"}], "title": "2.2. Selecting key Attribute Values"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2466"}], "title": "2.2.1. select an appropriate key attribute value"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2467"}, {"id": "ref-for-dom-keyboardevent-key\u2468"}, {"id": "ref-for-dom-keyboardevent-key\u2460\u24ea"}], "title": "3. Named key Attribute Values"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2460\u2460"}], "title": "3.11. Multimedia Numpad Keys"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2460\u2461"}, {"id": "ref-for-dom-keyboardevent-key\u2460\u2462"}], "title": "4. Accessibility"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2460\u2463"}, {"id": "ref-for-dom-keyboardevent-key\u2460\u2464"}], "title": "6. Security Considerations"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2460\u2465"}, {"id": "ref-for-dom-keyboardevent-key\u2460\u2466"}, {"id": "ref-for-dom-keyboardevent-key\u2460\u2467"}], "title": "7. Privacy Considerations"}, {"refs": [{"id": "ref-for-dom-keyboardevent-key\u2460\u2468"}], "title": "8. Acknowledgements"}], "external": true};
+window.dfnpanelData['01d2e35c'] = {"dfnID": "01d2e35c", "url": "http://www.w3.org/TR/uievents/#key-legends", "dfnText": "key cap", "refSections": [{"refs": [{"id": "ref-for-key-legends"}], "title": "1.1. Stylistic Conventions"}], "external": true};
+window.dfnpanelData['922ac9dd'] = {"dfnID": "922ac9dd", "url": "http://www.w3.org/TR/uievents/#dom-keyboardevent-location", "dfnText": "location", "refSections": [{"refs": [{"id": "ref-for-dom-keyboardevent-location"}], "title": "2. Keyboard Event key Attribute Values"}], "external": true};
+window.dfnpanelData['76d11bdd'] = {"dfnID": "76d11bdd", "url": "http://www.w3.org/TR/uievents-key/#key-value-tables", "dfnText": "key code attribute value", "refSections": [{"refs": [{"id": "ref-for-key-value-tables"}], "title": "1.1. Stylistic Conventions"}], "external": true};
+window.dfnpanelData['key-attribute-value'] = {"dfnID": "key-attribute-value", "url": "#key-attribute-value", "dfnText": "key attribute value", "refSections": [{"refs": [{"id": "ref-for-key-attribute-value\u2460"}], "title": "1. Introduction"}, {"refs": [{"id": "ref-for-key-attribute-value\u2461"}], "title": "1.1. Stylistic Conventions"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462"}, {"id": "ref-for-key-attribute-value\u2463"}, {"id": "ref-for-key-attribute-value\u2464"}], "title": "2. Keyboard Event key Attribute Values"}, {"refs": [{"id": "ref-for-key-attribute-value\u2465"}, {"id": "ref-for-key-attribute-value\u2466"}], "title": "2.1. Unicode Values"}, {"refs": [{"id": "ref-for-key-attribute-value\u2467"}, {"id": "ref-for-key-attribute-value\u2468"}, {"id": "ref-for-key-attribute-value\u2460\u24ea"}, {"id": "ref-for-key-attribute-value\u2460\u2460"}, {"id": "ref-for-key-attribute-value\u2460\u2461"}, {"id": "ref-for-key-attribute-value\u2460\u2462"}, {"id": "ref-for-key-attribute-value\u2460\u2463"}, {"id": "ref-for-key-attribute-value\u2460\u2464"}, {"id": "ref-for-key-attribute-value\u2460\u2465"}], "title": "2.2.1. select an appropriate key attribute value"}, {"refs": [{"id": "ref-for-key-attribute-value\u2460\u2466"}], "title": "3. Named key Attribute Values"}, {"refs": [{"id": "ref-for-key-attribute-value\u2460\u2467"}, {"id": "ref-for-key-attribute-value\u2460\u2468"}], "title": "3.1. Special Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2461\u24ea"}, {"id": "ref-for-key-attribute-value\u2461\u2460"}], "title": "3.2. Modifier Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2461\u2461"}], "title": "3.3. Whitespace Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2461\u2462"}], "title": "3.4. Navigation Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2461\u2463"}], "title": "3.5. Editing Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2461\u2464"}], "title": "3.6. UI Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2461\u2465"}], "title": "3.7. Device Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2461\u2466"}, {"id": "ref-for-key-attribute-value\u2461\u2467"}, {"id": "ref-for-key-attribute-value\u2461\u2468"}], "title": "3.8. IME and Composition Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462\u24ea"}], "title": "3.9. General-Purpose Function Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462\u2460"}], "title": "3.10. Multimedia Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462\u2461"}], "title": "3.11. Multimedia Numpad Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462\u2462"}], "title": "3.12. Audio Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462\u2463"}], "title": "3.13. Speech Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462\u2464"}], "title": "3.14. Application Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462\u2465"}], "title": "3.15. Browser Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462\u2466"}], "title": "3.16. Mobile Phone Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462\u2467"}], "title": "3.17. TV Keys"}, {"refs": [{"id": "ref-for-key-attribute-value\u2462\u2468"}, {"id": "ref-for-key-attribute-value\u2463\u24ea"}, {"id": "ref-for-key-attribute-value\u2463\u2460"}], "title": "3.18. Media Controller Keys"}], "external": false};
+window.dfnpanelData['key-string'] = {"dfnID": "key-string", "url": "#key-string", "dfnText": "key string", "refSections": [{"refs": [{"id": "ref-for-key-string"}], "title": "2. Keyboard Event key Attribute Values"}, {"refs": [{"id": "ref-for-key-string\u2460"}, {"id": "ref-for-key-string\u2461"}, {"id": "ref-for-key-string\u2462"}, {"id": "ref-for-key-string\u2463"}], "title": "2.1. Unicode Values"}, {"refs": [{"id": "ref-for-key-string\u2464"}, {"id": "ref-for-key-string\u2465"}, {"id": "ref-for-key-string\u2466"}], "title": "2.2.1. select an appropriate key attribute value"}], "external": false};
+window.dfnpanelData['non-control-character'] = {"dfnID": "non-control-character", "url": "#non-control-character", "dfnText": "non-control character", "refSections": [{"refs": [{"id": "ref-for-non-control-character"}], "title": "2.1. Unicode Values"}], "external": false};
+window.dfnpanelData['combining-character'] = {"dfnID": "combining-character", "url": "#combining-character", "dfnText": "combining character", "refSections": [{"refs": [{"id": "ref-for-combining-character"}, {"id": "ref-for-combining-character\u2460"}], "title": "2.1. Unicode Values"}], "external": false};
+window.dfnpanelData['glyph-modifier-key'] = {"dfnID": "glyph-modifier-key", "url": "#glyph-modifier-key", "dfnText": "glyph modifier key", "refSections": [{"refs": [{"id": "ref-for-glyph-modifier-key"}, {"id": "ref-for-glyph-modifier-key\u2460"}], "title": "2.2.1. select an appropriate key attribute value"}], "external": false};
+window.dfnpanelData['select-an-appropriate-key-attribute-value'] = {"dfnID": "select-an-appropriate-key-attribute-value", "url": "#select-an-appropriate-key-attribute-value", "dfnText": "select an appropriate key attribute value", "refSections": [{"refs": [{"id": "ref-for-select-an-appropriate-key-attribute-value"}], "title": "2.2.1. select an appropriate key attribute value"}], "external": false};
+window.dfnpanelData['named-key-attribute-value'] = {"dfnID": "named-key-attribute-value", "url": "#named-key-attribute-value", "dfnText": "named key attribute value", "refSections": [{"refs": [{"id": "ref-for-named-key-attribute-value"}], "title": "2. Keyboard Event key Attribute Values"}, {"refs": [{"id": "ref-for-named-key-attribute-value\u2460"}], "title": "2.1.1. Control Characters"}, {"refs": [{"id": "ref-for-named-key-attribute-value\u2461"}, {"id": "ref-for-named-key-attribute-value\u2462"}, {"id": "ref-for-named-key-attribute-value\u2463"}], "title": "2.2.1. select an appropriate key attribute value"}, {"refs": [{"id": "ref-for-named-key-attribute-value\u2464"}, {"id": "ref-for-named-key-attribute-value\u2465"}], "title": "3. Named key Attribute Values"}], "external": false};</script>
+<script>/* script-dom-helper */
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
+});
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
+}</script>
 <script>/* script-var-click-highlighting */
 
     "use strict";
@@ -2641,4 +2767,4 @@ something specific to the values defined in this document</p>
             return "selected" + index;
         }
     }
-    </script>
+</script>

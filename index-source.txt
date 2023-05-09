@@ -68,11 +68,11 @@ Abstract:
 
 <pre class="anchors">
 urlPrefix: http://www.w3.org/TR/uievents/#interface-; type: interface; spec: uievents;
-    text: KeyboardEvent
+	text: KeyboardEvent
 urlPrefix: http://www.w3.org/TR/uievents/#dom-keyboardevent-; type: attribute; for: KeyboardEvent; spec: uievents;
-    text: key
-    text: code
-    text: location
+	text: key
+	text: code
+	text: location
 urlPrefix: http://www.w3.org/TR/uievents/#; type: dfn; spec: uievents;
 	text: compositionupdate
 	text: dead key
