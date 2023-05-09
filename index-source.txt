@@ -10,6 +10,7 @@ ED: https://w3c.github.io/uievents-key/
 Repository: w3c/uievents-key
 Previous Version:
 	http://www.w3.org/TR/2015/WD-uievents-key-20151215/
+!Implementation Report: <a href="https://w3c.github.io/uievents-key/impl-report.html">https://w3c.github.io/uievents-key/impl-report.html</a>
 Editor: Gary Kacmarcik, Google, garykac@google.com
 Editor: Travis Leithead, Invited Expert, travisleithead@hotmail.com
 Abstract:
