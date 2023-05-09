@@ -120,8 +120,8 @@ path: stylesheet-extra.include
 
 <h2 id="key-attr-values">Keyboard Event {{KeyboardEvent/key}} Attribute Values</h2>
 
-	A <dfn>key attribute value</dfn> is defined as being a string that contains one of
-	the following:
+	A <dfn>key attribute value</dfn> is defined as being a <code>DOMString</code> that
+	contains one of the following:
 
 	* A [=key string=] that corresponds to
 		the character typed by the user, taking into account the user's current locale
