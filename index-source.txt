@@ -832,9 +832,9 @@ path: stylesheet-extra.include
 			KEY_DUP_OPT MediaRecord			Initiate or resume recording of currently selected media. (VK_RECORD)
 			KEY_DUP_OPT MediaRewind			Initiate or continue reverse playback at faster than normal speed, or increase speed if already rewinding. (VK_REWIND)
 			KEY_DUP_OPT MediaStop			Stop media playing, pausing, forwarding, rewinding, or recording, if not already stopped. (VK_STOP)
-			KEY_DUP_OPT MediaNextTrack		Seek to next media or program track. (VK_TRACK_NEXT)
 			KEY_DUP_OPT MediaPause			Pause the currently playing media. (VK_PAUSE)
-			KEY_DUP_OPT MediaPreviousTrack	Seek to previous media or program track. (VK_TRACK_PREV)
+			KEY_DUP_OPT MediaTrackNext		Seek to next media or program track. (VK_TRACK_NEXT)
+			KEY_DUP_OPT MediaTrackPrevious	Seek to previous media or program track. (VK_TRACK_PREV)
 			KEY_DUP_OPT Power				Toggle power state. (VK_POWER)
 			KEY_DUP Unidentified			This key value is used when an implementations is unable to identify another key value, due to either hardware, platform, or software constraints. (VK_UNDEFINED)
 		END_KEY_TABLE
