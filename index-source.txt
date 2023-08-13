@@ -336,7 +336,7 @@ path: stylesheet-extra.include
 	<h3 id="keys-special">Special Keys</h3>
 
 		Implementations that are unable to identify a key MUST use KEY{Unidentified}
-		as the the [=key attribute value=].
+		as the [=key attribute value=].
 
 		BEGIN_KEY_TABLE general
 			KEY Unidentified	This key value is used when an implementation is unable to
@@ -475,14 +475,14 @@ path: stylesheet-extra.include
 	<h3 id="keys-composition">IME and Composition Keys</h3>
 
 		BEGIN_KEY_TABLE composition
-			KEY_OPT AllCandidates	The All Candidates key, to initate the multi-candidate mode.
+			KEY_OPT AllCandidates	The All Candidates key, to initiate the multi-candidate mode.
 			KEY_OPT Alphanumeric	The Alphanumeric key.
 			KEY_OPT CodeInput		The Code Input key, to initiate the Code Input mode to allow characters to be entered by their code points.
 			KEY_OPT Compose			The Compose key, also known as <em>Multi_key</em> on the X Window System.  This key acts in a manner similar to a
 									dead key, triggering a mode where subsequent key presses are combined to produce a different character.
 			KEY_OPT Convert			The Convert key, to convert the current input method sequence.
 			KEY_OPT Dead			A dead key combining key. It may be any combining key from any keyboard layout. For example, on a
-									PC/AT French keyboard, using a French mapping and without any modifier activiated, this is the key value
+									PC/AT French keyboard, using a French mapping and without any modifier activated, this is the key value
 									UNI{U+0302} COMBINING CIRCUMFLEX ACCENT. In another layout this might be a different unicode combining key.<br/>
 									For applications that need to differentiate between specific combining characters, the associated [=compositionupdate=]
 									event's data attribute provides the specific key value.

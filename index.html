@@ -678,7 +678,7 @@ except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-
 	Rather than allowing user agents to define their own <a data-link-type="dfn" href="#named-key-attribute-value" id="ref-for-named-key-attribute-value⑥">named key attribute values</a> (which are unlikely to be consistent across multiple user agents), bugs SHOULD be
 	filed so that this specification can be updated. </p>
    <h3 class="heading settled" data-level="3.1" id="keys-special"><span class="secno">3.1. </span><span class="content">Special Keys</span><a class="self-link" href="#keys-special"></a></h3>
-   <p>Implementations that are unable to identify a key MUST use <code class="key">"<a href="#key-Unidentified">Unidentified</a>"</code> as the the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value①⑧">key attribute value</a>.</p>
+   <p>Implementations that are unable to identify a key MUST use <code class="key">"<a href="#key-Unidentified">Unidentified</a>"</code> as the <a data-link-type="dfn" href="#key-attribute-value" id="ref-for-key-attribute-value①⑧">key attribute value</a>.</p>
    <table class="data-table full-width" id="key-table-general">
     <thead>
      <tr>
@@ -1026,7 +1026,7 @@ except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-
      <tr>
       <td class="key-table-key"><code class="key" id="key-AllCandidates">"AllCandidates"</code>
       <td class="key-table-required">No
-      <td>The All Candidates key, to initate the multi-candidate mode.
+      <td>The All Candidates key, to initiate the multi-candidate mode.
      <tr>
       <td class="key-table-key"><code class="key" id="key-Alphanumeric">"Alphanumeric"</code>
       <td class="key-table-required">No
@@ -1046,8 +1046,7 @@ except for <a data-link-type="dfn" href="#glyph-modifier-key" id="ref-for-glyph-
      <tr>
       <td class="key-table-key"><code class="key" id="key-Dead">"Dead"</code>
       <td class="key-table-required">No
-      <td>A dead key combining key. It may be any combining key from any keyboard layout. For example, on a									PC/AT French keyboard, using a French mapping and without any modifier activiated, this is the key value <code class="unicode">U+0302</code> COMBINING CIRCUMFLEX ACCENT. In another layout this might be a different unicode combining key.<br> For applications that need to differentiate between specific combining characters, the associated <a data-link-type="dfn" href="http://www.w3.org/TR/uievents/#compositionupdate" id="ref-for-compositionupdate">compositionupdate</a> event’s data attribute provides the specific key value. 
-     <tr>
+      <td>A dead key combining key. It may be any combining key from any keyboard layout. For example, on a									PC/AT French keyboard, using a French mapping and without any modifier activated, this is the key value <code class="unicode">U+0302</code> COMBINING CIRCUMFLEX ACCENT. In another layout this might be a different unicode combining key.<br> For applications that need to differentiate between specific combining characters, the associated <a data-link-type="dfn" href="http://www.w3.org/TR/uievents/#compositionupdate" id="ref-for-compositionupdate">compositionupdate</a> event’s data attribute provides the specific key value.      <tr>
       <td class="key-table-key"><code class="key" id="key-FinalMode">"FinalMode"</code>
       <td class="key-table-required">No
       <td>The Final Mode <code class="keycap">Final</code> key used on some Asian keyboards, to enable the final mode for IMEs.
